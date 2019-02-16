@@ -1,9 +1,8 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
+import React from 'react';
+import { Link, graphql } from 'gatsby';
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import Layout from '../components/layout';
+import SEO from '../components/seo';
 
 const IndexPage = ({ data }) => (
   <Layout>
@@ -15,9 +14,9 @@ const IndexPage = ({ data }) => (
       </Link>
     ))}
   </Layout>
-)
+);
 
-export default IndexPage
+export default IndexPage;
 
 // query airtable for the Title and Path of each record,
 // filtering for only records in the Sections table.
@@ -34,4 +33,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

@@ -4,12 +4,12 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-const path = require(`path`)
+const path = require(`path`);
 
 exports.createPages = ({ graphql, actions }) => {
   // createPage is a built in action,
   // available to all gatsby-node exports
-  const { createPage } = actions
+  const { createPage } = actions;
   return new Promise(async resolve => {
     // we need the table name (e.g. "Sections")
     // as well as the unique path for each Page/Section.
@@ -26,21 +26,21 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }
-    `)
+    `);
     // For each path, create page and choose a template.
     // values in context Object are available in that page's query
     result.data.allAirtable.edges.forEach(({ node }) => {
-      const isPage = node.table === 'Pages'
+      const isPage = node.table === 'Pages';
       createPage({
         path: node.data.Path,
         component: isPage
           ? path.resolve(`./src/templates/page-template.js`)
           : path.resolve(`./src/templates/section-template.js`),
         context: {
-          Path: node.data.Path,
-        },
-      })
-    })
-    resolve()
-  })
-}
+          Path: node.data.Path
+        }
+      });
+    });
+    resolve();
+  });
+};
