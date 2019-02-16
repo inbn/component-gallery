@@ -7,6 +7,7 @@ import SEO from "../components/seo"
 
 const IndexPage = ({ data }) => (
   <Layout>
+    <SEO title="Home" />
     <h1>Table of Contents</h1>
     {data.allAirtable.edges.map((edge, i) => (
       <Link to={edge.node.data.Path} key={i}>

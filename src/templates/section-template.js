@@ -2,8 +2,11 @@ import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Layout from '../components/layout'
 
+import SEO from "../components/seo"
+
 export default ({ data }) => (
   <Layout>
+    <SEO title={data.airtable.data.Title} />
     <h3>{data.airtable.data.Title}</h3>
     <main
       dangerouslySetInnerHTML={{
