@@ -1,3 +1,5 @@
+require(`dotenv`).config({path: `.env`})
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -30,5 +32,28 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',
+    'gatsby-transformer-remark',
+    {
+      resolve: `gatsby-source-airtable`,
+      options: {
+        apiKey: process.env.AIRTABLE_API_KEY,
+        tables: [
+          {
+            baseId: process.env.AIRTABLE_BASE_ID,
+            tableName: `Sections`,
+            tableView: `All`,
+            mapping: { Body: `text/markdown` },
+            tableLinks: [`Pages`],
+          },
+          {
+            baseId: process.env.AIRTABLE_BASE_ID,
+            tableName: `Pages`,
+            tableView: `All`,
+            mapping: { Body: `text/markdown` },
+            tableLinks: [`Sections`],
+          },
+        ],
+      },
+    },
   ],
 }
