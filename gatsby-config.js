@@ -50,7 +50,7 @@ module.exports = {
             tableName: `Pages`,
             tableView: `All`,
             mapping: { Body: `text/markdown` },
-            tableLinks: [`Sections`],
+            tableLinks: [`Section`],
           },
         ],
       },
