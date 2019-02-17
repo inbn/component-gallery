@@ -7,10 +7,10 @@ import SEO from '../components/seo';
 const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
-    <h1>Table of Contents</h1>
+    <h1>Components</h1>
     {data.allAirtable.edges.map((edge, i) => (
-      <Link to={edge.node.data.Path} key={i}>
-        <h3>{edge.node.data.Title}</h3>
+      <Link to={`components/${edge.node.data.Slug}`} key={i}>
+        <h3>{edge.node.data.Name}</h3>
       </Link>
     ))}
   </Layout>
@@ -22,12 +22,12 @@ export default IndexPage;
 // filtering for only records in the Sections table.
 export const query = graphql`
   {
-    allAirtable(filter: { table: { eq: "Sections" } }) {
+    allAirtable(filter: { table: { eq: "Components" } }) {
       edges {
         node {
           data {
-            Title
-            Path
+            Name
+            Slug
           }
         }
       }

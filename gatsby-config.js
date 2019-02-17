@@ -2,7 +2,7 @@ require(`dotenv`).config({ path: `.env.${process.env.NODE_ENV}` });
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Airtable Markdown Docs`,
+    title: `Collecting components`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`
   },
@@ -40,17 +40,39 @@ module.exports = {
         tables: [
           {
             baseId: process.env.AIRTABLE_BASE_ID,
-            tableName: `Sections`,
-            tableView: `All`,
-            mapping: { Body: `text/markdown` },
-            tableLinks: [`Pages`]
+            tableName: `Components`,
+            tableView: `Name A-Z`,
+            mapping: { Description: `text/markdown` },
+            tableLinks: [
+              `Commonly contains`,
+              `Categories`,
+              `HTML element`,
+              `Examples`
+            ]
           },
           {
             baseId: process.env.AIRTABLE_BASE_ID,
-            tableName: `Pages`,
-            tableView: `All`,
-            mapping: { Body: `text/markdown` },
-            tableLinks: [`Section`]
+            tableName: `Categories`,
+            // tableView: `All`,
+            tableLinks: [`Components`]
+          },
+          {
+            baseId: process.env.AIRTABLE_BASE_ID,
+            tableName: `HTML elements`,
+            // tableView: `All`,
+            tableLinks: [`Components`]
+          },
+          {
+            baseId: process.env.AIRTABLE_BASE_ID,
+            tableName: `Pattern libraries`,
+            // tableView: `All`,
+            tableLinks: [`Component examples`]
+          },
+          {
+            baseId: process.env.AIRTABLE_BASE_ID,
+            tableName: `Component examples`,
+            // tableView: `All`,
+            tableLinks: [`Pattern library`, `Type of component`]
           }
         ]
       }

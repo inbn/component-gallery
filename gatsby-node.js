@@ -20,7 +20,7 @@ exports.createPages = ({ graphql, actions }) => {
             node {
               table
               data {
-                Path
+                Slug
               }
             }
           }
@@ -30,16 +30,27 @@ exports.createPages = ({ graphql, actions }) => {
     // For each path, create page and choose a template.
     // values in context Object are available in that page's query
     result.data.allAirtable.edges.forEach(({ node }) => {
-      const isPage = node.table === 'Pages';
-      createPage({
-        path: node.data.Path,
-        component: isPage
-          ? path.resolve(`./src/templates/page-template.js`)
-          : path.resolve(`./src/templates/section-template.js`),
-        context: {
-          Path: node.data.Path
-        }
-      });
+      let template;
+      let pathPrefix;
+      switch (node.table) {
+        case 'Components':
+          template = `./src/templates/component-template.js`;
+          pathPrefix = 'components/';
+          break;
+        default:
+          template = '';
+          pathPrefix = '';
+      }
+
+      if (template && pathPrefix) {
+        createPage({
+          path: `${pathPrefix}${node.data.Slug}`,
+          component: path.resolve(template),
+          context: {
+            Slug: node.data.Slug
+          }
+        });
+      }
     });
     resolve();
   });
