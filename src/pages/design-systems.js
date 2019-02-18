@@ -7,13 +7,15 @@ import SEO from '../components/seo';
 const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
-    <h1>Components</h1>
+    <h1>Design systems</h1>
     <ul>
       {data.allAirtable.edges.map((edge, i) => (
         <li key={i}>
-          <Link to={`components/${edge.node.data.Slug}`} key={i}>
-            {edge.node.data.Name}
-          </Link>
+          <a href={edge.node.data.URL} target="blank" rel="noopener noreferrer">
+            {edge.node.data.Name}{' '}
+            {edge.node.data.Organisation !== null &&
+              `(${edge.node.data.Organisation})`}
+          </a>
         </li>
       ))}
     </ul>
@@ -26,12 +28,13 @@ export default IndexPage;
 // filtering for only records in the Sections table.
 export const query = graphql`
   {
-    allAirtable(filter: { table: { eq: "Components" } }) {
+    allAirtable(filter: { table: { eq: "Pattern libraries" } }) {
       edges {
         node {
           data {
             Name
-            Slug
+            Organisation
+            URL
           }
         }
       }

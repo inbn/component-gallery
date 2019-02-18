@@ -4,7 +4,17 @@ module.exports = {
   siteMetadata: {
     title: `Collecting components`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`
+    author: `@gatsbyjs`,
+    menuLinks: [
+      {
+        name: 'Home',
+        link: '/'
+      },
+      {
+        name: 'Design systems',
+        link: '/design-systems'
+      }
+    ]
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -71,7 +81,7 @@ module.exports = {
           {
             baseId: process.env.AIRTABLE_BASE_ID,
             tableName: `Component examples`,
-            // tableView: `All`,
+            tableView: `Pattern library A-Z`,
             tableLinks: [`Pattern library`, `Type of component`]
           }
         ]

@@ -27,7 +27,9 @@ export default ({ data }) => (
         <ul>
           {data.airtable.data.Examples.map((page, i) => (
             <li key={i}>
-              <a href={page.data.URL}>{page.data.URL}</a>
+              <a href={page.data.URL} target="_blank" rel="noopener noreferrer">
+                {page.data.URL}
+              </a>
             </li>
           ))}
         </ul>
