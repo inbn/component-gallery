@@ -22,8 +22,8 @@ const IndexPage = ({ data }) => (
 
 export default IndexPage;
 
-// query airtable for the Title and Path of each record,
-// filtering for only records in the Sections table.
+// query airtable for the Name and Slug of each record,
+// filtering for only records in the Components table.
 export const query = graphql`
   {
     allAirtable(

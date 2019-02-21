@@ -24,11 +24,11 @@ const IndexPage = ({ data }) => (
 
 export default IndexPage;
 
-// query airtable for the Title and Path of each record,
-// filtering for only records in the Sections table.
+// query airtable for the Name, Organisaton and URL of each record,
+// filtering for only records in the Design systems table.
 export const query = graphql`
   {
-    allAirtable(filter: { table: { eq: "Pattern libraries" } }) {
+    allAirtable(filter: { table: { eq: "Design systems" } }) {
       edges {
         node {
           data {
