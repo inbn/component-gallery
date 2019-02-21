@@ -28,7 +28,7 @@ export default ({ data }) => (
           {data.airtable.data.Examples.map((page, i) => (
             <li key={i}>
               <a href={page.data.URL} target="_blank" rel="noopener noreferrer">
-                {page.data.URL}
+                {page.data.Design_system[0].data.Name}
               </a>
             </li>
           ))}
@@ -52,7 +52,14 @@ export const query = graphql`
         Other_names
         Examples {
           data {
+            Name
             URL
+            Design_system {
+              data {
+                Name
+                Organisation
+              }
+            }
           }
         }
       }

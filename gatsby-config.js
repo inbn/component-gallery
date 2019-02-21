@@ -62,7 +62,7 @@ module.exports = {
           },
           {
             baseId: process.env.AIRTABLE_BASE_ID,
-            tableName: `Categories`,
+            tableName: `Component categories`,
             // tableView: `All`,
             tableLinks: [`Components`]
           },
@@ -74,15 +74,15 @@ module.exports = {
           },
           {
             baseId: process.env.AIRTABLE_BASE_ID,
-            tableName: `Pattern libraries`,
+            tableName: `Design systems`,
             // tableView: `All`,
             tableLinks: [`Component examples`]
           },
           {
             baseId: process.env.AIRTABLE_BASE_ID,
             tableName: `Component examples`,
-            tableView: `Pattern library A-Z`,
-            tableLinks: [`Pattern library`, `Type of component`]
+            tableView: `Design system A-Z`,
+            tableLinks: [`Design system`, `Type of component`]
           }
         ]
       }
