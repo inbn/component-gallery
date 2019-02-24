@@ -1,21 +1,37 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 
+import Component from '../components/component';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
 const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
-    <h1>Components</h1>
-    <ul>
-      {data.allAirtable.edges.map((edge, i) => (
-        <li key={i}>
-          <Link to={`components/${edge.node.data.Slug}`} key={i}>
-            {edge.node.data.Name}
-          </Link>
-        </li>
-      ))}
+    <h1 className="">Components</h1>
+    <ul className="list-reset flex flex-wrap mt-4 -mx-4">
+      {data.allAirtable.edges.map(
+        (
+          {
+            node: {
+              data: { slug, name, description, otherNames, examplesCount }
+            }
+          },
+          i
+        ) => (
+          <li key={i} className="w-full sm:w-1/2 lg:w-1/3 p-4">
+            <Component
+              slug={slug}
+              name={name}
+              description={
+                description !== null && description.childMarkdownRemark.html
+              }
+              otherNames={otherNames}
+              examplesCount={examplesCount}
+            />
+          </li>
+        )
+      )}
     </ul>
   </Layout>
 );
@@ -33,8 +49,15 @@ export const query = graphql`
       edges {
         node {
           data {
-            Name
-            Slug
+            name: Name
+            description: Description {
+              childMarkdownRemark {
+                html
+              }
+            }
+            slug: Slug
+            otherNames: Other_names
+            examplesCount: Examples_count
           }
         }
       }

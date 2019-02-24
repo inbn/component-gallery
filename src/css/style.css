@@ -11,6 +11,14 @@
  */
 @tailwind preflight;
 
+html {
+  @apply bg-yellow-lighter;
+  @apply text-black;
+  @apply font-serif;
+}
+
+a {}
+
 /**
   * This injects any component classes registered by plugins.
   *
@@ -35,6 +43,10 @@
   * @import "components/buttons";
   * @import "components/forms";
   */
+
+.component-card {
+  transition: box-shadow 0.3s ease;
+}
 
 /**
   * This injects all of Tailwind's utility classes, generated based on your

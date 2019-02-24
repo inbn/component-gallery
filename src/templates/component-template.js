@@ -7,10 +7,10 @@ import SEO from '../components/seo';
 export default ({ data }) => (
   <Layout>
     <SEO title={data.airtable.data.Name} />
-    <h3>{data.airtable.data.Name}</h3>
+    <h1>{data.airtable.data.Name}</h1>
     {data.airtable.data.Other_names !== null && (
       <>
-        <h4>Other names</h4>
+        <h2>Other names</h2>
         <p>{data.airtable.data.Other_names}</p>
       </>
     )}
@@ -23,7 +23,7 @@ export default ({ data }) => (
     )}
     {data.airtable.data.Examples !== null && (
       <>
-        <h4>Examples</h4>
+        <h2>Examples</h2>
         <ul>
           {data.airtable.data.Examples.map((page, i) => (
             <li key={i}>

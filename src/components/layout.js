@@ -22,11 +22,8 @@ const Layout = ({ children }) => (
     `}
     render={data => (
       <>
-        <Header
-          siteTitle={data.site.siteMetadata.title}
-          menuLinks={data.site.siteMetadata.menuLinks}
-        />
-        <div>
+        <Header menuLinks={data.site.siteMetadata.menuLinks} />
+        <div className="container">
           <main>{children}</main>
           <footer>
             © {new Date().getFullYear()}, Built with

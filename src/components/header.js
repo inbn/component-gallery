@@ -2,17 +2,20 @@ import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const Header = ({ siteTitle, menuLinks }) => (
+const Header = ({ menuLinks }) => (
   <header>
-    <div>
-      <h1>
-        <Link to="/">{siteTitle}</Link>
-      </h1>
+    <div className="container">
+      <div className="text-center text-5xl font-bold leading-none">
+        Collecting Components
+      </div>
+
       <nav>
-        <ul>
+        <ul className="list-reset flex justify-center my-4">
           {menuLinks.map(link => (
-            <li key={link.name}>
-              <Link to={link.link}>{link.name}</Link>
+            <li key={link.name} className="mx-4">
+              <Link to={link.link} className="text-red">
+                {link.name}
+              </Link>
             </li>
           ))}
         </ul>

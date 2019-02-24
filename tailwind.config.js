@@ -205,6 +205,7 @@ module.exports = {
       'sans-serif'
     ],
     serif: [
+      'Athelas',
       'Constantia',
       'Lucida Bright',
       'Lucidabright',
@@ -925,8 +926,8 @@ module.exports = {
 
   plugins: [
     require('tailwindcss/plugins/container')({
-      // center: true,
-      // padding: '1rem',
+      center: true,
+      padding: '1rem'
     })
   ],
 
