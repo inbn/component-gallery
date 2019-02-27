@@ -11,6 +11,10 @@ module.exports = {
         link: '/'
       },
       {
+        name: 'Components',
+        link: '/components'
+      },
+      {
         name: 'Design systems',
         link: '/design-systems'
       }

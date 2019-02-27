@@ -11,13 +11,50 @@
  */
 @tailwind preflight;
 
-html {
+:root {
   @apply bg-yellow-lighter;
   @apply text-black;
   @apply font-serif;
 }
 
-a {}
+/**
+  * Change base font size at different break points
+  *
+  * These should match values defined in tailwind config:
+  *   screens: {
+  *     sm: '576px',
+  *     md: '768px',
+  *     lg: '992px',
+  *     xl: '1200px'
+  *   }
+  */
+@media (min-width: 576px) {
+  :root {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 992px) {
+  :root {
+    font-size: 19px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    font-size: 20px;
+  }
+}
+
+a {
+  @apply text-red-dark;
+}
 
 /**
   * This injects any component classes registered by plugins.

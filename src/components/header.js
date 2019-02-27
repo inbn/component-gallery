@@ -13,9 +13,7 @@ const Header = ({ menuLinks }) => (
         <ul className="list-reset flex justify-center my-4">
           {menuLinks.map(link => (
             <li key={link.name} className="mx-4">
-              <Link to={link.link} className="text-red">
-                {link.name}
-              </Link>
+              <Link to={link.link}>{link.name}</Link>
             </li>
           ))}
         </ul>

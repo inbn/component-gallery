@@ -4,9 +4,9 @@ import { Link, graphql } from 'gatsby';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
-const IndexPage = ({ data }) => (
+const DesignSystemsIndexPage = ({ data }) => (
   <Layout>
-    <SEO title="Home" />
+    <SEO title="Design systems" />
     <h1>Design systems</h1>
     <ul>
       {data.allAirtable.edges.map((edge, i) => (
@@ -22,9 +22,9 @@ const IndexPage = ({ data }) => (
   </Layout>
 );
 
-export default IndexPage;
+export default DesignSystemsIndexPage;
 
-// query airtable for the Name, Organisaton and URL of each record,
+// query airtable for the Name, Organisation and URL of each record,
 // filtering for only records in the Design systems table.
 export const query = graphql`
   {

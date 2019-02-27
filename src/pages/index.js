@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { Link, graphql } from 'gatsby';
 
 import Component from '../components/component';
 import Layout from '../components/layout';
@@ -8,9 +8,22 @@ import SEO from '../components/seo';
 const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
-    <h1 className="">Components</h1>
-    <ul className="list-reset flex flex-wrap mt-4 -mx-4">
-      {data.allAirtable.edges.map(
+    <div className="w-full md:w-2/3">
+      <p>
+        <em>Collecting components</em> is the product of a continuing survey
+        into which components make up{' '}
+        <Link to="/design-systems">design systems</Link>. So far, I’ve covered{' '}
+        {data.allDesignSystems.totalCount} design systems and{' '}
+        {data.allComponentExamples.totalCount} individual component examples.
+        From these, I’ve identified {data.allComponents.totalCount} common web
+        interface patterns; and provided each with a description, some alternate
+        names, and a list of examples.
+      </p>
+      <p />
+    </div>
+    <h2 className="mt-4">Recently added components</h2>
+    <ul className="list-reset flex flex-wrap -mx-8">
+      {data.recentComponents.edges.map(
         (
           {
             node: {
@@ -33,18 +46,31 @@ const IndexPage = ({ data }) => (
         )
       )}
     </ul>
+    <div className="text-right italic">
+      <Link to="/components">View all components >>></Link>
+    </div>
   </Layout>
 );
 
 export default IndexPage;
 
-// query airtable for the Name and Slug of each record,
-// filtering for only records in the Components table.
 export const query = graphql`
   {
-    allAirtable(
+    allComponents: allAirtable(filter: { table: { eq: "Components" } }) {
+      totalCount
+    }
+    allComponentExamples: allAirtable(
+      filter: { table: { eq: "Component examples" } }
+    ) {
+      totalCount
+    }
+    allDesignSystems: allAirtable(filter: { table: { eq: "Design systems" } }) {
+      totalCount
+    }
+    recentComponents: allAirtable(
       filter: { table: { eq: "Components" } }
-      sort: { fields: [data___Name], order: ASC }
+      sort: { fields: [data___Date_added], order: DESC }
+      limit: 3
     ) {
       edges {
         node {
