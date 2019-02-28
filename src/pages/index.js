@@ -22,7 +22,7 @@ const IndexPage = ({ data }) => (
       <p />
     </div>
     <h2 className="mt-4">Recently added components</h2>
-    <ul className="list-reset flex flex-wrap -mx-8">
+    <ul className="list-reset flex flex-wrap mt-4 -mx-4">
       {data.recentComponents.edges.map(
         (
           {
@@ -32,7 +32,7 @@ const IndexPage = ({ data }) => (
           },
           i
         ) => (
-          <li key={i} className="w-full sm:w-1/2 lg:w-1/3 p-4">
+          <li key={i} className="w-full sm:w-1/2 lg:w-1/3 p-2">
             <Component
               slug={slug}
               name={name}

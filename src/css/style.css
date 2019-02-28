@@ -15,6 +15,7 @@
   @apply bg-yellow-lighter;
   @apply text-black;
   @apply font-serif;
+  @apply leading-normal;
 }
 
 /**
@@ -54,6 +55,12 @@
 
 a {
   @apply text-red-dark;
+}
+
+h1,
+h2,
+h3 {
+  @apply leading-none;
 }
 
 /**
