@@ -11,15 +11,17 @@ const IndexPage = ({ data }) => (
     <div className="w-full md:w-2/3">
       <p>
         <em>Collecting components</em> is the product of a continuing survey
-        into which components make up{' '}
-        <Link to="/design-systems">design systems</Link>. So far, I’ve covered{' '}
-        {data.allDesignSystems.totalCount} design systems and{' '}
+        into the components that make up{' '}
+        <Link to="/design-systems">design systems</Link>. It currently covers{' '}
+        {data.allDesignSystems.totalCount} design systems and includes{' '}
         {data.allComponentExamples.totalCount} individual component examples.
         From these, I’ve identified {data.allComponents.totalCount} common web
-        interface patterns; and provided each with a description, some alternate
-        names, and a list of examples.
+        interface patterns.
       </p>
-      <p />
+      <p>
+        I’ve tried to give a basic description of these components as well a any
+        alternate names. I’ve also given a complete list of examples found.
+      </p>
     </div>
     <h2 className="mt-4">Recently added components</h2>
     <ul className="list-reset flex flex-wrap mt-4 -mx-4">

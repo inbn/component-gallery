@@ -6,7 +6,7 @@ const Component = ({ slug, name, otherNames, description, examplesCount }) => (
     to={`components/${slug}`}
     className="component-card text-black no-underline h-full block w-full p-2 border-red-light border-2 text-shadow-none hover:shadow-md"
   >
-    <div className="flex justify-between items-center mb-2">
+    <div className="flex justify-between items-center">
       <h2>{name}</h2>
       <p>
         <strong>{examplesCount}</strong> example
@@ -14,14 +14,14 @@ const Component = ({ slug, name, otherNames, description, examplesCount }) => (
       </p>
     </div>
     {otherNames && (
-      <p className="italic leading-tight mb-2">Other names: {otherNames}</p>
+      <p className="italic leading-tight mt-2">Other names: {otherNames}</p>
     )}
     {description && (
       <div
         dangerouslySetInnerHTML={{
           __html: description
         }}
-        className="leading-tight"
+        className="leading-tight mt-2"
       />
     )}
   </Link>

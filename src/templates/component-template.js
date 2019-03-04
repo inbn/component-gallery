@@ -7,20 +7,32 @@ import SEO from '../components/seo';
 export default ({ data }) => (
   <Layout>
     <SEO title={data.airtable.data.Name} />
-    <h1>{data.airtable.data.Name}</h1>
-    {data.airtable.data.Other_names !== null && (
-      <>
-        <h2>Other names</h2>
-        <p>{data.airtable.data.Other_names}</p>
-      </>
-    )}
-    {data.airtable.data.Description !== null && (
-      <main
-        dangerouslySetInnerHTML={{
-          __html: data.airtable.data.Description.childMarkdownRemark.html
-        }}
-      />
-    )}
+
+    <div className="flex flex-wrap -mx-4">
+      <div className="w-full md:w-2/3 px-4">
+        <h1>{data.airtable.data.Name}</h1>
+        {data.airtable.data.Description !== null && (
+          <div
+            dangerouslySetInnerHTML={{
+              __html: data.airtable.data.Description.childMarkdownRemark.html
+            }}
+          />
+        )}
+      </div>
+      <div className="w-full md:w-1/3 px-4">
+        {data.airtable.data.Other_names !== null && (
+          <>
+            <h2>Other names</h2>
+            <ul>
+              {data.airtable.data.Other_names.split(',').map(name => (
+                <li>{name.trim()}</li>
+              ))}
+            </ul>
+          </>
+        )}
+      </div>
+    </div>
+
     {data.airtable.data.Examples !== null && (
       <>
         <h2>Examples</h2>
