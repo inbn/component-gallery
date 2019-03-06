@@ -28,7 +28,7 @@
 
 :root {
   @apply bg-grey-lightest;
-  @apply text-black;
+  @apply text-grey-darkest;
   @apply font-serif;
   @apply leading-normal;
 }
@@ -79,7 +79,7 @@
 }
 
 a {
-  @apply text-red-dark;
+  @apply text-red-light;
 }
 
 h1,

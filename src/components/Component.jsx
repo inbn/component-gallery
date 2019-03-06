@@ -4,13 +4,16 @@ import { Link } from 'gatsby';
 const Component = ({ slug, name, otherNames, description, examplesCount }) => (
   <Link
     to={`components/${slug}`}
-    className="component-card text-black no-underline h-full block w-full p-2 text-shadow-none hover:shadow-md hover:scale-105"
+    className="component-card bg-white text-grey-darkest no-underline h-full block w-full p-2 shadow hover:shadow-md hover:scale-105"
   >
     <div className="flex justify-between items-center">
       <h2>{name}</h2>
-      <p>
-        <strong>{examplesCount}</strong> example
-        {parseInt(examplesCount, 10) !== 1 && 's'}
+      <p className="font-sans text-grey-darker">
+        <strong>{examplesCount}</strong>{' '}
+        <span className="text-xs">
+          example
+          {parseInt(examplesCount, 10) !== 1 && 's'}
+        </span>
       </p>
     </div>
     {otherNames && (

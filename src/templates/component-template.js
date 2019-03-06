@@ -10,7 +10,7 @@ export default ({ data }) => (
 
     <div className="flex flex-wrap -mx-4">
       <div className="w-full md:w-2/3 px-4">
-        <h1 className="border-b-2 pb-1">{data.airtable.data.Name}</h1>
+        <h1 className="">{data.airtable.data.Name}</h1>
         {data.airtable.data.Description !== null && (
           <div
             dangerouslySetInnerHTML={{
@@ -18,6 +18,28 @@ export default ({ data }) => (
             }}
             className="mt-4"
           />
+        )}
+
+        {data.airtable.data.Examples !== null && (
+          <>
+            <h2 className="border-b-2 pb-1 mt-4">
+              {data.airtable.data.Examples_count} example
+              {data.airtable.data.Examples_count !== 1 && 's'}
+            </h2>
+            <ul className="mt-2">
+              {data.airtable.data.Examples.map((page, i) => (
+                <li key={i}>
+                  <a
+                    href={page.data.URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {page.data.Name} — {page.data.Design_system[0].data.Name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </>
         )}
       </div>
       <div className="w-full md:w-1/3 px-4">
@@ -33,24 +55,6 @@ export default ({ data }) => (
         )}
       </div>
     </div>
-
-    {data.airtable.data.Examples !== null && (
-      <>
-        <h2 className="mt-4">
-          {data.airtable.data.Examples_count} Example
-          {data.airtable.data.Examples_count !== 1 && 's'}:
-        </h2>
-        <ul className="mt-2">
-          {data.airtable.data.Examples.map((page, i) => (
-            <li key={i}>
-              <a href={page.data.URL} target="_blank" rel="noopener noreferrer">
-                {page.data.Name} — {page.data.Design_system[0].data.Name}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </>
-    )}
   </Layout>
 );
 
