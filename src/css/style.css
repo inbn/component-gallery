@@ -11,11 +11,36 @@
  */
 @tailwind preflight;
 
+@font-face {
+  font-family: 'HK Grotesk';
+  src: url('../fonts/HKGrotesk-Medium.woff2') format('woff2'),
+    url('../fonts/HKGrotesk-Medium.woff') format('woff');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'HK Grotesk';
+  src: url('../fonts/HKGrotesk-MediumItalic.woff2') format('woff2'),
+    url('../fonts/HKGrotesk-MediumItalic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+}
+
 :root {
-  @apply bg-yellow-lighter;
+  @apply bg-grey-lightest;
   @apply text-black;
   @apply font-serif;
   @apply leading-normal;
+}
+
+/**
+ * Switch off all animations
+ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 /**
@@ -60,7 +85,10 @@ a {
 h1,
 h2,
 h3 {
+  @apply font-sans;
+  @apply font-normal;
   @apply leading-none;
+  @apply text-teal-darker;
 }
 
 /**
@@ -89,7 +117,7 @@ h3 {
   */
 
 .component-card {
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 /**

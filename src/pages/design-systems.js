@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
 
-import Layout from '../components/layout';
-import SEO from '../components/seo';
+import Layout from '../components/Layout';
+import SEO from '../components/SEO';
 
 const DesignSystemsIndexPage = ({ data }) => (
   <Layout>
     <SEO title="Design systems" />
-    <h1>Design systems</h1>
-    <ul>
+    <h1 className="border-b-2 pb-1">Design systems</h1>
+    <ul className="mt-2">
       {data.allAirtable.edges.map((edge, i) => (
         <li key={i}>
           <a href={edge.node.data.URL} target="blank" rel="noopener noreferrer">

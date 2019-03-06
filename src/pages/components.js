@@ -1,14 +1,14 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import Component from '../components/component';
-import Layout from '../components/layout';
-import SEO from '../components/seo';
+import Component from '../components/Component';
+import Layout from '../components/Layout';
+import SEO from '../components/SEO';
 
 const ComponentsIndexPage = ({ data }) => (
   <Layout>
     <SEO title="Components" />
-    <h1 className="">
+    <h1 className="border-b-2 pb-1">
       All components <span className="italic">(a-z)</span>
     </h1>
     <ul className="list-reset flex flex-wrap mt-4 -mx-4">

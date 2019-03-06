@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
 
-import Header from './header';
+import Header from './Header';
 import '../css/style.css';
 
 const Layout = ({ children }) => (
@@ -22,10 +22,13 @@ const Layout = ({ children }) => (
     `}
     render={data => (
       <>
-        <Header menuLinks={data.site.siteMetadata.menuLinks} />
+        <Header
+          siteTitle={data.site.siteMetadata.title}
+          menuLinks={data.site.siteMetadata.menuLinks}
+        />
         <div className="container">
           <main>{children}</main>
-          <footer>
+          <footer className="py-4">
             © {new Date().getFullYear()}, Built with
             {` `}
             <a href="https://www.gatsbyjs.org">Gatsby</a>

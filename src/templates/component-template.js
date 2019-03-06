@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
-import Layout from '../components/layout';
 
-import SEO from '../components/seo';
+import Layout from '../components/Layout';
+import SEO from '../components/SEO';
 
 export default ({ data }) => (
   <Layout>
@@ -10,20 +10,21 @@ export default ({ data }) => (
 
     <div className="flex flex-wrap -mx-4">
       <div className="w-full md:w-2/3 px-4">
-        <h1>{data.airtable.data.Name}</h1>
+        <h1 className="border-b-2 pb-1">{data.airtable.data.Name}</h1>
         {data.airtable.data.Description !== null && (
           <div
             dangerouslySetInnerHTML={{
               __html: data.airtable.data.Description.childMarkdownRemark.html
             }}
+            className="mt-4"
           />
         )}
       </div>
       <div className="w-full md:w-1/3 px-4">
         {data.airtable.data.Other_names !== null && (
           <>
-            <h2>Other names</h2>
-            <ul>
+            <h2 className="border-t-2 border-b-2 pt-1 pb-1">Other names</h2>
+            <ul className="list-reset font-sans border-b-2 pt-1 pb-1">
               {data.airtable.data.Other_names.split(',').map(name => (
                 <li>{name.trim()}</li>
               ))}
@@ -35,12 +36,15 @@ export default ({ data }) => (
 
     {data.airtable.data.Examples !== null && (
       <>
-        <h2>Examples</h2>
-        <ul>
+        <h2 className="mt-4">
+          {data.airtable.data.Examples_count} Example
+          {data.airtable.data.Examples_count !== 1 && 's'}:
+        </h2>
+        <ul className="mt-2">
           {data.airtable.data.Examples.map((page, i) => (
             <li key={i}>
               <a href={page.data.URL} target="_blank" rel="noopener noreferrer">
-                {page.data.Design_system[0].data.Name}
+                {page.data.Name} — {page.data.Design_system[0].data.Name}
               </a>
             </li>
           ))}
@@ -74,6 +78,7 @@ export const query = graphql`
             }
           }
         }
+        Examples_count
       }
     }
   }
