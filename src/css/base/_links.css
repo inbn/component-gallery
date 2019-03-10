@@ -1,0 +1,12 @@
+a {
+  transition: border-color 0.3s ease;
+
+  @apply text-red-light;
+  @apply border-b;
+  @apply border-red-lighter;
+  @apply no-underline;
+}
+
+a:hover {
+  @apply border-red-light;
+}

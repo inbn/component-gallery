@@ -1,0 +1,51 @@
+:root {
+  @apply bg-grey-lightest;
+  @apply text-grey-darkest;
+  @apply font-serif;
+  @apply leading-normal;
+}
+
+/**
+  * Change base font size at different break points
+  *
+  * These should match values defined in tailwind config:
+  *   screens: {
+  *     sm: '576px',
+  *     md: '768px',
+  *     lg: '992px',
+  *     xl: '1200px'
+  *   }
+  */
+@media (min-width: 576px) {
+  :root {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 992px) {
+  :root {
+    font-size: 19px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    font-size: 20px;
+  }
+}
+
+/**
+ * Switch off all animations
+ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

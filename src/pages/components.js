@@ -9,9 +9,9 @@ const ComponentsIndexPage = ({ data }) => (
   <Layout>
     <SEO title="Components" />
     <h1 className="border-b-2 pb-1">
-      All components <span className="italic">(a-z)</span>
+      All components <span>(a-z)</span>
     </h1>
-    <ul className="list-reset flex flex-wrap mt-4 -mx-4">
+    <ul className="list-reset flex flex-wrap mt-2 -mx-4">
       {data.allAirtable.edges.map(
         (
           {

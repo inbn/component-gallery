@@ -3,6 +3,7 @@ import { Link, graphql } from 'gatsby';
 
 import Component from '../components/Component';
 import Layout from '../components/Layout';
+import ReadMoreLink from '../components/ReadMoreLink';
 import SEO from '../components/SEO';
 
 const IndexPage = ({ data }) => (
@@ -24,7 +25,7 @@ const IndexPage = ({ data }) => (
       </p>
     </div>
     <h2 className="mt-4 border-b-2 pb-1">Recently added components</h2>
-    <ul className="list-reset flex flex-wrap mt-4 -mx-4">
+    <ul className="list-reset flex flex-wrap mt-2 -mx-4">
       {data.recentComponents.edges.map(
         (
           {
@@ -48,8 +49,8 @@ const IndexPage = ({ data }) => (
         )
       )}
     </ul>
-    <div className="text-right italic">
-      <Link to="/components">View all components >>></Link>
+    <div className="text-right">
+      <ReadMoreLink to="/components" text="View all components" />
     </div>
   </Layout>
 );

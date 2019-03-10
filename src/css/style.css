@@ -9,87 +9,13 @@
  *
  * @import "tailwindcss/preflight";
  */
-@tailwind preflight;
+@import 'tailwindcss/preflight';
 
-@font-face {
-  font-family: 'HK Grotesk';
-  src: url('../fonts/HKGrotesk-Medium.woff2') format('woff2'),
-    url('../fonts/HKGrotesk-Medium.woff') format('woff');
-  font-weight: normal;
-}
+@import 'base/_fonts';
 
-@font-face {
-  font-family: 'HK Grotesk';
-  src: url('../fonts/HKGrotesk-MediumItalic.woff2') format('woff2'),
-    url('../fonts/HKGrotesk-MediumItalic.woff') format('woff');
-  font-weight: normal;
-  font-style: italic;
-}
-
-:root {
-  @apply bg-grey-lightest;
-  @apply text-grey-darkest;
-  @apply font-serif;
-  @apply leading-normal;
-}
-
-/**
- * Switch off all animations
- */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-/**
-  * Change base font size at different break points
-  *
-  * These should match values defined in tailwind config:
-  *   screens: {
-  *     sm: '576px',
-  *     md: '768px',
-  *     lg: '992px',
-  *     xl: '1200px'
-  *   }
-  */
-@media (min-width: 576px) {
-  :root {
-    font-size: 17px;
-  }
-}
-
-@media (min-width: 768px) {
-  :root {
-    font-size: 18px;
-  }
-}
-
-@media (min-width: 992px) {
-  :root {
-    font-size: 19px;
-  }
-}
-
-@media (min-width: 1200px) {
-  :root {
-    font-size: 20px;
-  }
-}
-
-a {
-  @apply text-red-light;
-}
-
-h1,
-h2,
-h3 {
-  @apply font-sans;
-  @apply font-normal;
-  @apply leading-none;
-  @apply text-teal-darker;
-}
+@import 'base/_root';
+@import 'base/_headings';
+@import 'base/_links';
 
 /**
   * This injects any component classes registered by plugins.
@@ -98,7 +24,7 @@ h3 {
   *
   * @import "tailwindcss/components";
   */
-@tailwind components;
+@import 'tailwindcss/components';
 
 /**
   * Here you would add any of your custom component classes; stuff that you'd
@@ -115,10 +41,8 @@ h3 {
   * @import "components/buttons";
   * @import "components/forms";
   */
-
-.component-card {
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
+@import 'components/_svg-icon';
+@import 'components/_component-card';
 
 /**
   * This injects all of Tailwind's utility classes, generated based on your
@@ -128,7 +52,7 @@ h3 {
   *
   * @import "tailwindcss/utilities";
   */
-@tailwind utilities;
+@import 'tailwindcss/utilities';
 
 /**
   * Here you would add any custom utilities you need that don't come out of the

@@ -15,7 +15,7 @@ const Header = ({ siteTitle, menuLinks }) => (
             <li key={link.name} className="mx-4">
               <Link
                 to={link.link}
-                className="whitespace-no-wrap font-sans text-red-light no-underline hover:underline"
+                className="whitespace-no-wrap font-sans"
               >
                 {link.name}
               </Link>

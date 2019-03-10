@@ -4,7 +4,7 @@ import { Link } from 'gatsby';
 const Component = ({ slug, name, otherNames, description, examplesCount }) => (
   <Link
     to={`components/${slug}`}
-    className="component-card bg-white text-grey-darkest no-underline h-full block w-full p-2 shadow hover:shadow-md hover:scale-105"
+    className="component-card bg-white text-grey-darkest no-underline h-full block w-full p-2 border-b-2 shadow hover:shadow-md hover:scale-105"
   >
     <div className="flex justify-between items-center">
       <h2>{name}</h2>
