@@ -9,7 +9,7 @@ import SEO from '../components/SEO';
 const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
-    <div className="w-full md:w-2/3">
+    <div className="w-full md:w-2/3 text-lg mx-auto">
       <p>
         <em>Collecting components</em> is the product of a continuing survey
         into the components that make up{' '}
@@ -24,7 +24,7 @@ const IndexPage = ({ data }) => (
         alternate names. I’ve also given a complete list of examples found.
       </p>
     </div>
-    <h2 className="mt-4 border-b-2 pb-1">Recently added components</h2>
+    <h2 className="mt-8 border-b-2 pb-1">Recently added components</h2>
     <ul className="list-reset flex flex-wrap mt-2 -mx-4">
       {data.recentComponents.edges.map(
         (
@@ -44,6 +44,7 @@ const IndexPage = ({ data }) => (
               }
               otherNames={otherNames}
               examplesCount={examplesCount}
+              headingLevel="h3"
             />
           </li>
         )
