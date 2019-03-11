@@ -1,10 +1,15 @@
-a {
-  transition: border-color 0.3s ease;
+/*====================================*\
+  BASE
+  _links.css
+\*====================================*/
 
+a {
   @apply text-red-light;
   @apply border-b;
   @apply border-red-lighter;
   @apply no-underline;
+
+  transition: border-color 0.3s ease;
 }
 
 a:hover {

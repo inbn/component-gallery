@@ -1,3 +1,8 @@
+/*====================================*\
+  BASE
+  _root.css
+\*====================================*/
+
 :root {
   @apply bg-grey-lightest;
   @apply text-grey-darkest;
@@ -6,16 +11,16 @@
 }
 
 /**
-  * Change base font size at different break points
-  *
-  * These should match values defined in tailwind config:
-  *   screens: {
-  *     sm: '576px',
-  *     md: '768px',
-  *     lg: '992px',
-  *     xl: '1200px'
-  *   }
-  */
+ * Change base font size at different break points
+ *
+ * These should match values defined in tailwind config:
+ *   screens: {
+ *     sm: '576px',
+ *     md: '768px',
+ *     lg: '992px',
+ *     xl: '1200px'
+ *   }
+ */
 @media (min-width: 576px) {
   :root {
     font-size: 17px;

@@ -1,3 +1,13 @@
+/*====================================*\
+  COMPONENTS
+  _component-card.css
+\*====================================*/
+
+/**
+ * A card representing a single component including title, number of examples
+ * and description. The whole card is a link.
+ */
+
 .component-card {
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }

@@ -7,7 +7,7 @@ const ReadMoreLink = ({ to, text }) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 162.348 162.348"
-      className="svg-icon fill-current -skew-x-5"
+      className="svg-icon -skew-x-5"
     >
       <g>
         <path d="M23.421 50.523a2.985 2.985 0 0 0-4.219 0 2.985 2.985 0 0 0 0 4.219l26.433 26.427-26.433 26.439a2.985 2.985 0 0 0 0 4.219 2.971 2.971 0 0 0 2.112.871c.764 0 1.533-.292 2.112-.871l30.652-30.658-30.657-30.646z" />

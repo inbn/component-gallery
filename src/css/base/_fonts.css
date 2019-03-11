@@ -1,3 +1,8 @@
+/*====================================*\
+  BASE
+  _fonts.css
+\*====================================*/
+
 @font-face {
   font-family: 'HK Grotesk';
   src: url('../fonts/HKGrotesk-Medium.woff2') format('woff2'),

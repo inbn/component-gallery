@@ -1,5 +1,16 @@
+/*====================================*\
+  COMPONENTS
+  _svg-icon.css
+\*====================================*/
+
+/**
+ * Icons are designed to flow inline with text and are sized to match. They
+ * will also inherit the text color from their parent element.
+ */
+
 .svg-icon {
   height: 1em;
   width: 1em;
   vertical-align: middle;
+  fill: currentColor;
 }
