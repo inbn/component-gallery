@@ -11,9 +11,10 @@
 }
 
 /**
- * Change base font size at different break points
+ * Change base font size at different breakpoints
+ * Root font sizes are in ems which enables users to override them
  *
- * These should match values defined in tailwind config:
+ * Breakpoints match values defined in tailwind config:
  *   screens: {
  *     sm: '576px',
  *     md: '768px',
@@ -23,25 +24,29 @@
  */
 @media (min-width: 576px) {
   :root {
-    font-size: 17px;
+    /* 17px */
+    font-size: 1.0625em;
   }
 }
 
 @media (min-width: 768px) {
   :root {
-    font-size: 18px;
+    /* 18px */
+    font-size: 1.125em;
   }
 }
 
 @media (min-width: 992px) {
   :root {
-    font-size: 19px;
+    /* 19px */
+    font-size: 1.1875em;
   }
 }
 
 @media (min-width: 1200px) {
   :root {
-    font-size: 20px;
+    /* 20px */
+    font-size: 1.25em;
   }
 }
 

@@ -8,7 +8,7 @@ import SEO from '../components/SEO';
 const ComponentsIndexPage = ({ data }) => (
   <Layout>
     <SEO title="Components" />
-    <h1 className="border-b-2 pb-1">
+    <h1 className="border-b-2 px-2 -mx-2 pb-1">
       All components <span>(a-z)</span>
     </h1>
     <ul className="list-reset flex flex-wrap mt-2 -mx-4">

@@ -1,0 +1,16 @@
+/*====================================*\
+  UTILITIES
+  _transition.css
+\*====================================*/
+
+.transition-short {
+  transition: all 0.1s;
+}
+
+.transition {
+  transition: all 0.3s;
+}
+
+.transition-long {
+  transition: all 0.5s;
+}

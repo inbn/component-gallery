@@ -42,7 +42,6 @@
   * @import "components/forms";
   */
 @import 'components/_svg-icon';
-@import 'components/_component-card';
 
 /**
   * This injects all of Tailwind's utility classes, generated based on your
@@ -68,3 +67,5 @@
   * @import "utilities/background-patterns";
   * @import "utilities/skew-transforms";
   */
+
+@import 'utilities/_transition';

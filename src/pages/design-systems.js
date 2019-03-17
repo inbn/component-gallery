@@ -1,32 +1,34 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 
+import DesignSystem from '../components/DesignSystem';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 
 const DesignSystemsIndexPage = ({ data }) => (
   <Layout>
     <SEO title="Design systems" />
-    <h1 className="border-b-2 pb-1">Design systems</h1>
+    <h1 className="border-b-2 px-2 -mx-2 pb-1">Design systems</h1>
     <ul className="list-reset flex flex-wrap mt-2 -mx-4">
-      {data.allAirtable.edges.map((edge, i) => (
-        <li key={i} className="w-full sm:w-1/2 lg:w-1/3 p-2">
-          <a
-            href={edge.node.data.URL}
-            target="blank"
-            rel="noopener noreferrer"
-            className="block h-full"
-          >
-            <img
-              src={edge.node.data.Image.length && edge.node.data.Image[0].url}
-              alt=""
+      {data.allAirtable.edges.map(
+        (
+          {
+            node: {
+              data: { url, name, organisation, image }
+            }
+          },
+          i
+        ) => (
+          <li key={i} className="w-full sm:w-1/2 lg:w-1/3 p-2">
+            <DesignSystem
+              name={name}
+              url={url}
+              organisation={organisation}
+              image={image}
             />
-            {edge.node.data.Name}{' '}
-            {edge.node.data.Organisation !== null &&
-              `(${edge.node.data.Organisation})`}
-          </a>
-        </li>
-      ))}
+          </li>
+        )
+      )}
     </ul>
   </Layout>
 );
@@ -37,14 +39,17 @@ export default DesignSystemsIndexPage;
 // filtering for only records in the Design systems table.
 export const query = graphql`
   {
-    allAirtable(filter: { table: { eq: "Design systems" } }) {
+    allAirtable(
+      filter: { table: { eq: "Design systems" } }
+      sort: { fields: [data___Name], order: ASC }
+    ) {
       edges {
         node {
           data {
-            Name
-            Organisation
-            URL
-            Image {
+            name: Name
+            organisation: Organisation
+            url: URL
+            image: Image {
               url
             }
           }

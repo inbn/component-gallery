@@ -24,7 +24,9 @@ const IndexPage = ({ data }) => (
         alternate names. I’ve also given a complete list of examples found.
       </p>
     </div>
-    <h2 className="mt-8 border-b-2 pb-1">Recently added components</h2>
+    <h2 className="mt-8 border-b-2 px-2 -mx-2 pb-1">
+      Recently added components
+    </h2>
     <ul className="list-reset flex flex-wrap mt-2 -mx-4">
       {data.recentComponents.edges.map(
         (
