@@ -11,7 +11,7 @@ const IndexPage = ({ data }) => (
     <SEO title="Home" />
     <div className="w-full md:w-2/3 text-lg mx-auto">
       <p>
-        <em>Collecting components</em> is the product of a continuing survey
+        <em>The Component Gallery</em> is the product of a continuing survey
         into the components that make up{' '}
         <Link to="/design-systems">design systems</Link>. It currently covers{' '}
         {data.allDesignSystems.totalCount} design systems and includes{' '}
@@ -20,8 +20,8 @@ const IndexPage = ({ data }) => (
         interface patterns.
       </p>
       <p>
-        I’ve tried to give a basic description of these components as well a any
-        alternate names. I’ve also given a complete list of examples found.
+        I’ve tried to give a basic description of these components as well as
+        any alternate names. I’ve also given a complete list of examples found.
       </p>
     </div>
     <h2 className="mt-8 border-b-2 px-2 -mx-2 pb-1">
