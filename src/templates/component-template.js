@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
@@ -10,13 +10,22 @@ export default ({ data }) => (
     <h1 className="border-b-2 pb-1">{data.airtable.data.Name}</h1>
     <div className="flex flex-wrap -mx-4">
       <div className="w-full md:w-2/3 px-4">
-        {data.airtable.data.Description !== null && (
+        {data.markdown !== null ? (
           <div
             dangerouslySetInnerHTML={{
-              __html: data.airtable.data.Description.childMarkdownRemark.html
+              __html: data.markdown.html
             }}
             className="mt-4"
           />
+        ) : (
+          data.airtable.data.Description && (
+            <div
+              dangerouslySetInnerHTML={{
+                __html: data.airtable.data.Description.childMarkdownRemark.html
+              }}
+              className="mt-4"
+            />
+          )
         )}
       </div>
       <div className="w-full md:w-1/3 mt-4 px-4">
@@ -60,7 +69,10 @@ export default ({ data }) => (
 
 export const query = graphql`
   query GetPage($Slug: String!) {
-    airtable(table: { eq: "Components" }, data: { Slug: { eq: $Slug } }) {
+    airtable: airtable(
+      table: { eq: "Components" }
+      data: { Slug: { eq: $Slug } }
+    ) {
       data {
         Name
         Slug
@@ -83,6 +95,14 @@ export const query = graphql`
           }
         }
         Examples_count
+      }
+    }
+    markdown: markdownRemark(frontmatter: { slug: { eq: $Slug } }) {
+      html
+      frontmatter {
+        date(formatString: "MMMM DD, YYYY")
+        path
+        title
       }
     }
   }

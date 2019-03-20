@@ -9,21 +9,12 @@ import SEO from '../components/SEO';
 const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
-    <div className="w-full md:w-2/3 text-lg mx-auto">
-      <p>
-        <em>The Component Gallery</em> is the product of a continuing survey
-        into the components that make up{' '}
-        <Link to="/design-systems">design systems</Link>. It currently covers{' '}
-        {data.allDesignSystems.totalCount} design systems and includes{' '}
-        {data.allComponentExamples.totalCount} individual component examples.
-        From these, I’ve identified {data.allComponents.totalCount} common web
-        interface patterns.
-      </p>
-      <p>
-        I’ve tried to give a basic description of these components as well as
-        any alternate names. I’ve also given a complete list of examples found.
-      </p>
-    </div>
+    <div
+      className="w-full md:w-2/3 text-lg mx-auto"
+      dangerouslySetInnerHTML={{
+        __html: data.markdown.html
+      }}
+    />
     <h2 className="mt-8 border-b-2 px-2 -mx-2 pb-1">
       Recently added components
     </h2>
@@ -92,6 +83,14 @@ export const query = graphql`
             examplesCount: Examples_count
           }
         }
+      }
+    }
+    markdown: markdownRemark(frontmatter: { slug: { eq: "homepage" } }) {
+      html
+      frontmatter {
+        date(formatString: "MMMM DD, YYYY")
+        path
+        title
       }
     }
   }

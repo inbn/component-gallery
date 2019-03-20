@@ -20,7 +20,7 @@ const Component = ({
     >
       <div className="flex justify-between items-center">
         <HeadingTag>{name}</HeadingTag>
-        <p className="font-sans text-grey-darker">
+        <p className="font-sans text-grey-darker mt-0">
           <strong>{examplesCount}</strong>{' '}
           <span className="text-xs">
             example

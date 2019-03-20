@@ -46,7 +46,11 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     'gatsby-plugin-offline',
+    // Catch local links (e.g. in markdown) and turn them into gatsby <Link>s
+    'gatsby-plugin-catch-links',
     'gatsby-transformer-remark',
+    // Load all data related to taxonomies, categories etc from the airtable
+    // base, apiKey and baseId are loaded from the env
     {
       resolve: `gatsby-source-airtable`,
       options: {
@@ -79,7 +83,7 @@ module.exports = {
           {
             baseId: process.env.AIRTABLE_BASE_ID,
             tableName: `Design systems`,
-            // tableView: `All`,
+            tableView: `Published only`,
             tableLinks: [`Component examples`]
           },
           {
@@ -89,6 +93,15 @@ module.exports = {
             tableLinks: [`Design system`, `Type of component`]
           }
         ]
+      }
+    },
+    // We'll load any long-form content from markdown files in addition to
+    // the content loaded from airtable
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/content`,
+        name: 'content'
       }
     },
     `gatsby-plugin-postcss`,

@@ -16,6 +16,7 @@
 @import 'base/_root';
 @import 'base/_headings';
 @import 'base/_links';
+@import 'base/_vertical-rhythm';
 
 /**
   * This injects any component classes registered by plugins.
