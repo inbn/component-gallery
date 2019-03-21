@@ -9,7 +9,7 @@
  *
  * @import "tailwindcss/preflight";
  */
-@import 'tailwindcss/preflight';
+@import 'tailwindcss/base';
 
 @import 'base/_fonts';
 

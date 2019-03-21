@@ -51,6 +51,15 @@
 }
 
 /**
+ * Set a default border color
+ */
+*,
+*::before,
+*::after {
+  @apply border-grey-light;
+}
+
+/**
  * Switch off all animations
  */
 @media (prefers-reduced-motion: reduce) {

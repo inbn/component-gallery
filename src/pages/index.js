@@ -18,7 +18,7 @@ const IndexPage = ({ data }) => (
     <h2 className="mt-8 border-b-2 px-2 -mx-2 pb-1">
       Recently added components
     </h2>
-    <ul className="list-reset flex flex-wrap mt-2 -mx-4">
+    <ul className="flex flex-wrap mt-2 -mx-4">
       {data.recentComponents.edges.map(
         (
           {

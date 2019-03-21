@@ -32,7 +32,7 @@ export default ({ data }) => (
         {data.airtable.data.Other_names !== null && (
           <>
             <h2 className="border-t-2 border-b-2 pt-1 pb-1">Other names</h2>
-            <ul className="list-reset font-sans border-b-2 pt-1 pb-1">
+            <ul className="font-sans border-b-2 pt-1 pb-1">
               {data.airtable.data.Other_names.split(',').map(name => (
                 <li>{name.trim()}</li>
               ))}

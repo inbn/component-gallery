@@ -9,7 +9,7 @@ const DesignSystemsIndexPage = ({ data }) => (
   <Layout>
     <SEO title="Design systems" />
     <h1 className="border-b-2 px-2 -mx-2 pb-1">Design systems</h1>
-    <ul className="list-reset flex flex-wrap mt-2 -mx-4">
+    <ul className="flex flex-wrap mt-2 -mx-4">
       {data.allAirtable.edges.map(
         (
           {
