@@ -28,22 +28,20 @@ export default ({ data }) => (
           )
         )}
       </div>
-      <div className="w-full md:w-1/3 mt-4 px-4">
+      <div className="w-full md:w-1/3 mt-4 mb-2 px-4">
         {data.airtable.data.Other_names !== null && (
           <>
             <h2 className="border-t-2 border-b-2 pt-1 pb-1">Other names</h2>
-            <ul className="font-sans border-b-2 pt-1 pb-1">
+            <ul className="list-none pl-0 mt-0 font-sans border-b-2 pt-1 pb-1">
               {data.airtable.data.Other_names.split(',').map(name => (
                 <li>{name.trim()}</li>
               ))}
             </ul>
           </>
         )}
-      </div>
-      <div className="w-full md:w-2/3 px-4">
         {data.airtable.data.Examples !== null && (
           <>
-            <h2 className="border-b-2 pb-1 mt-4">
+            <h2 className="border-b-2 pb-1">
               {data.airtable.data.Examples_count} example
               {data.airtable.data.Examples_count !== 1 && 's'}
             </h2>
