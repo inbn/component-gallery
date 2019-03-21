@@ -7,7 +7,6 @@ a {
   @apply text-red-light;
   @apply border-b;
   @apply border-red-lighter;
-  @apply no-underline;
 
   transition: border-color 0.3s ease;
 }

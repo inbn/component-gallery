@@ -216,7 +216,7 @@ module.exports = {
     },
     borderColor: theme => {
       return global.Object.assign(
-        { default: theme('colors.gray.300', 'currentColor') },
+        { default: theme('colors.grey-light') },
         theme('colors')
       );
     },
