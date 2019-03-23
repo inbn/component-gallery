@@ -40,7 +40,10 @@ export default DesignSystemsIndexPage;
 export const query = graphql`
   {
     allAirtable(
-      filter: { table: { eq: "Design systems" } }
+      filter: {
+        table: { eq: "Design systems" }
+        data: { Publish: { eq: true } }
+      }
       sort: { fields: [data___Name], order: ASC }
     ) {
       edges {

@@ -4435,9 +4435,10 @@ gatsby-react-router-scroll@^2.0.4:
     scroll-behavior "^0.9.9"
     warning "^3.0.0"
 
-gatsby-source-airtable@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/gatsby-source-airtable/-/gatsby-source-airtable-2.0.4.tgz#625242bb43997cc6f7ca2e18df46b996a6f06c73"
+gatsby-source-airtable@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/gatsby-source-airtable/-/gatsby-source-airtable-2.0.5.tgz#ac43e7ce6d81fa2f57cd7e4bbb97f2051aeec127"
+  integrity sha512-VfLaO6XA1qKzLYitWXuEehArEOVq7Zelz23JuMoz96t7gIMR6gY5UaI2EBnv/qCLh/kKGD/RhZum1xqHCP04yw==
   dependencies:
     airtable "^0.5.6"
 

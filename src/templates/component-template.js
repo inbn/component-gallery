@@ -69,7 +69,7 @@ export const query = graphql`
   query GetPage($Slug: String!) {
     airtable: airtable(
       table: { eq: "Components" }
-      data: { Slug: { eq: $Slug } }
+      data: { Slug: { eq: $Slug }, Publish: { eq: true } }
     ) {
       data {
         Name

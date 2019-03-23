@@ -45,7 +45,7 @@ export default ComponentsIndexPage;
 export const query = graphql`
   {
     allAirtable(
-      filter: { table: { eq: "Components" } }
+      filter: { table: { eq: "Components" }, data: { Publish: { eq: true } } }
       sort: { fields: [data___Name], order: ASC }
     ) {
       edges {

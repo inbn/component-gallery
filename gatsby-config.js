@@ -83,7 +83,7 @@ module.exports = {
           {
             baseId: process.env.AIRTABLE_BASE_ID,
             tableName: `Design systems`,
-            tableView: `Published only`,
+            tableView: `All`,
             tableLinks: [`Component examples`]
           },
           {

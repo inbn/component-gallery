@@ -65,7 +65,7 @@ export const query = graphql`
       totalCount
     }
     recentComponents: allAirtable(
-      filter: { table: { eq: "Components" } }
+      filter: { table: { eq: "Components" }, data: { Publish: { eq: true } } }
       sort: { fields: [data___Date_added], order: DESC }
       limit: 3
     ) {
