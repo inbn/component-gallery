@@ -5,10 +5,10 @@
 
 ul {
   list-style-type: disc;
-  padding-left: theme('padding.4');
+  padding-left: theme('padding.6');
 }
 
 ol {
   list-style-type: decimal;
-  padding-left: theme('padding.4');
+  padding-left: theme('padding.6');
 }

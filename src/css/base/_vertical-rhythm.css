@@ -12,5 +12,10 @@
 *+h6,
 *+ul,
 *+ol {
-  margin-top: theme('lineHeight.normal')rem;
+  margin-top: 1em;
+}
+
+li>ul,
+li>ol {
+  margin-top: 0;
 }
