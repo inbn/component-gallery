@@ -21,6 +21,7 @@ exports.createPages = ({ graphql, actions }) => {
               table
               data {
                 Slug
+                Publish
               }
             }
           }
@@ -42,7 +43,7 @@ exports.createPages = ({ graphql, actions }) => {
           pathPrefix = '';
       }
 
-      if (template && pathPrefix) {
+      if (template && pathPrefix && node.data.Publish === 1) {
         createPage({
           path: `${pathPrefix}${node.data.Slug}`,
           component: path.resolve(template),
