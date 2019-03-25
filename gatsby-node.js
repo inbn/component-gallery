@@ -43,7 +43,7 @@ exports.createPages = ({ graphql, actions }) => {
           pathPrefix = '';
       }
 
-      if (template && pathPrefix && node.data.Publish === 1) {
+      if (template && pathPrefix && node.data.Publish === true) {
         createPage({
           path: `${pathPrefix}${node.data.Slug}`,
           component: path.resolve(template),
