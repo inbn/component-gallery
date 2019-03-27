@@ -11,4 +11,5 @@ code {
   font-size: 0.8em;
   background-color: rgba(30, 34, 38, 0.05);
   padding: 0.1em 0.2em;
+  hyphens: none;
 }

@@ -20,11 +20,10 @@ const Component = ({
     >
       <div className="flex justify-between items-center">
         <HeadingTag>{name}</HeadingTag>
-        <p className="font-sans text-grey-darker mt-0">
-          <strong>{examplesCount}</strong>{' '}
+        <p className="font-sans text-grey-darker mt-0 ml-2">
+          <strong>{examplesCount}</strong>&nbsp;
           <span className="text-xs">
-            example
-            {parseInt(examplesCount, 10) !== 1 && 's'}
+            example{parseInt(examplesCount, 10) !== 1 && 's'}
           </span>
         </p>
       </div>

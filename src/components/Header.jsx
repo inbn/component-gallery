@@ -4,15 +4,15 @@ import React from 'react';
 
 const Header = ({ siteTitle, menuLinks }) => (
   <header className="py-4">
-    <div className="container lg:flex lg:justify-between">
-      <div className="text-5xl text-teal font-bold font-sans text-center lg:text-left leading-none lg:whitespace-no-wrap">
+    <div className="container xl:flex xl:justify-between">
+      <div className="text-5xl text-teal font-bold font-sans text-center xl:text-left leading-none xl:whitespace-no-wrap">
         {siteTitle}
       </div>
 
       <nav>
-        <ul className="list-none pl-0 flex justify-center my-4 -mx-4">
+        <ul className="list-none pl-0 flex flex-wrap justify-center -mx-4 my-2">
           {menuLinks.map(link => (
-            <li key={link.name} className="mx-4">
+            <li key={link.name} className="mx-4 my-2">
               <Link to={link.link} className="whitespace-no-wrap font-sans">
                 {link.name}
               </Link>

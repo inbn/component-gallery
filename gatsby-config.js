@@ -3,7 +3,7 @@ require(`dotenv`).config({ path: `.env.${process.env.NODE_ENV}` });
 module.exports = {
   siteMetadata: {
     title: `The Component Gallery`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    description: `The Component Gallery is a collection of components from the best Design Systems.`,
     author: `@gatsbyjs`,
     menuLinks: [
       {
@@ -17,6 +17,10 @@ module.exports = {
       {
         name: 'Design systems',
         link: '/design-systems'
+      },
+      {
+        name: 'About',
+        link: '/about'
       }
     ]
   },

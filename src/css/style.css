@@ -14,6 +14,7 @@
 @import 'base/_fonts';
 
 @import 'base/_root';
+@import 'base/_hr';
 @import 'base/_code';
 @import 'base/_headings';
 @import 'base/_links';
@@ -45,6 +46,8 @@
   * @import "components/forms";
   */
 @import 'components/_svg-icon';
+
+@import 'components/_body-text';
 
 /**
   * This injects all of Tailwind's utility classes, generated based on your

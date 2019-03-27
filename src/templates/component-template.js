@@ -15,7 +15,7 @@ export default ({ data }) => (
             dangerouslySetInnerHTML={{
               __html: data.markdown.html
             }}
-            className="mt-4"
+            className="body-text mt-4"
           />
         ) : (
           data.airtable.data.Description && (
