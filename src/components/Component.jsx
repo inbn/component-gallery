@@ -16,7 +16,7 @@ const Component = ({
   return (
     <Link
       to={`components/${slug}`}
-      className="bg-white text-grey-darkest h-full block w-full p-2 border-b-2 shadow hover:shadow-md hover:scale-105 transition"
+      className="bg-white text-grey-darkest h-full block w-full p-2 border-b-2 shadow hover:text-grey-darkest hover:shadow-md hover:scale-105 transition"
     >
       <div className="flex justify-between items-center">
         <HeadingTag>{name}</HeadingTag>
@@ -35,7 +35,7 @@ const Component = ({
           dangerouslySetInnerHTML={{
             __html: description
           }}
-          className="leading-tight mt-2"
+          className="leading-tight font-small mt-2"
         />
       )}
     </Link>

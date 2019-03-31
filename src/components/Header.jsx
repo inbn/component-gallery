@@ -5,9 +5,12 @@ import React from 'react';
 const Header = ({ siteTitle, menuLinks }) => (
   <header className="py-4">
     <div className="container xl:flex xl:justify-between">
-      <div className="text-5xl text-teal font-bold font-sans text-center xl:text-left leading-none xl:whitespace-no-wrap">
+      <Link
+        to="/"
+        className="table text-5xl text-teal font-bold font-sans mx-auto border-0 xl:text-left leading-none xl:whitespace-no-wrap xl:mx-0 hover:border-2"
+      >
         {siteTitle}
-      </div>
+      </Link>
 
       <nav>
         <ul className="list-none pl-0 flex flex-wrap justify-center -mx-4 my-2">

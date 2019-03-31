@@ -3,4 +3,6 @@
   _body-text.css
 \*====================================*/
 
-.body-text {}
+.body-text {
+  max-width: 60ch;
+}
