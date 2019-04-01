@@ -5,7 +5,7 @@ path: 'about'
 date: '2019-03-25'
 ---
 
-**Started in early 2019, _The Component Gallery_ is the product of an ongoing survey into the components that make up design systems**. It exists primarily as a collection of component examples categorised by type of component. I created this website to help with some of the problems that I experience every day as a front-end developer:
+**Started in early 2019, _The Component Gallery_ is the product of an ongoing survey into the components that make up design systems**. It exists primarily as a collection of component examples grouped by type of component. I created this website to help with some of the problems that I experience every day as a front-end developer:
 
 1. There are huge number of interface problems that have **already been solved**: there’s no need to reinvent the wheel every time you start a new project. Grouping examples by type of component helps makes it simple to find all the relevant examples for a specific interface problem.
 2. **Naming things is hard**: If you don’t know what to call a thing, looking at what other people are calling similar things is a great place to start.
@@ -36,4 +36,4 @@ A successful design system is more then just a component library, although it’
 
 ### Are components just for websites?
 
-**Absolutely not.** Component-based User-Interface design has been around since before websites existed; the examples on this website are collected from websites because this is a _website_ created by a _web developer_. However, with the power of technologies such as [React Native](https://facebook.github.io/react-native/) and [Electron](https://electronjs.org/), components can be cross-platform with exactly the same code being used on a website, a mobile app or a desktop app.
+**Absolutely not.** Component-based User-Interface design was around way before websites existed; the examples on this website are collected from websites because this is a _website_ created by a _web developer_. However, with the power of technologies such as [React Native](https://facebook.github.io/react-native/) and [Electron](https://electronjs.org/), components can be cross-platform with exactly the same code being used on a website, a mobile app or a desktop app.
