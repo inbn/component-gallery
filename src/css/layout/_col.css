@@ -1,0 +1,29 @@
+/*====================================*\
+  LAYOUT
+  _col.css
+\*====================================*/
+
+/**
+ * Responsive layout without breakpoints \o|
+ * Based on https://www.youtube.com/watch?v=qOUtkN6M52M
+ */
+
+.col-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col {}
+
+.col--main {
+  /* main column should never be less than half-width */
+  min-width: 50%;
+  flex-basis: 0;
+  flex-grow: 999;
+}
+
+.col--sidebar {
+  /* 20rems is the 'ideal' width */
+  flex-basis: 20rem;
+  flex-grow: 1;
+}

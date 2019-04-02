@@ -7,9 +7,9 @@ import SEO from '../components/SEO';
 export default ({ data }) => (
   <Layout>
     <SEO title={data.airtable.data.Name} />
-    <h1 className="border-b-2 pb-1">{data.airtable.data.Name}</h1>
-    <div className="flex flex-wrap -mx-4">
-      <div className="w-full md:w-2/3 px-4">
+    <h1 className="border-b-2 px-2 -mx-2 pb-1">{data.airtable.data.Name}</h1>
+    <div className="col-wrap -mx-4">
+      <div className="col col--main px-4">
         {data.markdown !== null ? (
           <div
             dangerouslySetInnerHTML={{
@@ -23,12 +23,12 @@ export default ({ data }) => (
               dangerouslySetInnerHTML={{
                 __html: data.airtable.data.Description.childMarkdownRemark.html
               }}
-              className="mt-4"
+              className="body-text mt-4"
             />
           )
         )}
       </div>
-      <div className="w-full md:w-1/3 mt-4 mb-2 px-4">
+      <div className="col col--sidebar mt-4 mb-2 px-4">
         {data.airtable.data.Other_names !== null && (
           <>
             <h2 className="border-t-2 border-b-2 pt-1 pb-1">Other names</h2>

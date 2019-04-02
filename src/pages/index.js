@@ -16,7 +16,7 @@ const IndexPage = ({ data }) => (
       }}
     />
     <h2 className="mt-8 border-b-2 px-2 -mx-2 pb-1">
-      Recently added components
+      Recently updated components
     </h2>
     <ul className="list-none pl-0 flex flex-wrap mt-2 -mx-4">
       {data.recentComponents.edges.map(
@@ -65,8 +65,11 @@ export const query = graphql`
       totalCount
     }
     recentComponents: allAirtable(
-      filter: { table: { eq: "Components" }, data: { Publish: { eq: true } } }
-      sort: { fields: [data___Date_added], order: DESC }
+      filter: {
+        table: { eq: "Components" }
+        data: { Publish: { eq: true }, Date_updated: { ne: null } }
+      }
+      sort: { fields: [data___Date_updated], order: DESC }
       limit: 3
     ) {
       edges {

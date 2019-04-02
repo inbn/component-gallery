@@ -5,4 +5,6 @@
 
 .body-text {
   max-width: 60ch;
+  margin-right: auto;
+  margin-left: auto;
 }
