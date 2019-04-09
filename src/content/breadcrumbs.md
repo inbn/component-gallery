@@ -13,6 +13,8 @@ Their name comes from the Brothers Grimm fairytale _Hansel and Gretel_, in which
 
 ## Usage guidelines
 
+### HTML
+
 - As breadcrumbs are a type of **navigation** you should put them in a `<nav>` element.
 - Use an ordered list (`<ol>`) with an `<li>` for each breadcrumb item.
 - Add a meaningful label such as `aria-label="Breadcrumbs"` to the `<nav>` element. This helps differentiate it from any other navigation landmarks in the current document, such as the primary navigation.[^2]

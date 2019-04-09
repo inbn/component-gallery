@@ -9,7 +9,7 @@ A tabbed interface consists of the **tab list** containing the **tab elements**,
 
 Each tab panel has an associated tab element, that when activated, displays the panel. Only one panel of content is displayed at any one time.
 
-Tabs are an example of an [interface metaphor](https://en.wikipedia.org/wiki/Interface_metaphor), based on the tabs attached to the top of folders used inside filing cabinets. They almost act like a table of contents for the content within. Like their real-world namesake tabbed interfaces allow a user to see the outline of a larger set of data at a glance and quickly navigate to the descired section.
+Tabs are an example of an [interface metaphor](https://en.wikipedia.org/wiki/Interface_metaphor), based on the tabs attached to the top of folders used inside filing cabinets. They almost act like a table of contents for the content within. Like their real-world namesake tabbed interfaces allow a user to see the outline of a larger set of data at a glance and quickly navigate to the desired section.
 
 ## Usage guidelines
 
