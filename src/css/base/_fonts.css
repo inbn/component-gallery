@@ -8,4 +8,5 @@
   src: url('../fonts/HKGrotesk-Medium.woff2') format('woff2'),
     url('../fonts/HKGrotesk-Medium.woff') format('woff');
   font-weight: normal;
+  font-display: swap;
 }

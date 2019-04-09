@@ -13,7 +13,7 @@ const Header = ({ siteTitle, menuLinks }) => (
       </Link>
 
       <nav>
-        <ul className="list-none pl-0 flex flex-wrap justify-center -mx-4 my-2">
+        <ul className="flex flex-wrap justify-center -mx-4 my-2">
           {menuLinks.map(link => (
             <li key={link.name} className="mx-4 my-2">
               <Link to={link.link} className="whitespace-no-wrap font-sans">

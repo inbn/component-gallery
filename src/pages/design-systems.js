@@ -9,12 +9,12 @@ const DesignSystemsIndexPage = ({ data }) => (
   <Layout>
     <SEO title="Design systems" />
     <h1 className="border-b-2 px-2 -mx-2 pb-1">Design systems</h1>
-    <ul className="list-none pl-0 flex flex-wrap mt-2 -mx-4">
+    <ul className="flex flex-wrap mt-2 -mx-4">
       {data.allAirtable.edges.map(
         (
           {
             node: {
-              data: { url, name, organisation, image }
+              data: { url, name, organisation, image, features }
             }
           },
           i
@@ -25,6 +25,7 @@ const DesignSystemsIndexPage = ({ data }) => (
               url={url}
               organisation={organisation}
               image={image}
+              features={features}
             />
           </li>
         )
@@ -55,6 +56,7 @@ export const query = graphql`
             image: Image {
               url
             }
+            features: Features
           }
         }
       }

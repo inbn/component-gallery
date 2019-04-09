@@ -3,12 +3,6 @@
   _lists.css
 \*====================================*/
 
-ul {
-  list-style-type: disc;
-  padding-left: theme('padding.6');
-}
+ul {}
 
-ol {
-  list-style-type: decimal;
-  padding-left: theme('padding.6');
-}
+ol {}

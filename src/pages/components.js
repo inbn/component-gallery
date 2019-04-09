@@ -11,7 +11,7 @@ const ComponentsIndexPage = ({ data }) => (
     <h1 className="border-b-2 px-2 -mx-2 pb-1">
       All components <span>(a-z)</span>
     </h1>
-    <ul className="list-none pl-0 flex flex-wrap mt-2 -mx-4">
+    <ul className="flex flex-wrap mt-2 -mx-4">
       {data.allAirtable.edges.map(
         (
           {

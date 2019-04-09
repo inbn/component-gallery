@@ -7,4 +7,14 @@
   max-width: 60ch;
   margin-right: auto;
   margin-left: auto;
+
+  & ul {
+    list-style-type: disc;
+    padding-left: theme('padding.6');
+  }
+
+  & ol {
+    list-style-type: decimal;
+    padding-left: theme('padding.6');
+  }
 }
