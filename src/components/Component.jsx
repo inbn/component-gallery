@@ -19,7 +19,7 @@ const Component = ({
       className="bg-white text-grey-darkest h-full block w-full p-2 border-b-2 shadow hover:text-grey-darkest hover:shadow-md hover:scale-105 transition"
     >
       <div className="flex justify-between items-center">
-        <HeadingTag>{name}</HeadingTag>
+        <HeadingTag className="h3">{name}</HeadingTag>
         <p className="font-sans text-grey-darker mt-0 ml-2">
           <strong>{examplesCount}</strong>&nbsp;
           <span className="text-xs">

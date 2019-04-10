@@ -15,13 +15,13 @@ Tabs are an example of an [interface metaphor](https://en.wikipedia.org/wiki/Int
 
 ### Layout
 
-- Be conscious that when you’re using tabs, you’re hiding content.
+- Be conscious that when you’re using tabs, you’re hiding content. This not only makes it less discoverable for sighted users, but also for users of assistive technology like screen readers.
 
-- If you're laying out your tabs horizontally, think about how they will appear at narrower screen widths — will they need to stack vertically, or is there a different component you could use to display the same content?
+- If you're laying out your tabs horizontally, think about how they will appear at narrower screen widths — will they need to stack vertically, or will you need to use a different component altogether to display the same content?
 
 ### HTML
 
-Markup your tabs with [the correct aria attributes](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel):
+The W3C recommended accessible markup for your tabs uses a variety of [aria attributes](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel):
 
 - Use `role="tab"` on each **tab** element and `role="tablist"` on the tab list.
 - Give each **tab panel** `role="tabpanel"`.
@@ -34,5 +34,7 @@ Markup your tabs with [the correct aria attributes](https://www.w3.org/TR/wai-ar
 ### JavaScript
 
 - In addition to aria attributes on your HTML elements, to make a tabbed interface keyboard-accessible, you’ll also need to add some custom keybindings. e.g. the left and right arrows should navigate between tab elements if they are arranged horizontally.[^1]
+
+**Caveat:** although this is the W3C recommended method of making tabbed interfaces keyboard accessible, be aware that a simpler component ([such as an accordion](/components/accordion)) may be more suited to your specific use case.
 
 [^1]: [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel)

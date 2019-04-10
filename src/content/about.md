@@ -7,10 +7,10 @@ date: '2019-03-25'
 
 **Started in early 2019, _The Component Gallery_ is the product of an ongoing survey into the components that make up design systems**. It exists primarily as a collection of component examples grouped by type of component. I created this website to help with some of the problems that I experience every day as a front-end developer:
 
-1. There are huge number of interface problems that have **already been solved**: there’s no need to reinvent the wheel every time you start a new project. Grouping examples by type of component helps makes it simple to find all the relevant examples for a specific interface problem.
+1. There are huge number of interface problems that have **already been solved**: there’s no need to reinvent the wheel every time you start a new project. Grouping examples by type of component makes it simple to find all the relevant examples for a specific interface problem.
 2. **Naming things is hard**: If you don’t know what to call a thing, looking at what other people are calling similar things is a great place to start.
 
-**Caveat:** Don’t just assume because an opinion is popular, it’s correct. Be wary of [information cascades](https://en.wikipedia.org/wiki/Information_cascade) and, if you can, always base your decisions on **research**. [Definitely don’t just copy what everyone else is doing](https://noti.st/stephenhay/nLABeP/i-don-t-care-what-airbnb-is-doing-and-neither-should-you). There’s a tonne of research out there already—look for design systems that give reasoning for decisions based on research insights.
+**Caveat:** Don’t just assume because an opinion is popular, it’s correct. Be wary of [information cascades](https://en.wikipedia.org/wiki/Information_cascade) and, if you can, always base your decisions on **research**. [***Definitely*** don’t just copy what everyone else is doing](https://noti.st/stephenhay/nLABeP/i-don-t-care-what-airbnb-is-doing-and-neither-should-you). There’s a tonne of research out there already—look for design systems that give reasoning for decisions based on real research.
 
 ## FAQs
 
