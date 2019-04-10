@@ -1,4 +1,5 @@
 import React from 'react';
+import Img from 'gatsby-image';
 
 import PropTypes from 'prop-types';
 
@@ -21,7 +22,10 @@ const DesignSystem = ({
       className="bg-white block h-full border-b-2 shadow flex flex-col hover:shadow-md hover:scale-105 transition"
     >
       <img src={image.length && image[0].url} alt="" className="block" />
-      <HeadingTag className="h3 mt-0 p-2">{name} {organisation !== null && `(${organisation})`}</HeadingTag>
+      {image && <Img fluid={image.childImageSharp.fluid} />}
+      <HeadingTag className="h3 mt-0 p-2">
+        {name} {organisation !== null && `(${organisation})`}
+      </HeadingTag>
       {features && features.length > 0 && (
         <ul className="p-2 mt-auto -mr-2 -mb-2">
           {features.map(feature => (
@@ -39,7 +43,7 @@ DesignSystem.propTypes = {
   url: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   organisation: PropTypes.string,
-  image: PropTypes.arrayOf(PropTypes.object),
+  image: PropTypes.object,
   features: PropTypes.arrayOf(PropTypes.string),
   headingLevel: PropTypes.string
 };

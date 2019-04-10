@@ -24,7 +24,7 @@ const DesignSystemsIndexPage = ({ data }) => (
               name={name}
               url={url}
               organisation={organisation}
-              image={image}
+              image={image.localFiles.length > 0 ? image.localFiles[0] : null}
               features={features}
             />
           </li>
@@ -54,7 +54,13 @@ export const query = graphql`
             organisation: Organisation
             url: URL
             image: Image {
-              url
+              localFiles {
+                childImageSharp {
+                  fluid(maxWidth: 608, maxHeight: 456) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
             }
             features: Features
           }
