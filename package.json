@@ -6,7 +6,7 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "dotenv": "^6.2.0",
-    "gatsby": "^2.1.2",
+    "gatsby": "^2.4.0",
     "gatsby-image": "^2.0.29",
     "gatsby-plugin-catch-links": "^2.0.13",
     "gatsby-plugin-manifest": "^2.0.17",
@@ -22,7 +22,8 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
-    "react-helmet": "^5.2.0"
+    "react-helmet": "^5.2.0",
+    "sharp": "^0.22.1"
   },
   "keywords": [
     "gatsby"

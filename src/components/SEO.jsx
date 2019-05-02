@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 
-function SEO({ description, lang, meta, keywords, title }) {
+function SEO({ description, lang, meta, keywords, title, favicon }) {
   return (
     <StaticQuery
       query={detailsQuery}
@@ -17,6 +17,7 @@ function SEO({ description, lang, meta, keywords, title }) {
             }}
             title={title}
             titleTemplate={`%s | ${data.site.siteMetadata.title}`}
+            link={[{ rel: 'shortcut icon', type: 'image/png', href: favicon }]}
             meta={[
               {
                 name: `description`,
@@ -70,7 +71,8 @@ function SEO({ description, lang, meta, keywords, title }) {
 SEO.defaultProps = {
   lang: `en`,
   meta: [],
-  keywords: []
+  keywords: [],
+  favicon: '/icons/icon-48x48.png'
 };
 
 SEO.propTypes = {
@@ -78,7 +80,8 @@ SEO.propTypes = {
   lang: PropTypes.string,
   meta: PropTypes.array,
   keywords: PropTypes.arrayOf(PropTypes.string),
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  favicon: PropTypes.string
 };
 
 export default SEO;
