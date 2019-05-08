@@ -18,3 +18,8 @@
     padding-left: theme('padding.6');
   }
 }
+
+.footnote-backref {
+  @apply border-none;
+  @apply text-red-light;
+}
