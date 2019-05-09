@@ -117,6 +117,12 @@ module.exports = {
         purgeOnly: ['src/css/style.css'],
         whitelist: ['code']
       }
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: process.env.ANALYTICS_
+      }
     }
   ]
 };
