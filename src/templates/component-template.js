@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
 
+import ComponentExample from '../components/ComponentExample';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 
@@ -63,16 +64,17 @@ export default ({ data }) => {
                 {data.airtable.data.Examples_count} example
                 {data.airtable.data.Examples_count !== 1 && 's'}
               </h2>
-              <ul className="mt-2">
+              <ul className="mt-2 -mx-4">
                 {data.airtable.data.Examples.map((page, i) => (
-                  <li key={i}>
-                    <a
-                      href={page.data.URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {page.data.Name} — {page.data.Design_system[0].data.Name}
-                    </a>
+                  <li key={i} className="w-full p-2">
+                  <ComponentExample
+                    key={i}
+                    url={page.data.URL}
+                    componentName={page.data.Name}
+                    designSystem={page.data.Design_system[0].data.Name}
+                    features={page.data.Design_system[0].data.Features}
+                    color={page.data.Design_system[0].data.Colour_hex}
+                  />
                   </li>
                 ))}
               </ul>
@@ -107,6 +109,8 @@ export const query = graphql`
               data {
                 Name
                 Organisation
+                Colour_hex
+                Features
               }
             }
           }
