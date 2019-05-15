@@ -60,21 +60,21 @@ export default ({ data }) => {
           )}
           {data.airtable.data.Examples !== null && (
             <>
-              <h2 className="border-b-2 pb-1">
+              <h2 className="border-b-2 px-2 -mx-2 pb-1">
                 {data.airtable.data.Examples_count} example
                 {data.airtable.data.Examples_count !== 1 && 's'}
               </h2>
-              <ul className="mt-2 -mx-4">
+              <ul className="flex flex-wrap mt-2 -mx-4">
                 {data.airtable.data.Examples.map((page, i) => (
-                  <li key={i} className="w-full p-2">
-                  <ComponentExample
-                    key={i}
-                    url={page.data.URL}
-                    componentName={page.data.Name}
-                    designSystem={page.data.Design_system[0].data.Name}
-                    features={page.data.Design_system[0].data.Features}
-                    color={page.data.Design_system[0].data.Colour_hex}
-                  />
+                  <li key={i} className="w-1/2 md:w-full p-2">
+                    <ComponentExample
+                      key={i}
+                      url={page.data.URL}
+                      componentName={page.data.Name}
+                      designSystem={page.data.Design_system[0].data.Name}
+                      features={page.data.Design_system[0].data.Features}
+                      color={page.data.Design_system[0].data.Colour_hex}
+                    />
                   </li>
                 ))}
               </ul>

@@ -19,6 +19,13 @@
   }
 }
 
+.footnote-ref {
+  @apply text-sm;
+  @apply underline;
+  @apply border-none;
+  @apply text-red-light;
+}
+
 .footnote-backref {
   @apply border-none;
   @apply text-red-light;

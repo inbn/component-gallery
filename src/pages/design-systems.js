@@ -14,7 +14,7 @@ const DesignSystemsIndexPage = ({ data }) => (
         (
           {
             node: {
-              data: { url, name, organisation, image, features }
+              data: { url, name, organisation, image, features, color }
             }
           },
           i
@@ -26,6 +26,7 @@ const DesignSystemsIndexPage = ({ data }) => (
               organisation={organisation}
               image={image.localFiles.length > 0 ? image.localFiles[0] : null}
               features={features}
+              color={color}
             />
           </li>
         )
@@ -63,6 +64,7 @@ export const query = graphql`
               }
             }
             features: Features
+            color: Colour_hex
           }
         }
       }

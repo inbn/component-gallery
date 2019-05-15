@@ -7,5 +7,5 @@
   @apply font-sans bg-grey-lightest text-grey-darker rounded-full shadow mr-2 mb-2;
   display: inline-block;
   font-size: 0.8em;
-  padding: 0.1em 0.4em;
+  padding: 0 0.3em;
 }

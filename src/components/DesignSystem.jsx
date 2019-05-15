@@ -9,7 +9,8 @@ const DesignSystem = ({
   organisation,
   image,
   features,
-  headingLevel
+  headingLevel,
+  color
 }) => {
   // Heading level needs to be dynamic
   const HeadingTag = headingLevel;
@@ -20,6 +21,7 @@ const DesignSystem = ({
       target="blank"
       rel="noopener noreferrer"
       className="bg-white block h-full border-b-2 shadow flex flex-col hover:shadow-md hover:scale-105 transition"
+      style={{ borderBottomColor: color }}
     >
       <img src={image.length && image[0].url} alt="" className="block" />
       {image && <Img fluid={image.childImageSharp.fluid} />}
@@ -45,14 +47,16 @@ DesignSystem.propTypes = {
   organisation: PropTypes.string,
   image: PropTypes.object,
   features: PropTypes.arrayOf(PropTypes.string),
-  headingLevel: PropTypes.string
+  headingLevel: PropTypes.string,
+  color: PropTypes.string
 };
 
 DesignSystem.defaultProps = {
   organisation: '',
   image: null,
   features: null,
-  headingLevel: 'h2'
+  headingLevel: 'h2',
+  color: '#fff'
 };
 
 export default DesignSystem;

@@ -1,16 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ComponentExample = ({ url, componentName, designSystem, features, color }) => (
+const ComponentExample = ({
+  url,
+  componentName,
+  designSystem,
+  features,
+  color
+}) => (
   <a
     href={url}
     target="_blank"
     rel="noopener noreferrer"
-    className="bg-white text-grey-darkest h-full block w-full p-2 border-b-2 shadow hover:text-grey-darkest hover:shadow-md hover:scale-105 transition"
+    className="card h-full block w-full p-2 border-b-2 hover:text-grey-darkest hover:shadow-md hover:scale-105 transition"
     style={{ borderBottomColor: color }}
   >
-    <h3>{componentName}</h3>
-    <p className="italic leading-tight mt-2">{designSystem}</p>
+    <h3 className="h4">{componentName}</h3>
+    <p className="italic leading-tight text-sm mt-1">{designSystem}</p>
     {features && features.length > 0 && (
       <ul className="pt-2 mt-auto -mr-2 -mb-2">
         {features.map(feature => (
@@ -29,7 +35,7 @@ ComponentExample.propTypes = {
   designSystem: PropTypes.string,
   features: PropTypes.array,
   color: PropTypes.string
-}
+};
 
 ComponentExample.defaultProps = {
   url: '',
@@ -37,6 +43,6 @@ ComponentExample.defaultProps = {
   designSystem: '',
   features: [],
   color: '#fff'
-}
+};
 
 export default ComponentExample;

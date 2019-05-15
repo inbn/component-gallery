@@ -1,0 +1,10 @@
+/*====================================*\
+  COMPONENTS
+  _card.css
+\*====================================*/
+
+.card {
+  @apply bg-white;
+  @apply text-grey-darkest;
+  @apply shadow;
+}
