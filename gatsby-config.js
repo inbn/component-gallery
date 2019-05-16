@@ -52,7 +52,12 @@ module.exports = {
     'gatsby-plugin-offline',
     // Catch local links (e.g. in markdown) and turn them into gatsby <Link>s
     'gatsby-plugin-catch-links',
-    'gatsby-transformer-remark',
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        plugins: ['gatsby-remark-abbr']
+      }
+    },
     // Load all data related to taxonomies, categories etc from the airtable
     // base, apiKey and baseId are loaded from the env
     {
