@@ -23,10 +23,10 @@
   @apply text-sm;
   @apply underline;
   @apply border-none;
-  @apply text-red-light;
+  @apply text-red-400;
 }
 
 .footnote-backref {
   @apply border-none;
-  @apply text-red-light;
+  @apply text-red-400;
 }

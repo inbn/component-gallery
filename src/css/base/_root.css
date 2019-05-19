@@ -4,8 +4,8 @@
 \*====================================*/
 
 :root {
-  @apply bg-grey-lightest;
-  @apply text-grey-darkest;
+  @apply bg-grey-100;
+  @apply text-grey-800;
   @apply font-serif;
   @apply leading-normal;
 }

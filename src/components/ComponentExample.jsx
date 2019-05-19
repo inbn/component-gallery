@@ -12,7 +12,7 @@ const ComponentExample = ({
     href={url}
     target="_blank"
     rel="noopener noreferrer"
-    className="card h-full block w-full p-2 border-b-2 hover:text-grey-darkest hover:shadow-md hover:scale-105 transition"
+    className="card h-full block w-full p-2 border-b-2 hover:text-grey-800 hover:shadow-md hover:scale-105 transition"
     style={{ borderBottomColor: color }}
   >
     <h3 className="h4">{componentName}</h3>

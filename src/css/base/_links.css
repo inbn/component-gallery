@@ -5,12 +5,12 @@
 
 a {
   @apply border-b-2;
-  @apply border-red-lighter;
+  @apply border-red-300;
 
   transition: color 0.3s ease, border-color 0.3s ease;
 }
 
 a:hover {
-  @apply text-red-light;
-  @apply border-red-light;
+  @apply text-red-400;
+  @apply border-red-400;
 }

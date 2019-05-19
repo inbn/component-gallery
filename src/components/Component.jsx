@@ -16,11 +16,11 @@ const Component = ({
   return (
     <Link
       to={`components/${slug}`}
-      className="card h-full block w-full p-2 border-b-2 hover:text-grey-darkest hover:shadow-md hover:scale-105 transition"
+      className="card h-full block w-full p-2 border-b-2 hover:text-grey-800 hover:shadow-md hover:scale-105 transition"
     >
       <div className="flex justify-between items-center">
         <HeadingTag className="h3">{name}</HeadingTag>
-        <p className="font-sans text-grey-darker mt-0 ml-2">
+        <p className="font-sans text-grey-700 mt-0 ml-2">
           <strong>{examplesCount}</strong>&nbsp;
           <span className="text-xs">
             example{parseInt(examplesCount, 10) !== 1 && 's'}
