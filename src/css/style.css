@@ -9,6 +9,9 @@
  *
  * @import "tailwindcss/preflight";
  */
+
+/* purgecss start ignore */
+
 @import 'tailwindcss/base';
 
 @import 'base/_fonts';
@@ -52,6 +55,8 @@
 @import 'components/_body-text';
 @import 'components/_card';
 @import 'components/_tag';
+
+/* purgecss end ignore */
 
 /**
   * This injects all of Tailwind's utility classes, generated based on your

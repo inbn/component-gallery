@@ -233,8 +233,11 @@ module.exports = {
       screen: '100vh'
     },
     padding: theme => theme('spacing'),
-    margin: theme => ({ auto: 'auto', ...theme('spacing') }),
-    negativeMargin: theme => theme('spacing'),
+    margin: (theme, { negative }) => ({
+      auto: 'auto',
+      ...theme('spacing'),
+      ...negative(theme('spacing'))
+    }),
     objectPosition: {
       bottom: 'bottom',
       center: 'center',
@@ -343,7 +346,6 @@ module.exports = {
     // maxWidth: ['responsive'],
     // minHeight: ['responsive'],
     // minWidth: ['responsive'],
-    negativeMargin: ['responsive'],
     // objectFit: ['responsive'],
     // objectPosition: ['responsive'],
     // opacity: ['responsive'],
