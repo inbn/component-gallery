@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import ComponentExample from '../components/ComponentExample';
+import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 
@@ -14,7 +15,7 @@ export default ({ data }) => (
           : data.airtable.data.Name
       }
     />
-    <h1 className="border-b-2 px-2 -mx-2 pb-1">{data.airtable.data.Name}</h1>
+    <Hero byline="Component" title={data.airtable.data.Name} />
     <div className="col-wrap -mx-4">
       <div className="col col--main px-4">
         {data.markdown !== null ? (
@@ -38,8 +39,8 @@ export default ({ data }) => (
       <div className="col col--sidebar mt-4 mb-2 px-4">
         {data.airtable.data.Other_names !== null && (
           <>
-            <h2 className="border-t-2 border-b-2 pt-1 pb-1">Other names</h2>
-            <ul className="mt-0 font-sans border-b-2 pt-1 pb-1">
+            <h2 className="border-b-2 px-2 -mx-2 pb-1">Other names</h2>
+            <ul className="mt-0 font-sans text-grey-700 pt-1 pb-1">
               {data.airtable.data.Other_names.split(',').map(name => (
                 <li>{name.trim()}</li>
               ))}

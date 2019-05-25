@@ -28,7 +28,9 @@ const Component = ({
         </p>
       </div>
       {otherNames && (
-        <p className="italic leading-tight mt-2">Other names: {otherNames}</p>
+        <p className="italic leading-tight mt-2 text-grey-700">
+          Other names: {otherNames}
+        </p>
       )}
       {description && (
         <div

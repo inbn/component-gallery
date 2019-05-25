@@ -6,10 +6,10 @@ module.exports = {
     description: `The Component Gallery is a collection of components from the best Design Systems.`,
     author: `@gatsbyjs`,
     menuLinks: [
-      {
-        name: 'Home',
-        link: '/'
-      },
+      // {
+      //   name: 'Home',
+      //   link: '/'
+      // },
       {
         name: 'Components',
         link: '/components'

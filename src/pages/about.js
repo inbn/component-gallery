@@ -2,12 +2,13 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import Layout from '../components/Layout';
+import Hero from '../components/Hero';
 import SEO from '../components/SEO';
 
 const AboutPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
-    <h1 className="border-b-2 px-2 -mx-2 pb-1">About</h1>
+    <Hero title="About" />
     <div
       className="body-text w-full md:w-2/3 mt-4"
       dangerouslySetInnerHTML={{

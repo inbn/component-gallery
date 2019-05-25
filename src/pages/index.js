@@ -70,7 +70,7 @@ export const query = graphql`
         data: { Publish: { eq: true }, Date_updated: { ne: null } }
       }
       sort: { fields: [data___Date_updated], order: DESC }
-      limit: 3
+      limit: 6
     ) {
       edges {
         node {

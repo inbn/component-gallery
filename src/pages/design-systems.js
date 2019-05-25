@@ -2,13 +2,14 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import DesignSystem from '../components/DesignSystem';
+import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 
 const DesignSystemsIndexPage = ({ data }) => (
   <Layout>
     <SEO title="Design systems" />
-    <h1 className="border-b-2 px-2 -mx-2 pb-1">Design systems</h1>
+    <Hero title="Design systems" />
     <ul className="flex flex-wrap mt-2 -mx-4">
       {data.allAirtable.edges.map(
         (

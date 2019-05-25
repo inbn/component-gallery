@@ -308,7 +308,7 @@ module.exports = {
     },
     container: {
       center: true,
-      padding: '1rem'
+      padding: '1.5rem'
     }
   },
   variants: {

@@ -16,7 +16,9 @@ const ComponentExample = ({
     style={{ borderBottomColor: color }}
   >
     <h3 className="h4">{componentName}</h3>
-    <p className="italic leading-tight text-sm mt-1">{designSystem}</p>
+    <p className="italic leading-tight text-sm mt-1 text-grey-700">
+      {designSystem}
+    </p>
     {features && features.length > 0 && (
       <ul className="pt-2 mt-auto -mr-2 -mb-2">
         {features.map(feature => (
