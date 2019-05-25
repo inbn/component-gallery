@@ -10,3 +10,11 @@
   font-weight: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: 'HK Grotesk';
+  src: url('../fonts/HKGrotesk-Bold.woff2') format('woff2'),
+    url('../fonts/HKGrotesk-Bold.woff') format('woff');
+  font-weight: bold;
+  font-display: swap;
+}
