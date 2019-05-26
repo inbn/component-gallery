@@ -4,7 +4,7 @@
 \*====================================*/
 
 .body-text {
-  max-width: 60ch;
+  max-width: 75ch;
   margin-right: auto;
   margin-left: auto;
 
@@ -17,6 +17,20 @@
     list-style-type: decimal;
     padding-left: theme('padding.6');
   }
+}
+
+.gatsby-resp-image-figure {
+  @apply my-6;
+}
+
+.gatsby-resp-image-wrapper {
+  @apply shadow-md;
+}
+
+.gatsby-resp-image-figcaption {
+  @apply pt-2;
+  @apply text-grey-700;
+  font-style: italic;
 }
 
 .footnote-ref {

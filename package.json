@@ -17,6 +17,7 @@
     "gatsby-plugin-react-helmet": "^3.0.6",
     "gatsby-plugin-sharp": "^2.0.20",
     "gatsby-remark-abbr": "^1.0.0",
+    "gatsby-remark-images": "^3.0.12",
     "gatsby-source-airtable": "^2.0.8",
     "gatsby-source-filesystem": "^2.0.33",
     "gatsby-transformer-remark": "^2.3.8",

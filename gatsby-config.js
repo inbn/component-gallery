@@ -55,7 +55,21 @@ module.exports = {
     {
       resolve: 'gatsby-transformer-remark',
       options: {
-        plugins: ['gatsby-remark-abbr']
+        plugins: [
+          'gatsby-remark-abbr',
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              // It's important to specify the maxWidth (in pixels) of
+              // the content container as this plugin uses this as the
+              // base for generating different widths of each image.
+              maxWidth: 820,
+              linkImagesToOriginal: false,
+              quality: 80,
+              showCaptions: true
+            }
+          }
+        ]
       }
     },
     // Load all data related to taxonomies, categories etc from the airtable
