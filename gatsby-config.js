@@ -68,7 +68,8 @@ module.exports = {
               quality: 80,
               showCaptions: true
             }
-          }
+          },
+          `gatsby-remark-reading-time`
         ]
       }
     },

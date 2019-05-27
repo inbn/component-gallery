@@ -15,7 +15,11 @@ export default ({ data }) => (
           : data.airtable.data.Name
       }
     />
-    <Hero byline="Component" title={data.airtable.data.Name} />
+    <Hero
+      byline="Component"
+      title={data.airtable.data.Name}
+      readtime={data.markdown !== null && data.markdown.fields.readingTime.text}
+    />
     <div className="col-wrap -mx-4">
       <div className="col col--main px-4">
         {data.markdown !== null ? (
@@ -49,13 +53,13 @@ export default ({ data }) => (
         )}
         {data.airtable.data.Examples !== null && (
           <>
-            <h2 className="border-b-2 px-2 -mx-2 pb-1">
+            <h2 id="examples" className="border-b-2 px-2 -mx-2 pb-1">
               {data.airtable.data.Examples_count} example
               {data.airtable.data.Examples_count !== 1 && 's'}
             </h2>
             <ul className="flex flex-wrap mt-2 -mx-4">
               {data.airtable.data.Examples.map((page, i) => (
-                <li key={i} className="w-1/2 md:w-full p-2">
+                <li key={i} className="sm:w-1/2 md:w-full p-2">
                   <ComponentExample
                     key={i}
                     url={page.data.URL}
@@ -113,6 +117,11 @@ export const query = graphql`
         date(formatString: "MMMM DD, YYYY")
         path
         title
+      }
+      fields {
+        readingTime {
+          text
+        }
       }
     }
   }

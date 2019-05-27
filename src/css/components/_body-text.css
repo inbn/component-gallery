@@ -19,6 +19,12 @@
   }
 }
 
+@screen lg {
+  .body-text {
+    @apply pr-8;
+  }
+}
+
 .gatsby-resp-image-figure {
   @apply my-6;
 }
