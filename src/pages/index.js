@@ -10,7 +10,7 @@ const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
     <div
-      className="w-full md:w-2/3 text-lg mx-auto"
+      className="body-text"
       dangerouslySetInnerHTML={{
         __html: data.markdown.html
       }}

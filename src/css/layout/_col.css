@@ -16,8 +16,8 @@
 .col {}
 
 .col--main {
-  /* main column should never be less than half-width */
-  min-width: 50%;
+  /* main column should never be less than 3/5 wide */
+  min-width: 60%;
   flex-basis: 0;
   flex-grow: 999;
 }

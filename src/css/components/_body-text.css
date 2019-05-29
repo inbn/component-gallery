@@ -6,7 +6,6 @@
 .body-text {
   max-width: 75ch;
   margin-right: auto;
-  margin-left: auto;
 
   & ul {
     list-style-type: disc;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const Header = ({ siteTitle, menuLinks }) => (
-  <header className="py-4">
+  <header className="pt-4 pb-2 xl:pb-4">
     <div className="container xl:flex xl:justify-between xl:items-center">
       <Link
         to="/"
@@ -13,7 +13,7 @@ const Header = ({ siteTitle, menuLinks }) => (
       </Link>
 
       <nav>
-        <ul className="flex flex-wrap sm:justify-center -mx-4 my-2">
+        <ul className="flex flex-wrap sm:justify-center -mx-4 mt-2 lg:mt-0">
           {menuLinks.map(link => (
             <li key={link.name} className="mx-4 my-2">
               <Link

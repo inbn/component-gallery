@@ -18,7 +18,12 @@ export default ({ data }) => (
     <Hero
       byline="Component"
       title={data.airtable.data.Name}
+      subtitle={
+        data.airtable.data.Other_names !== null &&
+        `Other names: ${data.airtable.data.Other_names}`
+      }
       readtime={data.markdown !== null && data.markdown.fields.readingTime.text}
+      date={data.airtable.data.Date_updated}
     />
     <div className="col-wrap -mx-4">
       <div className="col col--main px-4">
@@ -41,7 +46,7 @@ export default ({ data }) => (
         )}
       </div>
       <div className="col col--sidebar mt-4 mb-2 px-4">
-        {data.airtable.data.Other_names !== null && (
+        {/* {data.airtable.data.Other_names !== null && (
           <>
             <h2 className="border-b-2 px-2 -mx-2 pb-1">Other names</h2>
             <ul className="mt-0 font-sans text-grey-700 pt-1 pb-1">
@@ -50,7 +55,7 @@ export default ({ data }) => (
               ))}
             </ul>
           </>
-        )}
+        )} */}
         {data.airtable.data.Examples !== null && (
           <>
             <h2 id="examples" className="border-b-2 px-2 -mx-2 pb-1">
@@ -59,7 +64,11 @@ export default ({ data }) => (
             </h2>
             <ul className="flex flex-wrap mt-2 -mx-4">
               {data.airtable.data.Examples.map((page, i) => (
-                <li key={i} className="sm:w-1/2 md:w-full p-2">
+                <li
+                  key={i}
+                  className="flex-grow p-2"
+                  style={{ flexBasis: '12rem' }}
+                >
                   <ComponentExample
                     key={i}
                     url={page.data.URL}
@@ -109,6 +118,7 @@ export const query = graphql`
         }
         Examples_count
         Emoji
+        Date_updated(formatString: "MMMM Do, YYYY")
       }
     }
     markdown: markdownRemark(frontmatter: { slug: { eq: $Slug } }) {
