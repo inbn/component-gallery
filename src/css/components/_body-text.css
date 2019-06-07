@@ -18,6 +18,10 @@
   }
 }
 
+.anchor {
+  @apply border-b-0;
+}
+
 @screen lg {
   .body-text {
     @apply pr-8;

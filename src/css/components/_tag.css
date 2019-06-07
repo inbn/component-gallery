@@ -4,8 +4,7 @@
 \*====================================*/
 
 .tag {
-  @apply font-sans bg-grey-100 text-grey-700 rounded-full shadow mr-2 mb-2;
+  @apply font-sans text-xs text-grey-700 border rounded mr-1 mb-1;
   display: inline-block;
-  font-size: 0.8em;
   padding: 0 0.3em;
 }

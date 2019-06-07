@@ -11,6 +11,7 @@
 .col-wrap {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row-reverse;
 }
 
 .col {}

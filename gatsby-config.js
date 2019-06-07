@@ -69,7 +69,8 @@ module.exports = {
               showCaptions: true
             }
           },
-          `gatsby-remark-reading-time`
+          `gatsby-remark-reading-time`,
+          `gatsby-remark-autolink-headers`
         ]
       }
     },

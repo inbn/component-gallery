@@ -10,7 +10,7 @@ const Hero = ({ byline, title, subtitle, date, readtime }) => (
         {subtitle !== '' && <p className="pr-8">{subtitle}</p>}
         {readtime !== '' && (
           <p className="mt-0 text-right self-end">
-            {date !== null && `Last updated: ${date} |`} {readtime}
+            {date !== null && `Last updated: ${date} •`} {readtime}
           </p>
         )}
       </div>

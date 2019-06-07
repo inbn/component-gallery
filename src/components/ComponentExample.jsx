@@ -12,7 +12,7 @@ const ComponentExample = ({
     href={url}
     target="_blank"
     rel="noopener noreferrer"
-    className="card h-full block w-full p-2 border-b-2 hover:text-grey-800 hover:shadow-md hover:scale-105 transition"
+    className="card h-full block w-full p-2 border-b-2 hover:bg-white over:text-grey-800 hover:shadow-md hover:scale-105 transition"
     style={{ borderBottomColor: color }}
   >
     <h3 className="h4">{componentName}</h3>
@@ -20,13 +20,15 @@ const ComponentExample = ({
       {designSystem}
     </p>
     {features && features.length > 0 && (
-      <ul className="pt-2 mt-auto -mr-2 -mb-2">
-        {features.map(feature => (
-          <li key={feature} className="tag">
-            {feature}
-          </li>
-        ))}
-      </ul>
+      <div className="mt-auto">
+        <ul className="-mr-2 -mb-2 pt-2 pb-1 flex flex-wrap">
+          {features.map(feature => (
+            <li key={feature} className="tag">
+              {feature}
+            </li>
+          ))}
+        </ul>
+      </div>
     )}
   </a>
 );

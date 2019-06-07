@@ -4,7 +4,8 @@
 \*====================================*/
 
 .card {
-  @apply bg-white;
+  /* @apply bg-white; */
   @apply text-grey-800;
-  @apply shadow;
+  @apply shadow-none;
+  @apply bg-transparent;
 }

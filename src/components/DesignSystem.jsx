@@ -29,13 +29,15 @@ const DesignSystem = ({
         {name} {organisation !== null && `(${organisation})`}
       </HeadingTag>
       {features && features.length > 0 && (
-        <ul className="p-2 mt-auto -mr-2 -mb-2">
-          {features.map(feature => (
-            <li key={feature} className="tag">
-              {feature}
-            </li>
-          ))}
-        </ul>
+        <div className="mt-auto">
+          <ul className="-mr-2 p-2 pb-1 flex flex-wrap">
+            {features.map(feature => (
+              <li key={feature} className="tag">
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </a>
   );
