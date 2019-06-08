@@ -4,6 +4,9 @@
 \*====================================*/
 
 .body-text {
+  @apply bg-grey-100;
+  @apply p-2;
+  @apply -m-2;
   max-width: 75ch;
   margin-right: auto;
 
@@ -18,14 +21,14 @@
   }
 }
 
-.anchor {
-  @apply border-b-0;
-}
-
 @screen lg {
   .body-text {
-    @apply pr-8;
+    @apply mr-8;
   }
+}
+
+.anchor {
+  @apply border-b-0;
 }
 
 .gatsby-resp-image-figure {

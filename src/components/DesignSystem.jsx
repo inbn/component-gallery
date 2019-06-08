@@ -20,8 +20,8 @@ const DesignSystem = ({
       href={url}
       target="blank"
       rel="noopener noreferrer"
-      className="bg-white block h-full border-b-2 shadow flex flex-col hover:shadow-md hover:scale-105 transition"
-      style={{ borderBottomColor: color }}
+      className="card block h-full border-t-2 border-b-0 flex flex-col hover:bg-white hover:shadow-md hover:scale-105 transition"
+      style={{ borderTopColor: color }}
     >
       <img src={image.length && image[0].url} alt="" className="block" />
       {image && <Img fluid={image.childImageSharp.fluid} />}

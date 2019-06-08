@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 
 const ReadMoreLink = ({ to, text }) => (
-  <Link to={to} className="italic">
+  <Link to={to} className="call-to-action">
     {text}{' '}
     <svg
       xmlns="http://www.w3.org/2000/svg"
