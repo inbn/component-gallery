@@ -2,15 +2,12 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import Component from '../components/Component';
-import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 
 const ComponentsIndexPage = ({ data }) => (
-  <Layout>
+  <Layout title="Components">
     <SEO title="Components" />
-    <Hero title="Components" />
-
     <ul className="flex flex-wrap mt-2 -mx-4">
       {data.allAirtable.edges.map(
         (

@@ -11,7 +11,6 @@
 .col-wrap {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row-reverse;
 }
 
 .col {}
@@ -24,7 +23,7 @@
 }
 
 .col--sidebar {
-  /* 20rems is the 'ideal' width */
-  flex-basis: 20rem;
+  /* 16 rems is the 'ideal' width */
+  flex-basis: 16rem;
   flex-grow: 1;
 }

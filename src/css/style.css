@@ -84,4 +84,5 @@
   * @import "utilities/skew-transforms";
   */
 
+@import 'utilities/_bg-squiggle';
 @import 'utilities/_transition';

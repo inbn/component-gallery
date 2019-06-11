@@ -4,5 +4,6 @@
 \*====================================*/
 
 hr {
-  @apply border-b-2 mt-4 mb-4;
+  @apply bg-squiggle-grey-400 -mx-2;
+  height: 5px;
 }

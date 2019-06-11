@@ -15,7 +15,7 @@ const IndexPage = ({ data }) => (
         __html: data.markdown.html
       }}
     />
-    <h2 className="mt-8 border-b-2 px-2 -mx-2 pb-1">
+    <h2 className="mt-8 bg-squiggle-teal-500 bg-repeat-x bg-bottom px-2 -mx-2 pb-2">
       Recently updated components
     </h2>
     <ul className="flex flex-wrap mt-2 -mx-4">
