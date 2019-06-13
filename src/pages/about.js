@@ -7,12 +7,27 @@ import SEO from '../components/SEO';
 const AboutPage = ({ data }) => (
   <Layout title="About">
     <SEO title="About" />
-    <div
-      className="body-text w-full md:w-2/3 mt-4"
-      dangerouslySetInnerHTML={{
-        __html: data.markdown.html
-      }}
-    />
+    <div className="col-wrap -mx-2 mt-4 bg-grey-100">
+      <div className="col col--sidebar p-2">
+        {/* Table of contents */}
+        <h2 className="h4 leading-normal text-grey-700">Jump to</h2>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: data.markdown.tableOfContents
+          }}
+          className="body-text"
+        />
+      </div>
+      <div className="col col--main p-2">
+        <div
+          dangerouslySetInnerHTML={{
+            __html: data.markdown.html
+          }}
+          className="body-text"
+        />
+      </div>
+      {/* Main content */}
+    </div>
   </Layout>
 );
 
@@ -27,6 +42,7 @@ export const query = graphql`
         path
         title
       }
+      tableOfContents(pathToSlugField: "frontmatter.path", maxDepth: 3)
     }
   }
 `;
