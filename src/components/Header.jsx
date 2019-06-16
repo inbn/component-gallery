@@ -7,7 +7,7 @@ const Header = ({ siteTitle, menuLinks }) => (
     <div className="container xl:flex xl:justify-between xl:items-center">
       <Link
         to="/"
-        className="table text-4xl text-teal-700 font-bold font-sans leading-none sm:mx-auto border-0 xl:text-left xl:whitespace-no-wrap xl:mx-0"
+        className="table text-4xl font-light italic text-white font-sans bg-grey-800 uppercase leading-none pt-2 px-2 hover:text-teal-500 sm:mx-auto border-0 xl:text-left xl:whitespace-no-wrap xl:mx-0"
       >
         {siteTitle}
       </Link>

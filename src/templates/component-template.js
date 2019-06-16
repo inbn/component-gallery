@@ -29,7 +29,7 @@ export default ({ data }) => {
         <>
           <h2
             id="examples"
-            className="bg-squiggle-teal-500 bg-repeat-x bg-bottom px-2 -mx-2 pb-2"
+            className="bg-squiggle-teal-500 bg-repeat-x bg-bottom px-2 -mx-2 pb-4"
           >
             {data.airtable.data.Examples_count} example
             {data.airtable.data.Examples_count !== 1 && 's'}

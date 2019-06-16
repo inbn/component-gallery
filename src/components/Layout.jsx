@@ -35,7 +35,7 @@ const Layout = ({ children, title, byline, subtitle, readtime }) => (
             readtime={readtime}
           />
         )}
-        <div className="bg-grey-100 pt-4 shadow-2xl">
+        <div className="bg-grey-100 pt-4">
           <div className="container">
             <main>{children}</main>
             <footer className="py-4">

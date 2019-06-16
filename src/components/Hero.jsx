@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 const Hero = ({ byline, title, subtitle, date, readtime }) => (
   <div className="p-2 -mx-2">
     <div className="container">
-      {byline !== '' && <p className="font-sans mb-2">{byline}</p>}
+      {byline !== '' && (
+        <p className="font-sans mb-2 uppercase bg-grey-100 text-grey-700 text-xs inline-block pt-1 px-2">
+          {byline}
+        </p>
+      )}
       <h1 className="mt-0 text-grey-800">{title}</h1>
       {(subtitle !== '' || readtime !== '') && (
         <div className="flex flex-wrap mt-2 italic justify-between">

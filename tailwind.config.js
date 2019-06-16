@@ -34,6 +34,11 @@ module.exports = {
         600: '#38a89d',
         700: '#25a195',
         800: '#20504f'
+      },
+
+      indigo: {
+        500: '#211ae1',
+        600: '#1d17ca'
       }
     },
     spacing: {
@@ -65,7 +70,7 @@ module.exports = {
     },
     fontFamily: {
       sans: [
-        '"HK Grotesk"',
+        'Futura',
         '-apple-system',
         'BlinkMacSystemFont',
         '"Segoe UI"',

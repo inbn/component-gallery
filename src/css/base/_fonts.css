@@ -18,3 +18,20 @@
   font-weight: bold;
   font-display: swap;
 }
+
+@font-face {
+  font-family: 'Futura';
+  src:
+    url('../fonts/Futura-Med.woff') format('woff');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Futura';
+  src:
+    url('../fonts/FuturaOnlShaD-LigObl.woff') format('woff');
+  font-weight: 300;
+  font-display: swap;
+  font-style: italic;
+}
