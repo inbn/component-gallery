@@ -1,0 +1,15 @@
+/*====================================*\
+  BASE
+  _blockquote.css
+\*====================================*/
+
+blockquote {
+  @apply border-l-2;
+  @apply border-teal-500;
+  @apply px-2;
+  @apply py-1;
+}
+
+cite {
+  @apply text-grey-700;
+}

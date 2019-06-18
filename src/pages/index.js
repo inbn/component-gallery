@@ -9,12 +9,12 @@ import SEO from '../components/SEO';
 const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
-    <div
+    {/* <div
       className="body-text"
       dangerouslySetInnerHTML={{
         __html: data.markdown.html
       }}
-    />
+    /> */}
     <h2 className="mt-8 bg-squiggle-teal-500 bg-repeat-x bg-bottom px-2 -mx-2 pb-4">
       Recently updated components
     </h2>

@@ -3,22 +3,22 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const Header = ({ siteTitle, menuLinks }) => (
-  <header className="pt-4 pb-2 xl:pb-4">
-    <div className="container xl:flex xl:justify-between xl:items-center">
+  <header>
+    <div className="lg:flex lg:justify-between lg:items-center bg-grey-100">
       <Link
         to="/"
-        className="table text-4xl font-light italic text-white font-sans bg-grey-800 uppercase leading-none pt-2 px-2 hover:text-teal-500 sm:mx-auto border-0 xl:text-left xl:whitespace-no-wrap xl:mx-0"
+        className="table text-4xl font-light italic text-teal-800 font-sans bg-red-100 uppercase leading-none pt-2 px-6 sm:px-2 hover:text-teal-500 sm:mx-auto border-0 lg:text-left lg:whitespace-no-wrap lg:mx-0"
       >
         {siteTitle}
       </Link>
 
-      <nav>
-        <ul className="flex flex-wrap sm:justify-center -mx-4 mt-2 lg:mt-0">
+      <nav className="px-6">
+        <ul className="flex flex-wrap sm:justify-center -mx-4">
           {menuLinks.map(link => (
             <li key={link.name} className="mx-4 my-2">
               <Link
                 to={link.link}
-                className="whitespace-no-wrap font-sans xlg:text-sm border-0"
+                className="call-to-action whitespace-no-wrap font-sans text-indigo-500 border-0"
               >
                 {link.name}
               </Link>

@@ -17,7 +17,7 @@ h3,
 
 h1,
 .h1 {
-  @apply text-3xl;
+  @apply text-5xl;
   @apply font-medium;
 }
 

@@ -27,28 +27,41 @@ The year after the release of Microsoft Word, the Apple Macintosh was launched, 
 
 When the web began to be seen as a publishing platform, content writers, designers, and other non-programmers needed a tool to create web content without needing to learn HTML, the markup language of the web. The first WYSIWYG tool for building web pages, _WebMagic_, arrived in 1995 and was quickly followed by _FrontPage_ (purchased by Microsoft in 1996 for \$133million). These original tools were desktop applications you needed to purchase and install on your computer.
 
-The rise of blogging around the turn of the millennium meant that a way of editing HTML content in the browser was needed. FCKeditor, later renamed to CKEditor (because "the FCK letters combined together are a shortcut for a bad word") and TinyMCE were the early pioneers in the world of browser-based editors. Web-based rich-text editors have now become the tool of choice (or necessity) for many content writers. Word Processing for print has also moved into the browser with software like Google Docs.
+The rise of blogging around the turn of the millennium meant that a way of editing HTML content in the browser was needed. Some of the earliest browser-based rich text editors include: [Mozile](http://mozile.mozdev.org/index.html) (the **Moz**illa **I**n**l**ine **E**ditor); [Bitflux editor](http://bitfluxeditor.mozdev.org/); FCKeditor, later renamed to CKEditor (because "the FCK letters combined together are a shortcut for a bad word") and TinyMCE. Web-based rich-text editors have now become the tool of choice (or necessity) for many content writers. Word Processing for print has also moved into the browser with software like Google Docs.
 
 So how do rich text editors actually work? Most modern WYSIWYG editors now make use of the `contenteditable` html attribute introduced in Internet Explorer 5.5, that when set to `true`, allows the user to directly edit the content of an HTML element.
 
 ## Problems
 
-Mainly due to the complexity of the task they're trying to do, rich text editors tend to have issues:
+Mainly due to the complexity of the task they're trying to achieve, rich text editors tend to have issues, and over the years they have had their fair share of detractors[^6][^7].
 
-- As with all forms of WYSIWYG, the appearance of content in the editor is usually just an approximation of the final output. Unless you're applying the exact same styling to the editable content as the output, there are going to be visual discrepancies. Some implementations attempt to get around this issue with a ‘live preview’, showing a rendered version of the output alongside the editor which updates as you type.
-- Making JavaScript-driven applications accessible is hard, especially when not appropriately prioritised and considered from the beginning of development. The new editor in WordPress 5.0, [Gutenberg](https://wordpress.org/gutenberg/), has been [plagued by accessibility problems](https://wptavern.com/wpcampus-gutenberg-accessibility-audit-finds-significant-and-pervasive-accessibility-problems).
+### Security
+
+As is the case any time that a website takes user input, you've got to assume some of your users are malicious; if not you're opening yourself up to attacks like SQL injection, but there's a whole new category of threat if you're showing user input to other users. WYSIWYG editors are a huge target for Cross-Site Scripting (XSS, presumably because CSS was taken) attacks — an XSS attack is where JavaScript is injected into a webpage on an otherwise trusted website, unknown to the user or the owner of the website. This risk of XSS attacks can be minimized my filtering (or _sanitizing_) the user input before it's stored or shown to anyone else — this is a process that usually involves stripping out everything but an explicitly allowed set of characters, HTML tags and attributes — [Here's a handy list of rules for preventing XSS](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md). If you're not sanitizing user input, you're gonna have a bad time.
+
+### Loss of control over design
+
+WYSIWYG editors take decisions usually made by designers and hands them to the content editor. Although it is possible to lock down users' options to limit what they can do, rich text editors often ship with a very generous default configuration. It is also uncommon for a rich text editor to reliably enforce semantic best practices such as always including relevant alt attributes on images and using correctly ordered levels for headings.
+
+### Is WYS WYG?
+
+As with all forms of WYSIWYG, the appearance of content in a rich text editor is usually just an approximation of the final output. Unless you're applying the exact same CSS (and JS) to the editable content as the output, there are going to be visual discrepancies. Some implementations attempt to get around this issue with a ‘live preview’, showing a rendered version of the output alongside the editor which updates as you type.
+
+### Copying and pasting from Word
+
+When a user copies formatted text from one program to another, they generally expect formatting to be retained; but pasting text from one rich text format to another _entirely different_ rich text format is not a simple task. It often results in bloated markup filled with `&nbsp` characters and unnecessary HTML elements.
+
+### Accessibility
+
+Making JavaScript-driven applications accessible requires work, especially when not appropriately prioritised and considered from the beginning of development. The new editor in WordPress 5.0, [Gutenberg](https://wordpress.org/gutenberg/), has been [plagued by accessibility problems](https://wptavern.com/wpcampus-gutenberg-accessibility-audit-finds-significant-and-pervasive-accessibility-problems).
 
 ## Libraries
 
-Due to the complex logic required to build a rich text editor, it's rare for people to build one from scratch. It's usually best to find an existing example and adapt it to your needs. Here are some of the most popular libraries available today:
+Due to the complex logic required to build a rich text editor, it's rare for anyone to try to build one from scratch. It's usually best to find an existing example and adapt it to your needs. Here are some of the most popular libraries available today:
 
-- **CKEditor:** First released in 2003, CKEditor was one of the earliest web-based WYSIWYG editors. It has constantly improved over the proceeding years and now includes comprehensive support for keyboard access and assistive technology. It also has a number of integrations with front-end frameworks such as React and Vue.
-- TinyMCE
-
-### Honourable mentions
-
-- **Mozile**: The **Moz**illa **I**n**l**ine **E**ditor
-- **Bitflux editor**: http://bitfluxeditor.mozdev.org/
+- **CKEditor:** First released in 2003, CKEditor was one of the earliest web-based WYSIWYG editors. It has constantly improved over the proceeding years adding features such as a special ‘[paste from Word](https://ckeditor.com/docs/ckeditor4/latest/examples/pastefromword.html)’ plugin and comprehensive support for keyboard access and assistive technology. It also has a number of integrations with front-end frameworks such as React and Vue.
+- **[Quill](https://quilljs.com/)** is a modern editor which uses its own document model, [parchment](https://github.com/quilljs/parchment/), an abstraction layer that sits parallel to the DOM (Document Object Model).
+- **[ProseMirror](https://prosemirror.net/)** brands itself as "A toolkit for building rich-text editors on the web"; not really WYSIWYG editor as such, it is more a collection of modules for building your own. Similar to Quill, the document itself is abstracted into a custom data structure. Immensely powerful but definitely not a simple drop-in solution.
 
 You can view a pretty comprehensive list of WYSIWYG editors at the [Awesome WYSIWYG repo](https://github.com/JefMari/awesome-WYSIWYG).
 
@@ -56,11 +69,15 @@ You can view a pretty comprehensive list of WYSIWYG editors at the [Awesome WYSI
 
 ### HTML
 
-HTML is _the_ markup language of the world wide web. Underneath the surface, it's what all rich text editors use.
+HTML is _the_ markup language of the world wide web. Underneath the surface, it's what most rich text editors will output and it's also relatively easy to learn.
 
 ### Markdown
 
-Markdown is another markup language, but what sets it apart is the readability of its syntax. The goal behind markdown is that the formatting can be interpreted even in the original markup. It borrows heavily from existing conventions for marking up plain text in emails and online forums. e.g. `_italics_`, `**bold**`, `# Headings`, and starting lines with `>` to indicate a blockquote [^8]. Its simple design allows it to be converted to many output formats, not just HTML. Unfortunately while much of the Markdown syntax is intuitive, there are certain patterns that are definitely _not_: [the syntax for adding a link](https://daringfireball.net/projects/markdown/syntax#link) feels slightly arbitrary and is hard to remember; and adding markup that is not covered by Markdown’s syntax [requires the use of HTML](https://daringfireball.net/projects/markdown/syntax#html).
+Markdown is another markup language, but what sets it apart is the readability of its syntax. The goal behind markdown is that the formatting can be interpreted even in the original markup. It borrows heavily from existing conventions for marking up plain text in emails and online forums. e.g. `_italics_`, `**bold**`, `# Headings`, and starting lines with `>` to indicate a blockquote [^8]. Its simple design allows it to be converted to many output formats, not just HTML. Unfortunately while much of the Markdown syntax is intuitive, there are certain patterns that are definitely _not_: [the syntax for adding a link](https://daringfireball.net/projects/markdown/syntax#link) feels slightly arbitrary and is hard to remember; and adding markup that is not covered by Markdown’s syntax [requires the use of HTML](https://daringfireball.net/projects/markdown/syntax#html). See also: [Textile](https://textile-lang.com/), a precursor to Markdown with some syntax in common.
+
+## Conclusion
+
+In some cases it's inevitable that a rich text editor is the best tool for the job. There are also many other times where an alternative, such as Markdown or just plain text is a better (and simpler to implement) solution. My advice is to try a few libraries and chose the one that works best for _your_ application and _your_ users; lock down the formatting options to only the bare minimum of what is necessary; and **_always_** filter the output.
 
 [^1]: [Word-Star](https://archive.org/stream/byte-magazine-1980-01#page/n49/mode/2up) BYTE (advertisement). January 1980. p. 49.
 
@@ -73,11 +90,13 @@ Markdown is another markup language, but what sets it apart is the readability o
 <!-- [^5]: [WordStar vs. WordPerfect: a 'standard,' a challenger](https://www.csmonitor.com/1984/1107/110722.html) -->
 
 [^5]: [Steve Jobs talks about his 1979 visit to Xerox PARC](https://player.vimeo.com/video/181839941)
-[^6]: [Rebranding](https://web.archive.org/web/20081231055546/http://docs.fckeditor.net/FCKeditor_3.x/Design_and_Architecture/Rebranding) FCK Editor docs
-[^7]: [Your WYSIWYG Editor sucks](https://rachelandrew.co.uk/archives/2011/07/27/your-WYSIWYG-editor-sucks/)
-[^8]: [Markdown: Syntax](https://daringfireball.net/projects/markdown/syntax)
+[^6]: [Your WYSIWYG Editor sucks](https://rachelandrew.co.uk/archives/2011/07/27/your-wysiwyg-editor-sucks/) _Rachel Andrew_
+[^7]: [What’s wrong with WYSIWYG](https://www.adamhyde.net/whats-wrong-with-wysiwyg/) _Adam Hyde_
 
-http://mozile.mozdev.org/index.html
+<!-- [^6]: [Rebranding](https://web.archive.org/web/20081231055546/http://docs.fckeditor.net/FCKeditor_3.x/Design_and_Architecture/Rebranding) FCK Editor docs -->
+<!-- [^7]: [Your WYSIWYG Editor sucks](https://rachelandrew.co.uk/archives/2011/07/27/your-WYSIWYG-editor-sucks/) -->
+
+[^8]: [Markdown: Syntax](https://daringfireball.net/projects/markdown/syntax)
 
 <!-- prettier-ignore -->
 <!-- *[WYSIWYG]: what you see is what you get -->
