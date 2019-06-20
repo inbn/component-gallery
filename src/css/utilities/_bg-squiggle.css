@@ -8,7 +8,7 @@
   background-size: 20px 5px;
 }
 
-.bg-squiggle-teal-500 {
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' id='wobble-svg' viewBox='-18 17.5 20 5'%3e%3cpath class='line' fill='none' stroke='%234dc0b5' stroke-width='2' d='M-18 21.5c5 0 5-3 10-3s5 3 10 3 5-3 10-3 5 3 10 3'/%3e%3c/svg%3e");
+.bg-squiggle-blue-400 {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' id='wobble-svg' viewBox='-18 17.5 20 5'%3e%3cpath class='line' fill='none' stroke='%236297bb' stroke-width='2' d='M-18 21.5c5 0 5-3 10-3s5 3 10 3 5-3 10-3 5 3 10 3'/%3e%3c/svg%3e");
   background-size: 20px 5px;
 }

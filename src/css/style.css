@@ -56,6 +56,7 @@
 @import 'components/_body-text';
 @import 'components/_call-to-action';
 @import 'components/_card';
+@import 'components/_header-logo';
 @import 'components/_tag';
 
 /* purgecss end ignore */
@@ -86,4 +87,5 @@
   */
 
 @import 'utilities/_bg-squiggle';
+@import 'utilities/_shadow-block';
 @import 'utilities/_transition';

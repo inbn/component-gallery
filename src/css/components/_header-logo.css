@@ -1,0 +1,28 @@
+/*====================================*\
+  COMPONENTS
+  _header-logo.css
+\*====================================*/
+
+.header-logo {
+  @apply table text-4xl text-teal-800 bg-red-100 uppercase leading-none pt-2 px-6 border-0;
+
+  font-family: 'Futura Shadow', Futura, sans-serif;
+  font-style: oblique;
+  font-weight: 300;
+
+  &:hover {
+    @apply text-teal-500;
+  }
+}
+
+@screen sm {
+  .header-logo {
+    @apply px-2 mx-auto;
+  }
+}
+
+@screen lg {
+  .header-logo {
+    @apply text-left mx-0 whitespace-no-wrap;
+  }
+}

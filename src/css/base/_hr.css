@@ -4,6 +4,6 @@
 \*====================================*/
 
 hr {
-  @apply bg-squiggle-grey-400 -mx-2;
+  @apply bg-squiggle-grey-400 -mx-2 my-4;
   height: 5px;
 }

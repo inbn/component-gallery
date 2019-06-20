@@ -9,11 +9,11 @@ const Hero = ({ byline, title, subtitle, date, readtime }) => (
           {byline}
         </p>
       )}
-      <h1 className="mt-0 text-teal-800 italic bg-red-100 pt-3 px-2 table">
+      <h1 className="mt-0 text-teal-800 italic bg-red-100 pt-3 px-2 table shadow-block-teal-800">
         {title}
       </h1>
       {(subtitle !== '' || readtime !== '') && (
-        <div className="flex flex-wrap mt-2 italic justify-between">
+        <div className="flex flex-wrap mt-4 italic justify-between">
           {subtitle !== '' && (
             <p className="text-grey-700 bg-grey-100 p-2">{subtitle}</p>
           )}
