@@ -41,8 +41,8 @@ module.exports = {
         name: `The Component Gallery`,
         short_name: `Components`,
         start_url: `/`,
-        background_color: `#4dc0b5`, // colors.teal.500
-        theme_color: `#4dc0b5`, // colors.teal.500
+        background_color: `#f8fafc`, // colors.grey.100
+        theme_color: `#f8fafc`, // colors.grey.100
         display: `minimal-ui`,
         icon: `src/images/favicon.png` // This path is relative to the root of the site.
       }
