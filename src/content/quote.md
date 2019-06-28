@@ -13,6 +13,6 @@ Quotes come in three main flavours:
 
 ## Usage guidelines
 
-- Including pull quotes on smaller devices can be difficult as everything has to fit within a narrow single column.
-- Limit the number of pull quotes you use, so that they do not lose their impact.
+- Including pull quotes outside of the main text column can be difficult on smaller devices, as text generally spans the full width of the screen.
+- Limit the number of pull quotes you use so that they do not lose their impact.
 - Use the right type of quote for the job: not every external quotation needs to be placed in a block quote; consider positioning shorter quotes inline.

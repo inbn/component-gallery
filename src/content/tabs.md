@@ -17,7 +17,7 @@ Tabs are an example of an [interface metaphor](https://en.wikipedia.org/wiki/Int
 
 - Be conscious that when you’re using tabs, you’re hiding content. This not only makes it less discoverable for sighted users, but also for users of assistive technology like screen readers.
 
-- If you're laying out your tabs horizontally, think about how they will appear at narrower screen widths — will they need to stack vertically, or will you need to use a different component altogether to display the same content?
+- If you're laying out your tabs horizontally, think about how they will appear at narrower screen widths — will they need to stack vertically or will you need to swap out the tabs for a different component?
 
 ### HTML
 
@@ -25,16 +25,16 @@ The W3C recommended accessible markup for your tabs uses a variety of [aria attr
 
 - Use `role="tab"` on each **tab** element and `role="tablist"` on the tab list.
 - Give each **tab panel** `role="tabpanel"`.
-- If the tabs are _vertically_ oriented (stacked one on top of the other), give the **tab list** the attribute `aria-orientation="vertical"` (If your tabs are oriented _horizontally_, you can leave this attribute out as it is the default).
-- If the **tab list** has a visible label, link it to the label with `aria-labelledby="{labelId}"`. Otherwise, the tab list should be labelled using the `aria-label` attribute.
+- If the tabs are _vertically_ oriented (stacked one on top of the other), give the **tab list** the attribute `aria-orientation="vertical"` (If your tabs are oriented _horizontally_, you can leave this attribute out as horizontal is the default).
+- If the **tab list** has a visible label, link it to the label with `aria-labelledby="{labelId}"`. Alternatively, the tab list should be labelled using the `aria-label` attribute.
 - Each **tab** should have the attribute `aria-controls="{tabPanelId}"` linking it to the associated tab panel.
 - The _active_ **tab** should have `aria-selected` set to true and all other tabs should have it set to false.
 - Each **tab panel** should have `aria-labelledby="{tabId}"` to link it with its associated tab element.
 
 ### JavaScript
 
-- In addition to aria attributes on your HTML elements, to make a tabbed interface keyboard-accessible, you’ll also need to add some custom keybindings. e.g. the left and right arrows should navigate between tab elements if they are arranged horizontally.[^1]
+- In addition to aria attributes on your HTML elements, to make a tabbed interface keyboard-accessible, you’ll also need to add some custom keybindings. e.g. if your tabs are arranged in horizontal row, the left and right arrows should navigate between tab elements.[^1]
 
-**Caveat:** although this is the W3C recommended method of making tabbed interfaces keyboard accessible, be aware that a simpler component ([such as an accordion](/components/accordion)) may be more suited to your specific use case.
+**Caveat:** although this is the W3C recommended method of making tabbed interfaces keyboard accessible, be aware that some users may not be familiar with this convention; a component that is simpler to interact with ([such as an accordion](/components/accordion)) may be more suited to your specific use case.
 
 [^1]: [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel)
