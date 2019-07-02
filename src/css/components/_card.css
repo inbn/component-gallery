@@ -4,7 +4,15 @@
 \*====================================*/
 
 .card {
-  @apply bg-grey-100;
-  @apply text-grey-800;
-  @apply shadow-none;
+  @apply bg-grey-100 text-grey-800;
+  transition: background-color 200ms, border-color 200ms, box-shadow 200ms, color 200ms, transform 200ms;
+  border: 4px solid transparent;
+
+  &:hover {
+    border-color: theme('colors.grey.800');
+    border-color: var(--hover-border-color);
+    transform: translate(-4px, -4px);
+    box-shadow: 8px 8px 0 0 theme('colors.teal.800')bf;
+  }
 }
+
