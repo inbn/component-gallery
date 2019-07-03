@@ -143,6 +143,38 @@ module.exports = {
       options: {
         trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID
       }
+    },
+    {
+      resolve: 'gatsby-plugin-lunr',
+      options: {
+        languages: [
+          {
+            name: 'en',
+            // A function for filtering nodes. () => true by default
+            filterNodes: node =>
+              ['Components', 'Design systems'].includes(node.table)
+          }
+        ],
+        // Fields to index. If store === true value will be stored in index file.
+        // Attributes for custom indexing logic. See https://lunrjs.com/docs/lunr.Builder.html for details
+        fields: [
+          { name: 'name', store: true, attributes: { boost: 100 } },
+          { name: 'otherNames', store: true, attributes: { boost: 50 } },
+          { name: 'description', store: true },
+          { name: 'url', store: true },
+          { name: 'table', store: true }
+        ],
+        resolvers: {
+          Airtable: {
+            name: node => node.data.Name,
+            otherNames: node => node.data.Other_names,
+            description: node => node.data.Description,
+            url: node => node.data.URL,
+            table: node => node.table
+          }
+        },
+        filename: 'search_index.json'
+      }
     }
   ]
 };
