@@ -97,7 +97,7 @@ export const query = graphql`
         Description {
           childMarkdownRemark {
             html
-            excerpt
+            excerpt(pruneLength: 200)
           }
         }
         Other_names
