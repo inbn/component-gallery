@@ -23,6 +23,10 @@ export default ({ data }) => {
             ? `${data.airtable.data.Emoji} ${data.airtable.data.Name}`
             : data.airtable.data.Name
         }
+        description={
+          data.airtable.data.Description !== null &&
+          data.airtable.data.Description.childMarkdownRemark.excerpt
+        }
       />
       {/* Examples */}
       {data.airtable.data.Examples !== null && (
@@ -93,6 +97,7 @@ export const query = graphql`
         Description {
           childMarkdownRemark {
             html
+            excerpt
           }
         }
         Other_names

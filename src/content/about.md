@@ -3,9 +3,10 @@ title: 'About'
 slug: 'about'
 path: 'about'
 date: '2019-03-25'
+description: 'The Component Gallery is a collection of interface components from real-world design systems'
 ---
 
-**Started in early 2019, _The Component Gallery_ is the product of an ongoing survey into the components that make up design systems**. It exists primarily as a collection of component examples, grouped by the type of component. I created this website to help with some of the problems that I experience every day as a front-end developer:
+**_The Component Gallery_ is a collection of interface components from real-world design systems**. It's designed to help with some of the problems that I experience every day as a front-end developer:
 
 1. There are some interface problems that have **already been solved**: there’s no need to reinvent the wheel every time you start a new project. Grouping examples by type of component makes it simple to find all the relevant examples for a specific interface problem.
 2. **Naming things is hard**: If you don’t know what to call a thing, looking at what other people are calling similar things is a great place to start.
@@ -22,8 +23,8 @@ date: '2019-03-25'
 
 Designing interfaces around components, specifically components from a design system, has a number of benefits:
 
-1. **Consistency**: keep a consistent "look and feel" throughout, making user experiences feel more coherent, even across discrete products.
-2. **Reusability**: Instead of building something from scratch, you can use something that's already been tried and tested and proven to work.
+1. **Consistency**: Using a design system can help maintain a consistent "look and feel" across multiple interfaces.
+2. **Reusability**: Instead of building something from scratch, reusing something that's already been tried, tested, and proven to work can speed up development.
 3. **A common language**: Design systems can help all teams involved in a project communicate effectively, using a shared set of names for things that everyone understands.
 
 ### What is a component?
@@ -38,17 +39,9 @@ Yes, a component can contain other components, in fact this nesting of component
 
 [Web Components](https://www.webcomponents.org/introduction) are a collection of browser features and JavaScript APIs that allow developers to define custom elements by extending native HTML elements. Web Components aren't just another framework, they're a standardised way to build components that work across browsers and devices, without the need to load in many hundreds of kilobytes of JavaScript.
 
-### What about React components?
+### What about React/Vue/[JavaScript library of the week] components?
 
-[Yup](https://reactjs.org/docs/components-and-props.html)
-
-<!-- **Short answer:** Yes -->
-
-<!-- **Longer answer**React is a great way to start thinking of user interfaces in a component-based way. While you _could_ put your whole interface in one single react component, you'll quickly see the benefit of splitting recurring patterns into separate component files, each with their own props, state, and methods. -->
-
-### Vue?
-
-Also [yes](https://vuejs.org/v2/guide/components.html)
+Yup.
 
 ### What’s the difference between a Design System and a Component Library?
 
@@ -56,7 +49,7 @@ A successful design system is way more than a website showing a few components, 
 
 ### Are components just for websites?
 
-Absolutely not: component-based User-Interface design was around way before websites existed; the examples on this website are collected from websites because that's the easiest place to find public design systems. However, with the power of technologies such as [React Native](https://facebook.github.io/react-native/) and [Electron](https://electronjs.org/), components can be cross-platform with exactly the same code being used on a website, a mobile app or a desktop app.
+Absolutely not: component-based User-Interface design was around way before websites existed; the examples on this website are collected from the web because it's the easiest place to find public design systems. However, with the power of technologies such as [React Native](https://facebook.github.io/react-native/) and [Electron](https://electronjs.org/), components can be cross-platform with exactly the same code being used on a website, a mobile app or a desktop app.
 
 ### How do I go about making a design system?
 

@@ -6,7 +6,7 @@ import SEO from '../components/SEO';
 
 const AboutPage = ({ data }) => (
   <Layout title="About">
-    <SEO title="About" />
+    <SEO title="About" description={data.markdown.frontmatter.description} />
     <div className="col-wrap -mx-2 mt-4 bg-grey-100">
       <div className="col col--sidebar p-2">
         {/* Table of contents */}
@@ -43,6 +43,7 @@ export const query = graphql`
         date(formatString: "MMMM DD, YYYY")
         path
         title
+        description
       }
       tableOfContents(pathToSlugField: "frontmatter.path", maxDepth: 3)
     }
