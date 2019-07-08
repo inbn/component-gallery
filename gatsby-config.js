@@ -145,25 +145,21 @@ module.exports = {
       }
     },
     {
-      resolve: 'gatsby-plugin-lunr',
+      resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
       options: {
-        languages: [
-          {
-            name: 'en',
-            // A function for filtering nodes. () => true by default
-            filterNodes: node =>
-              ['Components', 'Design systems'].includes(node.table) &&
-              node.data.Publish === true
-          }
-        ],
         // Fields to index. If store === true value will be stored in index file.
         // Attributes for custom indexing logic. See https://lunrjs.com/docs/lunr.Builder.html for details
         fields: [
-          { name: 'name', store: true, attributes: { boost: 100 } },
-          { name: 'otherNames', store: true, attributes: { boost: 50 } },
-          { name: 'description', store: true },
-          { name: 'url', store: true },
-          { name: 'table', store: true }
+          `name`,
+          `otherNames`,
+          `description`,
+          `url`,
+          `table`
+          // { name: 'name', store: true, attributes: { boost: 100 } },
+          // { name: 'otherNames', store: true, attributes: { boost: 50 } },
+          // { name: 'description', store: true },
+          // { name: 'url', store: true },
+          // { name: 'table', store: true }
         ],
         resolvers: {
           Airtable: {
@@ -174,6 +170,11 @@ module.exports = {
             table: node => node.table
           }
         },
+        // A function for filtering nodes. () => true by default
+        filter: node =>
+          ['Components', 'Design systems'].includes(node.table) &&
+          node.data.Publish === true,
+
         filename: 'search_index.json'
       }
     }
