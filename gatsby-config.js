@@ -152,7 +152,8 @@ module.exports = {
             name: 'en',
             // A function for filtering nodes. () => true by default
             filterNodes: node =>
-              ['Components', 'Design systems'].includes(node.table)
+              ['Components', 'Design systems'].includes(node.table) &&
+              node.data.Publish === true
           }
         ],
         // Fields to index. If store === true value will be stored in index file.
