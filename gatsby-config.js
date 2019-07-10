@@ -166,7 +166,10 @@ module.exports = {
             name: node => node.data.Name,
             otherNames: node => node.data.Other_names,
             description: node => node.data.Description,
-            url: node => node.data.URL,
+            url: node =>
+              node.table === 'Components'
+                ? `/components/${node.data.Slug}`
+                : node.data.URL,
             table: node => node.table
           }
         },

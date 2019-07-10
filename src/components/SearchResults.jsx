@@ -3,13 +3,14 @@ import React from 'react';
 const SearchResults = ({ query, results }) => (
   <section aria-label="Search results for all posts">
     {!!results.length && query && (
-      <h2
-        className="search-results-count"
+      <p
+        className="search-results-count sr-only"
         id="search-results-count"
-        aria-live="assertive"
+        aria-live="polite"
+        aria-atomic="true"
       >
-        Found {results.length} posts on "{query}"
-      </h2>
+        Found {results.length} results for "{query}"
+      </p>
     )}
 
     {!!results.length && (
@@ -18,7 +19,7 @@ const SearchResults = ({ query, results }) => (
           <li key={name}>
             {table && (
               <p className="font-sans mb-2 uppercase text-grey-700 text-xs inline-block">
-                {table}
+                {table === 'Components' ? 'Component' : 'Design System'}
               </p>
             )}
             <h3 className="mt-0">
