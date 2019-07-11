@@ -1,0 +1,14 @@
+/*====================================*\
+  COMPONENTS
+  _site-search.css
+\*====================================*/
+
+.site-search {
+
+}
+
+.site-search__result {
+  &[aria-selected="true"] {
+    background-color: lightblue;
+  }
+}

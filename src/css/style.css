@@ -57,6 +57,7 @@
 @import 'components/_call-to-action';
 @import 'components/_card';
 @import 'components/_header-logo';
+@import 'components/_site-search';
 @import 'components/_tag';
 
 /* purgecss end ignore */
