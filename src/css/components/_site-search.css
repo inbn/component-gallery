@@ -7,7 +7,20 @@
 
 }
 
+.site-search__input {
+  @apply p-2 leading-none;
+}
+
+.site-search__results-list {
+  @apply mt-0;
+
+  max-height: 16rem;
+  overflow-y: scroll;
+}
+
 .site-search__result {
+  @apply p-2;
+
   cursor: pointer;
 
   &[aria-selected="true"] {

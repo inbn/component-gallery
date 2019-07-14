@@ -6,6 +6,7 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "@gatsby-contrib/gatsby-plugin-elasticlunr-search": "^2.3.0",
+    "@rooks/use-key": "^3.0.1",
     "dotenv": "^6.2.0",
     "gatsby": "^2.4.0",
     "gatsby-image": "^2.0.29",
@@ -58,6 +59,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^1.6.1",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.6.0",
     "prettier": "^1.16.4",

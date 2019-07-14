@@ -2,10 +2,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { navigate, graphql } from 'gatsby';
 import { Index } from 'elasticlunr';
 import debounce from 'lodash.debounce';
-import useEventListener from '../hooks/use-event-listener';
+// import useEventListener from '../hooks/use-event-listener';
+import useKey from '@rooks/use-key';
 import Layout from '../components/Layout';
-// import SearchForm from '../components/SearchForm';
-// import SearchResults from '../components/SearchResults';
 
 const Search = ({ data, location }) => {
   const [searchIndex, setSearchIndex] = useState(null);
@@ -27,29 +26,36 @@ const Search = ({ data, location }) => {
       }, 500);
 
       debouncedSearch();
-    } else {
-      setResults([]);
     }
 
     if (!searchQuery) setResults([]);
-  }, [location.search]);
+  }, [data.siteSearchIndex.index, location.search, searchIndex, searchQuery]);
 
-  const keyUpHandler = useCallback(event => {
-    console.log(event.key);
+  const keyPressed = event => {
     if (event.target.id !== 'search-input') {
       return;
     }
 
-    switch (event.key) {
+    console.log(event.code);
+    console.log('results: ', results);
+    console.log('selectedItemIndex: ', selectedItemIndex);
+
+    switch (event.code) {
       case 'ArrowUp':
-        setSelectedItemIndex(
-          selectedItemIndex > 0 ? selectedItemIndex - 1 : results.length - 1
+        event.preventDefault();
+        setSelectedItemIndex(prevSelectedItemIndex =>
+          prevSelectedItemIndex > 0
+            ? prevSelectedItemIndex - 1
+            : results.length - 1
         );
         break;
 
       case 'ArrowDown':
-        setSelectedItemIndex(
-          selectedItemIndex < results.length - 1 ? selectedItemIndex + 1 : 0
+        event.preventDefault();
+        setSelectedItemIndex(prevSelectedItemIndex =>
+          prevSelectedItemIndex < results.length - 1
+            ? prevSelectedItemIndex + 1
+            : 0
         );
         break;
 
@@ -68,10 +74,9 @@ const Search = ({ data, location }) => {
 
       default:
     }
-  });
+  };
 
-  // Add event listener using our hook
-  useEventListener('keyup', keyUpHandler);
+  useKey(['ArrowUp', 'ArrowDown', 'Enter'], keyPressed);
 
   return (
     <Layout location={location} title="Search">
@@ -97,6 +102,7 @@ const Search = ({ data, location }) => {
         <input
           type="search"
           id="search-input"
+          className="site-search__input"
           aria-autocomplete="list"
           aria-controls="search-results-listbox"
           aria-activedescendant={
@@ -121,11 +127,17 @@ const Search = ({ data, location }) => {
               role="option"
               aria-selected={i === selectedItemIndex}
               className="site-search__result"
-              onClick={() => navigate(url)}
+              onClick={() => {
+                if (table === 'Components') {
+                  navigate(url);
+                } else {
+                  window.location.href = url;
+                }
+              }}
               onMouseOver={() => setSelectedItemIndex(i)}
             >
               {table && (
-                <p className="font-sans mb-2 uppercase text-grey-700 text-xs inline-block">
+                <p className="font-sans mb-2 uppercase text-grey-700 text-xs block">
                   {table === 'Components' ? 'Component' : 'Design System'}
                 </p>
               )}
