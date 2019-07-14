@@ -8,6 +8,8 @@
 }
 
 .site-search__result {
+  cursor: pointer;
+
   &[aria-selected="true"] {
     background-color: lightblue;
   }

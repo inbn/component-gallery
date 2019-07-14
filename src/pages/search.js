@@ -27,6 +27,8 @@ const Search = ({ data, location }) => {
       }, 500);
 
       debouncedSearch();
+    } else {
+      setResults([]);
     }
 
     if (!searchQuery) setResults([]);
@@ -51,6 +53,19 @@ const Search = ({ data, location }) => {
         );
         break;
 
+      case 'Enter':
+        if (results.length) {
+          const selectedResult = results[selectedItemIndex];
+
+          if (selectedResult.table === 'Components') {
+            navigate(results[selectedItemIndex].url);
+          } else {
+            window.location.href = results[selectedItemIndex].url;
+          }
+        }
+        break;
+      // Escape clear input, reset selectedItemIndex
+
       default:
     }
   });
@@ -60,6 +75,16 @@ const Search = ({ data, location }) => {
 
   return (
     <Layout location={location} title="Search">
+      {!!results.length && searchQuery && (
+        <p
+          className="search-results-count sr-only"
+          id="search-results-count"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          Found {results.length} results for "{searchQuery}"
+        </p>
+      )}
       <label htmlFor="search-input" className="sr-only">
         Search this site
       </label>
@@ -74,23 +99,15 @@ const Search = ({ data, location }) => {
           id="search-input"
           aria-autocomplete="list"
           aria-controls="search-results-listbox"
+          aria-activedescendant={
+            results.length ? `result-item-${selectedItemIndex}` : ''
+          }
           onChange={e =>
             navigate(`/search?keywords=${encodeURIComponent(e.target.value)}`)
           }
           value={searchQuery}
         />
       </div>
-      {!!results.length && searchQuery && (
-        <p
-          className="search-results-count sr-only"
-          id="search-results-count"
-          aria-live="polite"
-          aria-atomic="true"
-        >
-          Found {results.length} results for "{searchQuery}"
-        </p>
-      )}
-
       {!!results.length && (
         <ol
           id="search-results-listbox"
@@ -100,18 +117,19 @@ const Search = ({ data, location }) => {
           {results.map(({ table, name, url, description, otherNames }, i) => (
             <li
               key={name}
+              id={`result-item-${i}`}
               role="option"
               aria-selected={i === selectedItemIndex}
               className="site-search__result"
+              onClick={() => navigate(url)}
+              onMouseOver={() => setSelectedItemIndex(i)}
             >
               {table && (
                 <p className="font-sans mb-2 uppercase text-grey-700 text-xs inline-block">
                   {table === 'Components' ? 'Component' : 'Design System'}
                 </p>
               )}
-              <h3 className="mt-0">
-                <a href={url}>{name}</a>
-              </h3>
+              <h3 className="mt-0">{name}</h3>
               {otherNames && <p>Other names: {otherNames}</p>}
               {description && <p>{description}</p>}
             </li>
