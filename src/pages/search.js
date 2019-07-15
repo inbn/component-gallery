@@ -5,7 +5,7 @@ import SearchForm from '../components/SearchForm';
 
 const Search = () => {
   return (
-    <Layout location={location} title="Search">
+    <Layout title="Search">
       <SearchForm />
     </Layout>
   );
