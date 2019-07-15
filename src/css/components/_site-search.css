@@ -4,18 +4,31 @@
 \*====================================*/
 
 .site-search {
-
+  @apply max-w-xl mx-auto bg-white shadow-block-teal-800;
+  position: relative;
 }
 
 .site-search__input {
-  @apply p-2 leading-none;
+  @apply p-2 leading-none w-full;
+
+  &::placeholder {
+    @apply text-grey-600;
+    opacity: 1;
+  }
 }
 
 .site-search__results-list {
   @apply mt-0;
+}
 
-  max-height: 16rem;
-  overflow-y: scroll;
+@screen md {
+  .site-search__results-list {
+    @apply bg-white shadow-block-teal-800 z-20;
+    max-height: 16rem;
+    overflow-y: scroll;
+    position: absolute;
+    width: 100%;
+  }
 }
 
 .site-search__result {
@@ -24,6 +37,6 @@
   cursor: pointer;
 
   &[aria-selected="true"] {
-    background-color: lightblue;
+    @apply bg-red-100;
   }
 }

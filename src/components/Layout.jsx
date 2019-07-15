@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
 
 import Header from './Header';
-import Hero from './Hero';
 import '../css/style.css';
 
-const Layout = ({ children, title, byline, subtitle, readtime }) => (
+const Layout = ({ children, heroComponent }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -27,14 +26,7 @@ const Layout = ({ children, title, byline, subtitle, readtime }) => (
           siteTitle={data.site.siteMetadata.title}
           menuLinks={data.site.siteMetadata.menuLinks}
         />
-        {title !== null && (
-          <Hero
-            title={title}
-            byline={byline}
-            subtitle={subtitle}
-            readtime={readtime}
-          />
-        )}
+        {!!heroComponent && heroComponent}
         <div className="bg-grey-100 pt-4">
           <div className="container">
             <main>{children}</main>

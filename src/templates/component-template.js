@@ -2,20 +2,27 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import ComponentExample from '../components/ComponentExample';
+import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 
 export default ({ data }) => {
   return (
     <Layout
-      byline="Component"
-      title={data.airtable.data.Name}
-      subtitle={
-        data.airtable.data.Other_names !== null &&
-        `Other names: ${data.airtable.data.Other_names}`
+      heroComponent={
+        <Hero
+          byline="Component"
+          title={data.airtable.data.Name}
+          subtitle={
+            data.airtable.data.Other_names !== null &&
+            `Other names: ${data.airtable.data.Other_names}`
+          }
+          readtime={
+            data.markdown !== null && data.markdown.fields.readingTime.text
+          }
+          date={data.airtable.data.Date_updated}
+        />
       }
-      readtime={data.markdown !== null && data.markdown.fields.readingTime.text}
-      date={data.airtable.data.Date_updated}
     >
       <SEO
         title={

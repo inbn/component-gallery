@@ -5,9 +5,18 @@ import Component from '../components/Component';
 import Layout from '../components/Layout';
 import ReadMoreLink from '../components/ReadMoreLink';
 import SEO from '../components/SEO';
+import SearchForm from '../components/SearchForm';
 
 const IndexPage = ({ data }) => (
-  <Layout>
+  <Layout
+    heroComponent={
+      <div className="my-8 lg:my-12">
+        <div className="container">
+          <SearchForm />
+        </div>
+      </div>
+    }
+  >
     <SEO title="Home" />
     {/* <div
       className="body-text"

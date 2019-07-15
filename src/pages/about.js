@@ -3,9 +3,10 @@ import { graphql } from 'gatsby';
 
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
+import Hero from '../components/Hero';
 
 const AboutPage = ({ data }) => (
-  <Layout title="About">
+  <Layout heroComponent={<Hero title="About" />}>
     <SEO title="About" description={data.markdown.frontmatter.description} />
     <div className="col-wrap -mx-2 mt-4 bg-grey-100">
       <div className="col col--sidebar p-2">
