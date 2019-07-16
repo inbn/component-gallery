@@ -10,21 +10,25 @@ import SearchForm from '../components/SearchForm';
 const IndexPage = ({ data }) => (
   <Layout
     heroComponent={
-      <div className="my-8 lg:my-12">
-        <div className="container">
-          <SearchForm />
+      <>
+        <div className="container my-8 lg:my-12 ">
+          <div className="-mx-4 lg:flex">
+            <div
+              className="bg-teal-800 font-sans text-salmon-200 shadow-block-violet-700 body-text text-xl p-6 max-w-xl lg:w-1/2 mx-4"
+              dangerouslySetInnerHTML={{
+                __html: data.markdown.html
+              }}
+            />
+            <div className="lg:w-1/2 flex flex-col justify-center mx-4">
+              <SearchForm />
+            </div>
+          </div>
         </div>
-      </div>
+      </>
     }
   >
     <SEO title="Home" />
-    {/* <div
-      className="body-text"
-      dangerouslySetInnerHTML={{
-        __html: data.markdown.html
-      }}
-    /> */}
-    <h2 className="mt-8 bg-squiggle-blue-400 bg-repeat-x bg-bottom px-2 -mx-2 pb-4">
+    <h2 className="italic smt-8 bg-squiggle-green-600 bg-repeat-x bg-bottom px-2 -mx-2 pb-4">
       Recently updated components
     </h2>
     <ul className="flex flex-wrap mt-2 -mx-4">

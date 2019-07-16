@@ -41,10 +41,10 @@
   @apply text-sm;
   @apply underline;
   @apply border-none;
-  @apply text-red-400;
+  @apply text-salmon-400;
 }
 
 .footnote-backref {
   @apply border-none;
-  @apply text-red-400;
+  @apply text-salmon-400;
 }

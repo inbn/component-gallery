@@ -6,7 +6,7 @@ const Header = ({ siteTitle, menuLinks }) => (
   <header>
     <div className="lg:flex lg:justify-between lg:items-center bg-grey-100">
       <Link to="/" className="header-logo">
-        {siteTitle}
+        Component Gallery
       </Link>
 
       <nav className="px-6">
@@ -15,7 +15,7 @@ const Header = ({ siteTitle, menuLinks }) => (
             <li key={link.name} className="mx-4 my-2">
               <Link
                 to={link.link}
-                className="call-to-action whitespace-no-wrap font-sans text-blue-600 border-0"
+                className="call-to-action whitespace-no-wrap font-sans text-teal-600 border-0"
               >
                 {link.name}
               </Link>

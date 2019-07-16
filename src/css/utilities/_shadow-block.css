@@ -8,3 +8,9 @@
   an alpha value between 0 and 100% — see https://codepen.io/chriscoyier/pen/XjbzAW */
   box-shadow: 0.25em 0.25em theme('colors.teal.800')bf;
 }
+
+.shadow-block-violet-700 {
+  /* color is an 8 charcter hex (rrggbbaa) with the last 2 digits representing
+  an alpha value between 0 and 100% — see https://codepen.io/chriscoyier/pen/XjbzAW */
+  box-shadow: 0.25em 0.25em theme('colors.violet.700')bf;
+}

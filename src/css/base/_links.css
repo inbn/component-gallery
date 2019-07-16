@@ -5,14 +5,14 @@
 
 a:not([class]) {
   @apply border-b;
-  @apply border-red-300;
+  @apply border-red-500;
   @apply text-red-500;
 
   transition: color 0.3s ease, border-color 0.3s ease;
 
   &:hover,
   &:focus {
-    @apply text-red-400;
-    @apply border-red-400;
+    @apply text-salmon-400;
+    @apply border-salmon-400;
   }
 }

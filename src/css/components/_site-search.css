@@ -4,7 +4,7 @@
 \*====================================*/
 
 .site-search {
-  @apply max-w-xl mx-auto bg-white shadow-block-teal-800;
+  @apply w-full max-w-xl mx-auto bg-white shadow-block-teal-800;
   position: relative;
 }
 
@@ -12,7 +12,8 @@
   @apply font-sans italic p-2 leading-none w-full border-4 border-grey-800;
 
   &:focus {
-    @apply border-blue-500 outline-none;
+    outline: 0;
+    box-shadow: 0.25em 0.25em 0 0 theme('colors.gold.500');
   }
 
   &::placeholder {
@@ -26,6 +27,10 @@
 }
 
 @screen md {
+  .site-search__input {
+    @apply text-lg;
+  }
+
   .site-search__results-list {
     @apply bg-white shadow-block-teal-800 z-20;
     max-height: 16rem;
@@ -41,6 +46,6 @@
   cursor: pointer;
 
   &[aria-selected="true"] {
-    @apply bg-red-100;
+    @apply bg-salmon-100;
   }
 }

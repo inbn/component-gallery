@@ -40,7 +40,7 @@ export default ({ data }) => {
         <>
           <h2
             id="examples"
-            className="bg-squiggle-blue-400 bg-repeat-x bg-bottom px-2 -mx-2 pb-4"
+            className="bg-squiggle-green-600 bg-repeat-x bg-bottom px-2 -mx-2 pb-4"
           >
             {data.airtable.data.Examples_count} example
             {data.airtable.data.Examples_count !== 1 && 's'}
@@ -61,7 +61,7 @@ export default ({ data }) => {
           </ul>
         </>
       )}
-      <hr className="bg-squiggle-blue-400 mt-2" />
+      <hr className="bg-squiggle-green-600 mt-2" />
       {data.markdown !== null && (
         <div className="col-wrap -mx-2 mt-4 bg-grey-100">
           <div className="col col--sidebar p-2">

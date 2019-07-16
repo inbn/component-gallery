@@ -4,14 +4,17 @@
 \*====================================*/
 
 .header-logo {
-  @apply table text-4xl text-teal-800 bg-red-100 uppercase leading-none pt-2 px-6 border-0;
+  @apply table text-4xl text-teal-800 bg-salmon-100 uppercase leading-none pt-2 px-6 mb-1 border-0;
 
   font-family: 'Futura Shadow', Futura, sans-serif;
+  letter-spacing: -0.02em;
   font-style: oblique;
   font-weight: 300;
+  box-shadow: 4px 4px theme('colors.teal.900')bf;
 
   &:hover {
     @apply text-teal-500;
+    box-shadow: 4px 4px theme('colors.teal.800')bf;
   }
 }
 

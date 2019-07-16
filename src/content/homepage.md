@@ -5,4 +5,4 @@ path: '/'
 date: '2019-03-20'
 ---
 
-_The Component Gallery_ is the product of an ongoing survey into the components that make up [design systems](design-systems).
+Designed to be a reference for component builders, _the Component Gallery_ is a regularly updated repository of interface components based on examples from the world of [design systems](design-systems).
