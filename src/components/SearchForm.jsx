@@ -115,11 +115,15 @@ const SearchForm = () => {
         setResults([]);
         setSelectedItemIndex(-1);
         break;
+
+      case 'Tab':
+        setOpen(false);
+        break;
       default:
     }
   };
 
-  useKey(['ArrowUp', 'ArrowDown', 'Enter', 'Esc'], keyPressed);
+  useKey(['ArrowUp', 'ArrowDown', 'Enter', 'Esc', 'Tab'], keyPressed);
 
   return (
     <div ref={node} className="site-search">

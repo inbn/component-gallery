@@ -9,7 +9,11 @@
 }
 
 .site-search__input {
-  @apply p-2 leading-none w-full;
+  @apply font-sans italic p-2 leading-none w-full border-4 border-grey-800;
+
+  &:focus {
+    @apply border-blue-500 outline-none;
+  }
 
   &::placeholder {
     @apply text-grey-600;
