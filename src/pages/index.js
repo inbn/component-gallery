@@ -14,7 +14,7 @@ const IndexPage = ({ data }) => (
         <div className="container my-8 lg:my-12 ">
           <div className="-mx-4 lg:flex">
             <div
-              className="bg-teal-800 font-sans text-salmon-200 shadow-block-violet-700 body-text text-xl p-6 max-w-xl lg:w-1/2 mx-4"
+              className="bg-white border-2 border-black font-sans text-grey-800 shadow-block-teal-800 body-text text-xl p-6 max-w-xl lg:w-1/2 mx-4"
               dangerouslySetInnerHTML={{
                 __html: data.markdown.html
               }}

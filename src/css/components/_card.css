@@ -4,9 +4,10 @@
 \*====================================*/
 
 .card {
-  @apply bg-grey-100 text-grey-800;
+  @apply bg-white text-grey-800 shadow;
   transition: background-color 200ms, border-color 200ms, box-shadow 200ms, color 200ms, transform 200ms;
   border: 4px solid transparent;
+  border-radius: 2px;
 
   &:hover {
     border-color: theme('colors.grey.800');

@@ -46,6 +46,6 @@
   cursor: pointer;
 
   &[aria-selected="true"] {
-    @apply bg-salmon-100;
+    @apply bg-red-100;
   }
 }

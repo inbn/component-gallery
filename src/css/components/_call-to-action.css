@@ -26,6 +26,7 @@
   animation-play-state: paused;
 }
 
-.call-to-action:hover {
+.call-to-action:hover,
+.call-to-action:focus {
   animation-play-state: running;
 }
