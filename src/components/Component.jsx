@@ -18,7 +18,7 @@ const Component = ({
       <div className="flex justify-between items-center">
         <HeadingTag className="h3">{name}</HeadingTag>
         <p className="font-sans text-grey-700 mt-0 ml-2">
-          <strong>{examplesCount}</strong>&nbsp;
+          <strong className="font-medium">{examplesCount}</strong>&nbsp;
           <span className="text-xs">
             example{parseInt(examplesCount, 10) !== 1 && 's'}
           </span>

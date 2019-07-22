@@ -14,11 +14,14 @@ export default ({ data }) => {
           byline="Component"
           title={data.airtable.data.Name}
           subtitle={
-            data.airtable.data.Other_names !== null &&
-            `Other names: ${data.airtable.data.Other_names}`
+            data.airtable.data.Other_names !== null
+              ? `(${data.airtable.data.Other_names})`
+              : null
           }
           readtime={
-            data.markdown !== null && data.markdown.fields.readingTime.text
+            data.markdown !== null
+              ? data.markdown.fields.readingTime.text
+              : null
           }
           date={data.airtable.data.Date_updated}
         />
@@ -77,7 +80,6 @@ export default ({ data }) => {
             />
           </div>
           {/* Main content */}
-
           <div className="col col--main p-2">
             <div
               dangerouslySetInnerHTML={{

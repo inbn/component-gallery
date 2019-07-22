@@ -19,7 +19,7 @@ const IndexPage = ({ data }) => (
                 __html: data.markdown.html
               }}
             />
-            <div className="lg:w-1/2 flex flex-col justify-center mx-4">
+            <div className="lg:w-1/2 flex flex-col justify-center mx-4 mt-8 lg:mt-0">
               <SearchForm />
             </div>
           </div>

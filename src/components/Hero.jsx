@@ -5,20 +5,20 @@ const Hero = ({ byline, title, subtitle, date, readtime }) => (
   <div className="my-8 lg:my-12">
     <div className="container">
       {byline !== '' && (
-        <p className="font-sans mb-2 uppercase bg-grey-100 text-grey-700 text-xs inline-block pt-1 px-2">
+        <p className="font-sans mb-4 uppercase bg-white text-grey-800 text-xs inline-block pt-1 px-2 border-2 border-black shadow-block-teal-800">
           {byline}
         </p>
       )}
-      <h1 className="mt-0 text-teal-800 italic bg-red-100 pt-3 px-2 table shadow-block-teal-800">
-        {title}
-      </h1>
+      <div className="mt-0 text-5xl text-teal-800 italic bg-red-100 pt-3 px-3 table shadow-block-teal-800">
+        <h1 className="font-light">{title}</h1>
+        {subtitle !== null && (
+          <p className="mt-0 mb-2 pl-4 text-lg font-sans">{subtitle}</p>
+        )}
+      </div>
       {(subtitle !== '' || readtime !== '') && (
-        <div className="flex flex-wrap mt-4 italic justify-between">
-          {subtitle !== '' && (
-            <p className="text-grey-700 bg-grey-100 p-2">{subtitle}</p>
-          )}
-          {readtime !== '' && (
-            <p className="mt-0 text-right self-end text-grey-700 bg-grey-100 p-2">
+        <div className="flex flex-wrap mt-4 justify-end">
+          {readtime !== null && (
+            <p className="mt-0 font-sans text-sm uppercase text-grey-800 bg-grey-100 pt-1 px-2  border-2 border-black shadow-block-teal-800">
               {date !== null && `Last updated: ${date} •`} {readtime}
             </p>
           )}
@@ -38,8 +38,8 @@ Hero.propTypes = {
 
 Hero.defaultProps = {
   byline: '',
-  subtitle: '',
-  readtime: '',
+  subtitle: null,
+  readtime: null,
   date: null
 };
 
