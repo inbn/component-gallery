@@ -4,16 +4,17 @@
 \*====================================*/
 
 .header-logo {
-  @apply table text-4xl text-teal-800 bg-red-100 uppercase leading-none pt-2 px-2 mb-1 border-0;
+  @apply table mx-auto text-3xl text-teal-800 uppercase leading-none pt-1 px-2 border-2 border-transparent shadow-none;
 
   font-family: 'Futura Shadow', Futura, sans-serif;
   letter-spacing: -0.02em;
   font-style: oblique;
   font-weight: 300;
-  box-shadow: 4px 4px theme('colors.teal.900')bf;
+  transition: background-color 200ms, border-color 200ms, box-shadow 200ms, color 200ms, transform 200ms;
 
   &:hover {
-    @apply text-teal-700;
+    @apply text-grey-800 border-2 border-black bg-white;
+    transform: translate(-4px, -4px);
     box-shadow: 4px 4px theme('colors.teal.700')bf;
   }
 }
