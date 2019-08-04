@@ -27,6 +27,8 @@ Designing interfaces around components, specifically components from a design sy
 2. **Reusability**: Instead of building something from scratch, reusing something that's already been tried, tested, and proven to work can speed up development.
 3. **A common language**: Design systems can help all teams involved in a project communicate effectively, using a shared set of names for things that everyone understands.
 
+This website focuses on components over the other aspects of a design system because they're the most visible, tangible elements.
+
 ### What is a component?
 
 A component is a single, reusable chunk of a user interface.
@@ -37,7 +39,7 @@ Yes, a component can contain other components, in fact this nesting of component
 
 ### Are Web Components components?
 
-[Web Components](https://www.webcomponents.org/introduction) are a collection of browser features and JavaScript APIs that allow developers to define custom elements by extending native HTML elements. Web Components aren't just another framework, they're a standardised way to build components that work across browsers and devices, without the need to load in many hundreds of kilobytes of JavaScript.
+[Web Components](https://www.webcomponents.org/introduction) are a collection of browser features and JavaScript APIs that allow developers to define custom elements by extending native HTML elements. Web Components aren't just another framework, they're a standardised way to build components that work across browsers and devices, without the need to load hundreds of kilobytes of JavaScript.
 
 ### What about React/Vue/[JavaScript library of the week] components?
 
@@ -45,7 +47,7 @@ Yup.
 
 ### What’s the difference between a Design System and a Component Library?
 
-A successful design system is way more than a website showing a few components, even if components often play an important part. A good design system is a set of shared practices that cover a wide range of topics including colour palettes, typography, processes, accessibility, tooling and 'tone of voice'. The components themselves should be supported by guidance on exactly how to use a component, when to use a component and when not to.
+A successful design system is way more than a website showing a few components, even if components often play an important part. A good design system is a constantly evolving set of shared practices, covering a wide range of topics including: colour palettes, typography, processes, accessibility, tooling and 'tone of voice'. Design systems also require a human element: without people using and contributing to the system, it will fail. The components themselves should be supported by guidance on exactly _how_, _when_, and when _not_ to use a component.
 
 ### Are components just for websites?
 
