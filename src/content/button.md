@@ -5,6 +5,8 @@ path: 'components/button'
 date: '2019-05-08'
 ---
 
+## Description
+
 It's important to make a differentiation here: when people talk about buttons in regards to the web, they're usually talking about one of two things:
 
 1. A `<button>` element which, depending on its type attribute, will initiate some kind of action; usually submitting a form or triggering some javascript.

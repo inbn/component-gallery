@@ -34,7 +34,7 @@ const Component = ({
           dangerouslySetInnerHTML={{
             __html: description
           }}
-          className="leading-tight font-small mt-2"
+          className="body-text leading-tight font-small mt-2"
         />
       )}
     </Link>

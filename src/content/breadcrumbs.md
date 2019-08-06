@@ -5,11 +5,17 @@ path: 'components/breadcrumbs'
 date: '2019-03-20'
 ---
 
-Breadcrumbs are one of many forms of **navigation**. They are specifically designed to help users keep track of their location by showing the position of the current page in the structural hierarchy of the site.
+## Description
 
-A ‘breadcrumb trail’ consists of a list of links to the parent pages of the current page, arranged horizontally. These are usually positioned before the main content of a page.[^1]
+Breadcrumbs (or a ‘breadcrumb trail’) are a form of **navigation**. They are specifically designed to help users keep track of their location by showing the position of the current page in one of the following contexts:
 
-Their name comes from the Brothers Grimm fairytale _Hansel and Gretel_, in which the character Hansel leaves a trail of the crumbs to help the titular siblings find their way home.
+- the structural hierarchy of the site;
+- the categories of the current page (usually increasing in specificity);
+- within the history of all the pages the user has visited in their current session.
+
+Visually, a ‘breadcrumb trail’ consists of a list of links arranged horizontally. These are most commonly positioned before the main content of a page.[^1] In left-to-right written languages such as English, the current page is positioned at the right.
+
+The name ‘breadcrumbs’ comes from the Brothers Grimm fairytale _Hansel and Gretel_, in which the character Hansel leaves a trail of the crumbs to help the titular siblings find their way home.
 
 ## Usage guidelines
 

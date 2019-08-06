@@ -4,7 +4,7 @@
 \*====================================*/
 
 .site-search {
-  @apply w-full max-w-xl mx-auto bg-white shadow-block-teal-800;
+  @apply w-full mx-auto bg-white shadow-block-teal-800;
   position: relative;
 }
 

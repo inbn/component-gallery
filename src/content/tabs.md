@@ -3,8 +3,9 @@ title: 'Tabs'
 slug: 'tabs'
 path: 'components/tabs'
 date: '2019-04-01'
-
 ---
+
+## Description
 
 A tabbed interface consists of the **tab list** containing the **tab elements**, along the top or side of the **tab panels** which contain the content.
 

@@ -5,6 +5,8 @@ path: 'components/rich-text-editor'
 date: '2019-05-22'
 ---
 
+## Description
+
 The rich text editor is one of the most complex interface components, both visually and technically. Borrowing heavily from desktop word processing software, it has gradually become the primary means of writing blog posts, editing CMS-based websites and even composing emails. Fundamentally, a rich text editor is an interface for editing ‘rich text’. This is text that is richer than ‘plain text’ by virtue of containing formatting information: **bold**, _italic_, ~~strikethrough~~, different fonts, headings, ordered lists, unordered lists, etc.
 
 ## History

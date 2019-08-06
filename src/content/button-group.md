@@ -5,6 +5,8 @@ path: 'components/button-group'
 date: '2019-03-25'
 ---
 
+## Description
+
 A button group is a wrapper for related buttons; useful if you want to display multiple actions together.
 
 ## Usage guidelines
