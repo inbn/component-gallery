@@ -70,14 +70,11 @@ export default ({ data }) => {
           {/* Examples */}
           {data.airtable.data.Examples !== null && (
             <>
-              <h2
-                id="examples"
-                className="bg-squiggle-green-600 bg-repeat-x bg-bottom px-2 -mx-2 pb-4"
-              >
+              <h2 id="examples" className="px-2 -mx-2">
                 {data.airtable.data.Examples_count} example
                 {data.airtable.data.Examples_count !== 1 && 's'}
               </h2>
-              <ul className="flex flex-wrap mt-2 -mx-4">
+              <ul className="flex flex-wrap mt-2 -mx-4 mb-4">
                 {data.airtable.data.Examples.map((page, i) => (
                   <li key={i} className="p-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
                     <ComponentExample
@@ -91,7 +88,6 @@ export default ({ data }) => {
                   </li>
                 ))}
               </ul>
-              <hr className="bg-squiggle-green-600 mt-2" />
             </>
           )}
           {data.markdown !== null && (

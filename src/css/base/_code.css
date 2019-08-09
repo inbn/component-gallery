@@ -7,7 +7,7 @@
  * Aim to keep the x-height equal to the default sans-serif font as code
  * snippets will often be included inline with body text
  */
-code {
+code:not([class^="language-"]) {
   font-size: 0.8em;
   background-color: rgba(30, 34, 38, 0.05);
   padding: 0.1em 0.2em;

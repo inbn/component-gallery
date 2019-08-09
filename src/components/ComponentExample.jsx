@@ -23,7 +23,7 @@ const ComponentExample = ({
       <div className="mt-auto">
         <ul className="-mr-2 -mb-2 pt-2 pb-1 flex flex-wrap">
           {features.map(feature => (
-            <li key={feature} className="tag">
+            <li key={feature} className="badge">
               {feature}
             </li>
           ))}
