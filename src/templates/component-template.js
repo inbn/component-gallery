@@ -49,9 +49,9 @@ export default ({ data }) => {
         }
       />
 
-      <div className="col-wrap -mx-2 mt-4 bg-grey-100">
+      <div className="col-wrap -mx-6 mt-4 bg-grey-100">
         {tocHtml !== null && (
-          <div className="col col--sidebar p-2">
+          <div className="col col--sidebar py-2 px-6">
             {/* Table of contents */}
             <h2 className="font-sans mb-2 uppercase bg-grey-100 text-grey-700 text-xs pt-1 pl-2">
               Table of contents
@@ -66,7 +66,7 @@ export default ({ data }) => {
           </div>
         )}
         {/* Main content */}
-        <div className="col col--main p-2">
+        <div className="col col--main py-2 px-6">
           {/* Examples */}
           {data.airtable.data.Examples !== null && (
             <>

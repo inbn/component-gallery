@@ -8,8 +8,8 @@ import Hero from '../components/Hero';
 const AboutPage = ({ data }) => (
   <Layout heroComponent={<Hero title="About" />}>
     <SEO title="About" description={data.markdown.frontmatter.description} />
-    <div className="col-wrap -mx-2 mt-4 bg-grey-100">
-      <div className="col col--sidebar p-2">
+    <div className="col-wrap -mx-6 mt-4 bg-grey-100">
+      <div className="col col--sidebar py-2 px-6">
         {/* Table of contents */}
         <h2 className="font-sans mb-2 uppercase bg-grey-100 text-grey-700 text-xs pt-1 pl-2">
           Table of contents
@@ -21,7 +21,7 @@ const AboutPage = ({ data }) => (
           className="body-text md:text-sm"
         />
       </div>
-      <div className="col col--main p-2">
+      <div className="col col--main py-2 px-6">
         <div
           dangerouslySetInnerHTML={{
             __html: data.markdown.html
