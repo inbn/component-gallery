@@ -151,7 +151,7 @@ module.exports = {
           {
             baseId: process.env.AIRTABLE_BASE_ID,
             tableName: `Component examples`,
-            tableView: `Design system A-Z`,
+            tableView: `Published only`,
             tableLinks: [`Design system`, `Type of component`]
           }
         ]
