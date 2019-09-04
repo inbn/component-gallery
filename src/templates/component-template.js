@@ -76,7 +76,14 @@ export default ({ data }) => {
               </h2>
               <ul className="flex flex-wrap mt-2 -mx-4 mb-4">
                 {data.airtable.data.Examples.map((page, i) => (
-                  <li key={i} className="p-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
+                  <li
+                    key={i}
+                    className={`p-2 w-full ${
+                      data.markdown !== null
+                        ? `sm:w-1/2 lg:w-1/3`
+                        : `sm:w-1/2 md:w-1/3 lg:w-1/4`
+                    }`}
+                  >
                     <ComponentExample
                       key={i}
                       url={page.data.URL}
