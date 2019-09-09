@@ -3,7 +3,8 @@
   _links.css
 \*====================================*/
 
-a:not([class]) {
+a:not([class]),
+.link {
   @apply border-b;
   @apply border-red-500;
   @apply text-indigo-600;

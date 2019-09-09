@@ -21,6 +21,7 @@ const AboutPage = ({ data }) => (
           className="body-text md:text-sm"
         />
       </div>
+      {/* Main content */}
       <div className="col col--main py-2 px-6">
         <div
           dangerouslySetInnerHTML={{
@@ -29,7 +30,6 @@ const AboutPage = ({ data }) => (
           className="body-text"
         />
       </div>
-      {/* Main content */}
     </div>
   </Layout>
 );

@@ -38,8 +38,8 @@ const ComponentsIndexPage = ({ data }) => (
 
 export default ComponentsIndexPage;
 
-// query airtable for the Name and Slug of each record,
-// filtering for only records in the Components table.
+// query airtable for properties of each record,
+// filtering for only published records in the Components table.
 export const query = graphql`
   {
     allAirtable(
