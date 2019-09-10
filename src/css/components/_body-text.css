@@ -38,13 +38,22 @@
 }
 
 .footnote-ref {
+  @apply font-sans;
   @apply text-sm;
   @apply underline;
   @apply border-none;
-  @apply text-red-400;
+  @apply text-indigo-600;
+
+  text-decoration-color: theme('colors.red.500');
+  transition: color 0.3s ease, ext-decoration-color 0.3s ease;
+
+  &:hover {
+    @apply text-red-600;
+    text-decoration-color: theme('colors.red.400');
+  }
 }
 
 .footnote-backref {
   @apply border-none;
-  @apply text-red-400;
+  @apply text-red-500;
 }

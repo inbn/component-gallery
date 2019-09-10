@@ -16,4 +16,14 @@ a:not([class]),
     @apply text-red-600;
     @apply border-red-400;
   }
+
+  &[href^="http://"]::after,
+  &[href^="https://"]::after {
+    content: "\2197";
+    display: inline-block;
+    vertical-align: text-top;
+    position: relative;
+    font-size: 0.8em;
+    margin: 0 .2em 0 .2em;
+  }
 }
