@@ -60,7 +60,7 @@ export const query = graphql`
                   fluid(
                     maxWidth: 608
                     maxHeight: 456
-                    traceSVG: { background: "#fff", color: "#6363ED" }
+                    traceSVG: { background: "#fff", color: "#dae1e7" }
                   ) {
                     ...GatsbyImageSharpFluid
                     ...GatsbyImageSharpFluid_tracedSVG

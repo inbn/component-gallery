@@ -25,9 +25,12 @@ const DesignSystem = ({
     >
       <img src={image.length && image[0].url} alt="" className="block" />
       {image && <Img fluid={image.childImageSharp.fluid} />}
-      <HeadingTag className="h3 mt-0 p-2">
-        {name} {organisation !== null && `(${organisation})`}
-      </HeadingTag>
+      <HeadingTag className="h3 mt-0 pt-3 px-2 pb-1">{name}</HeadingTag>
+      {organisation && (
+        <p className="italic leading-tight mt-0 px-2 pb-2 text-grey-700">
+          {organisation}
+        </p>
+      )}
       {features && features.length > 0 && (
         <div className="mt-auto">
           <ul className="-mr-2 p-2 pb-1 flex flex-wrap">
