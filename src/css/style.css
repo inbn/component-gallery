@@ -14,7 +14,7 @@
 
 @import 'tailwindcss/base';
 
-@import 'base/_fonts';
+/* @import 'base/_fonts'; */
 
 @import 'base/_root';
 @import 'base/_blockquote';
@@ -56,6 +56,8 @@
 @import 'components/_body-text';
 @import 'components/_call-to-action';
 @import 'components/_card';
+@import 'components/_design-system';
+@import 'components/_footer';
 @import 'components/_header-logo';
 @import 'components/_site-search';
 @import 'components/_badge';

@@ -28,10 +28,8 @@ const IndexPage = ({ data }) => (
     }
   >
     <SEO title="Home" />
-    <h2 className="italic smt-8 bg-squiggle-green-600 bg-repeat-x bg-bottom px-2 -mx-2 pb-4">
-      Recently updated components
-    </h2>
-    <ul className="flex flex-wrap mt-2 -mx-4">
+    <h2 className="pt-4">Recently updated components</h2>
+    <ul className="flex flex-wrap mt-4 -mx-4 border-t">
       {data.recentComponents.edges.map(
         (
           {
@@ -41,7 +39,7 @@ const IndexPage = ({ data }) => (
           },
           i
         ) => (
-          <li key={i} className="w-full sm:w-1/2 lg:w-1/3 p-2">
+          <li key={i} className="w-full sm:w-1/2 lg:w-1/3">
             <Component
               slug={slug}
               name={name}
@@ -56,7 +54,7 @@ const IndexPage = ({ data }) => (
         )
       )}
     </ul>
-    <div className="text-right">
+    <div className="text-right py-2">
       <ReadMoreLink to="/components" text="View all components" />
     </div>
   </Layout>

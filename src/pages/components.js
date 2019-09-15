@@ -9,7 +9,7 @@ import SEO from '../components/SEO';
 const ComponentsIndexPage = ({ data }) => (
   <Layout heroComponent={<Hero title="Components" />}>
     <SEO title="Components" />
-    <ul className="flex flex-wrap mt-2 -mx-4">
+    <ul className="flex flex-wrap -mx-4 border-l">
       {data.allAirtable.edges.map(
         (
           {
@@ -19,7 +19,7 @@ const ComponentsIndexPage = ({ data }) => (
           },
           i
         ) => (
-          <li key={i} className="w-full sm:w-1/2 lg:w-1/3 p-2">
+          <li key={i} className="w-full sm:w-1/2 lg:w-1/3">
             <Component
               slug={slug}
               name={name}

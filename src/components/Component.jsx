@@ -14,7 +14,7 @@ const Component = ({
   const HeadingTag = headingLevel;
 
   return (
-    <Link to={`/components/${slug}`} className="card h-full block w-full p-2">
+    <Link to={`/components/${slug}`} className="card h-full block w-full p-4">
       <div className="flex justify-between items-center">
         <HeadingTag className="h3">{name}</HeadingTag>
         <p className="font-sans text-grey-700 mt-0 ml-2">

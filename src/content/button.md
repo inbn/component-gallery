@@ -62,7 +62,7 @@ A far worse thing to do would be to use a non-focusable element such as a `<span
 <a class="action-button">I'm a button, click me</a>
 ```
 
-> It should be noted that although it is possible to make these non-focusable elements accessible, this is only possible by fully replicating the functionality of the native `<button>` element. This involves using attributes such as `tabindex="0"` (to make the element focusable); ARIA to communicate semantics to assistive technology; and JavaScript event listeners to add keyboard, touch and mouse interactivity. This is a lot of extra work considering the native button element gives you all this behaviour for free.
+> It’s worth noting that although it is possible to make these non-focusable elements accessible, this is only possible by fully replicating the functionality of the native `<button>` element. This involves using attributes such as `tabindex="0"` (to make the element focusable); ARIA to communicate semantics to assistive technology; and JavaScript event listeners to add keyboard, touch and mouse interactivity. This is a lot of extra work considering the native button element gives you all this behaviour for free.
 
 In Summary:
 
@@ -80,7 +80,7 @@ As well as actually using the correct element, it's important to make it look an
 - Unless it appears in a [button group](/components/button-group) with other options, use whitespace around the button to distance it from other content.
 - Make the button big enough so users of touch devices can comfortably use it (a minimum of 10mm in both dimensions)
 
-If it fits within the design of your website, there are a more techniques you can use to improve the affordance of your buttons:
+If it fits within the design of your website, there are more techniques you can use to improve the affordance of your buttons:
 
 - Give it rounded corners
 - Use subtle box-shadows to raise the button above the rest of the page

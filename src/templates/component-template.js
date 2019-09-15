@@ -5,6 +5,7 @@ import ComponentExample from '../components/ComponentExample';
 import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
+import TableOfContents from '../components/TableOfContents';
 
 export default ({ data }) => {
   let tocHtml = null;
@@ -49,36 +50,27 @@ export default ({ data }) => {
         }
       />
 
-      <div className="col-wrap -mx-6 mt-4 bg-grey-100">
+      <div className="col-wrap -mx-4">
         {tocHtml !== null && (
-          <div className="col col--sidebar py-2 px-6">
+          <div className="col col--sidebar py-2 px-4">
             {/* Table of contents */}
-            <h2 className="font-sans mb-2 uppercase bg-grey-100 text-grey-700 text-xs pt-1 pl-2">
-              Table of contents
-            </h2>
-            <div className="body-text md:text-sm">
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: tocHtml
-                }}
-              />
-            </div>
+            <TableOfContents html={tocHtml} />
           </div>
         )}
         {/* Main content */}
-        <div className="col col--main py-2 px-6">
+        <div className="col col--main pt-4 px-4 border-l">
           {/* Examples */}
           {data.airtable.data.Examples !== null && (
             <>
-              <h2 id="examples" className="px-2 -mx-2">
+              <h2 id="examples">
                 {data.airtable.data.Examples_count} example
                 {data.airtable.data.Examples_count !== 1 && 's'}
               </h2>
-              <ul className="flex flex-wrap mt-2 -mx-4 mb-4">
+              <ul className="flex flex-wrap mt-4 -mx-4 border-t">
                 {data.airtable.data.Examples.map((page, i) => (
                   <li
                     key={i}
-                    className={`p-2 w-full ${
+                    className={`w-full ${
                       data.markdown !== null
                         ? `sm:w-1/2 lg:w-1/3`
                         : `sm:w-1/2 md:w-1/3 lg:w-1/4`
@@ -103,7 +95,7 @@ export default ({ data }) => {
               dangerouslySetInnerHTML={{
                 __html: data.markdown.html
               }}
-              className="body-text"
+              className="body-text mt-4"
             />
           )}
         </div>

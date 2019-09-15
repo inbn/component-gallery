@@ -4,16 +4,18 @@
 \*====================================*/
 
 .card {
-  @apply bg-white text-grey-800 shadow;
+  --hover-shadow-color: theme('colors.black');
+
+  @apply bg-white text-grey-800 text-sm border-r border-b;
   transition: background-color 200ms, border-color 200ms, box-shadow 200ms, color 200ms, transform 200ms;
-  border: 4px solid transparent;
-  border-radius: 2px;
+  border-top: 1px solid transparent;
+  border-left: 1px solid transparent;
 
   &:hover {
-    border-color: theme('colors.grey.800');
-    border-color: var(--hover-border-color);
+    @apply bg-grey-100;
+    border-color: theme('colors.black');
     transform: translate(-4px, -4px);
-    box-shadow: 8px 8px 0 0 theme('colors.teal.800')bf;
+    box-shadow: 4px 4px 0 0 var(--hover-shadow-color);
   }
 }
 

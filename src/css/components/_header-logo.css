@@ -4,9 +4,8 @@
 \*====================================*/
 
 .header-logo {
-  @apply table mx-auto text-3xl text-teal-800 uppercase leading-none pt-1 px-2 border-2 border-transparent shadow-none;
+  @apply table mx-auto text-3xl text-teal-800 font-sans lowercase leading-none py-1 px-2 border-2 border-transparent shadow-none;
 
-  font-family: 'Futura Shadow', Futura, sans-serif;
   letter-spacing: -0.02em;
   font-style: oblique;
   font-weight: 300;

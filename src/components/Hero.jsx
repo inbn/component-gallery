@@ -5,12 +5,12 @@ const Hero = ({ byline, title, subtitle, date, readtime }) => (
   <div className="my-8 lg:my-12">
     <div className="container">
       {byline !== '' && (
-        <p className="font-sans mb-4 uppercase bg-white text-grey-800 text-xs inline-block pt-1 px-2 border-2 border-black shadow-block-teal-800">
+        <p className="font-sans mb-4 uppercase bg-white text-grey-800 text-xs inline-block px-2 py-1 border-2 border-black shadow-block-teal-800">
           {byline}
         </p>
       )}
-      <div className="mt-0 text-5xl text-teal-800 italic bg-red-100 pt-3 px-3 table shadow-block-teal-800">
-        <h1 className="font-light">{title}</h1>
+      <div className="mt-0 text-5xl italic bg-white text-black border-2 border-black p-3 table shadow-block-teal-800">
+        <h1 className="tracking-tighter">{title}</h1>
         {subtitle !== null && (
           <p className="mt-0 mb-2 pl-4 text-lg font-sans">{subtitle}</p>
         )}
@@ -18,7 +18,7 @@ const Hero = ({ byline, title, subtitle, date, readtime }) => (
       {(subtitle !== '' || readtime !== '') && (
         <div className="flex flex-wrap mt-4 justify-end">
           {readtime !== null && (
-            <p className="mt-0 font-sans text-sm uppercase text-grey-800 bg-grey-100 pt-1 px-2  border-2 border-black shadow-block-teal-800">
+            <p className="mt-0 font-sans text-sm uppercase text-grey-800 bg-grey-100 px-2 py-1 border-2 border-black shadow-block-teal-800">
               {date !== null && `Last updated: ${date} •`} {readtime}
             </p>
           )}

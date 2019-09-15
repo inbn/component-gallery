@@ -83,7 +83,7 @@ module.exports = {
     },
     fontFamily: {
       sans: [
-        'Futura',
+        'DM Sans',
         '-apple-system',
         'BlinkMacSystemFont',
         '"Segoe UI"',
@@ -97,7 +97,7 @@ module.exports = {
         '"Segoe UI Symbol"',
         '"Noto Color Emoji"'
       ],
-      serif: ['Athelas', 'Palatino', 'Georgia', 'serif'],
+      serif: ['Palatino', 'Georgia', 'serif'],
       mono: [
         'SFMono-Regular',
         'Menlo',
@@ -174,7 +174,7 @@ module.exports = {
     },
     borderColor: theme => {
       return global.Object.assign(
-        { default: theme('colors.grey.400') },
+        { default: theme('colors.grey.500') },
         theme('colors')
       );
     },
