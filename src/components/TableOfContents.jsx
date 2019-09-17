@@ -2,7 +2,7 @@ import React from 'react';
 
 const TableOfContents = ({ html }) => (
   <>
-    <h2 className="font-sans text-black text-base leading-normal mb-2 pt-2 pl-2">
+    <h2 className="font-sans text-black text-base leading-normal mb-2">
       Table of contents
     </h2>
     <div

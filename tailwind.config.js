@@ -20,7 +20,7 @@ module.exports = {
       },
 
       green: {
-        500: '#63ED8A'
+        500: '#63ed8a'
       },
 
       red: {
@@ -174,7 +174,7 @@ module.exports = {
     },
     borderColor: theme => {
       return global.Object.assign(
-        { default: theme('colors.grey.500') },
+        { default: theme('colors.grey.700') },
         theme('colors')
       );
     },

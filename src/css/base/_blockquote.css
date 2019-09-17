@@ -5,7 +5,7 @@
 
 blockquote {
   @apply border-l-4;
-  @apply border-teal-500;
+  @apply border-grey-700;
   @apply px-4;
   @apply py-2;
 }

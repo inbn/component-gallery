@@ -9,13 +9,16 @@ import TableOfContents from '../components/TableOfContents';
 
 export default ({ data }) => {
   let tocHtml = null;
-  // Insert 'examples' as the first item in the table of contents
+  let readtime = null;
+
   if (data.markdown !== null) {
+    // Insert 'examples' as the first item in the table of contents
     tocHtml = data.markdown.tableOfContents;
     // Add just after the opening '<ul>'
     tocHtml = `${tocHtml.substring(0, 4)}<li>
     <a href="#examples">Examples</a>
   </li>${tocHtml.substring(4)}`;
+    readtime = data.markdown.fields.readingTime.text;
   }
 
   return (
@@ -29,12 +32,6 @@ export default ({ data }) => {
               ? `(${data.airtable.data.Other_names})`
               : null
           }
-          readtime={
-            data.markdown !== null
-              ? data.markdown.fields.readingTime.text
-              : null
-          }
-          date={data.airtable.data.Date_updated}
         />
       }
     >
@@ -49,10 +46,20 @@ export default ({ data }) => {
           data.airtable.data.Description.childMarkdownRemark.excerpt
         }
       />
-
       <div className="col-wrap -mx-4">
+        {/* Sidebar */}
         {tocHtml !== null && (
-          <div className="col col--sidebar py-2 px-4">
+          <div className="col col--sidebar p-4 border-l">
+            <div className="font-sans mb-4 bg-white text-black text-sm block">
+              {/* Last updated date */}
+              <p className="">
+                Updated: {data.airtable.data.Date_updated}
+              </p>
+              {/* Read time */}
+              {readtime !== null && (
+                <p className="mt-0">{readtime}</p>
+              )}
+            </div>
             {/* Table of contents */}
             <TableOfContents html={tocHtml} />
           </div>
@@ -95,7 +102,7 @@ export default ({ data }) => {
               dangerouslySetInnerHTML={{
                 __html: data.markdown.html
               }}
-              className="body-text mt-4"
+              className="body-text my-4"
             />
           )}
         </div>
