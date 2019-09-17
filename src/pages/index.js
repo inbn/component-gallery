@@ -28,8 +28,8 @@ const IndexPage = ({ data }) => (
     }
   >
     <SEO title="Home" />
-    <h2 className="pt-4">Recently updated components</h2>
-    <ul className="flex flex-wrap mt-4 -mx-4 border-t">
+    <h2 className="p-4 -mx-4 border-l">Recently updated components</h2>
+    <ul className="flex flex-wrap mt-0 -mx-4 border-t border-l">
       {data.recentComponents.edges.map(
         (
           {
@@ -54,7 +54,7 @@ const IndexPage = ({ data }) => (
         )
       )}
     </ul>
-    <div className="text-right py-2">
+    <div className="text-right p-4 -mx-4 border-l">
       <ReadMoreLink to="/components" text="View all components" />
     </div>
   </Layout>

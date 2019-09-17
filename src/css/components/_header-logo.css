@@ -7,14 +7,13 @@
   @apply table mx-auto text-3xl text-black font-sans lowercase leading-none py-1 px-2 border-2 border-transparent shadow-none;
 
   letter-spacing: -0.02em;
-  font-style: oblique;
-  font-weight: 300;
+  font-style: italic;
   transition: background-color 200ms, border-color 200ms, box-shadow 200ms, color 200ms, transform 200ms;
 
   &:hover {
     @apply text-grey-800 border-2 border-black bg-white;
     transform: translate(-4px, -4px);
-    box-shadow: 4px 4px theme('colors.teal.700')bf;
+    box-shadow: 4px 4px theme('colors.grey.800')bf;
   }
 }
 

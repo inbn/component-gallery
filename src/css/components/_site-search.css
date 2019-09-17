@@ -23,7 +23,17 @@
 }
 
 .site-search__results-list {
-  @apply mt-0;
+  @apply mt-0 border z-20;
+}
+
+.site-search__result {
+  @apply p-2 border-t;
+
+  cursor: pointer;
+
+  &[aria-selected="true"] {
+    @apply bg-grey-200;
+  }
 }
 
 @screen md {
@@ -32,20 +42,10 @@
   }
 
   .site-search__results-list {
-    @apply bg-white shadow-block-grey-800 z-20;
+    @apply bg-white shadow-block-grey-800;
     max-height: 16rem;
     overflow-y: scroll;
     position: absolute;
     width: 100%;
-  }
-}
-
-.site-search__result {
-  @apply p-2;
-
-  cursor: pointer;
-
-  &[aria-selected="true"] {
-    @apply bg-red-100;
   }
 }

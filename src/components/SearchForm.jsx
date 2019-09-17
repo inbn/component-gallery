@@ -185,12 +185,16 @@ const SearchForm = () => {
               onMouseOver={() => setSelectedItemIndex(i)}
             >
               {table && (
-                <p className="font-sans mb-2 uppercase text-grey-700 text-xs block">
+                <p className="font-sans mb-2 uppercase text-black font-bold text-xs block">
                   {table === 'Components' ? 'Component' : 'Design System'}
                 </p>
               )}
-              <h3 className="mt-0">{name}</h3>
-              {otherNames && <p className="mt-1">Other names: {otherNames}</p>}
+              <h3 className="mt-0 leading-tight">{name}</h3>
+              {otherNames && (
+                <p className="italic leading-tight mt-2 text-grey-700">
+                  Other names: {otherNames}
+                </p>
+              )}
             </li>
           ))}
         </ol>

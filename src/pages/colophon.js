@@ -15,7 +15,7 @@ const ColophonPage = ({ data }) => (
           dangerouslySetInnerHTML={{
             __html: data.markdown.html
           }}
-          className="body-text"
+          className="body-text mb-4"
         />
       </div>
     </div>
