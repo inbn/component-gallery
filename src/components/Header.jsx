@@ -10,12 +10,12 @@ const Header = ({ siteTitle, menuLinks }) => (
       </Link>
 
       <nav className="sm:pr-2">
-        <ul className="flex flex-wrap justify-center -mx-2 sm:-mx-4">
+        <ul className="flex flex-wrap sm:justify-center -mx-2 sm:-mx-4">
           {menuLinks.map(link => (
             <li key={link.name} className="mx-2 sm:mx-4">
               <Link
                 to={link.link}
-                className="call-to-action whitespace-no-wrap"
+                className="call-to-action whitespace-no-wrap mt-2 lg:mt-0"
               >
                 {link.name}
               </Link>
