@@ -7,13 +7,13 @@ date: '2019-05-08'
 
 ## Description
 
-It's important to make a distinction here: when people talk about buttons in regards to the web, they're usually talking about one of three things:
+It's important to make a distinction here: when people talk about buttons in regards to the web, they're probably talking about one of three things:
 
-1. A `<button>` element which, depending on its type attribute (`submit`, `reset` or `button`), triggers some kind of action: submitting a form, clearing a form or triggering a JavaScript function.
-2. An `<input>` element with one of the three types: `submit`, `reset` or `button`. These are functionally almost identical to the equivalent `<button>` element.
+1. A `<button>` element which, depending on its type attribute (`submit`, `reset` or `button`), triggers some kind of action: submitting a form, clearing a form, or triggering a JavaScript function.
+2. An `<input>` element with one of the three types: `submit`, `reset` or `button`. These are functionally almost identical to a `<button>` element with the same type attribute.
 3. Any other interactive HTML element that looks like a button, but isn’t a `<button>` element. This category includes ‘call-to-action’ links designed to look like buttons, or any other ‘pretend’ buttons.
 
-In most cases, it’s preferable to use a `<button>` instead of the corresponding `<input>`: With a `<button>` the label text goes between opening and closing tags allowing you to include HTML in the label; with `<input>` you're restricted to using the `value` attribute which only supports strings.
+In most cases, it’s preferable to use a `<button>` instead of the corresponding `<input>`: With a `<button>` the label text goes between opening and closing tags allowing you to include other HTML elements inside the label; with `<input>` you're restricted to using the `value` attribute which only supports strings.
 
 If you're interested in the third category, you’re probably either looking for the page on [links](/components/link); or you’re using the wrong element for your buttons (and you should read on to learn why).
 
@@ -33,7 +33,7 @@ The most important thing to note is the `type` attribute; this can be one of the
 - `reset`: The button resets all the controls to their initial values.
 - `button`: The button has no default behaviour and does nothing when pressed. Needs JavaScript event listeners attached to it, to do anything.
 
-Buttons of type `submit` and `reset` will do nothing if not placed within a form. If no type is specified or the type is invalid, the button is treated as if it had `type="submit"`.
+Buttons of type `submit` and `reset` will do nothing if not placed within a form. If there is no type specified, or the type is invalid, the button is treated as if it had `type="submit"`.
 
 As you can probably see, button markup is very simple, so it’s surprising how often mistakes are made. Look at this commonly used (anti)pattern:
 
@@ -53,7 +53,7 @@ $('a').click(function(e) {
 
 While this technically achieves its purpose (and is the top answer to this [stack overflow question](https://stackoverflow.com/questions/1070760/javascript-function-in-href-vs-onclick) viewed 1.3million times) it's still a hack. Users expect certain behaviours from links (e.g. middle click to open in new tab) and others from a button (e.g. 'click' with the space key). If those expectations are not met, users may get confused or frustrated.
 
-A far worse thing to do would be to use a non-focusable element such as a `<span>`, `<div>` or an `<a>` with an empty or missing `href` attribute. These will not appear in the tab order and are therefore completely inaccessible to those users who navigate solely using a keyboard.
+A far worse thing to do would be to use a non-focusable element such as a `<span>`, `<div>` or an `<a>` with an empty or missing `href` attribute. These will not appear in the tab order and are therefore inaccessible to those users who navigate solely using a keyboard.
 
 ```html
 <!-- None of these “buttons” are buttons to assisstive technologies -->
@@ -67,8 +67,8 @@ A far worse thing to do would be to use a non-focusable element such as a `<span
 In Summary:
 
 - Use buttons for performing an action. e.g. ‘Submit’, ‘Delete’, ‘Create’, ‘Hide’
-- Make buttons look like buttons (and links look like links)
 - Give your buttons a `type` attribute
+- Make buttons look like buttons (and links look like links)
 
 ### Appearance
 
@@ -77,7 +77,7 @@ As well as actually using the correct element, it's important to make it look an
 - Dynamically size the button to fit the text in it
 - Keep the text centre-aligned on a single line
 - Ensure the button has distinct styles for disabled, hover, focused, active/pressed and default states.
-- Unless it appears in a [button group](/components/button-group) with other options, use whitespace around the button to distance it from other content.
+- Unless it appears inside a [button group](/components/button-group) with other options, use whitespace around the button to distance it from other content.
 - Make the button big enough so users of touch devices can comfortably use it (a minimum of 10mm in both dimensions)
 
 If it fits within the design of your website, there are more techniques you can use to improve the affordance of your buttons:
@@ -90,9 +90,10 @@ If it fits within the design of your website, there are more techniques you can 
 
 Communicate the purpose of a button clearly and concisely using a text label, an icon, or both. Instead of using generic labels like ‘OK’ or ‘Cancel’, think about what action clicking the button will trigger — if it deletes something, use ‘Delete’; if it places an order, use ‘Place order’.
 
-If using _only_ an icon, you will need to ensure the button has a meaningful label.
+If using _only_ an icon, you will need to ensure the button has a meaningful label[^5]. This label can be included inside the button and hidden visually using a [screenreader-only](https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html) CSS class. Alternatively, the label can be linked to the button using the aria attributes `aria-label` or `aria-labelledby`.
 
 [^1]: [Links vs. Buttons in Modern Web Applications — Marcy Sutton](https://marcysutton.com/links-vs-buttons-in-modern-web-applications)
 [^2]: [7 Basic Rules for Button Design](https://uxplanet.org/7-basic-rules-for-button-design-63dcdf5676b4)
 [^3]: [But sometimes links look like buttons (and buttons look like links)](https://medium.com/simple-human/but-sometimes-links-look-like-buttons-and-buttons-look-like-links-9b371c57b3d2)
 [^4]: [Proper Use of Buttons and Links](http://www.webaxe.org/proper-use-buttons-links/)
+[^5]: [Accessible Icon Buttons — Sara Soueidan](https://www.sarasoueidan.com/blog/accessible-icon-buttons/)

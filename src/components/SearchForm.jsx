@@ -191,7 +191,7 @@ const SearchForm = () => {
               )}
               <h3 className="mt-0 leading-tight">{name}</h3>
               {otherNames && (
-                <p className="italic leading-tight mt-2 text-grey-700">
+                <p className="italic leading-tight mt-4 text-grey-700">
                   Other names: {otherNames}
                 </p>
               )}

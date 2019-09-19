@@ -26,6 +26,7 @@
 @import 'base/_vertical-rhythm';
 
 @import 'layout/_col';
+@import 'layout/_grid';
 
 /**
   * This injects any component classes registered by plugins.

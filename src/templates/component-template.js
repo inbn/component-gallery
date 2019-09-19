@@ -29,7 +29,7 @@ export default ({ data }) => {
           title={data.airtable.data.Name}
           subtitle={
             data.airtable.data.Other_names !== null
-              ? `(${data.airtable.data.Other_names})`
+              ? `Other names: ${data.airtable.data.Other_names}`
               : null
           }
         />
@@ -46,43 +46,32 @@ export default ({ data }) => {
           data.airtable.data.Description.childMarkdownRemark.excerpt
         }
       />
-      <div className="col-wrap -mx-4">
+      <div className="col-wrap">
         {/* Sidebar */}
         {tocHtml !== null && (
-          <div className="col col--sidebar p-4 border-l">
+          <div className="col col--sidebar pt-4 px-6 border-l">
             <div className="font-sans mb-4 bg-white text-black text-sm block">
               {/* Last updated date */}
-              <p className="">
-                Updated: {data.airtable.data.Date_updated}
-              </p>
+              <p className="">Updated: {data.airtable.data.Date_updated}</p>
               {/* Read time */}
-              {readtime !== null && (
-                <p className="mt-0">{readtime}</p>
-              )}
+              {readtime !== null && <p className="mt-0">{readtime}</p>}
             </div>
             {/* Table of contents */}
             <TableOfContents html={tocHtml} />
           </div>
         )}
         {/* Main content */}
-        <div className="col col--main pt-4 px-4 border-l">
+        <div className="col col--main pt-4 border-l">
           {/* Examples */}
           {data.airtable.data.Examples !== null && (
             <>
-              <h2 id="examples">
+              <h2 id="examples" className="px-6">
                 {data.airtable.data.Examples_count} example
                 {data.airtable.data.Examples_count !== 1 && 's'}
               </h2>
-              <ul className="flex flex-wrap mt-4 -mx-4 border-t">
+              <ul className="grid mt-4 border-t">
                 {data.airtable.data.Examples.map((page, i) => (
-                  <li
-                    key={i}
-                    className={`w-full ${
-                      data.markdown !== null
-                        ? `sm:w-1/2 lg:w-1/3`
-                        : `sm:w-1/2 md:w-1/3 lg:w-1/4`
-                    }`}
-                  >
+                  <li key={i}>
                     <ComponentExample
                       key={i}
                       url={page.data.URL}
@@ -102,7 +91,7 @@ export default ({ data }) => {
               dangerouslySetInnerHTML={{
                 __html: data.markdown.html
               }}
-              className="body-text my-4"
+              className="body-text py-4 px-6"
             />
           )}
         </div>

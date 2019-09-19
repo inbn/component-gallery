@@ -9,8 +9,8 @@ import TableOfContents from '../components/TableOfContents';
 const AboutPage = ({ data }) => (
   <Layout heroComponent={<Hero title="About" />}>
     <SEO title="About" description={data.markdown.frontmatter.description} />
-    <div className="col-wrap -mx-4">
-      <div className="col col--sidebar p-4 border-l">
+    <div className="col-wrap">
+      <div className="col col--sidebar pt-4 px-6 border-l">
         {/* Table of contents */}
         <TableOfContents html={data.markdown.tableOfContents} />
       </div>

@@ -4,8 +4,7 @@
 \*====================================*/
 
 .body-text {
-  @apply p-2;
-  @apply -m-2;
+  @apply mx-auto;
   max-width: 72ch;
 
   & ul {

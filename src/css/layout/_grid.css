@@ -1,0 +1,20 @@
+/*====================================*\
+  LAYOUT
+  _grid.css
+\*====================================*/
+
+/**
+ * Based on https://absolutely.every-layout.dev/layouts/grid/
+ * but without the JavaScript dependency
+ */
+
+.grid {
+  display: grid;
+}
+
+/* Media queries are not the enemy! */
+@media (min-width: 17rem) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  }
+}

@@ -12,16 +12,16 @@ const ComponentExample = ({
     href={url}
     target="_blank"
     rel="noopener noreferrer"
-    className="card h-full flex flex-col w-full p-4"
+    className="card h-full flex flex-col w-full p-6"
     style={{ '--hover-shadow-color': color }}
   >
     <h3 className="h4">{componentName}</h3>
-    <p className="italic leading-tight text-sm mt-1 text-grey-700">
+    <p className="italic leading-tight text-sm mt-2 text-grey-700">
       {designSystem}
     </p>
     {features && features.length > 0 && (
       <div className="mt-auto">
-        <ul className="-mr-2 -mb-2 pt-2 pb-1 flex flex-wrap">
+        <ul className="-mr-2 -mb-2 pt-4 pb-1 flex flex-wrap">
           {features.map(feature => (
             <li key={feature} className="badge">
               {feature}

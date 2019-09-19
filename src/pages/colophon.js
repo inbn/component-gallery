@@ -8,7 +8,7 @@ import Hero from '../components/Hero';
 const ColophonPage = ({ data }) => (
   <Layout heroComponent={<Hero title="Colophon" />}>
     <SEO title="Colophon" description={data.markdown.frontmatter.description} />
-    <div className="col-wrap -mx-6">
+    <div className="col-wrap">
       {/* Main content */}
       <div className="col col--main pt-4 px-6">
         <div

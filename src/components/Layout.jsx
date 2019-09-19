@@ -29,7 +29,7 @@ const Layout = ({ children, heroComponent }) => (
         />
         {!!heroComponent && heroComponent}
         <div className="bg-white border-t flex-grow">
-          <div className="container">
+          <div className="">
             <main>{children}</main>
           </div>
           <Footer />

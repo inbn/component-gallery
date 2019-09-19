@@ -14,7 +14,7 @@ const Component = ({
   const HeadingTag = headingLevel;
 
   return (
-    <Link to={`/components/${slug}`} className="card h-full block w-full p-4">
+    <Link to={`/components/${slug}`} className="card h-full block w-full p-6">
       <div className="flex justify-between items-center">
         <HeadingTag className="h3">{name}</HeadingTag>
         <p className="font-sans text-grey-700 mt-0 ml-2">
@@ -25,7 +25,7 @@ const Component = ({
         </p>
       </div>
       {otherNames && (
-        <p className="italic leading-tight mt-2 text-grey-700">
+        <p className="italic leading-tight mt-4 text-grey-700">
           Other names: {otherNames}
         </p>
       )}
@@ -34,7 +34,7 @@ const Component = ({
           dangerouslySetInnerHTML={{
             __html: description
           }}
-          className="body-text leading-tight font-small mt-2"
+          className="body-text leading-tight font-small mt-4"
         />
       )}
     </Link>
