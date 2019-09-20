@@ -1,0 +1,29 @@
+/*====================================*\
+  COMPONENTS
+  _table-of-contents.css
+\*====================================*/
+
+.table-of-contents {
+  & ul {
+    @apply pl-4;
+    list-style-type: none;
+
+    & ul {
+      & a {
+        font-weight: normal
+      }
+    }
+  }
+
+  & a {
+    @apply table border-transparent pt-2;
+
+    font-weight: bold;
+  }
+}
+
+@screen md {
+  .table-of-contents {
+    @apply text-sm;
+  }
+}

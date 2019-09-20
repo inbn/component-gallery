@@ -62,6 +62,7 @@
 @import 'components/_header-logo';
 @import 'components/_site-search';
 @import 'components/_badge';
+@import 'components/_table-of-contents';
 
 /* purgecss end ignore */
 

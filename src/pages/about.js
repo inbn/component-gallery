@@ -10,7 +10,7 @@ const AboutPage = ({ data }) => (
   <Layout heroComponent={<Hero title="About" />}>
     <SEO title="About" description={data.markdown.frontmatter.description} />
     <div className="col-wrap">
-      <div className="col col--sidebar pt-4 px-6 border-l">
+      <div className="col col--sidebar py-4 px-6 border-b border-l">
         {/* Table of contents */}
         <TableOfContents html={data.markdown.tableOfContents} />
       </div>

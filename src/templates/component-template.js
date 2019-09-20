@@ -49,7 +49,7 @@ export default ({ data }) => {
       <div className="col-wrap">
         {/* Sidebar */}
         {tocHtml !== null && (
-          <div className="col col--sidebar pt-4 px-6 border-l">
+          <div className="col col--sidebar py-4 px-6 border-b border-l">
             <div className="font-sans mb-4 bg-white text-black text-sm block">
               {/* Last updated date */}
               <p className="">Updated: {data.airtable.data.Date_updated}</p>
@@ -91,7 +91,7 @@ export default ({ data }) => {
               dangerouslySetInnerHTML={{
                 __html: data.markdown.html
               }}
-              className="body-text py-4 px-6"
+              className="body-text p-6"
             />
           )}
         </div>
