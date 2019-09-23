@@ -18,7 +18,8 @@ pre[class*="language-"] {
 
 /* Code blocks */
 pre[class*="language-"] {
-  @apply bg-white shadow mt-4 -mx-2 px-3 py-2;
+  @apply bg-grey-100 border -mx-4 my-4 px-4 py-3;
+  box-shadow: 0.25em 0.25em theme('colors.grey.800');
 	overflow: auto;
 }
 
@@ -39,6 +40,7 @@ code[class*="language-"] {
 [class*="language-"] .token.doctype,
 [class*="language-"] .token.cdata {
 	color: #aaa;
+  font-style: italic;
 }
 
 [class*="language-"] .token.punctuation {
