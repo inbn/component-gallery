@@ -20,27 +20,20 @@ const DesignSystem = ({
       href={url}
       target="blank"
       rel="noopener noreferrer"
-      className="card design-system block h-full flex flex-col"
+      className="card p-6 block h-full flex flex-col"
       style={{ '--hover-shadow-color': color }}
     >
-      <img src={image.length && image[0].url} alt="" className="block" />
-      {image && (
-        <Img
-          fluid={image.childImageSharp.fluid}
-          className="design-system__image"
-        />
-      )}
-      <HeadingTag className="h3 mt-0 pt-6 px-6 pb-1 font-bold">
-        {name}
-      </HeadingTag>
+      {/* <img src={image.length && image[0].url} alt="" className="block" /> */}
+      {image && <Img fluid={image.childImageSharp.fluid} className="border" />}
+      <HeadingTag className="h3 mt-0 pt-6 pb-1 font-bold">{name}</HeadingTag>
       {organisation && (
-        <p className="italic leading-tight mt-0 px-6 pb-2 text-grey-700">
+        <p className="italic leading-tight mt-0 pb-2 text-grey-700">
           {organisation}
         </p>
       )}
       {features && features.length > 0 && (
         <div className="mt-auto">
-          <ul className="-mr-2 p-6 pb-3 flex flex-wrap">
+          <ul className="-mr-2 pt-6 flex flex-wrap">
             {features.map(feature => (
               <li key={feature} className="badge">
                 {feature}

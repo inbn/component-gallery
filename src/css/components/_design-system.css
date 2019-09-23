@@ -6,12 +6,3 @@
 .design-system {
 
 }
-
-.design-system__image {
-  filter: saturate(0%);
-  transition: filter 0.3s ease;
-}
-
-.design-system:hover .design-system__image {
-  filter: saturate(100%);
-}
