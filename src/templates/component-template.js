@@ -32,6 +32,11 @@ export default ({ data }) => {
               ? `Other names: ${data.airtable.data.Other_names}`
               : null
           }
+          intro={
+            data.airtable.data.Description !== null
+              ? data.airtable.data.Description.childMarkdownRemark.html
+              : null
+          }
         />
       }
     >

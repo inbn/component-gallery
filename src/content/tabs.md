@@ -7,15 +7,20 @@ date: '2019-04-01'
 
 ## Description
 
-A tabbed interface consists of the **tab list** containing the **tab elements**, along the top or side of the **tab panels** which contain the content.
+A tabbed interface consists of two key parts:
 
-Each tab panel has an associated tab element, that when activated, displays the panel. Only one panel of content is shown at any one time.
+- the **tab list** containing the tab elements, along the top or side of…
+- the **tab panels** which contain the content.
 
-Tabs are an example of an [interface metaphor](https://en.wikipedia.org/wiki/Interface_metaphor), based on the tabs attached to the top of folders used inside filing cabinets. They act like a table of contents for the content within. Like their real-world namesake tabbed interfaces allow a user to see the outline of a larger set of data at a glance and quickly navigate to the desired section.
+Each tab panel has an associated tab in the tab list, that when activated, displays the panel. Only one panel of content is shown at any one time.
+
+Tabs are an example of an [interface metaphor](https://en.wikipedia.org/wiki/Interface_metaphor), named after the tabs attached to the top of folders used inside filing cabinets. Each tab is given a label based on the documents inside its corresponding folder. Like their real-world namesake tabbed interfaces allow a user to see the outline of a larger set of data at a glance and quickly navigate to the desired section.
 
 ## Usage guidelines
 
 ### Layout
+
+- The main benefit of tabs is to allow a large amount of information to be displayed in a limited space.
 
 - Be conscious that when you’re using tabs, you’re hiding content. This not only makes it less discoverable for sighted users, but also for users of assistive technology like screen readers.
 
@@ -87,8 +92,13 @@ To show/hide the tab panels you will need to toggle the CSS display property bet
 
 ### JavaScript
 
-In addition to aria attributes on your HTML elements, to make a tabbed interface keyboard-accessible, you’ll also need to add some custom keybindings. e.g. if your tabs are arranged in horizontal row, the left and right arrows should navigate between tab elements.[^1]
+In addition to aria attributes on your HTML elements, to make a tabbed interface keyboard-accessible, you’ll also need to add some custom keybindings[^1]:
 
-**Caveat:** although this is the W3C recommended method of making tabbed interfaces keyboard accessible, be aware that some users may not be familiar with this convention; a component that is simpler to interact with ([such as an accordion](/components/accordion)) may be more suited to your specific use case.
+- <kbd>Tab</kbd>: When tabbing into the tab list, place focus on the active tab element. When focus is on a tab _inside_ the tab list, pressing tab should move focus to the next focusable element in the page _outside_ the tab list.
+- <kbd>Space</kbd> or <kbd>Enter</kbd> should activate the currently focused tab if it wasn't activated automatically on focus.
+- <kbd>←</kbd> and <kbd>→</kbd> to cycle between tabs when `aria-orientation="vertical"`.
+- <kbd>↑</kbd> and <kbd>↓</kbd> to cycle between tabs when `aria-orientation="horizontal"`.
+
+**Caveat:** although this is a widely used method for making tabbed interfaces keyboard accessible, some users may not be familiar it; a component that is simpler to interact with ([such as an accordion](/components/accordion)) may be more suited to your specific use case.
 
 [^2]: [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel)

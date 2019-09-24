@@ -14,3 +14,10 @@ code:not([class^="language-"]) {
   /* white-space: nowrap; */
   /* hyphens: none; */
 }
+
+kbd {
+  @apply bg-white border shadow-block-grey-800 mr-1;
+  font-size: 0.8em;
+  padding: 0.1em 0.2em;
+  min-width: 1.5em;
+}
