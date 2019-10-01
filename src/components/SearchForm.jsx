@@ -21,13 +21,12 @@ const SearchForm = () => {
   `);
 
   const handleClickOutside = e => {
-    // console.log('clicking anywhere');
+    // Inside click
     if (node.current.contains(e.target)) {
       setOpen(true);
-      // inside click
       return;
     }
-    // outside click
+    // Outside click
     setOpen(false);
   };
 
@@ -44,8 +43,7 @@ const SearchForm = () => {
   }, [open]);
 
   useEffect(() => {
-    // if (searchQuery) {
-    // const debouncedSearch = debounce(async () => {
+    // @TODO look at debouncing the search
     const index = searchIndex || Index.load(data.siteSearchIndex.index);
     setSearchIndex(index);
     const posts = index
@@ -55,7 +53,6 @@ const SearchForm = () => {
     setResults(posts);
     if (posts.length > 0) {
       setOpen(true);
-      // console.log('setSelectedItemIndex');
       setSelectedItemIndex(0);
     }
 
@@ -67,7 +64,7 @@ const SearchForm = () => {
       return;
     }
 
-    // console.log(event.code);
+    // console.log('event code:', event.code);
     // console.log('results: ', results);
     // console.log('selectedItemIndex: ', selectedItemIndex);
 
@@ -134,7 +131,7 @@ const SearchForm = () => {
           aria-live="polite"
           aria-atomic="true"
         >
-          Found {results.length} results for "{searchQuery}"
+          Found {results.length} results for “{searchQuery}”
         </p>
       )}
       <label htmlFor="search-input" className="sr-only">

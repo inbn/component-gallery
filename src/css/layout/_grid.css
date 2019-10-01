@@ -12,7 +12,11 @@
   display: grid;
 }
 
-/* Media queries are not the enemy! */
+/**
+ * In the every layout example, this has a JS dependency to emulate container
+ * queries. Luckily our grids our full width until way after they go multi-
+ * column so we're fine to use a min-width media query here.
+ */
 @media (min-width: 17rem) {
   .grid {
     grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));

@@ -4,10 +4,7 @@
 \*====================================*/
 
 blockquote {
-  @apply border-l-4;
-  @apply border-grey-700;
-  @apply px-4;
-  @apply py-2;
+  @apply border-l-4 border-grey-700 px-4 py-2;
 }
 
 cite {

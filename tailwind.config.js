@@ -46,7 +46,7 @@ module.exports = {
       },
 
       orange: {
-        // 500: '#d96f35'
+        500: '#d96f35'
       },
 
       indigo: {
@@ -173,10 +173,10 @@ module.exports = {
       '8': '8px'
     },
     borderColor: theme => {
-      return global.Object.assign(
-        { default: theme('colors.grey.700') },
-        theme('colors')
-      );
+      return {
+        default: theme('colors.grey.700'),
+        ...theme('colors')
+      };
     },
     borderRadius: {
       none: '0',
@@ -322,18 +322,18 @@ module.exports = {
     }
   },
   variants: {
-    // appearance: ['responsive'],
-    // backgroundAttachment: ['responsive'],
-    // backgroundColor: ['responsive', 'hover', 'focus'],
-    // backgroundPosition: ['responsive'],
-    // backgroundRepeat: ['responsive'],
-    // backgroundSize: ['responsive'],
-    // borderCollapse: [],
+    appearance: [],
+    backgroundAttachment: [],
+    backgroundColor: [],
+    backgroundPosition: [],
+    backgroundRepeat: [],
+    backgroundSize: [],
+    borderCollapse: [],
     borderColor: ['responsive', 'hover', 'focus'],
     borderRadius: ['responsive'],
     borderStyle: ['responsive', 'hover'],
     borderWidth: ['responsive', 'hover'],
-    // cursor: ['responsive'],
+    cursor: [],
     display: ['responsive'],
     flexDirection: ['responsive'],
     flexWrap: ['responsive'],
@@ -344,7 +344,7 @@ module.exports = {
     flex: ['responsive'],
     flexGrow: ['responsive'],
     flexShrink: ['responsive'],
-    // float: ['responsive'],
+    float: [],
     fontFamily: ['responsive'],
     fontWeight: ['responsive', 'hover', 'focus'],
     height: ['responsive'],
@@ -352,39 +352,39 @@ module.exports = {
     listStylePosition: ['responsive'],
     listStyleType: ['responsive'],
     margin: ['responsive'],
-    // maxHeight: ['responsive'],
-    // maxWidth: ['responsive'],
-    // minHeight: ['responsive'],
-    // minWidth: ['responsive'],
-    // objectFit: ['responsive'],
-    // objectPosition: ['responsive'],
-    // opacity: ['responsive'],
+    maxHeight: [],
+    maxWidth: [],
+    minHeight: [],
+    minWidth: [],
+    objectFit: [],
+    objectPosition: [],
+    opacity: [],
     outline: ['focus'],
-    // overflow: ['responsive'],
+    overflow: [],
     padding: ['responsive'],
-    // pointerEvents: ['responsive'],
-    // position: ['responsive'],
-    // inset: ['responsive'],
-    // resize: ['responsive'],
+    pointerEvents: [],
+    position: [],
+    inset: [],
+    resize: [],
     boxShadow: ['responsive', 'hover', 'focus'],
-    // fill: [],
-    // stroke: [],
-    // tableLayout: ['responsive'],
+    fill: [],
+    stroke: [],
+    tableLayout: [],
     textAlign: ['responsive'],
     textColor: ['responsive', 'hover', 'focus'],
     fontSize: ['responsive'],
     fontStyle: ['responsive'],
     textTransform: ['responsive'],
     textDecoration: ['responsive', 'hover', 'focus'],
-    // fontSmoothing: ['responsive'],
-    // letterSpacing: ['responsive'],
-    // userSelect: ['responsive'],
-    // verticalAlign: ['responsive'],
-    // visibility: ['responsive'],
-    // whitespace: ['responsive'],
-    // wordBreak: ['responsive'],
-    width: ['responsive']
-    // zIndex: ['responsive']
+    fontSmoothing: [],
+    letterSpacing: [],
+    userSelect: [],
+    verticalAlign: [],
+    visibility: [],
+    whitespace: [],
+    wordBreak: [],
+    width: ['responsive'],
+    zIndex: []
   },
   corePlugins: {},
   plugins: [
