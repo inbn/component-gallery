@@ -15,6 +15,8 @@ This project is based on [gatsby-starter-default](https://www.gatsbyjs.org/start
 
    Duplicate the file `.env.example` in the root of the project and call it `.env.development`. You'll need to add values for `AIRTABLE_API_KEY` and `AIRTABLE_BASE_ID`.
 
+   **IMPORTANT NOTE:** The Airtable database this project uses is private. You will need to create your own for this project to work on your machine.
+
 1. **Install dependencies**
 
    ```sh
