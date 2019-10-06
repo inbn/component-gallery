@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 
 import Layout from '../components/Layout';
 import Hero from '../components/Hero';
+import SearchForm from '../components/SearchForm';
 import SEO from '../components/SEO';
 
 const NotFoundPage = () => (
@@ -14,10 +15,12 @@ const NotFoundPage = () => (
         <div className="body-text mb-4">
           <p>It looks like you’ve hit a route that doesn’t exist.</p>
           <p>
-            You can use the main navigation links above, or try using the search
-            input on the <Link to="/">homepage</Link> to find what you’re
-            looking for.
+            You can use the main navigation links above, visit the{' '}
+            <Link to="/">homepage</Link>, or try using the search form below:
           </p>
+        </div>
+        <div className="mt-4 mb-8 mx-auto max-w-xl">
+          <SearchForm />
         </div>
       </div>
     </div>
