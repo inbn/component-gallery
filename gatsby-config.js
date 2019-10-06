@@ -144,7 +144,7 @@ module.exports = {
           {
             baseId: process.env.AIRTABLE_BASE_ID,
             tableName: `Design systems`,
-            tableView: `All`,
+            tableView: `Name A-Z`,
             tableLinks: [`Component examples`],
             mapping: { Image: `fileNode` }
           },

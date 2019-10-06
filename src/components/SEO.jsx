@@ -63,7 +63,7 @@ function SEO({ description, lang, meta, keywords, title, favicon }) {
               .concat(meta)}
           >
             <link
-              href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,500i,700&display=swap"
+              href="https://fonts.googleapis.com/css?family=DM+Sans:400,400i,500,700&display=swap"
               rel="stylesheet"
             />
           </Helmet>

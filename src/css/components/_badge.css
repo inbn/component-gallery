@@ -4,7 +4,7 @@
 \*====================================*/
 
 .badge {
-  @apply font-sans text-xs text-grey-700 border rounded mr-1 mb-1;
+  @apply font-sans text-xs text-grey-700 border rounded mr-1 mb-1 bg-white;
   display: inline-block;
   padding: 0.125em 0.4em;
 }
