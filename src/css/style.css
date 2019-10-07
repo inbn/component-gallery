@@ -15,6 +15,7 @@
 @import 'tailwindcss/base';
 
 @import 'base/_root';
+@import 'base/_forms';
 @import 'base/_blockquote';
 @import 'base/_hr';
 @import 'base/_code';
