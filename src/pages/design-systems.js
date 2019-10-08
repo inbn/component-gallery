@@ -6,6 +6,8 @@ import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 
+import sortItems from '../utils/sortItems';
+
 const sortingOptions = [
   {
     label: 'Name (A–Z)',
@@ -20,46 +22,18 @@ const sortingOptions = [
     flip: true
   },
   {
-    label: '# of components (asc)',
+    label: '№ of components (asc)',
     key: 'Component_examples_count',
     comparison: 'number',
     flip: false
   },
   {
-    label: '# of components (desc)',
+    label: '№ of components (desc)',
     key: 'Component_examples_count',
     comparison: 'number',
     flip: true
   }
 ];
-
-const sortItems = (items, { key, comparison, flip }) => {
-  const result = items.sort((a, b) => {
-    switch (comparison) {
-      case 'text':
-        const stringA = a.node.data[key].toUpperCase();
-        const stringB = b.node.data[key].toUpperCase();
-        if (stringA < stringB) {
-          return -1;
-        }
-        if (stringA > stringB) {
-          return 1;
-        }
-
-        // strings must be equal
-        return 0;
-      case 'number':
-        return a.node.data[key] - b.node.data[key];
-      default:
-        return true;
-    }
-  });
-  if (flip) {
-    result.reverse();
-  }
-
-  return result;
-};
 
 const DesignSystemsIndexPage = ({ data }) => {
   const [designSystems, setDesignSystems] = useState(data.allAirtable.edges);
@@ -67,13 +41,16 @@ const DesignSystemsIndexPage = ({ data }) => {
   return (
     <Layout heroComponent={<Hero title="Design systems" />}>
       <SEO title="Design systems" />
-      <div className="control-bar border-b px-6 bg-grey-200">
-        <label htmlFor="sortOrder" className="mr-2 text-black font-sans">
-          Order
+      <div className="control-bar border-b py-2 px-6 bg-grey-200">
+        <label
+          htmlFor="sortOrder"
+          className="mr-2 text-grey-800 text-sm font-sans font-bold"
+        >
+          Sort by
         </label>
         <select
           id="sortOrder"
-          className="border-t-0 border-b-0"
+          className=""
           onChange={event => {
             setDesignSystems(
               // .sort() mutates the array - use spread to create a new one
@@ -91,16 +68,14 @@ const DesignSystemsIndexPage = ({ data }) => {
 
       <ul className="grid border-l mt-0">
         {designSystems.map(
-          (
-            {
-              node: {
-                data: { url, name, organisation, image, features, color }
-              }
-            },
-            i
-          ) => {
+          ({
+            node: {
+              data: { url, name, organisation, image, features, color },
+              id
+            }
+          }) => {
             return (
-              <li key={i}>
+              <li key={id}>
                 <DesignSystem
                   name={name}
                   url={url}
@@ -157,6 +132,7 @@ export const query = graphql`
             color: Colour_hex
             Component_examples_count
           }
+          id
         }
       }
     }

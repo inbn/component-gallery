@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 
 import Component from '../components/Component';
@@ -6,35 +6,89 @@ import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 
-const ComponentsIndexPage = ({ data }) => (
-  <Layout heroComponent={<Hero title="Components" />}>
-    <SEO title="Components" />
-    <ul className="grid border-l">
-      {data.allAirtable.edges.map(
-        (
-          {
+import sortItems from '../utils/sortItems';
+
+const sortingOptions = [
+  {
+    label: 'Name (A–Z)',
+    key: 'name',
+    comparison: 'text',
+    flip: false
+  },
+  {
+    label: 'Name (Z-A)',
+    key: 'name',
+    comparison: 'text',
+    flip: true
+  },
+  {
+    label: '№ of examples (asc)',
+    key: 'examplesCount',
+    comparison: 'number',
+    flip: false
+  },
+  {
+    label: '№ of examples (desc)',
+    key: 'examplesCount',
+    comparison: 'number',
+    flip: true
+  }
+];
+
+const ComponentsIndexPage = ({ data }) => {
+  const [components, setComponents] = useState(data.allAirtable.edges);
+  return (
+    <Layout heroComponent={<Hero title="Components" />}>
+      <SEO title="Components" />
+      <div className="control-bar border-b py-2 px-6 bg-grey-200">
+        <label
+          htmlFor="sortOrder"
+          className="mr-2 text-grey-800 text-sm font-sans font-bold"
+        >
+          Sort by
+        </label>
+        <select
+          id="sortOrder"
+          className=""
+          onChange={event => {
+            setComponents(
+              // .sort() mutates the array - use spread to create a new one
+              sortItems([...components], sortingOptions[event.target.value])
+            );
+          }}
+        >
+          {sortingOptions.map((option, i) => (
+            <option value={i} key={i}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div>
+      <ul className="grid border-l mt-0">
+        {components.map(
+          ({
             node: {
-              data: { slug, name, description, otherNames, examplesCount }
+              data: { slug, name, description, otherNames, examplesCount },
+              id
             }
-          },
-          i
-        ) => (
-          <li key={i} className="">
-            <Component
-              slug={slug}
-              name={name}
-              description={
-                description !== null && description.childMarkdownRemark.html
-              }
-              otherNames={otherNames}
-              examplesCount={examplesCount}
-            />
-          </li>
-        )
-      )}
-    </ul>
-  </Layout>
-);
+          }) => (
+            <li key={id} className="">
+              <Component
+                slug={slug}
+                name={name}
+                description={
+                  description !== null && description.childMarkdownRemark.html
+                }
+                otherNames={otherNames}
+                examplesCount={examplesCount}
+              />
+            </li>
+          )
+        )}
+      </ul>
+    </Layout>
+  );
+};
 
 export default ComponentsIndexPage;
 
@@ -59,6 +113,7 @@ export const query = graphql`
             otherNames: Other_names
             examplesCount: Examples_count
           }
+          id
         }
       }
     }
