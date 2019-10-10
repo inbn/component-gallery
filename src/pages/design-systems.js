@@ -11,25 +11,25 @@ import sortItems from '../utils/sortItems';
 const sortingOptions = [
   {
     label: 'Name (A–Z)',
-    key: 'name',
+    path: 'node.data.name',
     comparison: 'text',
     flip: false
   },
   {
     label: 'Name (Z-A)',
-    key: 'name',
+    path: 'node.data.name',
     comparison: 'text',
     flip: true
   },
   {
     label: '№ of components (asc)',
-    key: 'Component_examples_count',
+    path: 'node.data.Component_examples_count',
     comparison: 'number',
     flip: false
   },
   {
     label: '№ of components (desc)',
-    key: 'Component_examples_count',
+    path: 'node.data.Component_examples_count',
     comparison: 'number',
     flip: true
   }

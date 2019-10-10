@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 
 import ComponentExample from '../components/ComponentExample';
@@ -7,7 +7,29 @@ import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import TableOfContents from '../components/TableOfContents';
 
+import sortItems from '../utils/sortItems';
+
+const sortingOptions = [
+  {
+    label: 'Name (A–Z)',
+    path: 'data.Name',
+    comparison: 'text',
+    flip: false
+  },
+  {
+    label: 'Name (Z-A)',
+    path: 'data.Name',
+    comparison: 'text',
+    flip: true
+  }
+];
+
 export default ({ data }) => {
+  // Use the first sorting option as the default
+  const [examples, setExamples] = useState(
+    sortItems([...data.airtable.data.Examples], sortingOptions[0])
+  );
+
   let tocHtml = null;
   let readtime = null;
 
@@ -74,16 +96,43 @@ export default ({ data }) => {
                 {data.airtable.data.Examples_count} example
                 {data.airtable.data.Examples_count !== 1 && 's'}
               </h2>
-              <ul className="grid mt-4 border-t">
-                {data.airtable.data.Examples.map((page, i) => (
+              <div className="control-bar py-2 px-6 bg-grey-200 mt-4 border-t">
+                <label
+                  htmlFor="sortOrder"
+                  className="mr-2 text-grey-800 text-sm font-sans font-bold"
+                >
+                  Sort by
+                </label>
+                <select
+                  id="sortOrder"
+                  className=""
+                  onChange={event => {
+                    setExamples(
+                      // .sort() mutates the array - use spread to create a new one
+                      sortItems(
+                        [...examples],
+                        sortingOptions[event.target.value]
+                      )
+                    );
+                  }}
+                >
+                  {sortingOptions.map((option, i) => (
+                    <option value={i} key={i}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <ul className="grid border-t mt-0">
+                {examples.map((example, i) => (
                   <li key={i}>
                     <ComponentExample
                       key={i}
-                      url={page.data.URL}
-                      componentName={page.data.Name}
-                      designSystem={page.data.Design_system[0].data.Name}
-                      features={page.data.Design_system[0].data.Features}
-                      color={page.data.Design_system[0].data.Colour_hex}
+                      url={example.data.URL}
+                      componentName={example.data.Name}
+                      designSystem={example.data.Design_system[0].data.Name}
+                      features={example.data.Design_system[0].data.Features}
+                      color={example.data.Design_system[0].data.Colour_hex}
                     />
                   </li>
                 ))}

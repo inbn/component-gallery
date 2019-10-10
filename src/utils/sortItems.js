@@ -1,9 +1,15 @@
-const sortItems = (items, { key, comparison, flip }) => {
+const sortItems = (items, { path, comparison, flip }) => {
   const result = items.sort((a, b) => {
+    // Parse the path (string) and use it to access the property that will
+    // be used for comparison
+    // Based on: https://stackoverflow.com/questions/6393943
+    const aData = path.split('.').reduce((o, i) => o[i], a);
+    const bData = path.split('.').reduce((o, i) => o[i], b);
+
     switch (comparison) {
       case 'text':
-        const stringA = a.node.data[key].toUpperCase();
-        const stringB = b.node.data[key].toUpperCase();
+        const stringA = aData.toUpperCase();
+        const stringB = bData.toUpperCase();
         if (stringA < stringB) {
           return -1;
         }
@@ -11,10 +17,10 @@ const sortItems = (items, { key, comparison, flip }) => {
           return 1;
         }
 
-        // strings must be equal
+        // Strings are equal
         return 0;
       case 'number':
-        return a.node.data[key] - b.node.data[key];
+        return aData - bData;
       default:
         return true;
     }
