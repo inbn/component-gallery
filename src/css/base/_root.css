@@ -8,7 +8,7 @@
   @apply text-grey-800;
   @apply font-serif;
   @apply leading-normal;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg'%3e%3cdefs%3e%3cpattern id='a' width='10' height='10' patternUnits='userSpaceOnUse'%3e%3crect width='10' height='10' fill='%23fff' stroke='%23f1f5f8'/%3e%3c/pattern%3e%3c/defs%3e%3crect width='100%25' height='100%25' fill='url(%23a)' stroke='%23000'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg'%3e%3cdefs%3e%3cpattern id='a' width='10' height='10' patternUnits='userSpaceOnUse'%3e%3crect width='10' height='10' fill='%23fff' stroke='%23f1f5f8'/%3e%3c/pattern%3e%3c/defs%3e%3crect width='100%25' height='100%25' fill='url(%23a)'/%3e%3c/svg%3e");
 }
 
 /**
