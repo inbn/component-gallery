@@ -41,7 +41,7 @@ As you can probably see, button markup is very simple, so it’s surprising how 
 <a href="#">I'm a button, click me</a>
 ```
 
-On its own, clicking on this link would simply append a '#' to the current URL. Using jQuery (because these examples almost always use jQuery), an event listener is attached to the element to prevent the default behaviour and trigger an action:
+On its own, clicking on this link would simply append a '#' to the current URL. You could attach an event listener to the element to prevent the default behaviour and trigger an action (this example uses jQuery):
 
 ```javascript
 $('a').click(function(e) {

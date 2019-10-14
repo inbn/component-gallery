@@ -26,7 +26,7 @@ Tabs are an example of an [interface metaphor](https://en.wikipedia.org/wiki/Int
 
 - If you're laying out your tabs horizontally, think about how they will appear at narrower screen widths — will they need to stack vertically or will you be better off swapping out the tabs for a different component (e.g. [an accordion](/components/accordion))?
 
-### HTML
+### Markup
 
 Here is example markup based on the [W3C recommended accessible markup](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel) for tabs. It describes a set of two tabs, with the first one selected:
 

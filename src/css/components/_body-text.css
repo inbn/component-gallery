@@ -5,7 +5,7 @@
 
 .body-text {
   @apply mx-auto;
-  max-width: 72ch;
+  max-width: 76ch;
 
   & ul {
     list-style-type: disc;

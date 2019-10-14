@@ -28,7 +28,7 @@ Separation of breadcrumb items is usually indicated with either: a greater-than 
 
 ## Usage guidelines
 
-### HTML
+### Markup
 
 For a page at the URL, `example.com/parent-page/current-page` the markup could look like this:
 
@@ -46,7 +46,7 @@ For a page at the URL, `example.com/parent-page/current-page` the markup could l
 </nav>
 ```
 
-This snippet uses four simple techniques to make this markup both more [semantic](https://developer.mozilla.org/en-US/docs/Glossary/Semantics#Semantics_in_HTML) _and_ more [accessible](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML):
+Notes:
 
 - As breadcrumbs are a type of **navigation** you should put them in a `<nav>` element.
 - The order of the items in a breadcrumb list is important: use an **ordered** list (`<ol>`) with an `<li>` for each breadcrumb item.

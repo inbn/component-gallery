@@ -13,7 +13,7 @@ The most basic pagination controls are simple 'next' and 'previous' buttons.
 
 ## Usage guidelines
 
-### HTML
+### Markup
 
 - As pagination is a form of **navigation** you should put them in a `<nav>` element.
 - Add a meaningful label such as `aria-label="Pagination"` to the `<nav>` element to differentiate it from other navigation landmarks.
