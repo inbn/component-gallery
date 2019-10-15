@@ -2,6 +2,8 @@ import React from 'react';
 import Img from 'gatsby-image';
 import PropTypes from 'prop-types';
 
+import Badge from './Badge';
+
 const DesignSystem = ({
   url,
   name,
@@ -34,9 +36,7 @@ const DesignSystem = ({
         <div className="mt-auto">
           <ul className="-mr-2 pt-6 flex flex-wrap">
             {features.map(feature => (
-              <li key={feature} className="badge">
-                {feature}
-              </li>
+              <Badge text={feature} displayIcon />
             ))}
           </ul>
         </div>

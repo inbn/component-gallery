@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Badge from './Badge';
+
 const ComponentExample = ({
   url,
   componentName,
@@ -23,9 +25,7 @@ const ComponentExample = ({
       <div className="mt-auto">
         <ul className="-mr-2 -mb-2 pt-4 pb-1 flex flex-wrap">
           {features.map(feature => (
-            <li key={feature} className="badge">
-              {feature}
-            </li>
+            <Badge text={feature} displayIcon />
           ))}
         </ul>
       </div>

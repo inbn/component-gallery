@@ -4,7 +4,14 @@
 \*====================================*/
 
 .badge {
-  @apply font-sans text-xs text-grey-700 border rounded mr-1 mb-1 bg-white;
+  @apply font-sans text-xs text-grey-800 border border-grey-800 rounded mr-1 mb-1 bg-white;
   display: inline-block;
   padding: 0.125em 0.4em;
+}
+
+.badge__icon {
+  @apply mr-1 text-sm;
+
+  display: inline;
+  vertical-align: text-top;
 }
