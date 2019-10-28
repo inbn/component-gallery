@@ -104,3 +104,45 @@ code[class*="language-"] {
 [class*="language-"] .token.deleted {
 	color: red;
 }
+
+/**
+ * Language tabs
+ * Based on: https://www.lekoarts.de/en/blog/language-tabs-for-gatsbys-code-blocks
+ */
+
+.gatsby-highlight {
+  @apply my-8;
+
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+}
+
+.gatsby-highlight pre[class*="language-"] {
+  -webkit-overflow-scrolling: touch;
+}
+
+.gatsby-highlight pre[class*="language-"]::before {
+  @apply border-t border-r border-l border-black font-sans text-xs text-black;
+  box-shadow: 0.375em 0.125em 0 -0.125em theme('colors.grey.800');
+  padding: 0.1rem 0.5rem;
+  position: absolute;
+  bottom: 100%;
+  right: 0.5rem;
+  text-transform: uppercase;
+}
+
+.gatsby-highlight pre[class="language-javascript"]::before,
+.gatsby-highlight pre[class="language-js"]::before {
+  content: "js";
+  @apply bg-green-500;
+}
+
+.gatsby-highlight pre[class="language-html"]::before {
+  content: "html";
+  @apply bg-red-500;
+}
+
+.gatsby-highlight pre[class="language-css"]::before {
+  content: "css";
+  @apply bg-gold-500;
+}
