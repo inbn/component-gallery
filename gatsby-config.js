@@ -2,6 +2,7 @@ require(`dotenv`).config({ path: `.env.${process.env.NODE_ENV}` });
 
 module.exports = {
   siteMetadata: {
+    siteUrl: `https://component.gallery`,
     title: `The Component Gallery`,
     description: `The Component Gallery is a collection of components from the best Design Systems.`,
     author: `@gatsbyjs`,
@@ -216,6 +217,7 @@ module.exports = {
 
         filename: 'search_index.json'
       }
-    }
+    },
+    `gatsby-plugin-sitemap`
   ]
 };
