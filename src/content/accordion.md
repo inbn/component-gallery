@@ -25,8 +25,7 @@ Here is example markup for a single accordion item:
     Accordion item 1
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="256"
-      height="256"
+      viewBox="0 0 256 256"
       aria-hidden="true"
       focusable="false"
     >
@@ -79,7 +78,7 @@ The [second example](#approach-2-summary-and-details) works without JavaScript i
 You can use the `aria-expanded` attribute as a hook for styling the button. The following example will rotate the arrow 180 degrees:
 
 ```css
-button[aria-expanded='true'] + svg {
+button[aria-expanded='true'] > svg {
   transform: rotate(180);
 }
 ```
