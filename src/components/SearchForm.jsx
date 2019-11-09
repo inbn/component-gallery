@@ -106,21 +106,22 @@ const SearchForm = () => {
           }
         }
         break;
-      // Escape clear input, reset selectedItemIndex
-      case 'Esc':
+
+      // Close the results and reset selectedItemIndex
+      case 'Escape':
         setOpen(false);
-        setResults([]);
         setSelectedItemIndex(-1);
         break;
 
       case 'Tab':
         setOpen(false);
         break;
+
       default:
     }
   };
 
-  useKey(['ArrowUp', 'ArrowDown', 'Enter', 'Esc', 'Tab'], keyPressed);
+  useKey(['ArrowUp', 'ArrowDown', 'Enter', 'Escape', 'Tab'], keyPressed);
 
   return (
     <div ref={node} className="site-search">
@@ -144,7 +145,7 @@ const SearchForm = () => {
         aria-haspopup="listbox"
       >
         <input
-          type="search"
+          type="text"
           id="search-input"
           className="site-search__input"
           placeholder="Search components and design systems"
@@ -158,44 +159,44 @@ const SearchForm = () => {
           value={searchQuery}
         />
       </div>
-      {open && !!results.length && (
-        <ol
-          id="search-results-listbox"
-          className="site-search__results-list"
-          role="listbox"
-        >
-          {results.map(({ table, name, url, otherNames }, i) => (
-            <li
-              key={name}
-              id={`result-item-${i}`}
-              role="option"
-              aria-selected={i === selectedItemIndex}
-              ref={i === selectedItemIndex ? selectedItemRef : null}
-              className="site-search__result"
-              onClick={() => {
-                if (table === 'Components') {
-                  navigate(url);
-                } else {
-                  window.location.href = url;
-                }
-              }}
-              onMouseOver={() => setSelectedItemIndex(i)}
-            >
-              {table && (
-                <p className="font-sans mb-2 uppercase text-black font-bold text-xs block">
-                  {table === 'Components' ? 'Component' : 'Design System'}
-                </p>
-              )}
-              <h3 className="mt-0 leading-tight">{name}</h3>
-              {otherNames && (
-                <p className="italic leading-tight mt-4 text-grey-700">
-                  Other names: {otherNames}
-                </p>
-              )}
-            </li>
-          ))}
-        </ol>
-      )}
+
+      <ol
+        id="search-results-listbox"
+        className="site-search__results-list"
+        role="listbox"
+        hidden={!open || !results.length}
+      >
+        {results.map(({ table, name, url, otherNames }, i) => (
+          <li
+            key={name}
+            id={`result-item-${i}`}
+            role="option"
+            aria-selected={i === selectedItemIndex}
+            ref={i === selectedItemIndex ? selectedItemRef : null}
+            className="site-search__result"
+            onClick={() => {
+              if (table === 'Components') {
+                navigate(url);
+              } else {
+                window.location.href = url;
+              }
+            }}
+            onMouseOver={() => setSelectedItemIndex(i)}
+          >
+            {table && (
+              <p className="font-sans mb-2 uppercase text-black font-bold text-xs block">
+                {table === 'Components' ? 'Component' : 'Design System'}
+              </p>
+            )}
+            <h3 className="mt-0 leading-tight">{name}</h3>
+            {otherNames && (
+              <p className="italic leading-tight mt-4 text-grey-700">
+                Other names: {otherNames}
+              </p>
+            )}
+          </li>
+        ))}
+      </ol>
     </div>
   );
 };
