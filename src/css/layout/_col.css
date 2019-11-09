@@ -13,7 +13,8 @@
   flex-wrap: wrap;
 }
 
-.col {}
+.col {
+}
 
 .col--main {
   /* main column should never be less than 3/5 wide */

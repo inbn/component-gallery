@@ -6,5 +6,6 @@
 .shadow-block-grey-800 {
   /* color is an 8 charcter hex (rrggbbaa) with the last 2 digits representing
   an alpha value between 0 and 100% — see https://codepen.io/chriscoyier/pen/XjbzAW */
+  /* prettier-ignore */
   box-shadow: 0.25em 0.25em theme('colors.grey.800')bf;
 }

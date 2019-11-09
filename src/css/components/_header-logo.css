@@ -8,11 +8,13 @@
 
   letter-spacing: -0.02em;
   font-style: italic;
-  transition: background-color 200ms, border-color 200ms, box-shadow 200ms, color 200ms, transform 200ms;
+  transition: background-color 200ms, border-color 200ms, box-shadow 200ms,
+    color 200ms, transform 200ms;
 
   &:hover {
     @apply text-grey-800 border-2 border-black bg-white;
     transform: translate(-4px, -4px);
+    /* prettier-ignore */
     box-shadow: 4px 4px theme('colors.grey.800')bf;
   }
 }

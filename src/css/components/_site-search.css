@@ -31,7 +31,7 @@
 
   cursor: pointer;
 
-  &[aria-selected="true"] {
+  &[aria-selected='true'] {
     @apply bg-grey-200;
   }
 }
