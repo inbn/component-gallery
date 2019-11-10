@@ -6,7 +6,7 @@ import Header from './Header';
 import Footer from './Footer';
 import '../css/style.css';
 
-const Layout = ({ children, heroComponent }) => (
+const Layout = ({ children, heroComponent, isHomepage }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -26,6 +26,7 @@ const Layout = ({ children, heroComponent }) => (
         <Header
           siteTitle={data.site.siteMetadata.title}
           menuLinks={data.site.siteMetadata.menuLinks}
+          isHomepage={isHomepage}
         />
         {!!heroComponent && heroComponent}
         <div className="bg-white border-t flex-grow">
@@ -41,11 +42,11 @@ const Layout = ({ children, heroComponent }) => (
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-  title: PropTypes.string
+  isHomepage: PropTypes.bool
 };
 
 Layout.defaultProps = {
-  title: null
+  isHomepage: false
 };
 
 export default Layout;

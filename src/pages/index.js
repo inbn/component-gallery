@@ -26,6 +26,7 @@ const IndexPage = ({ data }) => (
         </div>
       </>
     }
+    isHomepage
   >
     <SEO title="Home" />
     <h2 className="px-6 py-4 border-l">Recently updated components</h2>
