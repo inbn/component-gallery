@@ -32,7 +32,7 @@ const Footer = () => (
       </defs>
     </svg>
     <p className="mt-0 pl-6">
-      <Link to="colophon" className="link">
+      <Link to="/colophon" className="link">
         Colophon
       </Link>
     </p>

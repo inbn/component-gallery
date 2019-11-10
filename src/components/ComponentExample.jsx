@@ -25,7 +25,7 @@ const ComponentExample = ({
       <div className="mt-auto">
         <ul className="-mr-2 -mb-2 pt-4 pb-1 flex flex-wrap">
           {features.map(feature => (
-            <Badge text={feature} displayIcon />
+            <Badge key={feature} text={feature} displayIcon />
           ))}
         </ul>
       </div>

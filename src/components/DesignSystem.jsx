@@ -24,7 +24,6 @@ const DesignSystem = ({
       className="card p-6 block h-full flex flex-col"
       style={{ '--hover-shadow-color': color }}
     >
-      {/* <img src={image.length && image[0].url} alt="" className="block" /> */}
       {image && <Img fluid={image.childImageSharp.fluid} className="border" />}
       <HeadingTag className="h3 mt-0 pt-6 pb-1 font-bold">{name}</HeadingTag>
       {organisation && (
@@ -36,7 +35,7 @@ const DesignSystem = ({
         <div className="mt-auto">
           <ul className="-mr-2 pt-6 flex flex-wrap">
             {features.map(feature => (
-              <Badge text={feature} displayIcon />
+              <Badge key={feature} text={feature} displayIcon />
             ))}
           </ul>
         </div>
