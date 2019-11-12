@@ -13,6 +13,7 @@
     "gatsby-plugin-catch-links": "^2.0.13",
     "gatsby-plugin-google-analytics": "^2.0.19",
     "gatsby-plugin-manifest": "^2.0.17",
+    "gatsby-plugin-netlify-cache": "^1.2.0",
     "gatsby-plugin-offline": "^3.0.11",
     "gatsby-plugin-postcss": "^2.0.5",
     "gatsby-plugin-purgecss": "^3.1.0",

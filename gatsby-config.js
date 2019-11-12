@@ -218,6 +218,7 @@ module.exports = {
         filename: 'search_index.json'
       }
     },
-    `gatsby-plugin-sitemap`
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-netlify-cache`
   ]
 };
