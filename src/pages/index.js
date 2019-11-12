@@ -32,26 +32,23 @@ const IndexPage = ({ data }) => (
     <h2 className="px-6 py-4 border-l">Recently updated components</h2>
     <ul className="grid border-t border-l mt-0">
       {data.recentComponents.edges.map(
-        (
-          {
-            node: {
-              data: { slug, name, description, otherNames, examplesCount }
+        ({
+          node: {
+            data: { slug, name, description, otherNames, examplesCount },
+            id
+          }
+        }) => (
+          <Component
+            key={id}
+            slug={slug}
+            name={name}
+            description={
+              description !== null && description.childMarkdownRemark.html
             }
-          },
-          i
-        ) => (
-          <li key={i}>
-            <Component
-              slug={slug}
-              name={name}
-              description={
-                description !== null && description.childMarkdownRemark.html
-              }
-              otherNames={otherNames}
-              examplesCount={examplesCount}
-              headingLevel="h3"
-            />
-          </li>
+            otherNames={otherNames}
+            examplesCount={examplesCount}
+            headingLevel="h3"
+          />
         )
       )}
     </ul>

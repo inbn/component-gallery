@@ -72,17 +72,16 @@ const ComponentsIndexPage = ({ data }) => {
               id
             }
           }) => (
-            <li key={id} className="">
-              <Component
-                slug={slug}
-                name={name}
-                description={
-                  description !== null && description.childMarkdownRemark.html
-                }
-                otherNames={otherNames}
-                examplesCount={examplesCount}
-              />
-            </li>
+            <Component
+              key={id}
+              slug={slug}
+              name={name}
+              description={
+                description !== null && description.childMarkdownRemark.html
+              }
+              otherNames={otherNames}
+              examplesCount={examplesCount}
+            />
           )
         )}
       </ul>

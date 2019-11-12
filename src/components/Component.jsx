@@ -8,36 +8,43 @@ const Component = ({
   otherNames,
   description,
   examplesCount,
+  cardTag,
   headingLevel
 }) => {
-  // Heading level needs to be dynamic
+  // The element type used for these elements are dynamic
+  const CardTag = cardTag;
   const HeadingTag = headingLevel;
 
   return (
-    <Link to={`/components/${slug}`} className="card h-full block w-full p-6">
-      <div className="flex justify-between items-center">
-        <HeadingTag className="h3">{name}</HeadingTag>
-        <p className="font-sans text-grey-700 mt-0 ml-2">
-          <strong className="font-medium">{examplesCount}</strong>&nbsp;
-          <span className="text-xs">
-            example{parseInt(examplesCount, 10) !== 1 && 's'}
-          </span>
-        </p>
-      </div>
-      {otherNames && (
-        <p className="italic leading-tight mt-4 text-grey-700">
-          Other names: {otherNames}
-        </p>
-      )}
-      {description && (
-        <div
-          dangerouslySetInnerHTML={{
-            __html: description
-          }}
-          className="body-text leading-tight font-small mt-4"
-        />
-      )}
-    </Link>
+    <CardTag className="card">
+      <Link
+        to={`/components/${slug}`}
+        className="card__inner h-full block w-full p-6"
+      >
+        <div className="flex justify-between items-center">
+          <HeadingTag className="h3">{name}</HeadingTag>
+          <p className="font-sans text-grey-700 mt-0 ml-2">
+            <strong className="font-medium">{examplesCount}</strong>&nbsp;
+            <span className="text-xs">
+              example{parseInt(examplesCount, 10) !== 1 && 's'}
+            </span>
+          </p>
+        </div>
+        {otherNames && (
+          <p className="italic leading-tight mt-4 text-grey-700">
+            Other names: {otherNames}
+          </p>
+        )}
+        {description && (
+          <div
+            dangerouslySetInnerHTML={{
+              __html: description
+            }}
+            className="body-text leading-tight font-small mt-4"
+          />
+        )}
+      </Link>
+    </CardTag>
   );
 };
 
@@ -47,6 +54,7 @@ Component.propTypes = {
   otherNames: PropTypes.string,
   description: PropTypes.string,
   examplesCount: PropTypes.number,
+  cardTag: PropTypes.string,
   headingLevel: PropTypes.string
 };
 
@@ -54,6 +62,7 @@ Component.defaultProps = {
   otherNames: '',
   description: '',
   examplesCount: 0,
+  cardTag: 'li',
   headingLevel: 'h2'
 };
 

@@ -75,18 +75,15 @@ const DesignSystemsIndexPage = ({ data }) => {
             }
           }) => {
             return (
-              <li key={id}>
-                <DesignSystem
-                  name={name}
-                  url={url}
-                  organisation={organisation}
-                  image={
-                    image.localFiles.length > 0 ? image.localFiles[0] : null
-                  }
-                  features={features}
-                  color={color}
-                />
-              </li>
+              <DesignSystem
+                key={id}
+                name={name}
+                url={url}
+                organisation={organisation}
+                image={image.localFiles.length > 0 ? image.localFiles[0] : null}
+                features={features}
+                color={color}
+              />
             );
           }
         )}

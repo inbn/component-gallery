@@ -4,13 +4,17 @@
 \*====================================*/
 
 .card {
-  --hover-shadow-color: theme('colors.black');
+  --background-color: theme('colors.black');
+
+  background-color: var(--background-color);
+}
+
+.card__inner {
   --transition-duration: 200ms;
 
   @apply bg-white text-grey-800 text-sm border-r border-b;
   transition: background-color var(--transition-duration),
-    border-color var(--transition-duration),
-    box-shadow var(--transition-duration), color var(--transition-duration),
+    border-color var(--transition-duration), color var(--transition-duration),
     transform var(--transition-duration);
   border-top: 1px solid transparent;
   border-left: 1px solid transparent;
@@ -19,6 +23,5 @@
     @apply bg-grey-100;
     border-color: theme('colors.black');
     transform: translate(-4px, -4px);
-    box-shadow: 4px 4px 0 0 var(--hover-shadow-color);
   }
 }

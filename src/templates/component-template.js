@@ -125,16 +125,14 @@ export default ({ data }) => {
               </div>
               <ul className="grid border-t mt-0">
                 {examples.map((example, i) => (
-                  <li key={i}>
-                    <ComponentExample
-                      key={i}
-                      url={example.data.URL}
-                      componentName={example.data.Name}
-                      designSystem={example.data.Design_system[0].data.Name}
-                      features={example.data.Design_system[0].data.Features}
-                      color={example.data.Design_system[0].data.Colour_hex}
-                    />
-                  </li>
+                  <ComponentExample
+                    key={i}
+                    url={example.data.URL}
+                    componentName={example.data.Name}
+                    designSystem={example.data.Design_system[0].data.Name}
+                    features={example.data.Design_system[0].data.Features}
+                    color={example.data.Design_system[0].data.Colour_hex}
+                  />
                 ))}
               </ul>
             </>
