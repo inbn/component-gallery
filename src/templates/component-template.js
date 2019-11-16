@@ -139,7 +139,6 @@ export default ({ data }) => {
           )}
           {data.markdown !== null && (
             <div
-              id="description"
               dangerouslySetInnerHTML={{
                 __html: data.markdown.html
               }}
