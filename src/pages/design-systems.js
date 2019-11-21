@@ -39,7 +39,7 @@ const DesignSystemsIndexPage = ({ data }) => {
   const [designSystems, setDesignSystems] = useState(data.allAirtable.edges);
 
   return (
-    <Layout heroComponent={<Hero title="Design systems" />}>
+    <Layout heroComponent={<Hero title="Design systems" />} isArticle={false}>
       <SEO title="Design systems" />
       <div className="control-bar border-b py-2 px-6 bg-grey-200">
         <label

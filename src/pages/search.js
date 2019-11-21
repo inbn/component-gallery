@@ -7,7 +7,11 @@ import SEO from '../components/SEO';
 
 const Search = () => {
   return (
-    <Layout title="Search" heroComponent={<Hero title="Search" />}>
+    <Layout
+      title="Search"
+      heroComponent={<Hero title="Search" />}
+      isArticle={false}
+    >
       <SEO title="Search" />
       <div className="col-wrap">
         {/* Main content */}

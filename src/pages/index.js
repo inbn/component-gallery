@@ -27,6 +27,7 @@ const IndexPage = ({ data }) => (
       </>
     }
     isHomepage
+    isArticle={false}
   >
     <SEO title="Home" />
     <h2 className="px-6 py-4 border-l">Recently updated components</h2>
@@ -79,7 +80,7 @@ export const query = graphql`
         data: { Publish: { eq: true }, Date_updated: { ne: null } }
       }
       sort: { fields: [data___Date_updated], order: DESC }
-      limit: 6
+      limit: 8
     ) {
       edges {
         node {

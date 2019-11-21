@@ -38,7 +38,7 @@ const sortingOptions = [
 const ComponentsIndexPage = ({ data }) => {
   const [components, setComponents] = useState(data.allAirtable.edges);
   return (
-    <Layout heroComponent={<Hero title="Components" />}>
+    <Layout heroComponent={<Hero title="Components" />} isArticle={false}>
       <SEO title="Components" />
       <div className="control-bar border-b py-2 px-6 bg-grey-200">
         <label

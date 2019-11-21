@@ -7,7 +7,7 @@ import SearchForm from '../components/SearchForm';
 import SEO from '../components/SEO';
 
 const NotFoundPage = () => (
-  <Layout heroComponent={<Hero title="404" />}>
+  <Layout heroComponent={<Hero title="404" />} isArticle={false}>
     <SEO title="404: Not found" />
     <div className="col-wrap">
       {/* Main content */}

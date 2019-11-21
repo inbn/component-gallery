@@ -6,7 +6,7 @@ import Header from './Header';
 import Footer from './Footer';
 import '../css/style.css';
 
-const Layout = ({ children, heroComponent, isHomepage }) => {
+const Layout = ({ children, heroComponent, isHomepage, isArticle }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -21,6 +21,7 @@ const Layout = ({ children, heroComponent, isHomepage }) => {
     }
   `);
 
+  const WrapElement = isArticle ? 'article' : 'div';
   return (
     <div className="flex flex-col min-h-screen">
       <Header
@@ -28,24 +29,24 @@ const Layout = ({ children, heroComponent, isHomepage }) => {
         menuLinks={data.site.siteMetadata.menuLinks}
         isHomepage={isHomepage}
       />
-      {!!heroComponent && heroComponent}
-      <div className="bg-white border-t flex-grow">
-        <div className="">
-          <main>{children}</main>
-        </div>
-        <Footer />
-      </div>
+      <WrapElement>
+        {!!heroComponent && heroComponent}
+        <main className="bg-white border-t flex-grow">{children}</main>
+      </WrapElement>
+      <Footer />
     </div>
   );
 };
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-  isHomepage: PropTypes.bool
+  isHomepage: PropTypes.bool,
+  isArticle: PropTypes.bool
 };
 
 Layout.defaultProps = {
-  isHomepage: false
+  isHomepage: false,
+  isArticle: true
 };
 
 export default Layout;
