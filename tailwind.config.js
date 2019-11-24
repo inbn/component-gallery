@@ -97,7 +97,7 @@ module.exports = {
         '"Segoe UI Symbol"',
         '"Noto Color Emoji"'
       ],
-      serif: ['Palatino', 'Georgia', 'serif'],
+      serif: ['Palatino', '"Palatino Linotype"', 'Georgia', 'serif'],
       mono: [
         'SFMono-Regular',
         'Menlo',
