@@ -11,6 +11,18 @@ import sortItems from '../utils/sortItems';
 
 const sortingOptions = [
   {
+    label: 'Design system (A-Z)',
+    path: 'data.Design_system[0].data.Name',
+    comparison: 'text',
+    flip: false
+  },
+  {
+    label: 'Design system (Z-A)',
+    path: 'data.Design_system[0].data.Name',
+    comparison: 'text',
+    flip: true
+  },
+  {
     label: 'Name (A–Z)',
     path: 'data.Name',
     comparison: 'text',
@@ -124,14 +136,17 @@ export default ({ data }) => {
                 </select>
               </div>
               <ul className="grid border-t mt-0">
-                {examples.map((example, i) => (
+                {examples.map(({ data: { URL, Name, Design_system } }, i) => (
                   <ComponentExample
                     key={i}
-                    url={example.data.URL}
-                    componentName={example.data.Name}
-                    designSystem={example.data.Design_system[0].data.Name}
-                    features={example.data.Design_system[0].data.Features}
-                    color={example.data.Design_system[0].data.Colour_hex}
+                    url={URL}
+                    componentName={Name}
+                    designSystemName={Design_system[0].data.Name}
+                    designSystemOrganisation={
+                      Design_system[0].data.Organisation
+                    }
+                    features={Design_system[0].data.Features}
+                    color={Design_system[0].data.Colour_hex}
                   />
                 ))}
               </ul>

@@ -37,7 +37,7 @@ const DesignSystem = ({
         )}
         {features && features.length > 0 && (
           <div className="mt-auto">
-            <ul className="-mr-2 pt-6 flex flex-wrap">
+            <ul className="-mr-2 -ml-1 pt-6 flex flex-wrap">
               {features.map(feature => (
                 <Badge key={feature} text={feature} displayIcon />
               ))}

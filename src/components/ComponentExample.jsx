@@ -6,7 +6,8 @@ import Badge from './Badge';
 const ComponentExample = ({
   url,
   componentName,
-  designSystem,
+  designSystemName,
+  designSystemOrganisation,
   features,
   color,
   cardTag,
@@ -24,19 +25,24 @@ const ComponentExample = ({
         rel="noopener noreferrer"
         className="card__inner h-full flex flex-col w-full p-6"
       >
-        <HeadingTag className="h4">{componentName}</HeadingTag>
-        <p className="italic leading-tight text-sm mt-2 text-grey-700">
-          {designSystem}
-        </p>
-        {features && features.length > 0 && (
-          <div className="mt-auto">
-            <ul className="-mr-2 -mb-2 pt-4 pb-1 flex flex-wrap">
+        <HeadingTag className="h5 mt-0 pb-1 font-bold">
+          {designSystemName}
+        </HeadingTag>
+        {designSystemOrganisation && (
+          <p className="italic leading-tight mt-0 pb-2 text-grey-700">
+            {designSystemOrganisation}
+          </p>
+        )}
+        <div className="mt-auto pt-6">
+          <p className="h3 text-grey-800">{componentName}</p>
+          {features && features.length > 0 && (
+            <ul className="-mr-2 -mb-2 -ml-1 pb-1 flex flex-wrap">
               {features.map(feature => (
                 <Badge key={feature} text={feature} displayIcon />
               ))}
             </ul>
-          </div>
-        )}
+          )}
+        </div>
       </a>
     </CardTag>
   );
@@ -45,7 +51,8 @@ const ComponentExample = ({
 ComponentExample.propTypes = {
   url: PropTypes.string,
   componentName: PropTypes.string,
-  designSystem: PropTypes.string,
+  designSystemName: PropTypes.string,
+  designSystemOrganisation: PropTypes.string,
   features: PropTypes.array,
   color: PropTypes.string,
   cardTag: PropTypes.string,
@@ -55,7 +62,8 @@ ComponentExample.propTypes = {
 ComponentExample.defaultProps = {
   url: '',
   componentName: '',
-  designSystem: '',
+  designSystemName: '',
+  designSystemOrganisation: '',
   features: [],
   color: '#fff',
   cardTag: 'li',

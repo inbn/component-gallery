@@ -1,10 +1,12 @@
+import get from 'lodash/get';
+
 const sortItems = (items, { path, comparison, flip }) => {
   const result = items.sort((a, b) => {
     // Parse the path (string) and use it to access the property that will
     // be used for comparison
     // Based on: https://stackoverflow.com/questions/6393943
-    const aData = path.split('.').reduce((o, i) => o[i], a);
-    const bData = path.split('.').reduce((o, i) => o[i], b);
+    const aData = get(a, path);
+    const bData = get(b, path);
 
     switch (comparison) {
       case 'text':
