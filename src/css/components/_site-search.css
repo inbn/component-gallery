@@ -11,11 +11,6 @@
 .site-search__input {
   @apply font-sans italic p-2 leading-none w-full border-4 border-grey-800;
 
-  &:focus {
-    outline: 0;
-    box-shadow: 0.25em 0.25em 0 0 theme('colors.gold.500');
-  }
-
   &::placeholder {
     @apply text-grey-600;
     opacity: 1;

@@ -4,7 +4,7 @@
 \*====================================*/
 
 .header-logo {
-  @apply table text-3xl text-black font-sans lowercase leading-none py-1 px-2 border-2 border-transparent shadow-none;
+  @apply table text-3xl text-black font-sans lowercase leading-none py-1 px-2 border-2 border-transparent;
 
   letter-spacing: -0.02em;
   font-style: italic;
