@@ -65,7 +65,7 @@ To set the initial state of the accordion item to be 'expanded', you can add the
 
 **Browser support warning:** The `details` and `summary` elements are not supported by Edge, Internet Explorer, or Opera Mini at the time of writing.[^1]
 
-## JavaScript
+### Interactivity
 
 The [first example](#approach-1-heading-with-button), requires a small amount of JavaScript to toggle the `aria-expanded` attribute on the button and the visibility of the content.
 
@@ -73,7 +73,7 @@ In case JavaScript is not enabled, or errors for some reason, it is desirable fo
 
 The [second example](#approach-2-summary-and-details) works without JavaScript in browsers that support the `details` element.
 
-## CSS
+## Styling
 
 You can use the `aria-expanded` attribute as a hook for styling the button. The following example will rotate the arrow 180 degrees:
 

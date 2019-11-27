@@ -11,15 +11,13 @@ It's important to make a distinction here: when people talk about buttons in reg
 
 1. A `<button>` element which, depending on its type attribute (`submit`, `reset` or `button`), triggers some kind of action: submitting a form, clearing a form, or triggering a JavaScript function.
 2. An `<input>` element with one of the three types: `submit`, `reset` or `button`. These are functionally almost identical to a `<button>` element with the same type attribute.
-3. Any other interactive HTML element that looks like a button, but isn’t a `<button>` element. This category includes ‘call-to-action’ links designed to look like buttons, or any other ‘pretend’ buttons.
+3. Any other interactive HTML element that looks like a button, but isn’t a `<button>` element. This category includes ‘call-to-action’ links designed to look like buttons.
 
-In most cases, it’s preferable to use a `<button>` instead of the corresponding `<input>`: With a `<button>` the label text goes between opening and closing tags allowing you to include other HTML elements inside the label; with `<input>` you're restricted to using the `value` attribute which only supports strings.
+In most cases, it’s preferable to use a `<button>` instead of the corresponding `<input>`: With a `<button>` the label text goes between opening and closing tags, allowing you to include other HTML elements inside the label; with `<input>` you’re restricted to using the `value` attribute which only has support for text strings.
 
 If you're interested in the third category, you’re probably either looking for the page on [links](/components/link); or you’re using the wrong element for your buttons (and you should read on to learn why).
 
-## Usage guidelines
-
-### Semantic HTML
+## Markup
 
 Here is an example button:
 
@@ -31,11 +29,11 @@ The most important thing to note is the `type` attribute; this can be one of the
 
 - `submit`: The button submits the form data to the server.
 - `reset`: The button resets all the controls to their initial values.
-- `button`: The button has no default behaviour and does nothing when pressed. Needs JavaScript event listeners attached to it, to do anything.
+- `button`: The button has no default behaviour and does nothing when pressed; needs a JavaScript event listener attached to it to do anything.
 
-Buttons of type `submit` and `reset` will do nothing if not placed within a form. If there is no type specified, or the type is invalid, the button is treated as if it had `type="submit"`.
+Buttons of type `submit` and `reset` will do nothing if not placed within a form. If there is no type attribute specified, or the type is invalid, the button is treated as if it had `type="submit"`.
 
-As you can probably see, button markup is very simple, so it’s surprising how often mistakes are made. Look at this commonly used (anti)pattern:
+As you can probably see, there’s not much markup required here at all, so it’s surprising how often mistakes are made. Here is one commonly used (anti)pattern:
 
 ```html
 <a href="#">I'm a button, click me</a>
@@ -51,14 +49,16 @@ $('a').click(function(e) {
 });
 ```
 
-While this technically achieves its purpose (and is the top answer to this [stack overflow question](https://stackoverflow.com/questions/1070760/javascript-function-in-href-vs-onclick) viewed 1.3million times) it's still a hack. Users expect certain behaviours from links (e.g. middle click to open in new tab) and others from a button (e.g. 'click' with the space key). If those expectations are not met, users may get confused or frustrated.
+While this technically achieves its purpose (and is the top answer to this [stack overflow question](https://stackoverflow.com/questions/1070760/javascript-function-in-href-vs-onclick) viewed 1.3million times) it's still a hack. Users expect certain behaviours from links (e.g. middle click to open in new tab) and others from a button (e.g. 'click' with the space key). When those expectations are not met, this can lead to confusion and frustration.
 
-A far worse thing to do would be to use a non-focusable element such as a `<span>`, `<div>` or an `<a>` with an empty or missing `href` attribute. These will not appear in the tab order and are therefore inaccessible to those users who navigate solely using a keyboard.
+A far worse thing to do would be to use a non-focusable element such as a `<span>`, `<div>` or an `<a>` with a missing `href` attribute. These will not appear in the tab order and are therefore inaccessible to those users who navigate solely using a keyboard.
 
 ```html
-<!-- None of these “buttons” are buttons to assisstive technologies -->
+<!-- Neither of these “buttons” are buttons to assistive technologies -->
 <div class="action-button">I'm a button, click me</div>
 <span class="action-button">I'm a button, click me</span>
+
+<!-- A button with no href is not focusable -->
 <a class="action-button">I'm a button, click me</a>
 ```
 
@@ -70,7 +70,7 @@ In Summary:
 - Give your buttons a `type` attribute
 - Make buttons look like buttons (and links look like links)
 
-### Appearance
+## Styling
 
 As well as actually using the correct element, it's important to make it look and behave like the correct element. As already mentioned, users have certain expectations around how to interact with an element based on its appearance (known as [affordances](https://www.interaction-design.org/literature/topics/affordances)). The bare minimum requirements for a button are “some text in a rectangle”, but there are other techniques to make buttons more obvious to users:
 
@@ -80,13 +80,13 @@ As well as actually using the correct element, it's important to make it look an
 - Unless it appears inside a [button group](/components/button-group) with other options, use whitespace around the button to distance it from other content.
 - Make the button big enough so users of touch devices can comfortably use it (a minimum of 10mm in both dimensions)
 
-If it fits within the design of your website, there are more techniques you can use to improve the affordance of your buttons:
+If it fits within the design of your website, there are some other ideas for how you can improve the [affordance](https://www.interaction-design.org/literature/topics/affordances) of your buttons:
 
 - Give it rounded corners
 - Use subtle box-shadows to raise the button above the rest of the page
 - Add a gradient background to give it a 3D appearance
 
-### Labelling
+## Usage guidelines
 
 Communicate the purpose of a button clearly and concisely using a text label, an icon, or both. Instead of using generic labels like ‘OK’ or ‘Cancel’, think about what action clicking the button will trigger — if it deletes something, use ‘Delete’; if it places an order, use ‘Place order’.
 

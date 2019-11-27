@@ -13,7 +13,7 @@ Quotes come in three main flavours:
 2. **Block quotes** are quotations from an outside source. They are usually included within the text column but in their own 'block', often with a distinct style, to differentiate them from regular text. As these are quotations from an outside source, they will often include a citation.
 3. **Pull quotes** ‘pull’ a passage of text out of the main text column and give it a distinct look; often to add visual interest or to make an important point visible at a glance. Pull quotes tend to appear much larger than the body text for added impact.
 
-## HTML Markup
+## Markup
 
 ### Inline quotes
 
@@ -64,7 +64,7 @@ You can optionally use the `cite` attribute to specify the **URL** to the source
 </blockquote>
 ```
 
-## CSS
+## Styling
 
 Quotes tend to come with some default browser styling.
 

@@ -26,9 +26,7 @@ The most common place for a breadcrumbs component to appear is before the main c
 
 Separation of breadcrumb items is usually indicated with either: a greater-than symbol (`>`), a forward slash (`/`), or a similar-looking icon.
 
-## Usage guidelines
-
-### Markup
+## Markup
 
 For a page at the URL, `example.com/parent-page/current-page` the markup could look like this:
 
@@ -53,7 +51,7 @@ Notes:
 - Add a meaningful label such as `aria-label="Breadcrumbs"` to the `<nav>` element. This helps differentiate it from any other navigation landmarks in the current document, such as the primary navigation.[^2]
 - Add the `aria-current="page"` attribute to the item which represents the current page.
 
-### When to use this component
+## Usage guidelines
 
 Breadcrumbs work best for websites based around a hierarchical structure, such as documentation or e-commerce websites. If everything is on a single level (e.g. posts on a blog), there’s no point.
 

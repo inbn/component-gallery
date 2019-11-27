@@ -16,17 +16,7 @@ Each tab panel has an associated tab in the tab list, that when activated, displ
 
 Tabs are an example of an [interface metaphor](https://en.wikipedia.org/wiki/Interface_metaphor), named after the tabs attached to the top of folders used inside filing cabinets. Each tab is given a label based on the documents inside its corresponding folder. Like their real-world namesake tabbed interfaces allow a user to see the outline of a larger set of data at a glance and quickly navigate to the desired section.
 
-## Usage guidelines
-
-### Layout
-
-- The main benefit of tabs is to allow a large amount of information to be displayed in a limited space.
-
-- Be conscious that when you’re using tabs, you’re hiding content. This not only makes it less discoverable for sighted users, but also for users of assistive technology like screen readers.
-
-- If you're laying out your tabs horizontally, think about how they will appear at narrower screen widths — will they need to stack vertically or will you be better off swapping out the tabs for a different component (e.g. [an accordion](/components/accordion))?
-
-### Markup
+## Markup
 
 Here is example markup based on the [W3C recommended accessible markup](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel) for tabs. It describes a set of two tabs, with the first one selected:
 
@@ -74,7 +64,7 @@ To communicate the semantic meaning and current state of each element to assisti
 - The _active_ **tab** should have `aria-selected` set to true and all other tabs should have it set to false.
 - Each **tab panel** should have `aria-labelledby="{tabId}"` to link it with its associated tab element.
 
-### CSS
+## Styling
 
 When styling your tabs, you can make use of the `aria-selected` attribute to style the active tab differently. e.g.
 
@@ -90,7 +80,7 @@ Ensure each tab also has a visible `:focus` state.
 
 To show/hide the tab panels you will need to toggle the CSS display property between `display: none;` and a visible value such as `display: block;`.
 
-### JavaScript
+## Interactivity
 
 In addition to aria attributes on your HTML elements, to make a tabbed interface keyboard-accessible, you’ll also need to add some custom keybindings[^1]:
 
@@ -100,5 +90,13 @@ In addition to aria attributes on your HTML elements, to make a tabbed interface
 - <kbd>↑</kbd> and <kbd>↓</kbd> to cycle between tabs when `aria-orientation="horizontal"`.
 
 **Caveat:** although this is a widely used method for making tabbed interfaces keyboard accessible, some users may not be familiar it; a component that is simpler to interact with ([such as an accordion](/components/accordion)) may be more suited to your specific use case.
+
+## Usage guidelines
+
+- The main benefit of tabs is that they allow a large amount of information to be displayed in a limited space.
+
+- Be conscious that when you’re using tabs, you’re hiding content. This not only makes it less discoverable for sighted users, but also for users of assistive technology like screen readers.
+
+- If you're laying out your tabs horizontally, think about how they will appear at narrower screen widths — will they need to stack vertically or will you be better off swapping out the tabs for a different component (e.g. [an accordion](/components/accordion))?
 
 [^2]: [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel)

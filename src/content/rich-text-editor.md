@@ -25,7 +25,7 @@ The next major step in the world of WYSIWYG editing was enabled by the humble mo
 
 The year after the release of Microsoft Word, the Apple Macintosh was launched, which came bundled with Apple's new word processor, _MacWrite_. Although the feature set was rudimentary by today's standards, MacWrite had an intuitive mouse-based graphical user interface and boasted the ability to display different fonts and formatting during editing. MacWrite is often called the world's first WYSIWYG editor, although — as with many of Apple's greatest successes — it was based on someone else's idea; in this case a prototype piece of software developed at Xerox PARC (A research centre in Palo Alto, California). _Bravo_, developed in 1974, 10 whole years before the release of MacWrite, was probably the world's first WYSIWYG editor. You can hear Steve Jobs speak about his first encounter with a GUI at Xerox PARC in the film, _Triumph of the Nerds_[^5].
 
-## WYSIWYG for the web
+### WYSIWYG for the web
 
 When the web began to be seen as a publishing platform, content writers, designers, and other non-programmers needed a tool to create web content without needing to learn HTML, the markup language of the web. The first WYSIWYG tool for building web pages, _WebMagic_, arrived in 1995 and was quickly followed by _FrontPage_ (purchased by Microsoft in 1996 for \$133million). These original tools were desktop applications you needed to purchase and install on your computer.
 
@@ -73,11 +73,16 @@ You can view a pretty comprehensive list of WYSIWYG editors at the [Awesome WYSI
 
 ### HTML
 
-HTML is _the_ markup language of the world wide web. Underneath the surface, it's what most rich text editors will output and it's also relatively easy to learn.
+HTML is _the_ markup language of the world wide web. If you want precise control over what ends up in the browser, there are some things that you can only achieve through hand-coded HTML. If you find the syntax too verbose or slow to write, there are plenty of tools that can speed up the process:
+
+- [Emmet](https://emmet.io/) lets you type short CSS-selector-like expressions which, when expanded, output HTML syntax. It is commonly installed as a text-editor extension.
+- [Haml](http://haml.info/) and [Pug](https://github.com/pugjs/pug) are templating languages which use **indentation** to represent element nesting instead of opening and closing tag pairs. They are designed to be cleaner and easier to read than the equivalent HTML.
 
 ### Markdown
 
-Markdown is another markup language, but what sets it apart is the readability of its syntax. The goal behind markdown is that the formatting can be interpreted even in the original markup. It borrows heavily from existing conventions for marking up plain text in emails and online forums. e.g. `_italics_`, `**bold**`, `# Headings`, and starting lines with `>` to indicate a blockquote [^8]. Its simple design allows it to be converted to many output formats, not just HTML. Unfortunately while much of the Markdown syntax is intuitive, there are certain patterns that are definitely _not_: [the syntax for adding a link](https://daringfireball.net/projects/markdown/syntax#link) feels slightly arbitrary and is hard to remember; and adding markup that is not covered by Markdown’s syntax [requires the use of HTML](https://daringfireball.net/projects/markdown/syntax#html). See also: [Textile](https://textile-lang.com/), a precursor to Markdown with some syntax in common.
+Markdown is another markup language, but what sets it apart is the readability of its syntax. The goal behind markdown is that the formatting can be interpreted even in the original markup. It borrows heavily from existing conventions for marking up plain text in emails and online forums. e.g. `_italics_`, `**bold**`, `# Headings`, and starting lines with `>` to indicate a blockquote [^8]. Its simple design allows it to be converted to many output formats, not just HTML. See also: [Textile](https://textile-lang.com/), a precursor to Markdown with some syntax in common.
+
+Unfortunately, while much of the Markdown syntax is intuitive, there are certain patterns that are definitely _not_: [the syntax for adding a link](https://daringfireball.net/projects/markdown/syntax#link) feels slightly arbitrary and is hard to remember; and adding markup that is not covered by Markdown’s syntax [requires the use of HTML](https://daringfireball.net/projects/markdown/syntax#html).
 
 ## Conclusion
 
