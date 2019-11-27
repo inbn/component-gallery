@@ -20,7 +20,7 @@ const NotFoundPage = () => (
           </p>
         </div>
         <div className="mt-4 mb-8 mx-auto max-w-xl">
-          <SearchForm />
+          <SearchForm idPrefix="404" />
         </div>
       </div>
     </div>

@@ -2,32 +2,34 @@ import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import SearchForm from './SearchForm';
+
 const Header = ({ siteTitle, menuLinks, isHomepage }) => {
   const SiteTitleTag = isHomepage ? 'h1' : 'div';
   return (
-    <header>
-      <div className="lg:flex lg:justify-between lg:items-center bg-white border-b p-4">
-        <SiteTitleTag>
-          <Link to="/" className="header-logo">
-            The Component Gallery
-          </Link>
-        </SiteTitleTag>
+    <header className="flex flex-wrap sm:justify-between lg:items-center bg-white border-b p-4">
+      <SiteTitleTag className="my-2">
+        <Link to="/" className="header-logo">
+          The Component Gallery
+        </Link>
+      </SiteTitleTag>
 
-        <nav className="sm:pr-2">
-          <ul className="flex flex-wrap sm:justify-center -mx-2 sm:-mx-4">
-            {menuLinks.map(link => (
-              <li key={link.name} className="mx-2 sm:mx-4">
-                <Link
-                  to={link.link}
-                  className="call-to-action whitespace-no-wrap mt-2 lg:mt-0"
-                >
-                  {link.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
+      <SearchForm idPrefix="header" />
+
+      <nav className="sm:pr-2">
+        <ul className="flex flex-wrap -mx-2 sm:-mx-4">
+          {menuLinks.map(link => (
+            <li key={link.name} className="mx-2 sm:mx-4 my-2">
+              <Link
+                to={link.link}
+                className="call-to-action whitespace-no-wrap"
+              >
+                {link.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </header>
   );
 };

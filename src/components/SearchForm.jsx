@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 import { navigate, graphql, useStaticQuery } from 'gatsby';
 import { Index } from 'elasticlunr';
 import useKey from '@rooks/use-key';
 
-const SearchForm = () => {
+const SearchForm = ({ idPrefix }) => {
   const node = useRef();
   const selectedItemRef = useRef();
   const [open, setOpen] = useState(false);
@@ -60,7 +61,7 @@ const SearchForm = () => {
   }, [data.siteSearchIndex.index, searchIndex, searchQuery]);
 
   const keyPressed = event => {
-    if (event.target.id !== 'search-input') {
+    if (event.target.id !== `${idPrefix}__search-input`) {
       return;
     }
 
@@ -128,30 +129,30 @@ const SearchForm = () => {
       {!!results.length && searchQuery && (
         <p
           className="search-results-count sr-only"
-          id="search-results-count"
+          id={`${idPrefix}__search-results-count`}
           aria-live="polite"
           aria-atomic="true"
         >
           Found {results.length} results for “{searchQuery}”
         </p>
       )}
-      <label htmlFor="search-input" className="sr-only">
+      <label htmlFor={`${idPrefix}__search-input`} className="sr-only">
         Search this site
       </label>
       <div
         role="combobox"
         aria-expanded={open && !!results.length}
-        aria-owns="search-results-listbox"
+        aria-owns={`${idPrefix}__search-results-listbox`}
         aria-haspopup="listbox"
       >
         <input
           type="text"
-          id="search-input"
+          id={`${idPrefix}__search-input`}
           className="site-search__input"
           placeholder="Search components and design systems"
           autoComplete="off"
           aria-autocomplete="list"
-          aria-controls="search-results-listbox"
+          aria-controls={`${idPrefix}__search-results-listbox`}
           aria-activedescendant={
             open && !!results.length ? `result-item-${selectedItemIndex}` : ''
           }
@@ -161,7 +162,7 @@ const SearchForm = () => {
       </div>
 
       <ol
-        id="search-results-listbox"
+        id={`${idPrefix}__search-results-listbox`}
         className="site-search__results-list"
         role="listbox"
         hidden={!open || !results.length}
@@ -169,7 +170,7 @@ const SearchForm = () => {
         {results.map(({ table, name, url, otherNames }, i) => (
           <li
             key={name}
-            id={`result-item-${i}`}
+            id={`${idPrefix}__result-item-${i}`}
             role="option"
             aria-selected={i === selectedItemIndex}
             ref={i === selectedItemIndex ? selectedItemRef : null}
@@ -190,7 +191,7 @@ const SearchForm = () => {
             )}
             <h3 className="mt-0 leading-tight">{name}</h3>
             {otherNames && (
-              <p className="italic leading-tight mt-4 text-grey-700">
+              <p className="italic leading-tight mt-2 text-sm text-grey-700">
                 Other names: {otherNames}
               </p>
             )}
@@ -199,6 +200,14 @@ const SearchForm = () => {
       </ol>
     </div>
   );
+};
+
+SearchForm.propTypes = {
+  idPrefix: PropTypes.string
+};
+
+SearchForm.defaultProps = {
+  idPrefix: ``
 };
 
 export default SearchForm;

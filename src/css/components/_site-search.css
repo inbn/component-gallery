@@ -4,15 +4,15 @@
 \*====================================*/
 
 .site-search {
-  @apply w-full mx-auto bg-white shadow-block-grey-800;
+  @apply w-full max-w-sm my-2 bg-white;
   position: relative;
 }
 
 .site-search__input {
-  @apply font-sans italic p-2 leading-none w-full border-4 border-grey-800;
+  @apply font-sans text-sm italic p-2 leading-none w-full border-grey-800 bg-grey-200;
 
   &::placeholder {
-    @apply text-grey-600;
+    @apply text-grey-700;
     opacity: 1;
   }
 }
@@ -26,6 +26,10 @@
 
   cursor: pointer;
 
+  &:first-child {
+    @apply border-t-0;
+  }
+
   &[aria-selected='true'] {
     @apply bg-grey-200;
   }
@@ -33,7 +37,7 @@
 
 @screen md {
   .site-search__input {
-    @apply text-lg;
+    @apply text-base;
   }
 
   .site-search__results-list {

@@ -5,7 +5,6 @@ import Component from '../components/Component';
 import Layout from '../components/Layout';
 import ReadMoreLink from '../components/ReadMoreLink';
 import SEO from '../components/SEO';
-import SearchForm from '../components/SearchForm';
 
 const IndexPage = ({ data }) => (
   <Layout
@@ -14,14 +13,11 @@ const IndexPage = ({ data }) => (
         <div className="my-8 lg:my-12 mx-6">
           <div className="-mx-4 lg:flex">
             <div
-              className="bg-white border-2 border-black font-sans text-grey-800 shadow-block-grey-800 body-text text-xl p-6 lg:w-1/2 mx-4"
+              className="bg-white border-2 border-black font-sans text-grey-800 shadow-block-grey-800 body-text text-xl p-6 max-w-xl mx-4"
               dangerouslySetInnerHTML={{
                 __html: data.markdown.html
               }}
             />
-            <div className="lg:w-1/2 flex flex-col justify-center mx-4 mt-8 lg:mt-0">
-              <SearchForm />
-            </div>
           </div>
         </div>
       </>

@@ -19,14 +19,8 @@
   }
 }
 
-@screen sm {
-  .header-logo {
-    @apply mx-auto;
-  }
-}
-
 @screen lg {
   .header-logo {
-    @apply text-left mx-0 whitespace-no-wrap;
+    @apply mx-0 whitespace-no-wrap;
   }
 }

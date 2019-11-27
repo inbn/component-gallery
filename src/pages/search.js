@@ -16,7 +16,7 @@ const Search = () => {
       <div className="col-wrap">
         {/* Main content */}
         <div className="col col--main py-4 px-6">
-          <SearchForm />
+          <SearchForm idPrefix="search" />
         </div>
       </div>
     </Layout>
