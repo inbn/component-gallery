@@ -72,7 +72,7 @@ In Summary:
 
 ## Styling
 
-As well as actually using the correct element, it's important to make it look and behave like the correct element. As already mentioned, users have certain expectations around how to interact with an element based on its appearance (known as [affordances](https://www.interaction-design.org/literature/topics/affordances)). The bare minimum requirements for a button are “some text in a rectangle”, but there are other techniques to make buttons more obvious to users:
+As well as using the correct element, it's important to make your buttons look and behave like the correct element. As already mentioned, users have certain expectations around how to interact with an element based on its appearance (known as [affordances](https://www.interaction-design.org/literature/topics/affordances)). The bare minimum requirements for a button are “some text in a rectangle”, but there are other techniques to make buttons more obvious to users:
 
 - Dynamically size the button to fit the text in it
 - Keep the text centre-aligned on a single line
@@ -86,14 +86,19 @@ If it fits within the design of your website, there are some other ideas for how
 - Use subtle box-shadows to raise the button above the rest of the page
 - Add a gradient background to give it a 3D appearance
 
+### A note on `cursor: pointer`
+
+Don't use the CSS property `cursor: pointer` to change the default cursor when hovering over a button — `cursor: pointer` is for links. Your buttons should be designed so a user can tell that they are clickable without a different cursor[^5].
+
 ## Usage guidelines
 
 Communicate the purpose of a button clearly and concisely using a text label, an icon, or both. Instead of using generic labels like ‘OK’ or ‘Cancel’, think about what action clicking the button will trigger — if it deletes something, use ‘Delete’; if it places an order, use ‘Place order’.
 
-If using _only_ an icon, you will need to ensure the button has a meaningful label[^5]. This label can be included inside the button and hidden visually using a [screenreader-only](https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html) CSS class. Alternatively, the label can be linked to the button using the aria attributes `aria-label` or `aria-labelledby`.
+If using _only_ an icon, you will need to ensure the button has a meaningful label[^6]. This label can be included inside the button and hidden visually using a [screenreader-only](https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html) CSS class. Alternatively, the label can be linked to the button using the aria attributes `aria-label` or `aria-labelledby`.
 
 [^1]: [Links vs. Buttons in Modern Web Applications — Marcy Sutton](https://marcysutton.com/links-vs-buttons-in-modern-web-applications)
 [^2]: [7 Basic Rules for Button Design](https://uxplanet.org/7-basic-rules-for-button-design-63dcdf5676b4)
 [^3]: [But sometimes links look like buttons (and buttons look like links)](https://medium.com/simple-human/but-sometimes-links-look-like-buttons-and-buttons-look-like-links-9b371c57b3d2)
 [^4]: [Proper Use of Buttons and Links](http://www.webaxe.org/proper-use-buttons-links/)
-[^5]: [Accessible Icon Buttons — Sara Soueidan](https://www.sarasoueidan.com/blog/accessible-icon-buttons/)
+[^5]: [Buttons shouldn’t have a hand cursor](https://medium.com/simple-human/buttons-shouldnt-have-a-hand-cursor-b11e99ca374b)
+[^6]: [Accessible Icon Buttons — Sara Soueidan](https://www.sarasoueidan.com/blog/accessible-icon-buttons/)
