@@ -5,8 +5,9 @@ import '../css/style.css';
 
 import DesignSystem from './DesignSystem';
 
-storiesOf(`DesignSystem`, module).add(`default`, () => (
+storiesOf(`DesignSystem`, module).add(`Default`, () => (
   <DesignSystem
+    cardTag="div"
     name="Example Design System"
     url="https://example.com"
     color="#000"

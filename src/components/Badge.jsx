@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   FaCode,
@@ -38,6 +39,15 @@ const Badge = ({ text, displayIcon }) => {
       {text}
     </li>
   );
+};
+
+Badge.propTypes = {
+  text: PropTypes.string.isRequired,
+  displayIcon: PropTypes.bool
+};
+
+Badge.defaultProps = {
+  displayIcon: false
 };
 
 export default Badge;

@@ -65,7 +65,7 @@ ComponentExample.defaultProps = {
   designSystemName: '',
   designSystemOrganisation: '',
   features: [],
-  color: '#fff',
+  color: '#000',
   cardTag: 'li',
   headingLevel: 'h3'
 };
