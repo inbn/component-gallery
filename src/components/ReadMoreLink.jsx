@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 
 const ReadMoreLink = ({ to, text }) => (
@@ -16,5 +17,10 @@ const ReadMoreLink = ({ to, text }) => (
     </svg>
   </Link>
 );
+
+ReadMoreLink.propTypes = {
+  to: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired
+};
 
 export default ReadMoreLink;
