@@ -53,7 +53,7 @@ ComponentExample.propTypes = {
   componentName: PropTypes.string,
   designSystemName: PropTypes.string,
   designSystemOrganisation: PropTypes.string,
-  features: PropTypes.array,
+  features: PropTypes.arrayOf(PropTypes.string),
   color: PropTypes.string,
   cardTag: PropTypes.string,
   headingLevel: PropTypes.string
