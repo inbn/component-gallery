@@ -71,11 +71,11 @@ exports.createPages = ({ graphql, actions }) => {
 
             if (slugifiedOtherName.length > 0) {
               console.log(
-                `Creating redirect from ${pathPrefix}${slugifiedOtherName} to ${pathPrefix}${node.data.Slug}`
+                `Creating redirect from /${pathPrefix}${slugifiedOtherName} to /${pathPrefix}${node.data.Slug}`
               );
               createRedirect({
-                fromPath: `${pathPrefix}${slugifiedOtherName}`,
-                toPath: `${pathPrefix}${node.data.Slug}`,
+                fromPath: `/${pathPrefix}${slugifiedOtherName}`,
+                toPath: `/${pathPrefix}${node.data.Slug}`,
                 isPermanent: false
               });
             }
