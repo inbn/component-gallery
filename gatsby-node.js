@@ -5,11 +5,12 @@
  */
 
 const path = require(`path`);
+const slugify = require('slugify');
 
 exports.createPages = ({ graphql, actions }) => {
   // createPage is a built in action,
   // available to all gatsby-node exports
-  const { createPage } = actions;
+  const { createPage, createRedirect } = actions;
   return new Promise(async resolve => {
     // we need the table name (e.g. "Sections")
     // as well as the unique path for each Page/Section.
@@ -22,6 +23,7 @@ exports.createPages = ({ graphql, actions }) => {
               data {
                 Slug
                 Publish
+                Other_names
               }
             }
           }
@@ -51,6 +53,34 @@ exports.createPages = ({ graphql, actions }) => {
             Slug: node.data.Slug
           }
         });
+
+        // Create a redirect away from all the other names to the canonical
+        // version of the page
+        if (
+          node.table === 'Components' &&
+          node.data.Other_names !== null &&
+          node.data.Other_names.length > 0
+        ) {
+          const otherNames = node.data.Other_names.split(',');
+
+          otherNames.forEach(otherName => {
+            const slugifiedOtherName = slugify(otherName.trim(), {
+              replacement: '-',
+              lower: true
+            });
+
+            if (slugifiedOtherName.length > 0) {
+              console.log(
+                `Creating redirect from ${pathPrefix}${slugifiedOtherName} to ${pathPrefix}${node.data.Slug}`
+              );
+              createRedirect({
+                fromPath: `${pathPrefix}${slugifiedOtherName}`,
+                toPath: `${pathPrefix}${node.data.Slug}`,
+                isPermanent: false
+              });
+            }
+          });
+        }
       }
     });
     resolve();

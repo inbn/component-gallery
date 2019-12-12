@@ -219,6 +219,9 @@ module.exports = {
       }
     },
     `gatsby-plugin-sitemap`,
-    `gatsby-plugin-netlify-cache`
+    `gatsby-plugin-netlify`,
+    `gatsby-plugin-netlify-cache`,
+    // This should always go last
+    `gatsby-plugin-meta-redirect`
   ]
 };
