@@ -17,17 +17,17 @@ Quotes come in three main flavours:
 
 ### Inline quotes
 
-The HTML `q` element is designed to be used for inline quotations. According to the W3C spec:
+The HTML `q` element is designed to be used for inline quotations, but it's not the only way of indicating an inline quote. According to the W3C spec:
 
 <blockquote cite="https://www.w3.org/TR/2011/WD-html5-author-20110809/the-q-element.html">
   <p>The use of <code>q</code> elements to mark up quotations is entirely optional; using explicit quotation punctuation without <code>q</code> elements is just as correct.</p>
 </blockquote>
 
-Unless you want to make use of the [`cite`](#the-cite-attribute) attribute or style your quotes with the [CSS quotes property](https://css-tricks.com/almanac/properties/q/quotes/), you are fine using quote marks instead of the `q` element.
+Unless you want to make use of the [`cite`](#the-cite-attribute) attribute or style your quotes with the [CSS quotes property](https://css-tricks.com/almanac/properties/q/quotes/), you are fine to use quotation marks instead of the `q` element.
 
 ### Block quotes
 
-The HTML `blockquote` element is designed to be used for extended quotations.
+The HTML `blockquote` element is designed to be used for extended quotations. If your quote is more than a few lines long, consider using a blockquote.
 
 ### Pull quotes
 
@@ -37,7 +37,7 @@ As pull quotes duplicate content from the main body of the article, they can be 
 <article>
   <!-- Some article content here… -->
   <aside>
-    <!-- pull quote content -->
+    <!-- Pull quote content -->
   </aside>
   <!-- Article content continued… -->
 </article>
@@ -46,6 +46,10 @@ As pull quotes duplicate content from the main body of the article, they can be 
 If the text in your pull quote is _also_ text from another source (e.g. if your pull-quote is a short snippet of a longer quote that appears in the article), you can put the text inside a `q` or `blockquote` element, within the `aside`.
 
 A quick note on using aside elements: when an `aside` is used _inside_ an `article` element, like in the snippet above, the `aside` should relate directly to the article itself. If an `aside` is _not_ wrapped in an `article` element, it should be used for more generic content, not specifically related to the current page[^1].
+
+### The `cite` element
+
+The cite element is pretty strict in what it can contain: according to [the WHATWG spec](https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-cite-element) it must be the **title** of a ‘creative work’; for example: a book, a film, or a web page. Opinions differ on whether it can include the **author** of a creative work.[^2]
 
 ### The `cite` attribute
 
@@ -74,9 +78,30 @@ Quotes tend to come with some default browser styling.
 
 You can choose to override these (some CSS resets will do this automatically), but they are sensible defaults. If you want to enhance the appearance of your quotes, there are plenty of typographical and layout techniques available.
 
+### Customising quotation marks
+
+The CSS `quotes` property gives us fine control over the style of our quotation marks. e.g. if you’re putting your quote inside a `<p>` nested within a blockquote, you can add the open and closing quotation marks as pseudo-elements with the following CSS:
+
+```css
+blockquote p {
+  /* Use curly quotes, not straight quotes */
+  quotes: '“' '”' '‘' '’';
+}
+
+blockquote p::before {
+  content: open-quote;
+}
+
+blockquote p::after {
+  content: close-quote;
+}
+```
+
+The `quotes` property also gives you control over the characters used; in the example above we are forcing the browser to use the nicer-looking ‘curly’ quotes instead of the generic 'straight' quotes[^3]. Be aware that languages use a [wide variety of different quotation mark styles](https://en.wikipedia.org/wiki/Quotation_mark#Summary_table) and you may have to define these on a language by language basis (e.g. guillemets (« and ») are commonly used in French). Fortunately, most browsers will automatically adjust the quotation marks used based on the html `lang` attribute.
+
 ### Hanging punctuation
 
-A common typographical technique is “hanging” the open quote mark of a quote _outside_ the main text column. To do this in CSS, you can make use the `hanging-punctuation` property. e.g.
+A common typographical technique is “hanging” the open-quote mark of a quote _outside_ the main text column. To do this in CSS, you can make use the `hanging-punctuation` property. e.g.
 
 ```css
 blockquote p {
@@ -84,18 +109,20 @@ blockquote p {
 }
 ```
 
-Unfortunately, this technique is, at the time of writing, only supported in Safari. If you want to, you can add it anyway and treat it as a [Progressive Enhancement](https://www.gov.uk/service-manual/technology/using-progressive-enhancement) for Safari users; alternatively you can achieve the same effect (albeit with a little manual tweaking), using a negative left margin.[^2]
+Unfortunately this technique is, at the time of writing, only supported in Safari. If you want to, you can add it anyway and treat it as a [Progressive Enhancement](https://www.gov.uk/service-manual/technology/using-progressive-enhancement) for Safari users; alternatively you can achieve the same effect (albeit with a little manual tweaking), using a negative left margin.[^4]
 
-<iframe height="350" style="width: 100%;" scrolling="no" title="Example quote styles" src="https://codepen.io/inbn/embed/preview/yLLGYgN?height=350&theme-id=light&default-tab=html,result" frameborder="no" allowtransparency="true" allowfullscreen="true" class="mt-6">
+<iframe height="350" style="width: 100%;" scrolling="no" title="Example quote styles" src="https://codepen.io/inbn/embed/preview/yLLGYgN?height=350&theme-id=light&default-tab=html,result" frameborder="no" allowtransparency="true" allowfullscreen="true" class="mt-4">
   See the Pen <a href='https://codepen.io/inbn/pen/yLLGYgN'>Example quote styles</a> by Iain Bean
   (<a href='https://codepen.io/inbn'>@inbn</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ## Usage guidelines
 
-- Including pull quotes outside of the main text column can be difficult on smaller devices, as text generally spans the full width of the screen. As they duplicate content that already exists in the main text, you can choose to hide them when screen real-estate is scarce.
-- Limit the number of pull quotes you use so that they do not lose their impact. Highlight maybe one or two of the most impactful snippets of content.
-- Use the right type of quote for the job: not every external quotation needs to be placed in a block quote; consider putting shorter quotes inline.
+- Displaying pull quotes outside of the main text column can be difficult on smaller devices because you probably want your main text column to span the full width of the screen. As pull quotes duplicate content that already exists in the main text, you can choose to hide them when screen real-estate is scarce.
+- Limit the number of pull quotes you use so that they do not lose their impact. Highlight one or two of the most impactful snippets of content.
+- Use the right type of quote for the job: not every external quotation needs to go in a block quote; consider putting shorter quotes inline.
 
 [^1]: [The `aside` element, HTML5: Edition for Web Authors](https://www.w3.org/TR/2011/WD-html5-author-20110809/the-aside-element.html)
-[^2]: Technique from p.106, _Web Typography_ By Richard Rutter
+[^2]: [cite and blockquote – reloaded, HTML5 doctor](https://html5doctor.com/cite-and-blockquote-reloaded/)
+[^3]: [Straight and curly quotes, Butterick’s Practical Typography](https://practicaltypography.com/straight-and-curly-quotes.html)
+[^4]: Technique from p.106, _Web Typography_ By Richard Rutter

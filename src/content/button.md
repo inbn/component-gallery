@@ -39,7 +39,7 @@ As you can probably see, there’s not much markup required here at all, so it�
 <a href="#">I'm a button, click me</a>
 ```
 
-On its own, clicking on this link would simply append a '#' to the current URL. You could attach an event listener to the element to prevent the default behaviour and trigger an action (this example uses jQuery):
+By default, this link does nothing but append a '#' to the current URL. If you attach a JavaScript event listener to the element, you can prevent the default behaviour and trigger an action (this example uses jQuery):
 
 ```javascript
 $('a').click(function(e) {
@@ -55,11 +55,11 @@ A far worse thing to do would be to use a non-focusable element such as a `<span
 
 ```html
 <!-- Neither of these “buttons” are buttons to assistive technologies -->
-<div class="action-button">I'm a button, click me</div>
-<span class="action-button">I'm a button, click me</span>
+<div class="button">I'm a button, click me</div>
+<span class="button">I'm a button, click me</span>
 
 <!-- A button with no href is not focusable -->
-<a class="action-button">I'm a button, click me</a>
+<a class="button">I'm a button, click me</a>
 ```
 
 > It’s worth noting that although it is possible to make these non-focusable elements accessible, this is only possible by fully replicating the functionality of the native `<button>` element. This involves using attributes such as `tabindex="0"` (to make the element focusable); ARIA to communicate semantics to assistive technology; and JavaScript event listeners to add keyboard, touch and mouse interactivity. This is a lot of extra work considering the native button element gives you all this behaviour for free.
@@ -72,7 +72,7 @@ In Summary:
 
 ## Styling
 
-As well as using the correct element, it's important to make your buttons look and behave like the correct element. As already mentioned, users have certain expectations around how to interact with an element based on its appearance (known as [affordances](https://www.interaction-design.org/literature/topics/affordances)). The bare minimum requirements for a button are “some text in a rectangle”, but there are other techniques to make buttons more obvious to users:
+As well as using the correct element, it's important to make your buttons look and behave like the correct element. As already mentioned, users have certain expectations around how to interact with an element based on its appearance (known as [affordances](https://www.interaction-design.org/literature/topics/affordances)). Here are some techniques you can use to make buttons more obvious to users:
 
 - Dynamically size the button to fit the text in it
 - Keep the text centre-aligned on a single line
@@ -80,11 +80,15 @@ As well as using the correct element, it's important to make your buttons look a
 - Unless it appears inside a [button group](/components/button-group) with other options, use whitespace around the button to distance it from other content.
 - Make the button big enough so users of touch devices can comfortably use it (a minimum of 10mm in both dimensions)
 
-If it fits within the design of your website, there are some other ideas for how you can improve the [affordance](https://www.interaction-design.org/literature/topics/affordances) of your buttons:
+If it fits within the design of your website, you could also try:
 
-- Give it rounded corners
+- Give your buttons rounded corners
 - Use subtle box-shadows to raise the button above the rest of the page
 - Add a gradient background to give it a 3D appearance
+
+If using multiple buttons that you want to give different prominence, style each one differently: **primary** actions should be visually more important-looking than **secondary** actions. Buttons that trigger a potentially negative action such as deleting something can be differentiated with use of the colour red. Consider including a hierarchy of different button styles based on importance.
+
+![An example of button hierarchy from the Thumbprint Design System](./images/thumbprint_buttons.png)
 
 ### A note on `cursor: pointer`
 
@@ -94,7 +98,7 @@ Don't use the CSS property `cursor: pointer` to change the default cursor when h
 
 Communicate the purpose of a button clearly and concisely using a text label, an icon, or both. Instead of using generic labels like ‘OK’ or ‘Cancel’, think about what action clicking the button will trigger — if it deletes something, use ‘Delete’; if it places an order, use ‘Place order’.
 
-If using _only_ an icon, you will need to ensure the button has a meaningful label[^6]. This label can be included inside the button and hidden visually using a [screenreader-only](https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html) CSS class. Alternatively, the label can be linked to the button using the aria attributes `aria-label` or `aria-labelledby`.
+If using _only_ an icon, you will need to ensure the button has a meaningful label[^6]. This label can be included inside the button and hidden visually using a [screenreader-only](https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html) CSS class. Alternatively, the label can be linked to the button using the aria attributes `aria-label` or `aria-labelledby`. Keep in mind that even if you find the meaning of an icon obvious, your users may not.
 
 [^1]: [Links vs. Buttons in Modern Web Applications — Marcy Sutton](https://marcysutton.com/links-vs-buttons-in-modern-web-applications)
 [^2]: [7 Basic Rules for Button Design](https://uxplanet.org/7-basic-rules-for-button-design-63dcdf5676b4)
