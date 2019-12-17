@@ -91,7 +91,7 @@ export default ({ data }) => {
           <div className="col col--sidebar border-b border-l">
             <div className="font-sans py-2 px-6 border-b bg-white text-black text-sm block">
               {/* Last updated date */}
-              <p className="">Updated: {data.airtable.data.Date_updated}</p>
+              <p className="">Updated {data.airtable.data.Date_updated}</p>
               {/* Read time */}
               {readtime !== null && <p className="mt-0">{readtime}</p>}
             </div>

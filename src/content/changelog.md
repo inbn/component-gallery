@@ -6,6 +6,10 @@ path: 'changelog'
 
 ## 2019-12-17
 
+### Added
+
+- New components: Avatar and Toast
+
 ### Changed
 
 - Headings now use sizes from Tailwind config
