@@ -11,12 +11,14 @@ storiesOf(`ComponentExample`, module)
   .addDecorator(withSmartKnobs())
   .addDecorator(withKnobs())
   .add(`Default`, () => (
-    <ComponentExample
-      cardTag="div"
-      url="#"
-      componentName="Button"
-      designSystemName="Example Design System"
-      designSystemOrganisation="ExampleCorp"
-      features={['Feature 1', 'Feature 2']}
-    />
+    <div className="grid">
+      <ComponentExample
+        cardTag="div"
+        url="#"
+        componentName="Button"
+        designSystemName="Example Design System"
+        designSystemOrganisation="ExampleCorp"
+        features={['Feature 1', 'Feature 2']}
+      />
+    </div>
   ));

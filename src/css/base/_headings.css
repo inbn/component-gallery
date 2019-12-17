@@ -30,20 +30,20 @@ h1,
 
 h2,
 .h2 {
-  font-size: 1.75rem;
+  @apply text-3xl;
 }
 
 h3,
 .h3 {
-  font-size: 1.25rem;
+  @apply text-xl;
 }
 
 h4,
 .h4 {
-  font-size: 1.125rem;
+  @apply text-lg;
 }
 
 h5,
 .h5 {
-  font-size: 1rem;
+  @apply text-base;
 }

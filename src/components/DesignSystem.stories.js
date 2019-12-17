@@ -11,12 +11,14 @@ storiesOf(`DesignSystem`, module)
   .addDecorator(withSmartKnobs({ ignoreProps: ['image'] }))
   .addDecorator(withKnobs())
   .add(`Default`, () => (
-    <DesignSystem
-      cardTag="div"
-      name="Example Design System"
-      url="https://example.com"
-      color="#000"
-      features={['Feature 1', 'Feature 2']}
-      organisation="Example Organisation"
-    />
+    <div className="grid">
+      <DesignSystem
+        cardTag="div"
+        name="Example Design System"
+        url="https://example.com"
+        color="#000"
+        features={['Feature 1', 'Feature 2']}
+        organisation="Example Organisation"
+      />
+    </div>
   ));

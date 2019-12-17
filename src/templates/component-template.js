@@ -88,8 +88,8 @@ export default ({ data }) => {
       <div className="col-wrap">
         {/* Sidebar */}
         {tocHtml !== null && (
-          <div className="col col--sidebar py-4 px-6 border-b border-l">
-            <div className="font-sans mb-4 bg-white text-black text-sm block">
+          <div className="col col--sidebar border-b border-l">
+            <div className="font-sans py-2 px-6 border-b bg-white text-black text-sm block">
               {/* Last updated date */}
               <p className="">Updated: {data.airtable.data.Date_updated}</p>
               {/* Read time */}
@@ -111,29 +111,29 @@ export default ({ data }) => {
               <div className="control-bar py-2 px-6 bg-grey-200 mt-4 border-t">
                 <label
                   htmlFor="sortOrder"
-                  className="mr-2 text-grey-800 text-sm font-sans font-bold"
+                  className="text-grey-800 text-sm font-sans font-bold"
                 >
-                  Sort by
+                  <span className="mr-2">Sort by</span>
+                  <select
+                    id="sortOrder"
+                    className=""
+                    onChange={event => {
+                      setExamples(
+                        // .sort() mutates the array - use spread to create a new one
+                        sortItems(
+                          [...examples],
+                          sortingOptions[event.target.value]
+                        )
+                      );
+                    }}
+                  >
+                    {sortingOptions.map((option, i) => (
+                      <option value={i} key={i}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
                 </label>
-                <select
-                  id="sortOrder"
-                  className=""
-                  onChange={event => {
-                    setExamples(
-                      // .sort() mutates the array - use spread to create a new one
-                      sortItems(
-                        [...examples],
-                        sortingOptions[event.target.value]
-                      )
-                    );
-                  }}
-                >
-                  {sortingOptions.map((option, i) => (
-                    <option value={i} key={i}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
               </div>
               <ul className="grid border-t mt-0">
                 {examples.map(({ data: { URL, Name, Design_system } }, i) => (
