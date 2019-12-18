@@ -14,7 +14,7 @@
 
 /**
  * In the every layout example, this has a JS dependency to emulate container
- * queries. Luckily our grids our full width until way after they go multi-
+ * queries. Luckily our grids are full width until way after they go multi-
  * column so we're fine to use a min-width media query here.
  */
 @media (min-width: 17rem) {

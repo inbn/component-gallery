@@ -4,6 +4,8 @@
 \*====================================*/
 
 .bg-squiggle-grey-400 {
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' id='wobble-svg' viewBox='-18 17.5 20 5'%3e%3cpath class='line' fill='none' stroke='%23dae1e7' stroke-width='2' d='M-18 21.5c5 0 5-3 10-3s5 3 10 3 5-3 10-3 5 3 10 3'/%3e%3c/svg%3e");
+  /* Use postcss-svg to inline SVG into CSS (Prettier will break this) */
+  /* prettier-ignore */
+  background-image: url('background-squiggle' param(--color theme('colors.grey.400')));
   background-size: 20px 5px;
 }
