@@ -16,11 +16,14 @@ a:not([class]),
 
   &[href^="http://"]::after,
   &[href^="https://"]::after {
-    content: '\2197';
+    content: '';
+    /* Use postcss-svg to inline SVG into CSS (Prettier will break this) */
+    /* prettier-ignore */
+    background-image: url('north-east-arrow' param(--color theme('colors.grey.800')));
+    background-repeat: no-repeat;
     display: inline-block;
     vertical-align: text-top;
-    position: relative;
-    font-size: 0.8em;
-    margin: 0 0.2em 0 0.2em;
+    width: 0.9em;
+    height: 0.9em;
   }
 }
