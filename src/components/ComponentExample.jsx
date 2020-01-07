@@ -25,16 +25,19 @@ const ComponentExample = ({
         rel="noopener noreferrer"
         className="card__inner h-full flex flex-col w-full p-6"
       >
-        <HeadingTag className="h5 mt-0 pb-1 font-bold">
-          {designSystemName}
-        </HeadingTag>
-        {designSystemOrganisation && (
-          <p className="italic leading-tight mt-0 pb-2 text-grey-700">
-            {designSystemOrganisation}
-          </p>
-        )}
+        <p className="leading-none text-base uppercase tracking-wider font-sans text-grey-800">
+          {componentName}
+        </p>
+
         <div className="mt-auto pt-6">
-          <p className="h3 text-grey-800">{componentName}</p>
+          <HeadingTag className="h5 mt-0 pb-1 font-bold">
+            {designSystemName}
+          </HeadingTag>
+          {designSystemOrganisation && (
+            <p className="italic leading-tight mt-0 pb-2 text-grey-700">
+              {designSystemOrganisation}
+            </p>
+          )}
           {features && features.length > 0 && (
             <ul className="-mr-2 -mb-2 -ml-1 pb-1 flex flex-wrap">
               {features.map(feature => (

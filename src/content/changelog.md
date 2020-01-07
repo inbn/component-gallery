@@ -4,6 +4,18 @@ slug: 'changelog'
 path: 'changelog'
 ---
 
+## 2020-01-07
+
+### Added
+
+- `dir-sideways-tb` utility classes for changing text-direction
+- Added Cisco 'Momentum Design' Design System
+
+### Changed
+
+- Layout tweaks to ComponentExample component
+- Updated layout of homepage 'Recently updated components' section
+
 ## 2019-12-17
 
 ### Added

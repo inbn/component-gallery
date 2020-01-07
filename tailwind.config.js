@@ -377,7 +377,7 @@ module.exports = {
     textTransform: ['responsive'],
     textDecoration: ['responsive', 'hover', 'focus'],
     fontSmoothing: [],
-    letterSpacing: [],
+    letterSpacing: ['responsive'],
     userSelect: [],
     verticalAlign: [],
     visibility: [],

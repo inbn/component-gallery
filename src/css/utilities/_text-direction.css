@@ -1,0 +1,11 @@
+/*====================================*\
+  UTILITIES
+  _text-direction.css
+\*====================================*/
+
+@responsive {
+  .dir-sideways-tb {
+    writing-mode: vertical-lr;
+    text-orientation: sideways;
+  }
+}

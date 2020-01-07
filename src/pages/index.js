@@ -26,29 +26,34 @@ const IndexPage = ({ data }) => (
     isArticle={false}
   >
     <SEO title="Home" />
-    <h2 className="px-6 py-4 border-l">Recently updated components</h2>
-    <ul className="grid border-t border-l mt-0">
-      {data.recentComponents.edges.map(
-        ({
-          node: {
-            data: { slug, name, description, otherNames, examplesCount },
-            id
-          }
-        }) => (
-          <Component
-            key={id}
-            slug={slug}
-            name={name}
-            description={
-              description !== null && description.childMarkdownRemark.html
+    <div className="flex flex-col sm:flex-row-reverse">
+      <h2 className="px-6 py-4 sm:pt-6 text-base uppercase tracking-widest sm:dir-sideways-tb sm:leading-none">
+        Recently updated components
+      </h2>
+      <ul className="grid border-t sm:border-t-0 border-l mt-0 sm:flex-1">
+        {data.recentComponents.edges.map(
+          ({
+            node: {
+              data: { slug, name, description, otherNames, examplesCount },
+              id
             }
-            otherNames={otherNames}
-            examplesCount={examplesCount}
-            headingLevel="h3"
-          />
-        )
-      )}
-    </ul>
+          }) => (
+            <Component
+              key={id}
+              slug={slug}
+              name={name}
+              description={
+                description !== null && description.childMarkdownRemark.html
+              }
+              otherNames={otherNames}
+              examplesCount={examplesCount}
+              headingLevel="h3"
+            />
+          )
+        )}
+      </ul>
+    </div>
+
     <div className="text-right px-6 py-4 border-l">
       <ReadMoreLink to="/components" text="View all components" />
     </div>
