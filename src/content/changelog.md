@@ -4,6 +4,26 @@ slug: 'changelog'
 path: 'changelog'
 ---
 
+## 2020-01-22
+
+### Added
+
+- Added 'Chakra UI' as a Design System
+
+### Changed
+
+- Updated dependencies
+
+### Removed
+
+- Deleted Component Examples which were returning 404 errors
+
+## 2020-01-15
+
+### Changed
+
+- Switch out react for preact, using gatsby-plugin-preact
+
 ## 2020-01-07
 
 ### Added
