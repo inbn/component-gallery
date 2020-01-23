@@ -4,6 +4,12 @@ slug: 'changelog'
 path: 'changelog'
 ---
 
+## 2020-01-23
+
+### Changed
+
+- Move fonts from Google Fonts to being self-hosted
+
 ## 2020-01-22
 
 ### Added
