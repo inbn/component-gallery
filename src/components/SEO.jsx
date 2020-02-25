@@ -46,6 +46,10 @@ function SEO({ description, lang, meta, keywords, title, favicon }) {
           content: `website`
         },
         {
+          name: `og:image`,
+          content: twitterCardImage
+        },
+        {
           name: `twitter:card`,
           content: `summary_large_image`
         },

@@ -5,12 +5,8 @@ module.exports = {
     siteUrl: `https://component.gallery`,
     title: `The Component Gallery`,
     description: `The Component Gallery is a collection of components from the best Design Systems.`,
-    author: `@gatsbyjs`,
+    author: `@iainmbean`,
     menuLinks: [
-      // {
-      //   name: 'Home',
-      //   link: '/'
-      // },
       {
         name: 'Components',
         link: '/components'
