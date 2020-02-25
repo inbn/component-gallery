@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
+import twitterCardImage from '../images/twitter_card_image.png';
+
 function SEO({ description, lang, meta, keywords, title, favicon }) {
   const { site } = useStaticQuery(graphql`
     query {
@@ -58,6 +60,10 @@ function SEO({ description, lang, meta, keywords, title, favicon }) {
         {
           name: `twitter:description`,
           content: metaDescription
+        },
+        {
+          name: `twitter:image`,
+          content: twitterCardImage
         }
       ]
         .concat(
