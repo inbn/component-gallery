@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
@@ -11,12 +12,11 @@ const ChangelogPage = ({ data }) => (
     <div className="col-wrap">
       {/* Main content */}
       <div className="col col--main pt-4 px-6">
-        <div
-          dangerouslySetInnerHTML={{
-            __html: data.markdown.html
-          }}
-          className="body-text mb-4"
-        />
+        {data.mdx !== null && (
+          <div className="body-text mb-4">
+            <MDXRenderer>{data.mdx.body}</MDXRenderer>
+          </div>
+        )}
       </div>
     </div>
   </Layout>
@@ -26,8 +26,8 @@ export default ChangelogPage;
 
 export const query = graphql`
   {
-    markdown: markdownRemark(frontmatter: { slug: { eq: "changelog" } }) {
-      html
+    mdx: mdx(frontmatter: { slug: { eq: "changelog" } }) {
+      body
     }
   }
 `;

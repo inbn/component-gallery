@@ -204,19 +204,6 @@ export const query = graphql`
       }
     }
     mdx: mdx(frontmatter: { slug: { eq: $Slug } }) {
-      # html
-      # frontmatter {
-      #   date(formatString: "MMMM DD, YYYY")
-      #   path
-      #   title
-      # }
-      # fields {
-      #   readingTime {
-      #     text
-      #   }
-      # }
-      # tableOfContents(pathToSlugField: "frontmatter.path", maxDepth: 3)
-
       body
       frontmatter {
         title
