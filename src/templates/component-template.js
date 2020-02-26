@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { graphql } from 'gatsby';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import ComponentExample from '../components/ComponentExample';
 import Hero from '../components/Hero';
@@ -42,17 +43,20 @@ export default ({ data }) => {
     sortItems([...data.airtable.data.Examples], sortingOptions[0])
   );
 
-  let tocHtml = null;
+  let tocItems = null;
   let readtime = null;
 
-  if (data.markdown !== null) {
+  if (data.mdx !== null && data.mdx.tableOfContents.items.length > 0) {
     // Insert 'examples' as the first item in the table of contents
-    tocHtml = data.markdown.tableOfContents;
-    // Add just after the opening '<ul>'
-    tocHtml = `${tocHtml.substring(0, 4)}<li>
-    <a href="#examples">Examples</a>
-  </li>${tocHtml.substring(4)}`;
-    readtime = data.markdown.fields.readingTime.text;
+    tocItems = [
+      {
+        url: '#examples',
+        title: 'Examples'
+      },
+      ...data.mdx.tableOfContents.items
+    ];
+
+    readtime = `${data.mdx.timeToRead} minute read`;
   }
 
   return (
@@ -87,7 +91,7 @@ export default ({ data }) => {
       />
       <div className="col-wrap">
         {/* Sidebar */}
-        {tocHtml !== null && (
+        {tocItems !== null && (
           <div className="col col--sidebar border-b border-l">
             <div className="font-sans py-2 px-6 border-b bg-white text-black text-sm block">
               {/* Last updated date */}
@@ -96,7 +100,7 @@ export default ({ data }) => {
               {readtime !== null && <p className="mt-0">{readtime}</p>}
             </div>
             {/* Table of contents */}
-            <TableOfContents html={tocHtml} />
+            <TableOfContents items={tocItems} />
           </div>
         )}
         {/* Main content */}
@@ -152,13 +156,11 @@ export default ({ data }) => {
               </ul>
             </>
           )}
-          {data.markdown !== null && (
-            <div
-              dangerouslySetInnerHTML={{
-                __html: data.markdown.html
-              }}
-              className="body-text p-6"
-            />
+
+          {data.mdx !== null && (
+            <div className="body-text p-6">
+              <MDXRenderer>{data.mdx.body}</MDXRenderer>
+            </div>
           )}
         </div>
       </div>
@@ -201,19 +203,15 @@ export const query = graphql`
         Date_updated(formatString: "MMMM Do, YYYY")
       }
     }
-    markdown: markdownRemark(frontmatter: { slug: { eq: $Slug } }) {
-      html
+    mdx: mdx(frontmatter: { slug: { eq: $Slug } }) {
+      body
       frontmatter {
-        date(formatString: "MMMM DD, YYYY")
-        path
         title
+        path
+        date(formatString: "MMMM DD, YYYY")
       }
-      fields {
-        readingTime {
-          text
-        }
-      }
-      tableOfContents(pathToSlugField: "frontmatter.path", maxDepth: 3)
+      tableOfContents(maxDepth: 3)
+      timeToRead
     }
   }
 `;

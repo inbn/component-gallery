@@ -4,26 +4,30 @@
 \*====================================*/
 
 .table-of-contents {
-  & ul {
-    @apply pl-4;
-    list-style-type: none;
-
-    & ul {
-      & a {
-        font-weight: normal;
-      }
-    }
-  }
+  @apply pl-4 mt-0;
+  list-style-type: none;
 
   & a {
     @apply table border-transparent pt-2 text-black;
 
     font-weight: bold;
   }
-}
 
-@screen md {
-  .table-of-contents {
+  & ul {
+    @apply pl-4;
+
+    & a {
+      font-weight: normal;
+    }
+  }
+
+  @screen md {
     @apply text-sm;
   }
 }
+
+/* @screen md {
+  .table-of-contents {
+    @apply text-sm;
+  }
+} */

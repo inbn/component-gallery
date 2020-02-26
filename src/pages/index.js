@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import Component from '../components/Component';
 import Layout from '../components/Layout';
@@ -12,12 +13,9 @@ const IndexPage = ({ data }) => (
       <>
         <div className="my-8 lg:my-12 mx-6">
           <div className="-mx-4 lg:flex">
-            <div
-              className="bg-white border-2 border-black font-sans text-grey-800 shadow-block-grey-800 body-text text-xl p-6 max-w-xl mx-4"
-              dangerouslySetInnerHTML={{
-                __html: data.markdown.html
-              }}
-            />
+            <div className="bg-white border-2 border-black font-sans text-grey-800 shadow-block-grey-800 body-text text-xl p-6 max-w-xl mx-4">
+              <MDXRenderer>{data.mdx.body}</MDXRenderer>
+            </div>
           </div>
         </div>
       </>
@@ -96,11 +94,12 @@ export const query = graphql`
             otherNames: Other_names
             examplesCount: Examples_count
           }
+          id
         }
       }
     }
-    markdown: markdownRemark(frontmatter: { slug: { eq: "homepage" } }) {
-      html
+    mdx: mdx(frontmatter: { slug: { eq: "homepage" } }) {
+      body
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         path

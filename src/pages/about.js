@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
@@ -8,20 +9,20 @@ import TableOfContents from '../components/TableOfContents';
 
 const AboutPage = ({ data }) => (
   <Layout heroComponent={<Hero title="About" />}>
-    <SEO title="About" description={data.markdown.frontmatter.description} />
+    <SEO title="About" description={data.mdx.frontmatter.description} />
     <div className="col-wrap">
       <div className="col col--sidebar border-b border-l">
-        {/* Table of contents */}
-        <TableOfContents html={data.markdown.tableOfContents} />
+        {data.mdx !== null && (
+          <TableOfContents items={data.mdx.tableOfContents.items} />
+        )}
       </div>
       {/* Main content */}
       <div className="col col--main pt-4 px-6 border-l">
-        <div
-          dangerouslySetInnerHTML={{
-            __html: data.markdown.html
-          }}
-          className="body-text mb-4"
-        />
+        {data.mdx !== null && (
+          <div className="body-text mb-4">
+            <MDXRenderer>{data.mdx.body}</MDXRenderer>
+          </div>
+        )}
       </div>
     </div>
   </Layout>
@@ -31,15 +32,15 @@ export default AboutPage;
 
 export const query = graphql`
   {
-    markdown: markdownRemark(frontmatter: { slug: { eq: "about" } }) {
-      html
+    mdx: mdx(frontmatter: { slug: { eq: "about" } }) {
+      body
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         path
         title
         description
       }
-      tableOfContents(pathToSlugField: "frontmatter.path", maxDepth: 3)
+      tableOfContents(maxDepth: 3)
     }
   }
 `;
