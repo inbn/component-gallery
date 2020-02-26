@@ -13,6 +13,7 @@ function SEO({ description, lang, meta, keywords, title, favicon }) {
           title
           description
           author
+          siteUrl
         }
       }
     }
@@ -47,7 +48,7 @@ function SEO({ description, lang, meta, keywords, title, favicon }) {
         },
         {
           name: `og:image`,
-          content: twitterCardImage
+          content: `${site.siteMetadata.siteUrl}${twitterCardImage}`
         },
         {
           name: `twitter:card`,
@@ -67,7 +68,7 @@ function SEO({ description, lang, meta, keywords, title, favicon }) {
         },
         {
           name: `twitter:image`,
-          content: twitterCardImage
+          content: `${site.siteMetadata.siteUrl}${twitterCardImage}`
         }
       ]
         .concat(
