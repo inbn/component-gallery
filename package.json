@@ -19,11 +19,11 @@
     "gatsby-plugin-meta-redirect": "^1.1.1",
     "gatsby-plugin-netlify": "^2.1.31",
     "gatsby-plugin-netlify-cache": "^1.2.0",
-    "gatsby-plugin-offline": "^3.0.32",
     "gatsby-plugin-postcss": "^2.1.19",
     "gatsby-plugin-preact": "^3.1.25",
     "gatsby-plugin-purgecss": "^3.1.0",
     "gatsby-plugin-react-helmet": "^3.1.21",
+    "gatsby-plugin-remove-serviceworker": "^1.0.0",
     "gatsby-plugin-sharp": "^2.4.0",
     "gatsby-plugin-sitemap": "^2.2.26",
     "gatsby-remark-abbr": "^1.0.1",
@@ -88,8 +88,7 @@
     "postinstall": "^0.7.0",
     "prettier": "^1.19.1",
     "storybook-addon-smart-knobs": "^6.0.1",
-    "tailwindcss": "^1.1.4",
-    "tailwindcss-transforms": "^1.0.2"
+    "tailwindcss": "^1.1.4"
   },
   "browserslist": [
     "defaults"
