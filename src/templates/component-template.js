@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
-import ComponentExample from '../components/ComponentExample';
+import ComponentExample from '../components/ComponentExample/ComponentExample';
 import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';

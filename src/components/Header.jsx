@@ -4,7 +4,7 @@ import React from 'react';
 
 import SearchForm from './SearchForm';
 
-const Header = ({ siteTitle, menuLinks, isHomepage }) => {
+const Header = ({ menuLinks, isHomepage }) => {
   const SiteTitleTag = isHomepage ? 'h1' : 'div';
   return (
     <header className="flex flex-wrap sm:justify-between lg:items-center bg-white border-b px-4 py-2">
@@ -35,13 +35,11 @@ const Header = ({ siteTitle, menuLinks, isHomepage }) => {
 };
 
 Header.propTypes = {
-  siteTitle: PropTypes.string,
   menuLinks: PropTypes.array,
   isHomepage: PropTypes.bool
 };
 
 Header.defaultProps = {
-  siteTitle: ``,
   menuLinks: [],
   isHomepage: false
 };

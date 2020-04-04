@@ -3,12 +3,11 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withSmartKnobs } from 'storybook-addon-smart-knobs';
 
-import '../css/style.css';
+import ReadMoreLink from './ReadMoreLink';
 
-import Badge from './Badge';
-
-storiesOf(`Badge`, module)
+storiesOf(`ReadMoreLink`, module)
   .addDecorator(withSmartKnobs())
   .addDecorator(withKnobs())
-  .add(`Text only`, () => <Badge text="Hi, I’m a Badge" />)
-  .add(`With icon`, () => <Badge text="Accessibility" displayIcon />);
+  .add(`Default`, () => (
+    <ReadMoreLink to="https://example.com" text="Read more" />
+  ));

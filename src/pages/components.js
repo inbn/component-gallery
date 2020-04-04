@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 
-import Component from '../components/Component';
+import Component from '../components/Component/Component';
 import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';

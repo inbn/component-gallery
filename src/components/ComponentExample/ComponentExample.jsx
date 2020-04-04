@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Badge from './Badge';
+import Badge from '../Badge/Badge';
 
 const ComponentExample = ({
   url,
@@ -28,7 +28,6 @@ const ComponentExample = ({
         <p className="leading-none text-base uppercase tracking-wider font-sans text-grey-800">
           {componentName}
         </p>
-
         <div className="mt-auto pt-6">
           <HeadingTag className="h5 mt-0 pb-1 font-bold">
             {designSystemName}

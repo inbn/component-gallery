@@ -1,5 +1,8 @@
 import { configure } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+
+import '../src/css/style.css';
+
 // automatically import all files ending in *.stories.js
 const req = require.context('../src', true, /.stories.js$/);
 function loadStories() {

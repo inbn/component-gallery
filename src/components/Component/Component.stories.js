@@ -3,8 +3,6 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withSmartKnobs } from 'storybook-addon-smart-knobs';
 
-import '../css/style.css';
-
 import Component from './Component';
 
 storiesOf(`Component`, module)

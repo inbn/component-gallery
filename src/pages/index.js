@@ -2,10 +2,10 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
-import Component from '../components/Component';
-import DesignSystem from '../components/DesignSystem';
+import Component from '../components/Component/Component';
+import DesignSystem from '../components/DesignSystem/DesignSystem';
 import Layout from '../components/Layout';
-import ReadMoreLink from '../components/ReadMoreLink';
+import ReadMoreLink from '../components/ReadMoreLink/ReadMoreLink';
 import SEO from '../components/SEO';
 
 const IndexPage = ({ data }) => (
