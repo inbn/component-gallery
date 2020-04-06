@@ -1,4 +1,5 @@
 import { configure } from '@storybook/react';
+import 'loki/configure-react';
 import { action } from '@storybook/addon-actions';
 
 import '../src/css/style.css';
