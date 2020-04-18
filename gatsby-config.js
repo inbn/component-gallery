@@ -1,4 +1,6 @@
-require(`dotenv`).config({ path: `.env.${process.env.NODE_ENV}` });
+require(`dotenv`).config({
+  path: `.env.${process.env.NODE_ENV}`
+});
 
 module.exports = {
   siteMetadata: {
@@ -6,8 +8,7 @@ module.exports = {
     title: `The Component Gallery`,
     description: `The Component Gallery is a collection of components from the best Design Systems.`,
     author: `@iainmbean`,
-    menuLinks: [
-      {
+    menuLinks: [{
         name: 'Components',
         link: '/components'
       },
@@ -61,12 +62,13 @@ module.exports = {
       resolve: `gatsby-source-airtable`,
       options: {
         apiKey: process.env.AIRTABLE_API_KEY,
-        tables: [
-          {
+        tables: [{
             baseId: process.env.AIRTABLE_BASE_ID,
             tableName: `Components`,
             tableView: `Name A-Z`,
-            mapping: { Description: `text/markdown` },
+            mapping: {
+              Description: `text/markdown`
+            },
             tableLinks: [
               `Commonly contains`,
               `Categories`,
@@ -91,7 +93,9 @@ module.exports = {
             tableName: `Design systems`,
             tableView: `Name A-Z`,
             tableLinks: [`Component examples`],
-            mapping: { Image: `fileNode` }
+            mapping: {
+              Image: `fileNode`
+            }
           },
           {
             baseId: process.env.AIRTABLE_BASE_ID,
@@ -205,17 +209,15 @@ module.exports = {
             otherNames: node => node.data.Other_names,
             description: node => node.data.Description,
             url: node =>
-              node.table === 'Components'
-                ? `/components/${node.data.Slug}`
-                : node.data.URL,
+              node.table === 'Components' ?
+              `/components/${node.data.Slug}` :
+              node.data.URL,
             table: node => node.table
           }
         },
         // A function for filtering nodes. () => true by default
-        filter: node =>
-          ['Components', 'Design systems'].includes(node.table) &&
+        filter: node => ['Components', 'Design systems'].includes(node.table) &&
           node.data.Publish === true,
-
         filename: 'search_index.json'
       }
     },
