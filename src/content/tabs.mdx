@@ -84,10 +84,12 @@ To show/hide the tab panels you will need to toggle the CSS display property bet
 
 In addition to aria attributes on your HTML elements, to make a tabbed interface keyboard-accessible, you’ll also need to add some custom keybindings[^1]:
 
-- <kbd>Tab</kbd>: When tabbing into the tab list, place focus on the active tab element. When focus is on a tab _inside_ the tab list, pressing tab should move focus to the next focusable element in the page _outside_ the tab list.
-- <kbd>Space</kbd> or <kbd>Enter</kbd> should activate the currently focused tab if it wasn't activated automatically on focus.
-- <kbd>←</kbd> and <kbd>→</kbd> to cycle between tabs when `aria-orientation="vertical"`.
-- <kbd>↑</kbd> and <kbd>↓</kbd> to cycle between tabs when `aria-orientation="horizontal"`.
+<!-- MDX can't parse markdown if an li starts with a kbd element ¯\_(ツ)_/¯ -->
+
+- &#8203;<kbd>Tab</kbd>: When tabbing into the tab list, place focus on the active tab element. When focus is on a tab _inside_ the tab list, pressing tab should move focus to the next focusable element in the page _outside_ the tab list.
+- &#8203;<kbd>Space</kbd> or <kbd>Enter</kbd> should activate the currently focused tab if it wasn't activated automatically on focus.
+- &#8203;<kbd>←</kbd> and <kbd>→</kbd> to cycle between tabs when `aria-orientation="vertical"`.
+- &#8203;<kbd>↑</kbd> and <kbd>↓</kbd> to cycle between tabs when `aria-orientation="horizontal"`.
 
 **Caveat:** although this is a widely used method for making tabbed interfaces keyboard accessible, some users may not be familiar it; a component that is simpler to interact with ([such as an accordion](/components/accordion)) may be more suited to your specific use case.
 
@@ -99,4 +101,4 @@ In addition to aria attributes on your HTML elements, to make a tabbed interface
 
 - If you're laying out your tabs horizontally, think about how they will appear at narrower screen widths — will they need to stack vertically or will you be better off swapping out the tabs for a different component (e.g. [an accordion](/components/accordion))?
 
-[^2]: [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel)
+[^1]: [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel)
