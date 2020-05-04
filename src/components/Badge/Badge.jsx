@@ -6,10 +6,12 @@ import {
   FaFlask,
   FaUniversalAccess,
   FaClipboardList,
-  FaExclamationTriangle
+  FaExclamationTriangle,
+  FaComment
 } from 'react-icons/fa';
 
-const Badge = ({ text, displayIcon }) => {
+const Badge = ({ text, displayIcon, tag }) => {
+  const Tag = tag;
   let Icon;
 
   if (displayIcon) {
@@ -29,25 +31,30 @@ const Badge = ({ text, displayIcon }) => {
       case 'Research':
         Icon = FaFlask;
         break;
+      case 'Tone of voice':
+        Icon = FaComment;
+        break;
       default:
         Icon = '';
     }
   }
   return (
-    <li className="badge">
+    <Tag className="badge">
       {Icon && <Icon className="badge__icon" />}
       {text}
-    </li>
+    </Tag>
   );
 };
 
 Badge.propTypes = {
   text: PropTypes.string.isRequired,
-  displayIcon: PropTypes.bool
+  displayIcon: PropTypes.bool,
+  tag: PropTypes.string
 };
 
 Badge.defaultProps = {
-  displayIcon: false
+  displayIcon: false,
+  tag: 'span'
 };
 
 export default Badge;

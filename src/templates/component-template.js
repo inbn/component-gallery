@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import ComponentExample from '../components/ComponentExample/ComponentExample';
+import Component from '../components/Component/Component';
 import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
@@ -53,7 +54,15 @@ export default ({ data }) => {
         url: '#examples',
         title: 'Examples'
       },
-      ...data.mdx.tableOfContents.items
+      ...data.mdx.tableOfContents.items,
+      ...(data.airtable.data.relatedComponents !== null
+        ? [
+            {
+              url: '#related-components',
+              title: 'Related components'
+            }
+          ]
+        : [])
     ];
 
     readtime = `${data.mdx.timeToRead} minute read`;
@@ -162,6 +171,47 @@ export default ({ data }) => {
               <MDXRenderer>{data.mdx.body}</MDXRenderer>
             </div>
           )}
+
+          {data.airtable.data.relatedComponents !== null && (
+            <>
+              <div
+                style={{ ...(data.mdx !== null ? { maxWidth: '76ch' } : {}) }}
+                className="mx-auto px-6 py-4"
+              >
+                <h2 id="related-components" className="mt-0">
+                  Related components
+                </h2>
+              </div>
+              <div className="border-t">
+                <ul className="grid mt-0">
+                  {data.airtable.data.relatedComponents.map(
+                    ({
+                      data: {
+                        slug,
+                        name,
+                        description,
+                        otherNames,
+                        examplesCount
+                      },
+                      id
+                    }) => (
+                      <Component
+                        key={id}
+                        slug={slug}
+                        name={name}
+                        description={
+                          description !== null &&
+                          description.childMarkdownRemark.html
+                        }
+                        otherNames={otherNames}
+                        examplesCount={examplesCount}
+                      />
+                    )
+                  )}
+                </ul>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </Layout>
@@ -201,6 +251,20 @@ export const query = graphql`
         Examples_count
         Emoji
         Date_updated(formatString: "MMMM Do, YYYY")
+        relatedComponents: Related_components {
+          data {
+            name: Name
+            description: Description {
+              childMarkdownRemark {
+                html
+              }
+            }
+            slug: Slug
+            otherNames: Other_names
+            examplesCount: Examples_count
+          }
+          id
+        }
       }
     }
     mdx: mdx(frontmatter: { slug: { eq: $Slug } }) {

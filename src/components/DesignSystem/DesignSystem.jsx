@@ -39,7 +39,7 @@ const DesignSystem = ({
           <div className="mt-auto">
             <ul className="-mr-2 -ml-1 pt-6 flex flex-wrap">
               {features.map(feature => (
-                <Badge key={feature} text={feature} displayIcon />
+                <Badge key={feature} text={feature} tag="li" displayIcon />
               ))}
             </ul>
           </div>
