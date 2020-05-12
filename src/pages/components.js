@@ -10,25 +10,13 @@ import sortItems from '../utils/sortItems';
 
 const sortingOptions = [
   {
-    label: 'Name (A–Z)',
+    label: 'Name',
     path: 'node.data.name',
     comparison: 'text',
     flip: false
   },
   {
-    label: 'Name (Z-A)',
-    path: 'node.data.name',
-    comparison: 'text',
-    flip: true
-  },
-  {
-    label: '№ of examples (asc)',
-    path: 'node.data.examplesCount',
-    comparison: 'number',
-    flip: false
-  },
-  {
-    label: '№ of examples (desc)',
+    label: 'Example count',
     path: 'node.data.examplesCount',
     comparison: 'number',
     flip: true
@@ -57,9 +45,9 @@ const ComponentsIndexPage = ({ data }) => {
             );
           }}
         >
-          {sortingOptions.map((option, i) => (
-            <option value={i} key={i}>
-              {option.label}
+          {sortingOptions.map(({ label }, i) => (
+            <option value={i} key={label}>
+              {label}
             </option>
           ))}
         </select>

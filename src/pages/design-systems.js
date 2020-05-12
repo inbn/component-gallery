@@ -10,25 +10,13 @@ import sortItems from '../utils/sortItems';
 
 const sortingOptions = [
   {
-    label: 'Name (A–Z)',
+    label: 'Name',
     path: 'node.data.name',
     comparison: 'text',
     flip: false
   },
   {
-    label: 'Name (Z-A)',
-    path: 'node.data.name',
-    comparison: 'text',
-    flip: true
-  },
-  {
-    label: '№ of components (asc)',
-    path: 'node.data.Component_examples_count',
-    comparison: 'number',
-    flip: false
-  },
-  {
-    label: '№ of components (desc)',
+    label: 'Component count',
     path: 'node.data.Component_examples_count',
     comparison: 'number',
     flip: true
@@ -58,9 +46,9 @@ const DesignSystemsIndexPage = ({ data }) => {
             );
           }}
         >
-          {sortingOptions.map((option, i) => (
-            <option value={i} key={i}>
-              {option.label}
+          {sortingOptions.map(({ label }, i) => (
+            <option value={i} key={label}>
+              {label}
             </option>
           ))}
         </select>
@@ -99,11 +87,8 @@ export default DesignSystemsIndexPage;
 export const query = graphql`
   {
     allAirtable(
-      filter: {
-        table: { eq: "Design systems" }
-        data: { Publish: { eq: true } }
-      }
-      sort: { fields: [data___Name], order: ASC }
+      filter: { table: { eq: "Design systems" } }
+      sort: { fields: [data___Slug], order: ASC }
     ) {
       edges {
         node {
