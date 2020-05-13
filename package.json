@@ -58,7 +58,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "postinstall": "cd ./node_modules/postcss-svg && touch .gitignore && npm install && npm publish --dry-run",
-    "loki:update": "loki update --reactUri file:./storybook-static"
+    "loki:update": "npx loki update --reactUri file:./storybook-static"
   },
   "repository": {
     "type": "git",
