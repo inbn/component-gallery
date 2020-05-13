@@ -4,4 +4,4 @@ COPY package.json package-lock.json ./
 
 RUN npm ci
 
-CMD npm run test:loki
+CMD npm run loki:update
