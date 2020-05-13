@@ -3,4 +3,4 @@ description: Visual regression testing for storybook
 
 runs:
   using: docker
-  image: ../../../Dockerfile
+  image: "../../../Dockerfile"

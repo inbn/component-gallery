@@ -8,4 +8,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Run Loki
-        uses: ../actions/run-loki
+        uses: ./.github/actions/run-loki
