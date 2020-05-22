@@ -7,5 +7,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Run Loki
-        uses: ./.github/actions/run-loki
+      - run: npm ci
+      - run: npm run build-storybook
+      - run: npm run loki:update
