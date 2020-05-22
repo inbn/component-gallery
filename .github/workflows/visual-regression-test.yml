@@ -7,6 +7,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - run: npm ci
-      - run: npm run build-storybook
-      - run: npm run loki:update
+      - name: Install packages
+        run: npm ci
+      - name: Build storybook
+        run: npm run build-storybook
+      - name: Run Loki
+        run: npm run loki:update
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v2
