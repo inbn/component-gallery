@@ -13,28 +13,16 @@ import sortItems from '../utils/sortItems';
 
 const sortingOptions = [
   {
-    label: 'Design system (A-Z)',
+    label: 'Design system',
     path: 'data.Design_system[0].data.Name',
     comparison: 'text',
     flip: false
   },
   {
-    label: 'Design system (Z-A)',
-    path: 'data.Design_system[0].data.Name',
-    comparison: 'text',
-    flip: true
-  },
-  {
-    label: 'Name (A–Z)',
+    label: 'Component name',
     path: 'data.Name',
     comparison: 'text',
     flip: false
-  },
-  {
-    label: 'Name (Z-A)',
-    path: 'data.Name',
-    comparison: 'text',
-    flip: true
   }
 ];
 
