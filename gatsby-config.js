@@ -192,18 +192,7 @@ module.exports = {
       options: {
         // Fields to index. If store === true value will be stored in index file.
         // Attributes for custom indexing logic. See https://lunrjs.com/docs/lunr.Builder.html for details
-        fields: [
-          `name`,
-          `otherNames`,
-          `description`,
-          `url`,
-          `table`
-          // { name: 'name', store: true, attributes: { boost: 100 } },
-          // { name: 'otherNames', store: true, attributes: { boost: 50 } },
-          // { name: 'description', store: true },
-          // { name: 'url', store: true },
-          // { name: 'table', store: true }
-        ],
+        fields: [`name`, `otherNames`, `description`, `url`, `table`],
         resolvers: {
           Airtable: {
             name: node => node.data.Name,

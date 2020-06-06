@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
-import ComponentExample from '../components/ComponentExample/ComponentExample';
 import Component from '../components/Component/Component';
+import ComponentExample from '../components/ComponentExample/ComponentExample';
 import Hero from '../components/Hero';
 import Layout from '../components/Layout';
+import Select from '../components/Select/Select';
 import SEO from '../components/SEO';
 import TableOfContents from '../components/TableOfContents';
 
@@ -13,16 +14,16 @@ import sortItems from '../utils/sortItems';
 
 const sortingOptions = [
   {
-    label: 'Design system',
-    path: 'data.Design_system[0].data.Name',
+    optionLabel: 'Design system',
+    path: 'data.designSystem[0].data.Name',
     comparison: 'text',
-    flip: false
+    reverse: false
   },
   {
-    label: 'Component name',
+    optionLabel: 'Component name',
     path: 'data.Name',
     comparison: 'text',
-    flip: false
+    reverse: false
   }
 ];
 
@@ -110,44 +111,33 @@ export default ({ data }) => {
                 {data.airtable.data.Examples_count !== 1 && 's'}
               </h2>
               <div className="control-bar py-2 px-6 bg-grey-200 mt-4 border-t">
-                <label
-                  htmlFor="sortOrder"
-                  className="text-grey-800 text-sm font-sans font-bold"
-                >
-                  <span className="mr-2">Sort by</span>
-                  <select
-                    id="sortOrder"
-                    className=""
-                    onChange={event => {
-                      setExamples(
-                        // .sort() mutates the array - use spread to create a new one
-                        sortItems(
-                          [...examples],
-                          sortingOptions[event.target.value]
-                        )
-                      );
-                    }}
-                  >
-                    {sortingOptions.map((option, i) => (
-                      <option value={i} key={i}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </select>
-                </label>
+                <Select
+                  id="sort-order"
+                  label="Sort by"
+                  defaultValue="0"
+                  onChange={event => {
+                    setExamples(
+                      // .sort() mutates the array - use spread to create a new one
+                      sortItems(
+                        [...examples],
+                        sortingOptions[event.target.value]
+                      )
+                    );
+                  }}
+                  options={sortingOptions}
+                  useIndexAsValue
+                />
               </div>
               <ul className="grid border-t mt-0">
-                {examples.map(({ data: { URL, Name, Design_system } }, i) => (
+                {examples.map(({ data: { URL, Name, designSystem } }, i) => (
                   <ComponentExample
                     key={i}
                     url={URL}
                     componentName={Name}
-                    designSystemName={Design_system[0].data.Name}
-                    designSystemOrganisation={
-                      Design_system[0].data.Organisation
-                    }
-                    features={Design_system[0].data.Features}
-                    color={Design_system[0].data.Colour_hex}
+                    designSystemName={designSystem[0].data.Name}
+                    designSystemOrganisation={designSystem[0].data.Organisation}
+                    features={designSystem[0].data.Features}
+                    color={designSystem[0].data.Colour_hex}
                   />
                 ))}
               </ul>
@@ -226,7 +216,7 @@ export const query = graphql`
           data {
             Name
             URL
-            Design_system {
+            designSystem: Design_system {
               data {
                 Name
                 Organisation

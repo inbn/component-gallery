@@ -40,7 +40,7 @@ const Badge = ({ text, displayIcon, tag }) => {
   }
   return (
     <Tag className="badge">
-      {Icon && <Icon className="badge__icon" />}
+      {Icon && <Icon className="badge__icon" aria-hidden="true" />}
       {text}
     </Tag>
   );
