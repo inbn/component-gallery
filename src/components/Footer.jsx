@@ -13,6 +13,7 @@ const Footer = () => (
       height="32"
       fill="none"
       className="hidden sm:block"
+      aria-hidden="true"
     >
       <g filter="url(#filter0_d)">
         <circle cx="14" cy="14" r="11" fill="#F8FAFC" />
