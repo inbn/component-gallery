@@ -27,7 +27,11 @@ const DesignSystem = ({
         className="card__inner p-6 block h-full flex flex-col"
       >
         {image && (
-          <Img fluid={image.childImageSharp.fluid} className="border" />
+          <Img
+            fluid={image.childImageSharp.fluid}
+            backgroundColor={color}
+            className="border"
+          />
         )}
         <HeadingTag className="h3 mt-0 pt-6 pb-1 font-bold">{name}</HeadingTag>
         {organisation && (
