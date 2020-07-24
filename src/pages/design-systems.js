@@ -95,7 +95,6 @@ export const query = graphql`
                     maxHeight: 456
                     traceSVG: { background: "#fff", color: "#dae1e7" }
                   ) {
-                    ...GatsbyImageSharpFluid
                     ...GatsbyImageSharpFluid_tracedSVG
                   }
                 }
