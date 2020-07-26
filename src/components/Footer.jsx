@@ -43,12 +43,12 @@ const Footer = () => (
     </svg>
     <ul className="mt-0 pl-6 flex">
       <li className="mr-4">
-        <Link to="/colophon" className="link">
+        <Link to="/colophon/" className="link">
           Colophon
         </Link>
       </li>
       <li>
-        <Link to="/changelog" className="link">
+        <Link to="/changelog/" className="link">
           Changelog
         </Link>
       </li>

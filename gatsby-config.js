@@ -11,15 +11,15 @@ module.exports = {
     menuLinks: [
       {
         name: 'Components',
-        link: '/components'
+        link: '/components/'
       },
       {
         name: 'Design systems',
-        link: '/design-systems'
+        link: '/design-systems/'
       },
       {
         name: 'About',
-        link: '/about'
+        link: '/about/'
       }
     ]
   },
@@ -200,7 +200,7 @@ module.exports = {
             description: node => node.data.Description,
             url: node =>
               node.table === 'Components'
-                ? `/components/${node.data.Slug}`
+                ? `/components/${node.data.Slug}/`
                 : node.data.URL,
             table: node => node.table
           }
@@ -228,6 +228,7 @@ module.exports = {
         }
       }
     },
+    `gatsby-plugin-force-trailing-slashes`,
     // This should always go last
     `gatsby-plugin-meta-redirect`
   ]
