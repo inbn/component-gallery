@@ -216,6 +216,18 @@ module.exports = {
     `gatsby-plugin-netlify`,
     `gatsby-plugin-netlify-cache`,
     `gatsby-plugin-preact`,
+    {
+      resolve: `gatsby-plugin-svg-sprite-loader`,
+      options: {
+        /* SVG sprite loader options */
+        extract: true,
+        esModule: false,
+        pluginOptions: {
+          /* SVG sprite loader plugin options */
+          plainSprite: true
+        }
+      }
+    },
     // This should always go last
     `gatsby-plugin-meta-redirect`
   ]

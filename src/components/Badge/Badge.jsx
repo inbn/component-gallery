@@ -1,46 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import {
-  FaCode,
-  FaFlask,
-  FaUniversalAccess,
-  FaClipboardList,
-  FaExclamationTriangle,
-  FaComment
-} from 'react-icons/fa';
+import Icon from '../Icon/Icon';
 
 const Badge = ({ text, displayIcon, tag }) => {
   const Tag = tag;
-  let Icon;
+  let badgeIcon;
 
   if (displayIcon) {
     switch (text) {
       case 'Accessibility':
-        Icon = FaUniversalAccess;
+        badgeIcon = 'universalAccess';
         break;
       case 'Accessibility issues':
-        Icon = FaExclamationTriangle;
+        badgeIcon = 'exclamationTriangle';
         break;
       case 'Usage guidelines':
-        Icon = FaClipboardList;
+        badgeIcon = 'clipboardList';
         break;
       case 'Code examples':
-        Icon = FaCode;
+        badgeIcon = 'code';
         break;
       case 'Research':
-        Icon = FaFlask;
+        badgeIcon = 'flask';
         break;
       case 'Tone of voice':
-        Icon = FaComment;
+        badgeIcon = 'comment';
         break;
       default:
-        Icon = '';
+        badgeIcon = '';
     }
   }
   return (
     <Tag className="badge">
-      {Icon && <Icon className="badge__icon" aria-hidden="true" />}
+      {badgeIcon && (
+        <Icon name={badgeIcon} className="badge__icon" aria-hidden="true" />
+      )}
       {text}
     </Tag>
   );

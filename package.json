@@ -10,7 +10,7 @@
     "@mdx-js/react": "^1.5.9",
     "@rooks/use-key": "^3.6.0",
     "dotenv": "^6.2.0",
-    "gatsby": "^2.22.12",
+    "gatsby": "^2.24.11",
     "gatsby-image": "^2.2.39",
     "gatsby-plugin-catch-links": "^2.1.24",
     "gatsby-plugin-google-analytics": "^2.1.33",
@@ -26,6 +26,7 @@
     "gatsby-plugin-remove-serviceworker": "^1.0.0",
     "gatsby-plugin-sharp": "^2.4.0",
     "gatsby-plugin-sitemap": "^2.2.26",
+    "gatsby-plugin-svg-sprite-loader": "^0.1.5",
     "gatsby-remark-abbr": "^1.0.1",
     "gatsby-remark-autolink-headers": "^2.1.23",
     "gatsby-remark-images": "^3.1.42",
@@ -43,7 +44,8 @@
     "react-helmet": "^5.2.1",
     "react-icons": "^3.8.0",
     "sharp": "^0.22.1",
-    "slugify": "^1.3.6"
+    "slugify": "^1.3.6",
+    "svg-sprite-loader": "^4.2.1"
   },
   "keywords": [
     "gatsby"
