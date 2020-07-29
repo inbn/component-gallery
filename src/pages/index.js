@@ -149,11 +149,7 @@ export const query = graphql`
             image: Image {
               localFiles {
                 childImageSharp {
-                  fluid(
-                    maxWidth: 608
-                    maxHeight: 456
-                    traceSVG: { background: "#fff", color: "#dae1e7" }
-                  ) {
+                  fluid(maxWidth: 491, maxHeight: 369) {
                     ...GatsbyImageSharpFluid_noBase64
                   }
                 }
