@@ -28,7 +28,10 @@ const DesignSystem = ({
       >
         {image && (
           <Img
-            fluid={image.childImageSharp.fluid}
+            fluid={{
+              ...image.childImageSharp.fluid,
+              sizes: '(max-width: 544px) calc(100vw - 3rem), 492px'
+            }}
             backgroundColor={color}
             className="border"
           />
