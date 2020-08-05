@@ -7,7 +7,7 @@ date: '2019-10-13'
 
 ## Description
 
-You may have noticed that the examples above use lots of different names: many of these alternative names make reference to the collapsible/expandable nature of the component, while others reference the HTML element used by their implementation: [details](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details). What all of these examples have in common is two elements: the heading and the content. Interacting with the heading toggles the visibility of the content. This heading + content pattern can be repeated as many times as needed.
+The examples above use a variety of different names: many of these refer to the collapsible/expandable nature of the component, while others reference the HTML element used by their implementation: [details](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details). All of these examples have two primary elements in common: a heading and some content: interacting with the heading toggles the visibility of the content; this heading + content pattern can be repeated as many times as needed.
 
 ## Markup
 
@@ -42,11 +42,11 @@ Here is example markup for a single accordion item:
 
 - Each accordion item can be in one of two states: expanded or collapsed. This is communicated to assistive technology via the `aria-expanded` attribute on the button.
 
-- The `aria-controls` attribute ties the button to the content it controls using the `id` of the content container (`"accordion-item-1-content"` in the example).
+- The `aria-controls` attribute ties the button to the content it controls using the `id` of the content container (`accordion-item-1-content` in the example).
 
-- The button contains a downwards-pointing arrow to hint that it can be expanded. When the accordion item is in its expanded state, this is rotated 180 degrees to point upwards. It is common to see plus (+) and minus (-) symbols used instead of arrows.
+- The button contains a downwards-pointing arrow to hint that it can be expanded. When the accordion item is in its expanded state, this is rotated 180 degrees to point upwards. It is also common to see plus (+) and minus (-) symbols used instead of arrows.
 
-- The icon in this example uses an inline SVG to render the arrow. It is given the `aria-hidden="true"` attribute to hide it from assistive technologies (as well as `focusable="false"` to address an inconsistency in Internet Explorer and Edge). You could alternatively use a CSS background image or pseudo-element.
+- The icon in this example uses an inline SVG to render the arrow. It is given the `aria-hidden="true"` attribute to hide it from assistive technologies (as well as `focusable="false"` to address an inconsistency in Internet Explorer and older versions of Edge). You could alternatively use a CSS background image or pseudo-element.
 
 ### Approach 2: _Summary and Details_
 
@@ -63,19 +63,19 @@ The following example uses the [summary](https://developer.mozilla.org/en-US/doc
 
 To set the initial state of the accordion item to be 'expanded', you can add the attribute `open="true"` to the `details` element (the default is `false`, so this can be omitted for collapsed items).
 
-**Browser support warning:** The `details` and `summary` elements are not supported by Edge, Internet Explorer, or Opera Mini at the time of writing.[^1]
+**Browser support warning:** The `details` and `summary` elements are not supported by Internet Explorer, or Opera Mini at the time of writing.[^1]
 
 ### Interactivity
 
 The [first example](#approach-1-heading-with-button), requires a small amount of JavaScript to toggle the `aria-expanded` attribute on the button and the visibility of the content.
 
-In case JavaScript is not enabled, or errors for some reason, it is desirable for the content to still be visible (as the button requires Javascript, the user has no way of making the content visible if JavaScript is disabled). Instead of making the content invisible by default or having buttons that do nothing, you can create your accordion component without the button element, and use JavaScript to [progressively enhance](https://www.gov.uk/service-manual/technology/using-progressive-enhancement) the HTML with additional interactivity. There is an example on how to do this on [Inclusive Components](https://inclusive-components.design/collapsible-sections/).
+In case JavaScript is not enabled, or errors for some reason, it is desirable for the content to still be visible (because the button requires Javascript, the user has no way of making the content visible if JavaScript is disabled). Instead of making the content invisible by default or having buttons that do nothing, you can create your accordion component without the button element, and use JavaScript to [progressively enhance](https://www.gov.uk/service-manual/technology/using-progressive-enhancement) the HTML with additional interactivity. There is an example on how to do this on [Inclusive Components](https://inclusive-components.design/collapsible-sections/).
 
 The [second example](#approach-2-summary-and-details) works without JavaScript in browsers that support the `details` element.
 
 ## Styling
 
-You can use the `aria-expanded` attribute as a hook for styling the button. The following example will rotate the arrow 180 degrees:
+You can use the `aria-expanded` attribute as a hook for styling the button. The following example will rotate the arrow 180 degrees when the accordion is expanded:
 
 ```css
 button[aria-expanded='true'] > svg {
