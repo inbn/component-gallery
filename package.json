@@ -20,6 +20,7 @@
     "gatsby-plugin-meta-redirect": "^1.1.1",
     "gatsby-plugin-netlify": "^2.1.31",
     "gatsby-plugin-netlify-cache": "^1.2.0",
+    "gatsby-plugin-no-javascript": "^2.0.5",
     "gatsby-plugin-postcss": "^2.1.19",
     "gatsby-plugin-preact": "^3.1.25",
     "gatsby-plugin-purgecss": "^3.1.0",

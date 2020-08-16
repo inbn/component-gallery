@@ -229,6 +229,7 @@ module.exports = {
       }
     },
     `gatsby-plugin-force-trailing-slashes`,
+    `gatsby-plugin-no-javascript`,
     // This should always go last
     `gatsby-plugin-meta-redirect`
   ]
