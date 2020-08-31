@@ -97,6 +97,7 @@
   "browserslist": [
     "defaults",
     "not ie 11",
-    "not edge <= 18"
+    "not edge <= 18",
+    "not op_mini all"
   ]
 }
