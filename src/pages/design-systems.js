@@ -47,12 +47,15 @@ const DesignSystemsIndexPage = ({ data }) => {
       </div>
       <ul className="grid border-l mt-0">
         {designSystems.map(
-          ({
-            node: {
-              data: { url, name, organisation, image, features, color },
-              id
-            }
-          }) => {
+          (
+            {
+              node: {
+                data: { url, name, organisation, image, features, color },
+                id
+              }
+            },
+            index
+          ) => {
             return (
               <DesignSystem
                 key={id}
@@ -64,6 +67,7 @@ const DesignSystemsIndexPage = ({ data }) => {
                     ? image.localFiles[0]
                     : null
                 }
+                imageLoading={index === 0 ? 'eager' : 'lazy'}
                 features={features}
                 color={color}
               />

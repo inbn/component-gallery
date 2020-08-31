@@ -9,6 +9,7 @@ const DesignSystem = ({
   name,
   organisation,
   image,
+  imageLoading,
   features,
   color,
   cardTag,
@@ -34,6 +35,7 @@ const DesignSystem = ({
             }}
             backgroundColor={color}
             className="border"
+            loading={imageLoading}
           />
         )}
         <HeadingTag className="h3 mt-0 pt-6 pb-1 font-bold">{name}</HeadingTag>
@@ -61,6 +63,7 @@ DesignSystem.propTypes = {
   name: PropTypes.string.isRequired,
   organisation: PropTypes.string,
   image: PropTypes.object,
+  imageLoading: PropTypes.string,
   features: PropTypes.arrayOf(PropTypes.string),
   color: PropTypes.string,
   cardTag: PropTypes.string,
@@ -70,6 +73,7 @@ DesignSystem.propTypes = {
 DesignSystem.defaultProps = {
   organisation: '',
   image: null,
+  imageLoading: 'lazy',
   features: null,
   color: '#fff',
   cardTag: 'li',
