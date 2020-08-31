@@ -60,7 +60,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "postinstall": "cd ./node_modules/postcss-svg && touch .gitignore && npm install && npm publish --dry-run",
-    "lint": "eslint src/ gatsby-* --ext js,jsx"
+    "lint": "eslint src/ gatsby-* --ext js,jsx",
+    "preload-fonts": "gatsby-preload-fonts"
   },
   "repository": {
     "type": "git",
@@ -85,6 +86,7 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.18.0",
     "eslint-plugin-react-hooks": "^2.3.0",
+    "gatsby-plugin-preload-fonts": "^1.2.23",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.7.0",
     "postcss-svg": "https://github.com/inbn/postcss-svg/tarball/master",
