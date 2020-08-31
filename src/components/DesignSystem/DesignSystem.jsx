@@ -9,6 +9,7 @@ const DesignSystem = ({
   name,
   organisation,
   image,
+  imageFadeIn,
   imageLoading,
   features,
   color,
@@ -36,6 +37,7 @@ const DesignSystem = ({
             backgroundColor={color}
             className="border"
             loading={imageLoading}
+            fadeIn={imageFadeIn}
           />
         )}
         <HeadingTag className="h3 mt-0 pt-6 pb-1 font-bold">{name}</HeadingTag>
@@ -63,6 +65,7 @@ DesignSystem.propTypes = {
   name: PropTypes.string.isRequired,
   organisation: PropTypes.string,
   image: PropTypes.object,
+  imageFadeIn: PropTypes.bool,
   imageLoading: PropTypes.string,
   features: PropTypes.arrayOf(PropTypes.string),
   color: PropTypes.string,
@@ -74,6 +77,7 @@ DesignSystem.defaultProps = {
   organisation: '',
   image: null,
   imageLoading: 'lazy',
+  imageFadeIn: true,
   features: null,
   color: '#fff',
   cardTag: 'li',

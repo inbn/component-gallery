@@ -68,6 +68,7 @@ const DesignSystemsIndexPage = ({ data }) => {
                     : null
                 }
                 imageLoading={index === 0 ? 'eager' : 'lazy'}
+                imageFadeIn={index !== 0}
                 features={features}
                 color={color}
               />
