@@ -21,7 +21,10 @@ const DesignSystem = ({
   const HeadingTag = headingLevel;
 
   return (
-    <CardTag className="card" style={{ '--background-color': color }}>
+    <CardTag
+      className="card card--design-system"
+      style={{ '--background-color': color }}
+    >
       <a
         href={url}
         target="blank"

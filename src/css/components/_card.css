@@ -8,6 +8,11 @@
 
   background-color: var(--background-color);
   content-visibility: auto;
+  contain-intrinsic-size: 20rem;
+}
+
+.card--design-system {
+  contain-intrinsic-size: 20rem 24rem;
 }
 
 .card__inner {
