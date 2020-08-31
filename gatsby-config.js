@@ -46,9 +46,6 @@ module.exports = {
         icon: `src/images/favicon.png` // This path is relative to the root of the site.
       }
     },
-    // Unregister service worker installed by gatsby-plugin-offline
-    // It's not worth the hassle
-    'gatsby-plugin-remove-serviceworker',
     // Catch local links (e.g. in markdown) and turn them into gatsby <Link>s
     'gatsby-plugin-catch-links',
     {

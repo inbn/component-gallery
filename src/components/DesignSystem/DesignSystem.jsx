@@ -26,7 +26,7 @@ const DesignSystem = ({
         href={url}
         target="blank"
         rel="noopener noreferrer"
-        className="card__inner p-6 block h-full flex flex-col"
+        className="card__inner p-6 h-full flex flex-col"
       >
         {image && (
           <Img
@@ -47,13 +47,11 @@ const DesignSystem = ({
           </p>
         )}
         {features && features.length > 0 && (
-          <div className="mt-auto">
-            <ul className="-mr-2 -ml-1 pt-6 flex flex-wrap">
-              {features.map(feature => (
-                <Badge key={feature} text={feature} tag="li" displayIcon />
-              ))}
-            </ul>
-          </div>
+          <ul className="mt-auto -mr-2 -ml-1 pt-6 flex flex-wrap">
+            {features.map(feature => (
+              <Badge key={feature} text={feature} tag="li" displayIcon />
+            ))}
+          </ul>
         )}
       </a>
     </CardTag>
