@@ -7,6 +7,7 @@
   --background-color: theme('colors.black');
 
   background-color: var(--background-color);
+  content-visibility: auto;
 }
 
 .card__inner {
