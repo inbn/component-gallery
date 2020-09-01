@@ -89,6 +89,7 @@ export const query = graphql`
     allAirtable(
       filter: { table: { eq: "Design systems" } }
       sort: { fields: [data___Slug], order: ASC }
+      limit: 24
     ) {
       edges {
         node {
