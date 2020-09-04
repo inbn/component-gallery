@@ -56,12 +56,13 @@
 @import 'components/_svg-icon';
 
 @import 'components/_body-text';
+@import 'components/_badge';
 @import 'components/_call-to-action';
 @import 'components/_card';
 @import 'components/_footer';
 @import 'components/_header-logo';
+@import 'components/_pagination';
 @import 'components/_site-search';
-@import 'components/_badge';
 @import 'components/_table-of-contents';
 
 /* purgecss end ignore */

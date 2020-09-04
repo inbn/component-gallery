@@ -14,6 +14,7 @@ a:not([class]),
     @apply border-red-400;
   }
 
+  // External links (all internal links are root-relative)
   &[href^="http://"]::after,
   &[href^="https://"]::after {
     content: '';

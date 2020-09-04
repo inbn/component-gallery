@@ -1,5 +1,5 @@
 {
-  "files.autoSave": "onFocusChange",
+  // "files.autoSave": "onFocusChange",
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
   "eslint.enable": true,

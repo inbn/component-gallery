@@ -6,6 +6,7 @@ import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 import Select from '../components/Select/Select';
 import SEO from '../components/SEO';
+import Pagination from '../components/Pagination/Pagination';
 
 import sortItems from '../utils/sortItems';
 
@@ -24,14 +25,19 @@ const sortingOptions = [
   }
 ];
 
-const DesignSystemsIndexPage = ({ data }) => {
-  const [designSystems, setDesignSystems] = useState(data.allAirtable.edges);
+const DesignSystemsIndexPage = ({ data, pageContext }) => {
+  // const [designSystems, setDesignSystems] = useState(data.allAirtable.edges);
+
+  const designSystems = pageContext.pageDesignSystems;
+  const { currentPage, countPages, pathPrefix } = pageContext;
+  // Which page infinite scroll should fetch next.
+  const [cursor, setCursor] = useState(0);
 
   return (
     <Layout heroComponent={<Hero title="Design systems" />} isArticle={false}>
       <SEO title="Design systems" />
       <div className="control-bar border-b py-2 px-6 bg-grey-200">
-        <Select
+        {/* <Select
           id="sort-order"
           label="Sort by"
           defaultValue="0"
@@ -43,7 +49,7 @@ const DesignSystemsIndexPage = ({ data }) => {
           }}
           options={sortingOptions}
           useIndexAsValue
-        />
+        /> */}
       </div>
       <ul className="grid border-l mt-0">
         {designSystems.map(
@@ -76,6 +82,11 @@ const DesignSystemsIndexPage = ({ data }) => {
           }
         )}
       </ul>
+      <Pagination
+        pathPrefix={pathPrefix}
+        currentPage={currentPage}
+        countPages={countPages}
+      />
     </Layout>
   );
 };
@@ -84,39 +95,39 @@ export default DesignSystemsIndexPage;
 
 // query airtable for the properties of each record,
 // filtering for only Published records in the Design systems table.
-export const query = graphql`
-  {
-    allAirtable(
-      filter: { table: { eq: "Design systems" } }
-      sort: { fields: [data___Slug], order: ASC }
-      limit: 12
-    ) {
-      edges {
-        node {
-          data {
-            name: Name
-            organisation: Organisation
-            url: URL
-            image: Image {
-              localFiles {
-                childImageSharp {
-                  fluid(
-                    maxWidth: 492
-                    maxHeight: 369
-                    srcSetBreakpoints: [360, 500, 720, 1000]
-                  ) {
-                    ...GatsbyImageSharpFluid_noBase64
-                  }
-                }
-              }
-            }
-            features: Features
-            color: Colour_hex
-            Component_examples_count
-          }
-          id
-        }
-      }
-    }
-  }
-`;
+// export const query = graphql`
+//   {
+//     allAirtable(
+//       filter: { table: { eq: "Design systems" } }
+//       sort: { fields: [data___Slug], order: ASC }
+//       limit: 12
+//     ) {
+//       edges {
+//         node {
+//           data {
+//             name: Name
+//             organisation: Organisation
+//             url: URL
+//             image: Image {
+//               localFiles {
+//                 childImageSharp {
+//                   fluid(
+//                     maxWidth: 492
+//                     maxHeight: 369
+//                     srcSetBreakpoints: [360, 500, 720, 1000]
+//                   ) {
+//                     ...GatsbyImageSharpFluid_noBase64
+//                   }
+//                 }
+//               }
+//             }
+//             features: Features
+//             color: Colour_hex
+//             Component_examples_count
+//           }
+//           id
+//         }
+//       }
+//     }
+//   }
+// `;

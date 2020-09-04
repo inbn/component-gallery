@@ -368,6 +368,7 @@ module.exports = {
     resize: [],
     boxShadow: ['responsive', 'hover', 'focus'],
     fill: [],
+    skew: ['responsive'],
     stroke: [],
     tableLayout: [],
     textAlign: ['responsive'],

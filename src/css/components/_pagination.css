@@ -1,0 +1,24 @@
+/*====================================*\
+  COMPONENTS
+  _pagination.css
+\*====================================*/
+
+.pagination {
+  @apply flex justify-between items-center px-6 py-2;
+}
+
+.pagination--first-page {
+  &::before {
+    content: '';
+    display: flex;
+    width: theme('spacing.8');
+  }
+}
+
+.pagination--last-page {
+  &::after {
+    content: '';
+    display: flex;
+    width: theme('spacing.8');
+  }
+}

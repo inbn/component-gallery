@@ -4,19 +4,37 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-const path = require(`path`);
+const fs = require('fs');
+const path = require('path');
 const slugify = require('slugify');
+
+function createJSON(pageData) {
+  const pathSuffix = pageData.context.currentPage;
+  const dir = 'public/paginationJson/';
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir);
+  }
+  const filePath = `${dir}index${pathSuffix}.json`;
+  const dataToSave = JSON.stringify(pageData.context.pageDesignSystems);
+  fs.writeFile(filePath, dataToSave, function(err) {
+    if (err) {
+      return console.log(err);
+    }
+  });
+}
 
 exports.createPages = ({ graphql, actions }) => {
   // createPage is a built in action,
   // available to all gatsby-node exports
   const { createPage, createRedirect } = actions;
+
   return new Promise(async resolve => {
+    // COMPONENTS
     // we need the table name (e.g. "Sections")
     // as well as the unique path for each Page/Section.
-    const result = await graphql(`
+    const componentsQueryResult = await graphql(`
       {
-        allAirtable {
+        allAirtable(filter: { table: { eq: "Components" } }) {
           edges {
             node {
               table
@@ -32,7 +50,7 @@ exports.createPages = ({ graphql, actions }) => {
     `);
     // For each path, create page and choose a template.
     // values in context Object are available in that page's query
-    result.data.allAirtable.edges.forEach(({ node }) => {
+    componentsQueryResult.data.allAirtable.edges.forEach(({ node }) => {
       let template;
       let pathPrefix;
       switch (node.table) {
@@ -85,6 +103,87 @@ exports.createPages = ({ graphql, actions }) => {
         }
       }
     });
+
+    // DESIGN SYSTEMS
+    // Note 'GatsbyImageSharpFluid_noBase64' doesn't work here so we need to
+    // specify the fields we want manually
+    // See https://theleakycauldronblog.com/blog/problems-with-gatsby-image-and-their-workarounds
+    const designSystemsQueryResult = await graphql(`
+      {
+        allAirtable(
+          filter: { table: { eq: "Design systems" } }
+          sort: { fields: [data___Slug], order: ASC }
+        ) {
+          edges {
+            node {
+              data {
+                name: Name
+                organisation: Organisation
+                url: URL
+                image: Image {
+                  localFiles {
+                    childImageSharp {
+                      fluid(
+                        maxWidth: 492
+                        maxHeight: 369
+                        srcSetBreakpoints: [360, 500, 720, 1000]
+                      ) {
+                        src
+                        srcSet
+                        aspectRatio
+                        sizes
+                      }
+                    }
+                  }
+                }
+                features: Features
+                color: Colour_hex
+                Component_examples_count
+              }
+              id
+            }
+          }
+        }
+      }
+    `);
+
+    const designSystemsPerPage = 12;
+    const designSystems = designSystemsQueryResult.data.allAirtable.edges;
+    const countPages = Math.ceil(designSystems.length / designSystemsPerPage);
+
+    for (let currentPage = 1; currentPage <= countPages; currentPage += 1) {
+      // To create paths "/", "/2", "/3"…
+      const pathSuffix = currentPage > 1 ? currentPage : '';
+
+      /* Collect designSystems needed for this page. */
+      const startIndexInclusive = designSystemsPerPage * (currentPage - 1);
+      const endIndexExclusive = startIndexInclusive + designSystemsPerPage;
+      const pageDesignSystems = designSystems.slice(
+        startIndexInclusive,
+        endIndexExclusive
+      );
+
+      const pathPrefix = `design-systems/`;
+
+      /* Combine all data needed to construct this page. */
+      const pageData = {
+        path: `${pathPrefix}${pathSuffix}`,
+        component: path.resolve(`./src/templates/design-systems-template.js`),
+        context: {
+          /* If you need to pass additional data, you can pass it inside this context object. */
+          pageDesignSystems,
+          pathPrefix,
+          currentPage,
+          countPages
+        }
+      };
+
+      /* Create normal pages (for pagination) and corresponding JSON (for infinite scroll). */
+      createJSON(pageData);
+      createPage(pageData);
+    }
+    console.log(`\nCreated ${countPages} pages of paginated content.`);
+
     resolve();
   });
 };
