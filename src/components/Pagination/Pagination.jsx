@@ -72,11 +72,11 @@ const Pagination = ({ pathPrefix, currentPage, countPages }) => {
         <ul className="flex mt-0">
           {visiblePageNumbers.map(num => {
             return (
-              <li key={`page-${num}`} className="flex w-6 text-center">
+              <li key={`page-${num}`} className="flex w-12 text-center">
                 <Link
                   to={`/${pathPrefix}${num === 1 ? '' : num}`}
-                  className={`w-full text-center font-sans ${
-                    num === currentPage ? 'border-b' : 'italic'
+                  className={`w-full h-12 flex justify-center items-center text-center font-sans ${
+                    num === currentPage ? 'border-l border-r' : 'italic'
                   }`}
                 >
                   {num}

@@ -4,7 +4,7 @@
 \*====================================*/
 
 .pagination {
-  @apply flex justify-between items-center px-6 py-2;
+  @apply flex justify-between items-center px-6;
 }
 
 .pagination--first-page {

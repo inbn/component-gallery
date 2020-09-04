@@ -22,6 +22,7 @@
   transition: background-color var(--transition-duration),
     border-color var(--transition-duration), color var(--transition-duration),
     transform var(--transition-duration);
+  transition-delay: 100ms;
   border-top: 1px solid transparent;
   border-left: 1px solid transparent;
 
