@@ -20,7 +20,11 @@ Quotes come in three main flavours:
 The HTML `q` element is designed to be used for inline quotations, but it's not the only way of indicating an inline quote. According to the W3C spec:
 
 <blockquote cite="https://www.w3.org/TR/2011/WD-html5-author-20110809/the-q-element.html">
-  <p>The use of <code>q</code> elements to mark up quotations is entirely optional; using explicit quotation punctuation without <code>q</code> elements is just as correct.</p>
+  <p>
+    The use of <code>q</code> elements to mark up quotations is entirely
+    optional; using explicit quotation punctuation without <code>q</code>{' '}
+    elements is just as correct.
+  </p>
 </blockquote>
 
 Unless you want to make use of the [`cite`](#the-cite-attribute) attribute or style your quotes with the [CSS quotes property](https://css-tricks.com/almanac/properties/q/quotes/), you are fine to use quotation marks instead of the `q` element.
@@ -64,7 +68,10 @@ You can optionally use the `cite` attribute to specify the **URL** to the source
     have nothing to lose but their chains. They have a world to win. Working Men
     of All Countries, Unite!
   </p>
-  <footer>— Karl Marx, <cite>Manifesto of the Communist Party</cite></footer>
+  <footer>
+    — Karl Marx and Friedrich Engels,
+    <cite>Manifesto of the Communist Party</cite>
+  </footer>
 </blockquote>
 ```
 
@@ -111,9 +118,21 @@ blockquote p {
 
 Unfortunately this technique is, at the time of writing, only supported in Safari. If you want to, you can add it anyway and treat it as a [Progressive Enhancement](https://www.gov.uk/service-manual/technology/using-progressive-enhancement) for Safari users; alternatively you can achieve the same effect (albeit with a little manual tweaking), using a negative left margin.[^4]
 
-<iframe height="350" style="width: 100%;" scrolling="no" title="Example quote styles" src="https://codepen.io/inbn/embed/preview/yLLGYgN?height=350&theme-id=light&default-tab=html,result" frameborder="no" allowtransparency="true" allowfullscreen="true" class="mt-4">
-  See the Pen <a href='https://codepen.io/inbn/pen/yLLGYgN'>Example quote styles</a> by Iain Bean
-  (<a href='https://codepen.io/inbn'>@inbn</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe
+  height="350"
+  style="width: 100%;"
+  scrolling="no"
+  title="Example quote styles"
+  src="https://codepen.io/inbn/embed/preview/yLLGYgN?height=350&theme-id=light&default-tab=html,result"
+  frameborder="no"
+  allowtransparency="true"
+  allowfullscreen="true"
+  class="mt-4"
+>
+  See the Pen{' '}
+  <a href="https://codepen.io/inbn/pen/yLLGYgN">Example quote styles</a> by Iain
+  Bean (<a href="https://codepen.io/inbn">@inbn</a>) on{' '}
+  <a href="https://codepen.io">CodePen</a>.
 </iframe>
 
 ## Usage guidelines
