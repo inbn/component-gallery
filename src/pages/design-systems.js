@@ -11,6 +11,12 @@ import sortItems from '../utils/sortItems';
 
 const sortingOptions = [
   {
+    optionLabel: 'Date',
+    path: 'node.data.Last_reviewed',
+    comparison: 'text',
+    reverse: true
+  },
+  {
     optionLabel: 'Name',
     path: 'node.data.name',
     comparison: 'text',
@@ -88,7 +94,7 @@ export const query = graphql`
   {
     allAirtable(
       filter: { table: { eq: "Design systems" } }
-      sort: { fields: [data___Slug], order: ASC }
+      sort: { fields: [data___Last_reviewed], order: DESC }
     ) {
       edges {
         node {
@@ -112,6 +118,7 @@ export const query = graphql`
             features: Features
             color: Colour_hex
             Component_examples_count
+            Last_reviewed
           }
           id
         }

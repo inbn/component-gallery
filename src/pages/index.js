@@ -11,15 +11,13 @@ import SEO from '../components/SEO';
 const IndexPage = ({ data }) => (
   <Layout
     heroComponent={
-      <>
-        <div className="my-8 lg:my-12 mx-6">
-          <div className="-mx-4 lg:flex">
-            <div className="bg-white border-2 border-black font-sans text-grey-800 shadow-block-grey-800 body-text text-xl p-6 max-w-xl mx-4">
-              <MDXRenderer>{data.mdx.body}</MDXRenderer>
-            </div>
+      <div className="my-8 lg:my-12 mx-6">
+        <div className="-mx-4 lg:flex">
+          <div className="bg-white border-2 border-black font-sans text-grey-800 shadow-block-grey-800 body-text text-xl p-6 max-w-xl mx-4">
+            <MDXRenderer>{data.mdx.body}</MDXRenderer>
           </div>
         </div>
-      </>
+      </div>
     }
     isHomepage
     isArticle={false}
