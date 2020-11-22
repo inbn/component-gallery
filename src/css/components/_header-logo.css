@@ -4,7 +4,7 @@
 \*====================================*/
 
 .header-logo {
-  @apply table text-3xl text-black font-sans lowercase leading-none py-1 px-2 border-2 border-transparent;
+  @apply table text-3xl text-black dark:text-grey-100 dark:hover:text-grey-100 font-sans lowercase leading-none py-1 px-2 border-2 border-transparent dark:hover:border-white dark:hover:bg-black;
 
   letter-spacing: -0.02em;
   font-style: italic;
@@ -21,6 +21,6 @@
 
 @screen lg {
   .header-logo {
-    @apply mx-0 whitespace-no-wrap;
+    @apply mx-0 whitespace-nowrap;
   }
 }

@@ -52,8 +52,7 @@ h6 .anchor:focus svg {
 }
 
 .gatsby-resp-image-figcaption {
-  @apply pt-2;
-  @apply text-grey-700;
+  @apply pt-2 text-grey-700 dark:text-grey-500;
   font-style: italic;
 }
 

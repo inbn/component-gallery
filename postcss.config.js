@@ -8,7 +8,10 @@ module.exports = {
     postcssImport({ root: 'src/css/' }),
     tailwindcss('./tailwind.config.js'),
     postcssPresetEnv({
-      stage: 0
+      stage: 0,
+      features: {
+        'focus-within-pseudo-class': false
+      }
     }),
     postcssSVG({ dirs: ['./src/svg'] })
   ]

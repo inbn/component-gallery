@@ -13,7 +13,7 @@ const IndexPage = ({ data }) => (
     heroComponent={
       <div className="my-8 lg:my-12 mx-6">
         <div className="-mx-4 lg:flex">
-          <div className="bg-white border-2 border-black font-sans text-grey-800 shadow-block-grey-800 body-text text-xl p-6 max-w-xl mx-4">
+          <div className="bg-white dark:bg-black border-2 border-black dark:border-white font-sans text-grey-800 dark:text-grey-100 shadow-block body-text text-xl p-6 max-w-xl mx-4">
             <MDXRenderer>{data.mdx.body}</MDXRenderer>
           </div>
         </div>

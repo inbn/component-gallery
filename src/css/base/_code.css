@@ -14,7 +14,7 @@ code:not([class^='language-']) {
 }
 
 kbd {
-  @apply bg-white border shadow-block-sm-grey-800 mr-1;
+  @apply bg-white dark:bg-black border shadow-block-sm mr-1;
   font-size: 0.8em;
   padding: 0.1em 0.4em;
 }
