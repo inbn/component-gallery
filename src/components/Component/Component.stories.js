@@ -1,22 +1,24 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { withSmartKnobs } from 'storybook-addon-smart-knobs';
-
 import Component from './Component';
+import { Grid } from '../../../.storybook/decorators';
 
-storiesOf(`Component`, module)
-  .addDecorator(withSmartKnobs())
-  .addDecorator(withKnobs())
-  .add(`Default`, () => (
-    <div className="grid">
-      <Component
-        name="Accordion"
-        otherNames="Collapsible sections, Arrow toggle, Expander, Disclosure, ShowyHideyThing"
-        cardTag="div"
-        slug="accordion"
-        examplesCount={28}
-        description="An accordion is a vertical stack of interactive headings used to toggle the display of further information; each item can be 'collapsed', with just a short label visible; or 'expanded' to show the complete content."
-      />
-    </div>
-  ));
+export default {
+  title: 'Component',
+  component: Component,
+  decorators: [Grid]
+};
+
+const Template = args => <Component {...args} />;
+
+export const Default = Template.bind({});
+
+Default.args = {
+  name: 'Accordion',
+  otherNames:
+    'Collapsible sections, Arrow toggle, Expander, Disclosure, ShowyHideyThing',
+  cardTag: 'div',
+  slug: 'accordion',
+  examplesCount: 28,
+  description:
+    "An accordion is a vertical stack of interactive headings used to toggle the display of further information; each item can be 'collapsed', with just a short label visible; or 'expanded' to show the complete content."
+};
