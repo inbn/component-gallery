@@ -7,6 +7,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
@@ -18,4 +20,10 @@ jobs:
       - name: Run Loki
         run: npm run loki:update
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v2
+        uses: peter-evans/create-pull-request@v3
+        with:
+          # See https://github.com/peter-evans/create-pull-request/blob/master/docs/updating.md#updating-from-v2-to-v3
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          title: Visual Regression Test changes from ${{github.head_ref}}
+          commit-message: Update reference images
+          branch: ${{github.head_ref}}-visual-regression-test
