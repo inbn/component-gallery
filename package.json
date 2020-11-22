@@ -59,6 +59,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "postinstall": "cd ./node_modules/postcss-svg && touch .gitignore && npm install && npm publish --dry-run",
+    "loki:update": "npx loki update --reactUri file:./storybook-static --chromeFlags='--headless --no-sandbox'",
     "lint": "eslint src/ gatsby-* --ext js,jsx",
     "preload-fonts": "gatsby-preload-fonts"
   },
@@ -88,6 +89,7 @@
     "eslint-plugin-react-hooks": "^2.3.0",
     "gatsby-plugin-preload-fonts": "^1.2.23",
     "postcss": "^8.1.7",
+    "loki": "^0.20.3",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.7.0",
     "postcss-svg": "https://github.com/inbn/postcss-svg/tarball/master",
@@ -101,5 +103,20 @@
     "not ie 11",
     "not edge <= 18",
     "not op_mini all"
-  ]
+  ],
+  "loki": {
+    "configurations": {
+      "chrome.laptop": {
+        "target": "chrome.docker",
+        "width": 1366,
+        "height": 768,
+        "deviceScaleFactor": 1,
+        "mobile": false
+      },
+      "chrome.iphone7": {
+        "target": "chrome.docker",
+        "preset": "iPhone 7"
+      }
+    }
+  }
 }

@@ -1,0 +1,6 @@
+name: Run Loki
+description: Visual regression testing for storybook
+
+runs:
+  using: docker
+  image: "../../../Dockerfile"

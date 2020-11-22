@@ -1,0 +1,32 @@
+name: Visual Regression Test
+on: [pull_request]
+
+jobs:
+  visual-regression-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Install packages
+        run: npm ci
+      - name: Build storybook
+        run: npm run build-storybook
+      - name: Run Loki
+        run: npm run loki:update
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          # See https://github.com/peter-evans/create-pull-request/blob/master/docs/updating.md#updating-from-v2-to-v3
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          title: Visual Regression Test changes from ${{ steps.extract_branch.outputs.branch }}
+          commit-message: Update reference images
+          branch: ${{ steps.extract_branch.outputs.branch }}-visual-regression-test
