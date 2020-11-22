@@ -23,19 +23,19 @@ const Component = ({
       >
         <div className="flex justify-between items-center">
           <HeadingTag className="h3">{name}</HeadingTag>
-          <p className="font-sans text-grey-700 mt-0 ml-2">
+          <p className="font-sans text-grey-700 dark:text-grey-500 mt-0 ml-2">
             <strong className="font-medium">{examplesCount}</strong>&nbsp;
             <span className="text-xs">
               example{parseInt(examplesCount, 10) !== 1 && 's'}
             </span>
           </p>
         </div>
-        {otherNames && (
-          <p className="italic leading-tight mt-4 text-grey-700">
+        {!!otherNames && (
+          <p className="italic leading-tight mt-4 text-grey-700 dark:text-grey-500">
             Other names: {otherNames}
           </p>
         )}
-        {description && (
+        {!!description && (
           <div
             dangerouslySetInnerHTML={{
               __html: description

@@ -4,11 +4,21 @@
 \*====================================*/
 
 .card {
-  --background-color: theme('colors.black');
+  --shadow-color: theme('colors.black');
+  --background-color: theme('colors.white');
+  --text-color: theme('colors.grey.800');
+  --hover-background-color: theme('colors.grey.100');
 
-  background-color: var(--background-color);
+  background-color: var(--shadow-color);
   /* content-visibility: auto; */
   /* contain-intrinsic-size: 20rem; */
+}
+
+.dark .card {
+  --shadow-color: theme('colors.white');
+  --background-color: theme('colors.black');
+  --text-color: theme('colors.grey.100');
+  --hover-background-color: theme('colors.grey.800');
 }
 
 .card--design-system {
@@ -18,7 +28,9 @@
 .card__inner {
   --transition-duration: 200ms;
 
-  @apply bg-white text-grey-800 text-sm border-r border-b;
+  @apply text-sm border-r border-b;
+  background-color: var(--background-color);
+  color: var(--text-color);
   transition: background-color var(--transition-duration),
     border-color var(--transition-duration), color var(--transition-duration),
     transform var(--transition-duration);
@@ -26,7 +38,7 @@
   border-left: 1px solid transparent;
 
   &:hover {
-    @apply bg-grey-100;
+    background-color: var(--hover-background-color);
     border-color: theme('colors.black');
     transform: translate(-4px, -4px);
   }

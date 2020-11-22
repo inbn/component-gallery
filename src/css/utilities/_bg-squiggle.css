@@ -3,9 +3,11 @@
   _bg-squiggle.css
 \*====================================*/
 
-.bg-squiggle-grey-400 {
-  /* Use postcss-svg to inline SVG into CSS (Prettier will break this) */
-  /* prettier-ignore */
-  background-image: url('background-squiggle' param(--color theme('colors.grey.400')));
-  background-size: 20px 5px;
+.bg-squiggle {
+  @apply bg-grey-400 dark:bg-grey-500;
+  /* Use postcss-svg to inline SVG into CSS */
+  mask-image: url('background-squiggle');
+  mask-size: 20px 5px;
+  mask-repeat: repeat no-repeat;
+  mask-position: 0 100%;
 }

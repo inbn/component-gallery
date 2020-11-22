@@ -22,7 +22,7 @@
     "gatsby-plugin-plausible": "0.0.6",
     "gatsby-plugin-postcss": "^2.1.19",
     "gatsby-plugin-preact": "^3.1.25",
-    "gatsby-plugin-purgecss": "^3.1.0",
+    "gatsby-plugin-purgecss": "^3.1.1",
     "gatsby-plugin-react-helmet": "^3.1.21",
     "gatsby-plugin-sharp": "^2.4.0",
     "gatsby-plugin-sitemap": "^2.2.26",
@@ -77,6 +77,7 @@
     "@storybook/addon-links": "^5.3.8",
     "@storybook/addons": "^5.3.8",
     "@storybook/react": "^5.3.8",
+    "autoprefixer": "^10.0.2",
     "babel-loader": "^8.0.6",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
@@ -87,6 +88,7 @@
     "eslint-plugin-react": "^7.18.0",
     "eslint-plugin-react-hooks": "^2.3.0",
     "gatsby-plugin-preload-fonts": "^1.2.23",
+    "postcss": "^8.1.7",
     "loki": "^0.20.3",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.7.0",
@@ -94,7 +96,7 @@
     "postinstall": "^0.7.0",
     "prettier": "^1.19.1",
     "storybook-addon-smart-knobs": "^6.0.1",
-    "tailwindcss": "^1.1.4"
+    "tailwindcss": "^2.0.1"
   },
   "browserslist": [
     "defaults",

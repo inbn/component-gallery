@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 
 const Footer = () => (
   <footer className="footer">
-    <p className="pr-6 whitespace-no-wrap">
+    <p className="pr-6 whitespace-nowrap">
       © {new Date().getFullYear()} <wbr />
       Iain Bean
     </p>
