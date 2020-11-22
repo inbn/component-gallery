@@ -11,15 +11,13 @@ import SEO from '../components/SEO';
 const IndexPage = ({ data }) => (
   <Layout
     heroComponent={
-      <>
-        <div className="my-8 lg:my-12 mx-6">
-          <div className="-mx-4 lg:flex">
-            <div className="bg-white border-2 border-black font-sans text-grey-800 shadow-block-grey-800 body-text text-xl p-6 max-w-xl mx-4">
-              <MDXRenderer>{data.mdx.body}</MDXRenderer>
-            </div>
+      <div className="my-8 lg:my-12 mx-6">
+        <div className="-mx-4 lg:flex">
+          <div className="bg-white border-2 border-black font-sans text-grey-800 shadow-block-grey-800 body-text text-xl p-6 max-w-xl mx-4">
+            <MDXRenderer>{data.mdx.body}</MDXRenderer>
           </div>
         </div>
-      </>
+      </div>
     }
     isHomepage
     isArticle={false}
@@ -57,7 +55,7 @@ const IndexPage = ({ data }) => (
     </div>
     <div className="flex flex-col sm:flex-row-reverse sm:border-t">
       <h2 className="px-6 py-4 sm:pt-6 text-base uppercase tracking-widest sm:dir-sideways-tb sm:leading-none">
-        Recently added Design Systems
+        Recently updated Design Systems
       </h2>
       <ul className="grid border-t sm:border-t-0 border-l mt-0 sm:flex-1">
         {data.recentDesignSystems.edges.map(
@@ -73,7 +71,11 @@ const IndexPage = ({ data }) => (
                 name={name}
                 url={url}
                 organisation={organisation}
-                image={image.localFiles.length > 0 ? image.localFiles[0] : null}
+                image={
+                  image.localFiles && image.localFiles.length > 0
+                    ? image.localFiles[0]
+                    : null
+                }
                 features={features}
                 color={color}
               />
@@ -146,12 +148,11 @@ export const query = graphql`
               localFiles {
                 childImageSharp {
                   fluid(
-                    maxWidth: 608
-                    maxHeight: 456
-                    traceSVG: { background: "#fff", color: "#dae1e7" }
+                    maxWidth: 492
+                    maxHeight: 369
+                    srcSetBreakpoints: [360, 500, 720, 1000]
                   ) {
-                    ...GatsbyImageSharpFluid
-                    ...GatsbyImageSharpFluid_tracedSVG
+                    ...GatsbyImageSharpFluid_noBase64
                   }
                 }
               }

@@ -6,26 +6,27 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "@gatsby-contrib/gatsby-plugin-elasticlunr-search": "^2.3.0",
-    "@mdx-js/mdx": "^1.5.5",
-    "@mdx-js/react": "^1.5.5",
+    "@mdx-js/mdx": "^1.5.9",
+    "@mdx-js/react": "^1.5.9",
     "@rooks/use-key": "^3.6.0",
     "dotenv": "^6.2.0",
-    "gatsby": "^2.19.1",
+    "gatsby": "^2.24.11",
     "gatsby-image": "^2.2.39",
     "gatsby-plugin-catch-links": "^2.1.24",
-    "gatsby-plugin-google-analytics": "^2.1.33",
+    "gatsby-plugin-force-trailing-slashes": "^1.0.4",
     "gatsby-plugin-manifest": "^2.2.37",
-    "gatsby-plugin-mdx": "^1.0.67",
+    "gatsby-plugin-mdx": "^1.2.0",
     "gatsby-plugin-meta-redirect": "^1.1.1",
     "gatsby-plugin-netlify": "^2.1.31",
     "gatsby-plugin-netlify-cache": "^1.2.0",
+    "gatsby-plugin-plausible": "0.0.6",
     "gatsby-plugin-postcss": "^2.1.19",
     "gatsby-plugin-preact": "^3.1.25",
     "gatsby-plugin-purgecss": "^3.1.0",
     "gatsby-plugin-react-helmet": "^3.1.21",
-    "gatsby-plugin-remove-serviceworker": "^1.0.0",
     "gatsby-plugin-sharp": "^2.4.0",
     "gatsby-plugin-sitemap": "^2.2.26",
+    "gatsby-plugin-svg-sprite-loader": "^0.1.5",
     "gatsby-remark-abbr": "^1.0.1",
     "gatsby-remark-autolink-headers": "^2.1.23",
     "gatsby-remark-images": "^3.1.42",
@@ -41,16 +42,16 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",
-    "react-icons": "^3.8.0",
     "sharp": "^0.22.1",
-    "slugify": "^1.3.6"
+    "slugify": "^1.3.6",
+    "svg-sprite-loader": "^4.2.1"
   },
   "keywords": [
     "gatsby"
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
+    "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
     "develop": "gatsby develop",
     "start": "npm run develop",
     "serve": "gatsby serve",
@@ -58,7 +59,9 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "postinstall": "cd ./node_modules/postcss-svg && touch .gitignore && npm install && npm publish --dry-run",
-    "loki:update": "npx loki update --reactUri file:./storybook-static --chromeFlags='--headless --no-sandbox'"
+    "loki:update": "npx loki update --reactUri file:./storybook-static --chromeFlags='--headless --no-sandbox'",
+    "lint": "eslint src/ gatsby-* --ext js,jsx",
+    "preload-fonts": "gatsby-preload-fonts"
   },
   "repository": {
     "type": "git",
@@ -84,6 +87,7 @@
     "eslint-plugin-react": "^7.18.0",
     "eslint-plugin-react-hooks": "^2.3.0",
     "loki": "^0.20.3",
+    "gatsby-plugin-preload-fonts": "^1.2.23",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.7.0",
     "postcss-svg": "https://github.com/inbn/postcss-svg/tarball/master",
@@ -93,7 +97,10 @@
     "tailwindcss": "^1.1.4"
   },
   "browserslist": [
-    "defaults"
+    "defaults",
+    "not ie 11",
+    "not edge <= 18",
+    "not op_mini all"
   ],
   "loki": {
     "configurations": {

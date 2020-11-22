@@ -1,4 +1,6 @@
-require(`dotenv`).config({ path: `.env.${process.env.NODE_ENV}` });
+require(`dotenv`).config({
+  path: `.env.${process.env.NODE_ENV}`
+});
 
 module.exports = {
   siteMetadata: {
@@ -9,15 +11,15 @@ module.exports = {
     menuLinks: [
       {
         name: 'Components',
-        link: '/components'
+        link: '/components/'
       },
       {
         name: 'Design systems',
-        link: '/design-systems'
+        link: '/design-systems/'
       },
       {
         name: 'About',
-        link: '/about'
+        link: '/about/'
       }
     ]
   },
@@ -44,9 +46,6 @@ module.exports = {
         icon: `src/images/favicon.png` // This path is relative to the root of the site.
       }
     },
-    // Unregister service worker installed by gatsby-plugin-offline
-    // It's not worth the hassle
-    'gatsby-plugin-remove-serviceworker',
     // Catch local links (e.g. in markdown) and turn them into gatsby <Link>s
     'gatsby-plugin-catch-links',
     {
@@ -66,32 +65,35 @@ module.exports = {
             baseId: process.env.AIRTABLE_BASE_ID,
             tableName: `Components`,
             tableView: `Name A-Z`,
-            mapping: { Description: `text/markdown` },
+            mapping: {
+              Description: `text/markdown`
+            },
             tableLinks: [
               `Commonly contains`,
               `Categories`,
               `HTML element`,
-              `Examples`
+              `Examples`,
+              `Related_components`
             ]
           },
           {
             baseId: process.env.AIRTABLE_BASE_ID,
             tableName: `Component categories`,
-            // tableView: `All`,
             tableLinks: [`Components`]
           },
           {
             baseId: process.env.AIRTABLE_BASE_ID,
             tableName: `HTML elements`,
-            // tableView: `All`,
             tableLinks: [`Components`]
           },
           {
             baseId: process.env.AIRTABLE_BASE_ID,
             tableName: `Design systems`,
-            tableView: `Name A-Z`,
+            tableView: `Published only`,
             tableLinks: [`Component examples`],
-            mapping: { Image: `fileNode` }
+            mapping: {
+              Image: `fileNode`
+            }
           },
           {
             baseId: process.env.AIRTABLE_BASE_ID,
@@ -177,9 +179,9 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-plausible`,
       options: {
-        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID
+        domain: `component.gallery`
       }
     },
     {
@@ -187,18 +189,7 @@ module.exports = {
       options: {
         // Fields to index. If store === true value will be stored in index file.
         // Attributes for custom indexing logic. See https://lunrjs.com/docs/lunr.Builder.html for details
-        fields: [
-          `name`,
-          `otherNames`,
-          `description`,
-          `url`,
-          `table`
-          // { name: 'name', store: true, attributes: { boost: 100 } },
-          // { name: 'otherNames', store: true, attributes: { boost: 50 } },
-          // { name: 'description', store: true },
-          // { name: 'url', store: true },
-          // { name: 'table', store: true }
-        ],
+        fields: [`name`, `otherNames`, `description`, `url`, `table`],
         resolvers: {
           Airtable: {
             name: node => node.data.Name,
@@ -206,7 +197,7 @@ module.exports = {
             description: node => node.data.Description,
             url: node =>
               node.table === 'Components'
-                ? `/components/${node.data.Slug}`
+                ? `/components/${node.data.Slug}/`
                 : node.data.URL,
             table: node => node.table
           }
@@ -215,14 +206,27 @@ module.exports = {
         filter: node =>
           ['Components', 'Design systems'].includes(node.table) &&
           node.data.Publish === true,
-
         filename: 'search_index.json'
       }
     },
     `gatsby-plugin-sitemap`,
+    `gatsby-plugin-preload-fonts`,
     `gatsby-plugin-netlify`,
     `gatsby-plugin-netlify-cache`,
     `gatsby-plugin-preact`,
+    {
+      resolve: `gatsby-plugin-svg-sprite-loader`,
+      options: {
+        /* SVG sprite loader options */
+        extract: true,
+        esModule: false,
+        pluginOptions: {
+          /* SVG sprite loader plugin options */
+          plainSprite: true
+        }
+      }
+    },
+    `gatsby-plugin-force-trailing-slashes`,
     // This should always go last
     `gatsby-plugin-meta-redirect`
   ]

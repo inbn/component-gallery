@@ -12,6 +12,8 @@
 .badge__icon {
   @apply mr-1 text-base;
 
+  width: 1em;
+  height: 1em;
   display: inline;
   vertical-align: text-top;
 }

@@ -18,7 +18,7 @@ const Component = ({
   return (
     <CardTag className="card">
       <Link
-        to={`/components/${slug}`}
+        to={`/components/${slug}/`}
         className="card__inner h-full block w-full p-6"
       >
         <div className="flex justify-between items-center">

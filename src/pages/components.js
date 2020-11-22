@@ -4,34 +4,23 @@ import { graphql } from 'gatsby';
 import Component from '../components/Component/Component';
 import Hero from '../components/Hero';
 import Layout from '../components/Layout';
+import Select from '../components/Select/Select';
 import SEO from '../components/SEO';
 
 import sortItems from '../utils/sortItems';
 
 const sortingOptions = [
   {
-    label: 'Name (A–Z)',
+    optionLabel: 'Name',
     path: 'node.data.name',
     comparison: 'text',
-    flip: false
+    reverse: false
   },
   {
-    label: 'Name (Z-A)',
-    path: 'node.data.name',
-    comparison: 'text',
-    flip: true
-  },
-  {
-    label: '№ of examples (asc)',
+    optionLabel: 'Example count',
     path: 'node.data.examplesCount',
     comparison: 'number',
-    flip: false
-  },
-  {
-    label: '№ of examples (desc)',
-    path: 'node.data.examplesCount',
-    comparison: 'number',
-    flip: true
+    reverse: true
   }
 ];
 
@@ -41,28 +30,19 @@ const ComponentsIndexPage = ({ data }) => {
     <Layout heroComponent={<Hero title="Components" />} isArticle={false}>
       <SEO title="Components" />
       <div className="control-bar border-b py-2 px-6 bg-grey-200">
-        <label
-          htmlFor="sortOrder"
-          className="mr-2 text-grey-800 text-sm font-sans font-bold"
-        >
-          Sort by
-        </label>
-        <select
-          id="sortOrder"
-          className=""
+        <Select
+          id="sort-order"
+          label="Sort by"
+          defaultValue="0"
           onChange={event => {
             setComponents(
               // .sort() mutates the array - use spread to create a new one
               sortItems([...components], sortingOptions[event.target.value])
             );
           }}
-        >
-          {sortingOptions.map((option, i) => (
-            <option value={i} key={i}>
-              {option.label}
-            </option>
-          ))}
-        </select>
+          options={sortingOptions}
+          useIndexAsValue
+        />
       </div>
       <ul className="grid border-l mt-0">
         {components.map(

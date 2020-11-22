@@ -40,7 +40,7 @@ const ComponentExample = ({
           {features && features.length > 0 && (
             <ul className="-mr-2 -mb-2 -ml-1 pb-1 flex flex-wrap">
               {features.map(feature => (
-                <Badge key={feature} text={feature} displayIcon />
+                <Badge key={feature} text={feature} tag="li" displayIcon />
               ))}
             </ul>
           )}

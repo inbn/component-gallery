@@ -20,7 +20,11 @@ Quotes come in three main flavours:
 The HTML `q` element is designed to be used for inline quotations, but it's not the only way of indicating an inline quote. According to the W3C spec:
 
 <blockquote cite="https://www.w3.org/TR/2011/WD-html5-author-20110809/the-q-element.html">
-  <p>The use of <code>q</code> elements to mark up quotations is entirely optional; using explicit quotation punctuation without <code>q</code> elements is just as correct.</p>
+  <p>
+    The use of <code>q</code> elements to mark up quotations is entirely
+    optional; using explicit quotation punctuation without <code>q</code>{' '}
+    elements is just as correct.
+  </p>
 </blockquote>
 
 Unless you want to make use of the [`cite`](#the-cite-attribute) attribute or style your quotes with the [CSS quotes property](https://css-tricks.com/almanac/properties/q/quotes/), you are fine to use quotation marks instead of the `q` element.
@@ -64,7 +68,10 @@ You can optionally use the `cite` attribute to specify the **URL** to the source
     have nothing to lose but their chains. They have a world to win. Working Men
     of All Countries, Unite!
   </p>
-  <footer>— Karl Marx, <cite>Manifesto of the Communist Party</cite></footer>
+  <footer>
+    — Karl Marx and Friedrich Engels,
+    <cite>Manifesto of the Communist Party</cite>
+  </footer>
 </blockquote>
 ```
 
@@ -97,7 +104,7 @@ blockquote p::after {
 }
 ```
 
-The `quotes` property also gives you control over the characters used; in the example above we are forcing the browser to use the nicer-looking ‘curly’ quotes instead of the generic 'straight' quotes[^3]. Be aware that languages use a [wide variety of different quotation mark styles](https://en.wikipedia.org/wiki/Quotation_mark#Summary_table) and you may have to define these on a language by language basis (e.g. guillemets (« and ») are commonly used in French). Fortunately, most browsers will automatically adjust the quotation marks used based on the html `lang` attribute.
+The `quotes` property also gives you control over the characters used; in the example above, we are forcing the browser to use the nicer-looking ‘curly’ quotes instead of the generic 'straight' quotes[^3]. Be aware that languages use a [wide variety of different quotation mark styles](https://en.wikipedia.org/wiki/Quotation_mark#Summary_table) and you may have to define these on a language by language basis (e.g. guillemets (« and ») are commonly used in French). Fortunately, most browsers will automatically adjust the quotation marks used based on the html `lang` attribute.
 
 ### Hanging punctuation
 
@@ -109,18 +116,30 @@ blockquote p {
 }
 ```
 
-Unfortunately this technique is, at the time of writing, only supported in Safari. If you want to, you can add it anyway and treat it as a [Progressive Enhancement](https://www.gov.uk/service-manual/technology/using-progressive-enhancement) for Safari users; alternatively you can achieve the same effect (albeit with a little manual tweaking), using a negative left margin.[^4]
+Unfortunately, this technique is, at the time of writing, only supported in Safari. If you want to, you can add it anyway and treat it as a [Progressive Enhancement](https://www.gov.uk/service-manual/technology/using-progressive-enhancement) for Safari users; alternatively, you can achieve the same effect (albeit with a little manual tweaking), using a negative left margin.[^4]
 
-<iframe height="350" style="width: 100%;" scrolling="no" title="Example quote styles" src="https://codepen.io/inbn/embed/preview/yLLGYgN?height=350&theme-id=light&default-tab=html,result" frameborder="no" allowtransparency="true" allowfullscreen="true" class="mt-4">
-  See the Pen <a href='https://codepen.io/inbn/pen/yLLGYgN'>Example quote styles</a> by Iain Bean
-  (<a href='https://codepen.io/inbn'>@inbn</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe
+  height="350"
+  style="width: 100%;"
+  scrolling="no"
+  title="Example quote styles"
+  src="https://codepen.io/inbn/embed/preview/yLLGYgN?height=350&theme-id=light&default-tab=html,result"
+  frameborder="no"
+  allowtransparency="true"
+  allowfullscreen="true"
+  class="mt-4"
+>
+  See the Pen{' '}
+  <a href="https://codepen.io/inbn/pen/yLLGYgN">Example quote styles</a> by Iain
+  Bean (<a href="https://codepen.io/inbn">@inbn</a>) on{' '}
+  <a href="https://codepen.io">CodePen</a>.
 </iframe>
 
 ## Usage guidelines
 
-- Displaying pull quotes outside of the main text column can be difficult on smaller devices because you probably want your main text column to span the full width of the screen. As pull quotes duplicate content that already exists in the main text, you can choose to hide them when screen real-estate is scarce.
+- Displaying pull quotes outside of the main text column can be difficult on smaller devices because you probably want your main text column to span the full width of the screen. As pull quotes duplicate content that already exists in the main text, you may choose to hide them when screen real-estate is scarce.
 - Limit the number of pull quotes you use so that they do not lose their impact. Highlight one or two of the most impactful snippets of content.
-- Use the right type of quote for the job: not every external quotation needs to go in a block quote; consider putting shorter quotes inline.
+- Use the correct type of quote for the job: not every external quotation needs to go in a block quote; consider putting shorter quotes inline.
 
 [^1]: [The `aside` element, HTML5: Edition for Web Authors](https://www.w3.org/TR/2011/WD-html5-author-20110809/the-aside-element.html)
 [^2]: [cite and blockquote – reloaded, HTML5 doctor](https://html5doctor.com/cite-and-blockquote-reloaded/)

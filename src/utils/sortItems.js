@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-const sortItems = (items, { path, comparison, flip }) => {
+const sortItems = (items, { path, comparison, reverse }) => {
   const result = items.sort((a, b) => {
     // Parse the path (string) and use it to access the property that will
     // be used for comparison
@@ -27,7 +27,7 @@ const sortItems = (items, { path, comparison, flip }) => {
         return true;
     }
   });
-  if (flip) {
+  if (reverse) {
     result.reverse();
   }
 

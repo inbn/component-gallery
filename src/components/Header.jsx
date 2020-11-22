@@ -2,10 +2,12 @@ import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import SearchForm from './SearchForm';
+const SearchFormLazy = React.lazy(() => import('./SearchForm'));
 
 const Header = ({ menuLinks, isHomepage }) => {
+  const isSSR = typeof window === 'undefined';
   const SiteTitleTag = isHomepage ? 'h1' : 'div';
+
   return (
     <header className="flex flex-wrap sm:justify-between lg:items-center bg-white border-b px-4 py-2">
       <SiteTitleTag className="my-2">
@@ -14,7 +16,13 @@ const Header = ({ menuLinks, isHomepage }) => {
         </Link>
       </SiteTitleTag>
 
-      <SearchForm idPrefix="header" />
+      <div className="site-search-container">
+        {!isSSR && (
+          <React.Suspense fallback={<div />}>
+            <SearchFormLazy idPrefix="header" />
+          </React.Suspense>
+        )}
+      </div>
 
       <nav className="sm:pr-2">
         <ul className="flex flex-wrap -mx-2 sm:-mx-4">

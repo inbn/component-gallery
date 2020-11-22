@@ -9,3 +9,8 @@
   /* prettier-ignore */
   box-shadow: 0.25em 0.25em theme('colors.grey.800')bf;
 }
+
+.shadow-block-sm-grey-800 {
+  /* prettier-ignore */
+  box-shadow: 0.125em 0.125em theme('colors.grey.800')bf;
+}

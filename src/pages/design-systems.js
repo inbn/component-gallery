@@ -4,34 +4,29 @@ import { graphql } from 'gatsby';
 import DesignSystem from '../components/DesignSystem/DesignSystem';
 import Hero from '../components/Hero';
 import Layout from '../components/Layout';
+import Select from '../components/Select/Select';
 import SEO from '../components/SEO';
 
 import sortItems from '../utils/sortItems';
 
 const sortingOptions = [
   {
-    label: 'Name (A–Z)',
+    optionLabel: 'Date',
+    path: 'node.data.Last_reviewed',
+    comparison: 'text',
+    reverse: true
+  },
+  {
+    optionLabel: 'Name',
     path: 'node.data.name',
     comparison: 'text',
-    flip: false
+    reverse: false
   },
   {
-    label: 'Name (Z-A)',
-    path: 'node.data.name',
-    comparison: 'text',
-    flip: true
-  },
-  {
-    label: '№ of components (asc)',
+    optionLabel: 'Component count',
     path: 'node.data.Component_examples_count',
     comparison: 'number',
-    flip: false
-  },
-  {
-    label: '№ of components (desc)',
-    path: 'node.data.Component_examples_count',
-    comparison: 'number',
-    flip: true
+    reverse: true
   }
 ];
 
@@ -42,45 +37,44 @@ const DesignSystemsIndexPage = ({ data }) => {
     <Layout heroComponent={<Hero title="Design systems" />} isArticle={false}>
       <SEO title="Design systems" />
       <div className="control-bar border-b py-2 px-6 bg-grey-200">
-        <label
-          htmlFor="sortOrder"
-          className="mr-2 text-grey-800 text-sm font-sans font-bold"
-        >
-          Sort by
-        </label>
-        <select
-          id="sortOrder"
-          className=""
+        <Select
+          id="sort-order"
+          label="Sort by"
+          defaultValue="0"
           onChange={event => {
             setDesignSystems(
               // .sort() mutates the array - use spread to create a new one
               sortItems([...designSystems], sortingOptions[event.target.value])
             );
           }}
-        >
-          {sortingOptions.map((option, i) => (
-            <option value={i} key={i}>
-              {option.label}
-            </option>
-          ))}
-        </select>
+          options={sortingOptions}
+          useIndexAsValue
+        />
       </div>
-
       <ul className="grid border-l mt-0">
         {designSystems.map(
-          ({
-            node: {
-              data: { url, name, organisation, image, features, color },
-              id
-            }
-          }) => {
+          (
+            {
+              node: {
+                data: { url, name, organisation, image, features, color },
+                id
+              }
+            },
+            index
+          ) => {
             return (
               <DesignSystem
                 key={id}
                 name={name}
                 url={url}
                 organisation={organisation}
-                image={image.localFiles.length > 0 ? image.localFiles[0] : null}
+                image={
+                  image.localFiles && image.localFiles.length > 0
+                    ? image.localFiles[0]
+                    : null
+                }
+                imageLoading={index === 0 ? 'eager' : 'lazy'}
+                imageFadeIn={index !== 0}
                 features={features}
                 color={color}
               />
@@ -99,11 +93,8 @@ export default DesignSystemsIndexPage;
 export const query = graphql`
   {
     allAirtable(
-      filter: {
-        table: { eq: "Design systems" }
-        data: { Publish: { eq: true } }
-      }
-      sort: { fields: [data___Name], order: ASC }
+      filter: { table: { eq: "Design systems" } }
+      sort: { fields: [data___Last_reviewed], order: DESC }
     ) {
       edges {
         node {
@@ -115,12 +106,11 @@ export const query = graphql`
               localFiles {
                 childImageSharp {
                   fluid(
-                    maxWidth: 608
-                    maxHeight: 456
-                    traceSVG: { background: "#fff", color: "#dae1e7" }
+                    maxWidth: 492
+                    maxHeight: 369
+                    srcSetBreakpoints: [360, 500, 720, 1000]
                   ) {
-                    ...GatsbyImageSharpFluid
-                    ...GatsbyImageSharpFluid_tracedSVG
+                    ...GatsbyImageSharpFluid_noBase64
                   }
                 }
               }
@@ -128,6 +118,7 @@ export const query = graphql`
             features: Features
             color: Colour_hex
             Component_examples_count
+            Last_reviewed
           }
           id
         }

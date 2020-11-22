@@ -9,6 +9,8 @@ const DesignSystem = ({
   name,
   organisation,
   image,
+  imageFadeIn,
+  imageLoading,
   features,
   color,
   cardTag,
@@ -19,15 +21,27 @@ const DesignSystem = ({
   const HeadingTag = headingLevel;
 
   return (
-    <CardTag className="card" style={{ '--background-color': color }}>
+    <CardTag
+      className="card card--design-system"
+      style={{ '--background-color': color }}
+    >
       <a
         href={url}
         target="blank"
         rel="noopener noreferrer"
-        className="card__inner p-6 block h-full flex flex-col"
+        className="card__inner p-6 h-full flex flex-col"
       >
         {image && (
-          <Img fluid={image.childImageSharp.fluid} className="border" />
+          <Img
+            fluid={{
+              ...image.childImageSharp.fluid,
+              sizes: '(max-width: 544px) calc(100vw - 3rem), 492px'
+            }}
+            backgroundColor={color}
+            className="border"
+            loading={imageLoading}
+            fadeIn={imageFadeIn}
+          />
         )}
         <HeadingTag className="h3 mt-0 pt-6 pb-1 font-bold">{name}</HeadingTag>
         {organisation && (
@@ -36,13 +50,11 @@ const DesignSystem = ({
           </p>
         )}
         {features && features.length > 0 && (
-          <div className="mt-auto">
-            <ul className="-mr-2 -ml-1 pt-6 flex flex-wrap">
-              {features.map(feature => (
-                <Badge key={feature} text={feature} displayIcon />
-              ))}
-            </ul>
-          </div>
+          <ul className="mt-auto -mr-2 -ml-1 pt-6 flex flex-wrap">
+            {features.map(feature => (
+              <Badge key={feature} text={feature} tag="li" displayIcon />
+            ))}
+          </ul>
         )}
       </a>
     </CardTag>
@@ -54,6 +66,8 @@ DesignSystem.propTypes = {
   name: PropTypes.string.isRequired,
   organisation: PropTypes.string,
   image: PropTypes.object,
+  imageFadeIn: PropTypes.bool,
+  imageLoading: PropTypes.string,
   features: PropTypes.arrayOf(PropTypes.string),
   color: PropTypes.string,
   cardTag: PropTypes.string,
@@ -63,6 +77,8 @@ DesignSystem.propTypes = {
 DesignSystem.defaultProps = {
   organisation: '',
   image: null,
+  imageLoading: 'lazy',
+  imageFadeIn: true,
   features: null,
   color: '#fff',
   cardTag: 'li',

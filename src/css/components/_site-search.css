@@ -3,8 +3,13 @@
   _site-search.css
 \*====================================*/
 
+.site-search-container {
+  @apply w-full max-w-sm my-2;
+  min-height: 2rem;
+}
+
 .site-search {
-  @apply w-full max-w-sm my-2 bg-white;
+  @apply w-full max-w-sm bg-white;
   position: relative;
 }
 

@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
+import Component from '../components/Component/Component';
 import ComponentExample from '../components/ComponentExample/ComponentExample';
 import Hero from '../components/Hero';
 import Layout from '../components/Layout';
+import Select from '../components/Select/Select';
 import SEO from '../components/SEO';
 import TableOfContents from '../components/TableOfContents';
 
@@ -12,28 +14,16 @@ import sortItems from '../utils/sortItems';
 
 const sortingOptions = [
   {
-    label: 'Design system (A-Z)',
-    path: 'data.Design_system[0].data.Name',
+    optionLabel: 'Design system',
+    path: 'data.designSystem[0].data.Name',
     comparison: 'text',
-    flip: false
+    reverse: false
   },
   {
-    label: 'Design system (Z-A)',
-    path: 'data.Design_system[0].data.Name',
-    comparison: 'text',
-    flip: true
-  },
-  {
-    label: 'Name (A–Z)',
+    optionLabel: 'Component name',
     path: 'data.Name',
     comparison: 'text',
-    flip: false
-  },
-  {
-    label: 'Name (Z-A)',
-    path: 'data.Name',
-    comparison: 'text',
-    flip: true
+    reverse: false
   }
 ];
 
@@ -53,7 +43,15 @@ export default ({ data }) => {
         url: '#examples',
         title: 'Examples'
       },
-      ...data.mdx.tableOfContents.items
+      ...data.mdx.tableOfContents.items,
+      ...(data.airtable.data.relatedComponents !== null
+        ? [
+            {
+              url: '#related-components',
+              title: 'Related components'
+            }
+          ]
+        : [])
     ];
 
     readtime = `${data.mdx.timeToRead} minute read`;
@@ -113,44 +111,33 @@ export default ({ data }) => {
                 {data.airtable.data.Examples_count !== 1 && 's'}
               </h2>
               <div className="control-bar py-2 px-6 bg-grey-200 mt-4 border-t">
-                <label
-                  htmlFor="sortOrder"
-                  className="text-grey-800 text-sm font-sans font-bold"
-                >
-                  <span className="mr-2">Sort by</span>
-                  <select
-                    id="sortOrder"
-                    className=""
-                    onChange={event => {
-                      setExamples(
-                        // .sort() mutates the array - use spread to create a new one
-                        sortItems(
-                          [...examples],
-                          sortingOptions[event.target.value]
-                        )
-                      );
-                    }}
-                  >
-                    {sortingOptions.map((option, i) => (
-                      <option value={i} key={i}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </select>
-                </label>
+                <Select
+                  id="sort-order"
+                  label="Sort by"
+                  defaultValue="0"
+                  onChange={event => {
+                    setExamples(
+                      // .sort() mutates the array - use spread to create a new one
+                      sortItems(
+                        [...examples],
+                        sortingOptions[event.target.value]
+                      )
+                    );
+                  }}
+                  options={sortingOptions}
+                  useIndexAsValue
+                />
               </div>
               <ul className="grid border-t mt-0">
-                {examples.map(({ data: { URL, Name, Design_system } }, i) => (
+                {examples.map(({ data: { URL, Name, designSystem } }, i) => (
                   <ComponentExample
                     key={i}
                     url={URL}
                     componentName={Name}
-                    designSystemName={Design_system[0].data.Name}
-                    designSystemOrganisation={
-                      Design_system[0].data.Organisation
-                    }
-                    features={Design_system[0].data.Features}
-                    color={Design_system[0].data.Colour_hex}
+                    designSystemName={designSystem[0].data.Name}
+                    designSystemOrganisation={designSystem[0].data.Organisation}
+                    features={designSystem[0].data.Features}
+                    color={designSystem[0].data.Colour_hex}
                   />
                 ))}
               </ul>
@@ -161,6 +148,47 @@ export default ({ data }) => {
             <div className="body-text p-6">
               <MDXRenderer>{data.mdx.body}</MDXRenderer>
             </div>
+          )}
+
+          {data.airtable.data.relatedComponents !== null && (
+            <>
+              <div
+                style={{ ...(data.mdx !== null ? { maxWidth: '76ch' } : {}) }}
+                className="mx-auto px-6 py-4"
+              >
+                <h2 id="related-components" className="mt-0">
+                  Related components
+                </h2>
+              </div>
+              <div className="border-t">
+                <ul className="grid mt-0">
+                  {data.airtable.data.relatedComponents.map(
+                    ({
+                      data: {
+                        slug,
+                        name,
+                        description,
+                        otherNames,
+                        examplesCount
+                      },
+                      id
+                    }) => (
+                      <Component
+                        key={id}
+                        slug={slug}
+                        name={name}
+                        description={
+                          description !== null &&
+                          description.childMarkdownRemark.html
+                        }
+                        otherNames={otherNames}
+                        examplesCount={examplesCount}
+                      />
+                    )
+                  )}
+                </ul>
+              </div>
+            </>
           )}
         </div>
       </div>
@@ -188,7 +216,7 @@ export const query = graphql`
           data {
             Name
             URL
-            Design_system {
+            designSystem: Design_system {
               data {
                 Name
                 Organisation
@@ -201,6 +229,20 @@ export const query = graphql`
         Examples_count
         Emoji
         Date_updated(formatString: "MMMM Do, YYYY")
+        relatedComponents: Related_components {
+          data {
+            name: Name
+            description: Description {
+              childMarkdownRemark {
+                html
+              }
+            }
+            slug: Slug
+            otherNames: Other_names
+            examplesCount: Examples_count
+          }
+          id
+        }
       }
     }
     mdx: mdx(frontmatter: { slug: { eq: $Slug } }) {
