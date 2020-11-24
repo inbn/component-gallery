@@ -45,7 +45,7 @@
 }
 
 body {
-  @apply dark:bg-grey-900 dark:text-grey-100;
+  @apply dark:bg-grey-900 dark:text-grey-400;
 
   /* color is an 8 charcter hex (rrggbbaa) with the last 2 digits representing
   an alpha value between 0 and 100% — see https://codepen.io/chriscoyier/pen/XjbzAW */

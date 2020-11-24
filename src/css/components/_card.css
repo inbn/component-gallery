@@ -43,3 +43,7 @@
     transform: translate(-4px, -4px);
   }
 }
+
+.dark .card__inner:hover {
+  border-color: theme('colors.white');
+}

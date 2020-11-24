@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
+import { ThemeContext } from './ThemeContext';
+
 import twitterCardImage from '../images/twitter_card_image.png';
 
 function SEO({ description, lang, meta, keywords, title, favicon }) {
@@ -18,13 +20,14 @@ function SEO({ description, lang, meta, keywords, title, favicon }) {
       }
     }
   `);
-
   const metaDescription = description || site.siteMetadata.description;
+  const { colorMode } = React.useContext(ThemeContext);
 
   return (
     <Helmet
       htmlAttributes={{
-        lang
+        lang,
+        class: colorMode === 'dark' ? 'dark' : ''
       }}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}

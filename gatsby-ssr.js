@@ -7,10 +7,13 @@
 import React from 'react';
 import Terser from 'terser';
 
-import { COLOR_MODE_KEY } from './src/constants';
+import { COLOR_MODE_KEY, INITIAL_COLOR_MODE_CSS_PROP } from './src/constants';
+
+import App from './src/components/App';
 
 function setColorsByTheme() {
   const colorModeKey = '🔑';
+  const colorModeCssProp = '⚡️';
 
   const mql = window.matchMedia('(prefers-color-scheme: dark)');
   const prefersDarkFromMQ = mql.matches;
@@ -26,13 +29,14 @@ function setColorsByTheme() {
     colorMode = prefersDarkFromMQ ? 'dark' : 'light';
   }
 
-  if (colorMode === 'dark') {
-    document.documentElement.classList.add('dark');
-  }
+  const root = document.documentElement;
+  root.style.setProperty(colorModeCssProp, colorMode);
 }
 
-const MagicScriptTag = () => {
-  const boundFn = String(setColorsByTheme).replace('🔑', COLOR_MODE_KEY);
+const ThemeHydrationScriptTag = () => {
+  const boundFn = String(setColorsByTheme)
+    .replace('🔑', COLOR_MODE_KEY)
+    .replace('⚡️', INITIAL_COLOR_MODE_CSS_PROP);
 
   let calledFunction = `(${boundFn})()`;
 
@@ -43,5 +47,9 @@ const MagicScriptTag = () => {
 };
 
 export const onRenderBody = ({ setPreBodyComponents }) => {
-  setPreBodyComponents(<MagicScriptTag />);
+  setPreBodyComponents(<ThemeHydrationScriptTag />);
+};
+
+export const wrapPageElement = ({ element }) => {
+  return <App>{element}</App>;
 };

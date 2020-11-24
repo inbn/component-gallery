@@ -5,10 +5,12 @@
 
 @keyframes shift {
   from {
+    -webkit-mask-position-x: 0;
     mask-position-x: 0;
   }
 
   to {
+    -webkit-mask-position-x: 20px;
     mask-position-x: 20px;
   }
 }
