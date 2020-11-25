@@ -9,14 +9,12 @@ export const ThemeProvider = ({ children }) => {
 
   React.useEffect(() => {
     const root = window.document.documentElement;
-    console.log(root);
+
     // Store theme in a CSS custom property
     // Helmet removes the class before we get the chance to check it here
     const initialColorValue = root.style.getPropertyValue(
       INITIAL_COLOR_MODE_CSS_PROP
     );
-
-    console.log({ initialColorValue });
 
     rawSetColorMode(initialColorValue);
   }, []);

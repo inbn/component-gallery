@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Hero = ({ byline, title, subtitle, intro }) => (
   <div className="my-8 lg:my-12 px-6">
     {byline !== '' && (
-      <p className="font-sans mb-4 uppercase bg-white dark:bg-black text-black dark:text-grey-100 font-bold text-xs inline-block px-2 py-1 border-2 border-black shadow-block">
+      <p className="font-sans mb-4 uppercase bg-white dark:bg-black text-black dark:text-grey-100 font-bold text-xs inline-block px-2 py-1 border-2 border-black dark:border-white shadow-block">
         {byline}
       </p>
     )}

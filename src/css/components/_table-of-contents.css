@@ -13,7 +13,7 @@
 }
 
 .table-of-contents a {
-  @apply table border-transparent pt-2 text-black dark:text-white;
+  @apply table border-none pt-2 text-black dark:text-grey-400;
 
   font-weight: bold;
 }

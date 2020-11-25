@@ -10,7 +10,7 @@ const Header = ({ menuLinks, isHomepage }) => {
   const SiteTitleTag = isHomepage ? 'h1' : 'div';
 
   return (
-    <header className="flex flex-wrap sm:justify-between lg:items-center bg-white dark:bg-black border-b pl-4 pr-16 py-2">
+    <header className="flex flex-wrap sm:justify-between lg:items-center bg-white dark:bg-black border-b px-4 sm:pr-16 py-2">
       <SiteTitleTag className="my-2">
         <Link to="/" className="header-logo">
           The Component Gallery

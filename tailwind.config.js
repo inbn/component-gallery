@@ -327,7 +327,7 @@ module.exports = {
   variants: {
     appearance: [],
     backgroundAttachment: [],
-    backgroundColor: ['dark', 'hover'],
+    backgroundColor: ['responsive', 'dark', 'hover'],
     backgroundPosition: [],
     backgroundRepeat: [],
     backgroundSize: [],

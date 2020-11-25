@@ -3,10 +3,14 @@
   _shadow-block.css
 \*====================================*/
 
-.shadow-block {
-  box-shadow: 0.25em 0.25em var(--shadow-block-shadow-color);
-}
+@layer utilities {
+  @variants responsive {
+    .shadow-block {
+      box-shadow: 0.25em 0.25em var(--shadow-block-shadow-color);
+    }
 
-.shadow-block-sm {
-  box-shadow: 0.125em 0.125em var(--shadow-block-shadow-color);
+    .shadow-block-sm {
+      box-shadow: 0.125em 0.125em var(--shadow-block-shadow-color);
+    }
+  }
 }
