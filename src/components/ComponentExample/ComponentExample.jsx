@@ -18,14 +18,14 @@ const ComponentExample = ({
   const HeadingTag = headingLevel;
 
   return (
-    <CardTag className="card" style={{ '--background-color': color }}>
+    <CardTag className="card" style={{ '--shadow-color': color }}>
       <a
         href={url}
         target="_blank"
         rel="noopener noreferrer"
         className="card__inner h-full flex flex-col w-full p-6"
       >
-        <p className="leading-none text-base uppercase tracking-wider font-sans text-grey-800">
+        <p className="leading-none text-base uppercase tracking-wider font-sans text-grey-800 dark:text-grey-300">
           {componentName}
         </p>
         <div className="mt-auto pt-6">
@@ -33,7 +33,7 @@ const ComponentExample = ({
             {designSystemName}
           </HeadingTag>
           {designSystemOrganisation && (
-            <p className="italic leading-tight mt-0 pb-2 text-grey-700">
+            <p className="italic leading-tight mt-0 pb-2 text-grey-700 dark:text-grey-500">
               {designSystemOrganisation}
             </p>
           )}

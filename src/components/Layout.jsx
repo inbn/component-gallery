@@ -31,7 +31,9 @@ const Layout = ({ children, heroComponent, isHomepage, isArticle }) => {
       />
       <WrapElement>
         {!!heroComponent && heroComponent}
-        <main className="bg-white border-t flex-grow">{children}</main>
+        <main className="bg-white dark:bg-black border-t flex-grow">
+          {children}
+        </main>
       </WrapElement>
       <Footer />
     </div>

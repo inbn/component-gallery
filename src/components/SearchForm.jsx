@@ -44,6 +44,15 @@ const SearchForm = ({ idPrefix }) => {
   }, [open]);
 
   useEffect(() => {
+    if (selectedItemRef.current) {
+      selectedItemRef.current.scrollIntoView({
+        block: 'nearest',
+        inline: 'nearest'
+      });
+    }
+  }, [selectedItemIndex]);
+
+  useEffect(() => {
     // @TODO look at debouncing the search
     const index = searchIndex || Index.load(data.siteSearchIndex.index);
     setSearchIndex(index);
@@ -77,9 +86,6 @@ const SearchForm = ({ idPrefix }) => {
             ? prevSelectedItemIndex - 1
             : results.length - 1
         );
-        if (selectedItemRef.current) {
-          selectedItemRef.current.scrollIntoView(false);
-        }
         break;
 
       case 'ArrowDown':
@@ -89,9 +95,6 @@ const SearchForm = ({ idPrefix }) => {
             ? prevSelectedItemIndex + 1
             : 0
         );
-        if (selectedItemRef.current) {
-          selectedItemRef.current.scrollIntoView(false);
-        }
         break;
 
       case 'Enter':
@@ -184,14 +187,14 @@ const SearchForm = ({ idPrefix }) => {
             }}
             onMouseOver={() => setSelectedItemIndex(i)}
           >
-            {table && (
-              <p className="font-sans mb-2 uppercase text-black font-bold text-xs block">
+            {!!table && (
+              <p className="font-sans mb-2 uppercase text-black dark:text-white font-bold text-xs block">
                 {table === 'Components' ? 'Component' : 'Design System'}
               </p>
             )}
             <h3 className="mt-0 leading-tight">{name}</h3>
-            {otherNames && (
-              <p className="italic leading-tight mt-2 text-sm text-grey-700">
+            {!!otherNames && (
+              <p className="italic leading-tight mt-2 text-sm text-grey-700 dark:text-grey-500">
                 Other names: {otherNames}
               </p>
             )}

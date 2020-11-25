@@ -23,7 +23,7 @@ const DesignSystem = ({
   return (
     <CardTag
       className="card card--design-system"
-      style={{ '--background-color': color }}
+      style={{ '--shadow-color': color }}
     >
       <a
         href={url}
@@ -45,7 +45,7 @@ const DesignSystem = ({
         )}
         <HeadingTag className="h3 mt-0 pt-6 pb-1 font-bold">{name}</HeadingTag>
         {organisation && (
-          <p className="italic leading-tight mt-0 pb-2 text-grey-700">
+          <p className="italic leading-tight mt-0 pb-2 text-grey-700 dark:text-grey-500">
             {organisation}
           </p>
         )}

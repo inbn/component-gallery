@@ -2,6 +2,7 @@ module.exports = {
   prefix: '',
   important: false,
   separator: ':',
+  darkMode: 'class',
   theme: {
     colors: {
       transparent: 'transparent',
@@ -12,11 +13,13 @@ module.exports = {
       grey: {
         100: '#f8fafc',
         200: '#f1f5f8',
+        300: '#e6ebf0',
         400: '#dae1e7',
         500: '#b8c2cc',
         600: '#8795a1',
         700: '#606f7b',
-        800: '#3d4852'
+        800: '#3d4852',
+        900: '#1f2429'
       },
 
       green: {
@@ -50,7 +53,8 @@ module.exports = {
       },
 
       indigo: {
-        500: '#6363ED',
+        400: '#7b74f5',
+        500: '#6363ed',
         600: '#5959d5'
       }
     },
@@ -166,7 +170,7 @@ module.exports = {
       contain: 'contain'
     },
     borderWidth: {
-      default: '1px',
+      DEFAULT: '1px',
       '0': '0',
       '2': '2px',
       '4': '4px',
@@ -174,14 +178,14 @@ module.exports = {
     },
     borderColor: theme => {
       return {
-        default: theme('colors.grey.700'),
+        DEFAULT: theme('colors.grey.700'),
         ...theme('colors')
       };
     },
     borderRadius: {
       none: '0',
       sm: '.125rem',
-      default: '.25rem',
+      DEFAULT: '.25rem',
       lg: '.5rem',
       full: '9999px'
     },
@@ -260,7 +264,7 @@ module.exports = {
       top: 'top'
     },
     boxShadow: {
-      default: '0 1px 4px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06)',
+      DEFAULT: '0 1px 4px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06)',
       md: '0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -1px rgba(0, 0, 0, .06)',
       lg:
         '0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05)',
@@ -301,11 +305,11 @@ module.exports = {
     },
     flexGrow: {
       '0': 0,
-      default: 1
+      DEFAULT: 1
     },
     flexShrink: {
       '0': 0,
-      default: 1
+      DEFAULT: 1
     },
     listStyleType: {
       none: 'none',
@@ -324,12 +328,12 @@ module.exports = {
   variants: {
     appearance: [],
     backgroundAttachment: [],
-    backgroundColor: [],
+    backgroundColor: ['responsive', 'dark', 'hover'],
     backgroundPosition: [],
     backgroundRepeat: [],
     backgroundSize: [],
     borderCollapse: [],
-    borderColor: ['responsive', 'hover', 'focus'],
+    borderColor: ['responsive', 'hover', 'focus', 'dark'],
     borderRadius: ['responsive'],
     borderStyle: ['responsive', 'hover'],
     borderWidth: ['responsive', 'hover'],
@@ -346,7 +350,7 @@ module.exports = {
     flexShrink: ['responsive'],
     float: [],
     fontFamily: ['responsive'],
-    fontWeight: ['responsive', 'hover', 'focus'],
+    fontWeight: ['responsive'],
     height: ['responsive'],
     lineHeight: ['responsive'],
     listStylePosition: ['responsive'],
@@ -371,7 +375,7 @@ module.exports = {
     stroke: [],
     tableLayout: [],
     textAlign: ['responsive'],
-    textColor: ['responsive', 'hover', 'focus'],
+    textColor: ['responsive', 'hover', 'focus', 'dark'],
     fontSize: ['responsive'],
     fontStyle: ['responsive'],
     textTransform: ['responsive'],

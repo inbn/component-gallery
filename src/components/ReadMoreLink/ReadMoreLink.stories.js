@@ -1,13 +1,16 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { withSmartKnobs } from 'storybook-addon-smart-knobs';
+import Component from './ReadMoreLink';
 
-import ReadMoreLink from './ReadMoreLink';
+export default {
+  title: 'ReadMoreLink',
+  component: Component
+};
 
-storiesOf(`ReadMoreLink`, module)
-  .addDecorator(withSmartKnobs())
-  .addDecorator(withKnobs())
-  .add(`Default`, () => (
-    <ReadMoreLink to="https://example.com" text="Read more" />
-  ));
+const Template = args => <Component {...args} />;
+
+export const Default = Template.bind({});
+
+Default.args = {
+  to: 'https://example.com',
+  text: 'Read more'
+};

@@ -1,6 +1,7 @@
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
+import DarkToggle from './DarkToggle';
 
 const SearchFormLazy = React.lazy(() => import('./SearchForm'));
 
@@ -9,7 +10,7 @@ const Header = ({ menuLinks, isHomepage }) => {
   const SiteTitleTag = isHomepage ? 'h1' : 'div';
 
   return (
-    <header className="flex flex-wrap sm:justify-between lg:items-center bg-white border-b px-4 py-2">
+    <header className="flex flex-wrap sm:justify-between lg:items-center bg-white dark:bg-black border-b px-4 sm:pr-16 py-2">
       <SiteTitleTag className="my-2">
         <Link to="/" className="header-logo">
           The Component Gallery
@@ -28,16 +29,15 @@ const Header = ({ menuLinks, isHomepage }) => {
         <ul className="flex flex-wrap -mx-2 sm:-mx-4">
           {menuLinks.map(link => (
             <li key={link.name} className="mx-2 sm:mx-4 my-2">
-              <Link
-                to={link.link}
-                className="call-to-action whitespace-no-wrap"
-              >
+              <Link to={link.link} className="call-to-action whitespace-nowrap">
                 {link.name}
               </Link>
             </li>
           ))}
         </ul>
       </nav>
+
+      <DarkToggle />
     </header>
   );
 };

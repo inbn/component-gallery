@@ -12,7 +12,7 @@ const Select = ({
 }) => (
   <label
     htmlFor={id}
-    className="mr-2 text-grey-800 text-sm font-sans font-bold"
+    className="mr-2 text-grey-800 dark:text-grey-200 text-sm font-sans font-bold"
   >
     <span className="mr-2">{label}</span>
     <select name={name} id={id} defaultValue={defaultValue} onChange={onChange}>

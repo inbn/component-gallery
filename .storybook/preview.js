@@ -1,14 +1,35 @@
-import { configure } from '@storybook/react';
 import 'loki/configure-react';
 import { action } from '@storybook/addon-actions';
+import React from 'react';
+import Helmet from 'react-helmet';
 
 import '../src/css/style.css';
 
-// automatically import all files ending in *.stories.js
-const req = require.context('../src', true, /.stories.js$/);
-function loadStories() {
-  req.keys().forEach(filename => req(filename));
-}
+export const globalTypes = {
+  theme: {
+    name: 'Theme',
+    description: 'Global theme for components',
+    defaultValue: 'light',
+    toolbar: {
+      // Full list of icons in node_modules/@storybook/components/dist/icon/icons.js
+      // icon: 'circlehollow',
+      // array of plain string values or MenuItem shape (see below)
+      items: ['light', 'dark']
+    }
+  }
+};
+
+const withThemeProvider = (Story, context) => {
+  return (
+    <>
+      <Helmet htmlAttributes={{ class: context.globals.theme }} />
+      <Story {...context} />
+    </>
+  );
+};
+
+export const decorators = [withThemeProvider];
+
 // Gatsby's Link overrides:
 // Gatsby defines a global called ___loader to prevent its method calls from creating console errors you override it here
 global.___loader = {
@@ -26,4 +47,4 @@ global.__BASE_PATH__ = '';
 window.___navigate = pathname => {
   action('NavigateTo:')(pathname);
 };
-configure(loadStories, module);
+// configure(loadStories, module);

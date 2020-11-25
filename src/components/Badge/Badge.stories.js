@@ -1,12 +1,22 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { withSmartKnobs } from 'storybook-addon-smart-knobs';
+import Component from './Badge';
 
-import Badge from './Badge';
+export default {
+  title: 'Badge',
+  component: Component
+};
 
-storiesOf(`Badge`, module)
-  .addDecorator(withSmartKnobs())
-  .addDecorator(withKnobs())
-  .add(`Text only`, () => <Badge text="Hi, I’m a Badge" />)
-  .add(`With icon`, () => <Badge text="Accessibility" displayIcon />);
+const Template = args => <Component {...args} />;
+
+export const TextOnly = Template.bind({});
+TextOnly.storyName = 'Text only';
+TextOnly.args = {
+  text: 'Hi, I’m a Badge'
+};
+
+export const WithIcon = Template.bind({});
+WithIcon.storyName = 'With icon';
+WithIcon.args = {
+  text: 'Accessibility',
+  displayIcon: true
+};

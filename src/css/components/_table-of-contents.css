@@ -7,22 +7,22 @@
   @apply pl-4 mt-0;
   list-style-type: none;
 
-  & a {
-    @apply table border-transparent pt-2 text-black;
-
-    font-weight: bold;
-  }
-
-  & ul {
-    @apply pl-4;
-
-    & a {
-      font-weight: normal;
-    }
-  }
-
   @screen md {
     @apply text-sm;
+  }
+}
+
+.table-of-contents a {
+  @apply table border-none pt-2 text-black dark:text-grey-400;
+
+  font-weight: bold;
+}
+
+.table-of-contents ul {
+  @apply pl-4;
+
+  & a {
+    font-weight: normal;
   }
 }
 

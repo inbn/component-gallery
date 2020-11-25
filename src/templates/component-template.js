@@ -91,7 +91,7 @@ export default ({ data }) => {
         {/* Sidebar */}
         {tocItems !== null && (
           <div className="col col--sidebar border-b border-l">
-            <div className="font-sans py-2 px-6 border-b bg-white text-black text-sm block">
+            <div className="font-sans py-2 px-6 border-b bg-white dark:bg-black text-black dark:text-white text-sm block">
               {/* Last updated date */}
               <p className="">Updated {data.airtable.data.Date_updated}</p>
               {/* Read time */}
@@ -110,7 +110,7 @@ export default ({ data }) => {
                 {data.airtable.data.Examples_count} example
                 {data.airtable.data.Examples_count !== 1 && 's'}
               </h2>
-              <div className="control-bar py-2 px-6 bg-grey-200 mt-4 border-t">
+              <div className="control-bar py-2 px-6 bg-grey-200 dark:bg-grey-800 mt-4 border-t">
                 <Select
                   id="sort-order"
                   label="Sort by"

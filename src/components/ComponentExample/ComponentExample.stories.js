@@ -1,22 +1,22 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { withSmartKnobs } from 'storybook-addon-smart-knobs';
+import { Grid } from '../../../.storybook/decorators';
+import Component from './ComponentExample';
 
-import ComponentExample from './ComponentExample';
+export default {
+  title: 'ComponentExample',
+  component: Component,
+  decorators: [Grid]
+};
 
-storiesOf(`ComponentExample`, module)
-  .addDecorator(withSmartKnobs())
-  .addDecorator(withKnobs())
-  .add(`Default`, () => (
-    <div className="grid">
-      <ComponentExample
-        cardTag="div"
-        url="#"
-        componentName="Button"
-        designSystemName="Example Design System"
-        designSystemOrganisation="ExampleCorp"
-        features={['Feature 1', 'Feature 2']}
-      />
-    </div>
-  ));
+const Template = args => <Component {...args} />;
+
+export const Default = Template.bind({});
+
+Default.args = {
+  cardTag: 'div',
+  url: '#',
+  componentName: 'Button',
+  designSystemName: 'Example Design System',
+  designSystemOrganisation: 'ExampleCorp',
+  features: ['Feature 1', 'Feature 2']
+};
