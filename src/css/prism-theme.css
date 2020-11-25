@@ -4,6 +4,8 @@
  * @author Lea Verou
  */
 
+@import 'utilities/_shadow-block';
+
 code[class*='language-'],
 pre[class*='language-'] {
   @apply font-mono text-sm;
@@ -18,13 +20,12 @@ pre[class*='language-'] {
 
 /* Code blocks */
 pre[class*='language-'] {
-  @apply bg-grey-100 border -mx-4 my-4 px-4 py-3;
-  box-shadow: 0.25em 0.25em theme('colors.grey.800');
+  @apply bg-grey-100 dark:bg-grey-900 border -mx-4 my-4 px-4 py-3 shadow-block;
   overflow: auto;
 }
 
 code[class*='language-'] {
-  @apply text-grey-800;
+  @apply text-grey-800 dark:text-grey-300;
 }
 
 /* Inline code */
@@ -39,12 +40,12 @@ code[class*='language-'] {
 [class*='language-'] .token.prolog,
 [class*='language-'] .token.doctype,
 [class*='language-'] .token.cdata {
-  color: #aaa;
+  @apply text-grey-600 dark:text-grey-700;
   font-style: italic;
 }
 
 [class*='language-'] .token.punctuation {
-  @apply text-grey-700;
+  @apply text-grey-700 dark:text-grey-600;
 }
 
 [class*='language-'] .namespace {
@@ -57,7 +58,7 @@ code[class*='language-'] {
 [class*='language-'] .token.number,
 [class*='language-'] .token.constant,
 [class*='language-'] .token.symbol {
-  @apply text-indigo-500;
+  @apply text-indigo-500 dark:text-indigo-400;
 }
 
 [class*='language-'] .token.selector,
@@ -80,7 +81,7 @@ code[class*='language-'] {
 [class*='language-'] .token.atrule,
 [class*='language-'] .token.attr-value,
 [class*='language-'] .token.keyword {
-  @apply text-teal-700;
+  @apply text-teal-700 dark:text-teal-600;
 }
 
 [class*='language-'] .token.regex,
@@ -123,7 +124,7 @@ code[class*='language-'] {
 
 .gatsby-highlight pre[class*='language-']::before {
   @apply border-t border-r border-l border-black font-sans text-xs text-black;
-  box-shadow: 0.375em 0.125em 0 -0.125em theme('colors.grey.800');
+  box-shadow: 0.375em 0.125em 0 -0.125em var(--shadow-block-shadow-color);
   padding: 0.1rem 0.5rem;
   position: absolute;
   bottom: 100%;
