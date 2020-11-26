@@ -30,6 +30,7 @@ function setColorsByTheme() {
   }
 
   const root = document.documentElement;
+  if (colorMode === 'dark') root.classList.add('dark');
   root.style.setProperty(colorModeCssProp, colorMode);
 }
 
