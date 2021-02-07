@@ -10,14 +10,14 @@ import TableOfContents from '../components/TableOfContents';
 const AboutPage = ({ data }) => (
   <Layout heroComponent={<Hero title="About" />}>
     <SEO title="About" description={data.mdx.frontmatter.description} />
-    <div className="col-wrap">
-      <div className="col col--sidebar border-b border-l">
+    <div className="l-col-wrap">
+      <div className="l-col l-col--sidebar border-b border-l">
         {data.mdx !== null && (
           <TableOfContents items={data.mdx.tableOfContents.items} />
         )}
       </div>
       {/* Main content */}
-      <div className="col col--main pt-4 px-6 border-l">
+      <div className="l-col l-col--main pt-4 px-6 border-l">
         {data.mdx !== null && (
           <div className="body-text mb-4">
             <MDXRenderer>{data.mdx.body}</MDXRenderer>

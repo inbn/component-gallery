@@ -1,6 +1,6 @@
 /*====================================*\
   LAYOUT
-  _col.css
+  _l-col.css
 \*====================================*/
 
 /**
@@ -8,22 +8,22 @@
  * Based on https://www.youtube.com/watch?v=qOUtkN6M52M
  */
 
-.col-wrap {
+.l-col-wrap {
   display: flex;
   flex-wrap: wrap;
 }
 
-.col {
+.l-col {
 }
 
-.col--main {
+.l-col--main {
   /* main column should never be less than 3/5 wide */
   min-width: 60%;
   flex-basis: 0;
   flex-grow: 999;
 }
 
-.col--sidebar {
+.l-col--sidebar {
   /* 16 rems is the 'ideal' width */
   flex-basis: 16rem;
   flex-grow: 1;

@@ -63,25 +63,43 @@ The following example uses the [summary](https://developer.mozilla.org/en-US/doc
 
 To set the initial state of the accordion item to be 'expanded', you can add the attribute `open="true"` to the `details` element (the default is `false`, so this can be omitted for collapsed items).
 
-**Browser support warning:** The `details` and `summary` elements are not supported by Internet Explorer, or Opera Mini at the time of writing.[^1]
+**Browser support warning:** The `details` and `summary` elements are not supported by Internet Explorer or Opera Mini at the time of writing.[^1]
 
-### Interactivity
+## Interactivity
 
 The [first example](#approach-1-heading-with-button), requires a small amount of JavaScript to toggle the `aria-expanded` attribute on the button and the visibility of the content.
 
-In case JavaScript is not enabled, or errors for some reason, it is desirable for the content to still be visible (because the button requires Javascript, the user has no way of making the content visible if JavaScript is disabled). Instead of making the content invisible by default or having buttons that do nothing, you can create your accordion component without the button element, and use JavaScript to [progressively enhance](https://www.gov.uk/service-manual/technology/using-progressive-enhancement) the HTML with additional interactivity. There is an example on how to do this on [Inclusive Components](https://inclusive-components.design/collapsible-sections/).
+In situations where JavaScript is not enabled or doesn’t work for some reason, it is desirable for the content to still be visible (because the button requires Javascript, the user has no way of making the content visible if JavaScript is disabled). Instead of making the content invisible by default or having buttons that do nothing, you can create your accordion component without the button element, and use JavaScript to [progressively enhance](https://www.gov.uk/service-manual/technology/using-progressive-enhancement) the HTML with additional interactivity. There is an example on how to do this on [Inclusive Components](https://inclusive-components.design/collapsible-sections/).
 
-The [second example](#approach-2-summary-and-details) works without JavaScript in browsers that support the `details` element.
+The [second example](#approach-2-summary-and-details) works without JavaScript in browsers that support the `details` element. In browsers that don’t support the `details` element, all of the content will be rendered, but it won’t be collapsible.
 
 ## Styling
 
-You can use the `aria-expanded` attribute as a hook for styling the button. The following example will rotate the arrow 180 degrees when the accordion is expanded:
+If you go for the first approach, using a `button` element which triggers some JavaScript, you can use the `aria-expanded` attribute as a hook for styling the button. The following example will rotate the arrow 180 degrees when the accordion is expanded:
 
 ```css
 button[aria-expanded='true'] > svg {
   transform: rotate(180);
 }
 ```
+
+If you decide on the `details` and `summary` elements instead, there are a couple of default browser styles you may want to override:[^2]
+
+1. The default cursor for the `summary` is the text selection type which doesn’t give great [affordance](https://uxplanet.org/ux-design-glossary-how-to-use-affordances-in-user-interfaces-393c8e9686e4) that the element is clickable. The following CSS, will change the cursor to the `pointer` style (like that shown when hovering over links):
+
+   ```css
+   details summary {
+     cursor: pointer;
+   }
+   ```
+
+2. If you nest a block-level element like a heading in a `summary` element (as in the example above), it appears below the arrow marker. To make it appear next the the arrow, set its `display` property to `inline`:
+
+   ```css
+   details summary > * {
+     display: inline;
+   }
+   ```
 
 ## Usage guidelines
 
@@ -92,3 +110,4 @@ Some implementations allow for only a single accordion item to be expanded at an
 Be mindful that when you are using an accordion you are hiding content from users — they therefore should not be used for essential information.
 
 [^1]: [Details & Summary elements: Caniuse.com](https://caniuse.com/#feat=details)
+[^2]: [Two Issues Styling the Details Element and How to Solve Them](https://css-tricks.com/two-issues-styling-the-details-element-and-how-to-solve-them/), Greg Gibson on CSS-Tricks

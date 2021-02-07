@@ -9,9 +9,9 @@ import Hero from '../components/Hero';
 const ChangelogPage = ({ data }) => (
   <Layout heroComponent={<Hero title="Changelog" />}>
     <SEO title="Changelog" />
-    <div className="col-wrap">
+    <div className="l-col-wrap">
       {/* Main content */}
-      <div className="col col--main pt-4 px-6">
+      <div className="l-col l-col--main pt-4 px-6">
         {data.mdx !== null && (
           <div className="body-text mb-4">
             <MDXRenderer>{data.mdx.body}</MDXRenderer>

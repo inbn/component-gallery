@@ -51,7 +51,7 @@ const DesignSystemsIndexPage = ({ data }) => {
           useIndexAsValue
         />
       </div>
-      <ul className="grid border-l mt-0">
+      <ul className="l-grid border-l mt-0">
         {designSystems.map(
           (
             {

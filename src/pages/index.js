@@ -27,7 +27,7 @@ const IndexPage = ({ data }) => (
       <h2 className="px-6 py-4 sm:pt-6 text-base uppercase tracking-widest sm:dir-sideways-tb sm:leading-none">
         Recently updated components
       </h2>
-      <ul className="grid border-t sm:border-t-0 border-l mt-0 sm:flex-1">
+      <ul className="l-grid border-t sm:border-t-0 border-l mt-0 sm:flex-1">
         {data.recentComponents.edges.map(
           ({
             node: {
@@ -57,7 +57,7 @@ const IndexPage = ({ data }) => (
       <h2 className="px-6 py-4 sm:pt-6 text-base uppercase tracking-widest sm:dir-sideways-tb sm:leading-none">
         Recently updated Design Systems
       </h2>
-      <ul className="grid border-t sm:border-t-0 border-l mt-0 sm:flex-1">
+      <ul className="l-grid border-t sm:border-t-0 border-l mt-0 sm:flex-1">
         {data.recentDesignSystems.edges.map(
           ({
             node: {

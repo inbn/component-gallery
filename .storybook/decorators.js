@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const Grid = Story => (
-  <div class="grid">
+  <div class="l-sgrid">
     <Story />
   </div>
 );

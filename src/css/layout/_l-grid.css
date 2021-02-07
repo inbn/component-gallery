@@ -1,6 +1,6 @@
 /*====================================*\
   LAYOUT
-  _grid.css
+  _l-grid.css
 \*====================================*/
 
 /**
@@ -8,7 +8,7 @@
  * but without the JavaScript dependency
  */
 
-.grid {
+.l-grid {
   display: grid;
 }
 
@@ -18,7 +18,7 @@
  * column so we're fine to use a min-width media query here.
  */
 @media (min-width: 17rem) {
-  .grid {
+  .l-grid {
     grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
   }
 }

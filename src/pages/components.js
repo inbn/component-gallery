@@ -44,7 +44,7 @@ const ComponentsIndexPage = ({ data }) => {
           useIndexAsValue
         />
       </div>
-      <ul className="grid border-l mt-0">
+      <ul className="l-grid border-l mt-0">
         {components.map(
           ({
             node: {

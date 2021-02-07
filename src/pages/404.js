@@ -9,9 +9,9 @@ import SEO from '../components/SEO';
 const NotFoundPage = () => (
   <Layout heroComponent={<Hero title="404" />} isArticle={false}>
     <SEO title="404: Not found" />
-    <div className="col-wrap">
+    <div className="l-col-wrap">
       {/* Main content */}
-      <div className="col col--main pt-4 px-6">
+      <div className="l-col l-col--main pt-4 px-6">
         <div className="body-text mb-4">
           <p>It looks like you’ve hit a route that doesn’t exist.</p>
           <p>

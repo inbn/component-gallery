@@ -13,9 +13,9 @@ const Search = () => {
       isArticle={false}
     >
       <SEO title="Search" />
-      <div className="col-wrap">
+      <div className="l-col-wrap">
         {/* Main content */}
-        <div className="col col--main py-4 px-6">
+        <div className="l-col l-col--main py-4 px-6">
           <SearchForm idPrefix="search" />
         </div>
       </div>

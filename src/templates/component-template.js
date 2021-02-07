@@ -87,10 +87,10 @@ export default ({ data }) => {
           data.airtable.data.Description.childMarkdownRemark.excerpt
         }
       />
-      <div className="col-wrap">
+      <div className="l-col-wrap">
         {/* Sidebar */}
         {tocItems !== null && (
-          <div className="col col--sidebar border-b border-l">
+          <div className="l-col l-col--sidebar border-b border-l">
             <div className="font-sans py-2 px-6 border-b bg-white dark:bg-black text-black dark:text-white text-sm block">
               {/* Last updated date */}
               <p className="">Updated {data.airtable.data.Date_updated}</p>
@@ -102,7 +102,7 @@ export default ({ data }) => {
           </div>
         )}
         {/* Main content */}
-        <div className="col col--main pt-4 border-l">
+        <div className="l-col l-col--main pt-4 border-l">
           {/* Examples */}
           {data.airtable.data.Examples !== null && (
             <>
@@ -128,7 +128,7 @@ export default ({ data }) => {
                   useIndexAsValue
                 />
               </div>
-              <ul className="grid border-t mt-0">
+              <ul className="l-grid border-t mt-0">
                 {examples.map(({ data: { URL, Name, designSystem } }, i) => (
                   <ComponentExample
                     key={i}
@@ -161,7 +161,7 @@ export default ({ data }) => {
                 </h2>
               </div>
               <div className="border-t">
-                <ul className="grid mt-0">
+                <ul className="l-grid mt-0">
                   {data.airtable.data.relatedComponents.map(
                     ({
                       data: {
