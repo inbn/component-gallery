@@ -10,6 +10,7 @@
   --hover-background-color: theme('colors.grey.100');
 
   background-color: var(--shadow-color);
+  position: relative;
   /* content-visibility: auto; */
   /* contain-intrinsic-size: 20rem; */
 }
@@ -41,6 +42,19 @@
     background-color: var(--hover-background-color);
     border-color: theme('colors.black');
     transform: translate(-4px, -4px);
+
+    /* Fix issue where hovering over bottom 4px of card would cause
+    it to lose hover repeatedly */
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      transform: translate(4px, 4px);
+    }
   }
 }
 
