@@ -17,27 +17,5 @@ module.exports = ({ config }) => {
   // Prefer Gatsby ES6 entrypoint (module) over commonjs (main) entrypoint
   config.resolve.mainFields = ['browser', 'module', 'main'];
 
-  // Get PostCSS working
-  config.module.rules.push({
-    test: /\.css$/,
-    use: [
-      // Loader for webpack to process CSS with PostCSS
-      {
-        loader: 'postcss-loader',
-        options: {
-          /*
-            Enable Source Maps
-           */
-          sourceMap: true,
-          /*
-            Set postcss.config.js config path && ctx
-           */
-          config: {
-            path: './.storybook/'
-          }
-        }
-      }
-    ]
-  });
   return config;
 };
