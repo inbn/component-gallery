@@ -27,7 +27,7 @@ const sortingOptions = [
   }
 ];
 
-export default ({ data }) => {
+const ComponentTemplate = ({ data }) => {
   // Use the first sorting option as the default
   const [examples, setExamples] = useState(
     sortItems([...data.airtable.data.Examples], sortingOptions[0])
@@ -195,6 +195,8 @@ export default ({ data }) => {
     </Layout>
   );
 };
+
+export default ComponentTemplate;
 
 export const query = graphql`
   query GetPage($Slug: String!) {

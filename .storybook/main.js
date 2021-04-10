@@ -8,6 +8,7 @@ module.exports = {
       options: {
         backgrounds: false
       }
-    }
+    },
+    '@storybook/addon-postcss'
   ]
 };
