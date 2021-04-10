@@ -41,7 +41,7 @@ const ThemeHydrationScriptTag = () => {
 
   let calledFunction = `(${boundFn})()`;
 
-  calledFunction = Terser.minify(calledFunction).code;
+  // calledFunction = Terser.minify(calledFunction).code;
 
   // eslint-disable-next-line react/no-danger
   return <script dangerouslySetInnerHTML={{ __html: calledFunction }} />;
