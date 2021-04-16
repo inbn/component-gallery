@@ -13,6 +13,12 @@
   position: relative;
   /* content-visibility: auto; */
   /* contain-intrinsic-size: 20rem; */
+
+  &:hover .card__inner {
+    background-color: var(--hover-background-color);
+    border-color: theme('colors.black');
+    transform: translate(-4px, -4px);
+  }
 }
 
 .dark .card {
@@ -38,26 +44,11 @@
   border-top: 1px solid transparent;
   border-left: 1px solid transparent;
 
-  &:hover {
-    background-color: var(--hover-background-color);
-    border-color: theme('colors.black');
-    transform: translate(-4px, -4px);
-
-    /* Fix issue where hovering over bottom 4px of card would cause
-    it to lose hover repeatedly */
-    &::after {
-      content: '';
-      display: block;
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      transform: translate(4px, 4px);
-    }
+  &:focus {
+    z-index: 1;
   }
 }
 
-.dark .card__inner:hover {
+.dark .card:hover .card__inner {
   border-color: theme('colors.white');
 }

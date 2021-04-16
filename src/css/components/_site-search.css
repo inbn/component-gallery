@@ -15,7 +15,7 @@
 
 .site-search__input {
   --background-size: 0.8rem;
-  @apply font-sans text-sm md:text-base p-2 pl-10 leading-none w-full border-grey-800 bg-grey-200 dark:bg-grey-800;
+  @apply font-sans text-sm md:text-base p-2 pl-10 leading-none w-full rounded-none border-grey-800 bg-grey-200 dark:bg-grey-800;
   /* Use postcss-svg to inline SVG into CSS */
   background-image: url('magnifying-glass');
   background-repeat: no-repeat;
