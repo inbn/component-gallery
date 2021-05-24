@@ -3,9 +3,7 @@
   _fonts.css
 \*====================================*/
 
+/* Reduce CLS by matching fallback font letter-spacing to DM Sans’ wider characters */
 html:not([data-fonts-loaded*='DMSans-Regular']) .font-sans {
-  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; */
   letter-spacing: 0.035em;
 }
