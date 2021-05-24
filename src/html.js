@@ -30,45 +30,6 @@ export default function HTML(props) {
                   }
                   sessionStorage.fontsLoadedFoutWithClass = JSON.stringify(fontsLoaded);
                 })
-
-                document.fonts.load('italic 1em DM Sans').then(() => {
-                  const fontsLoaded = sessionStorage.fontsLoadedFoutWithClass ? JSON.parse(sessionStorage.fontsLoadedFoutWithClass) : [];
-                  if (!fontsLoaded.includes('DMSans-Italic')) {
-                    fontsLoaded.push('DMSans-Italic');
-                    document.documentElement.dataset.fontsLoaded = JSON.stringify(fontsLoaded);
-                  }
-                  sessionStorage.fontsLoadedFoutWithClass = JSON.stringify(fontsLoaded);
-                })
-
-                document.fonts.load('500 1em DM Sans').then(() => {
-                  const fontsLoaded = sessionStorage.fontsLoadedFoutWithClass ? JSON.parse(sessionStorage.fontsLoadedFoutWithClass) : [];
-                  if (!fontsLoaded.includes('DMSans-Medium')) {
-                    fontsLoaded.push('DMSans-Medium');
-                    document.documentElement.dataset.fontsLoaded = JSON.stringify(fontsLoaded);
-                  }
-                  sessionStorage.fontsLoadedFoutWithClass = JSON.stringify(fontsLoaded);
-                })
-
-                document.fonts.load('700 1em DM Sans').then(() => {
-                  const fontsLoaded = sessionStorage.fontsLoadedFoutWithClass ? JSON.parse(sessionStorage.fontsLoadedFoutWithClass) : [];
-                  if (!fontsLoaded.includes('DMSans-Bold')) {
-                    fontsLoaded.push('DMSans-Bold');
-                    document.documentElement.dataset.fontsLoaded = JSON.stringify(fontsLoaded);
-                  }
-                  sessionStorage.fontsLoadedFoutWithClass = JSON.stringify(fontsLoaded);
-                })
-
-                // Promise.all([
-                //   document.fonts.load('1em DM Sans'),
-                //   document.fonts.load('italic 1em DM Sans'),
-                //   document.fonts.load('500 1em DM Sans'),
-                //   document.fonts.load('700 1em DM Sans')
-                // ]).then(function () {
-                //   document.documentElement.setAttribute('data-fonts-loaded', true);
-                //
-                //   // Optimization for Repeat Views
-                //   sessionStorage.fontsLoadedFoutWithClass = true;
-                // });
               }
             })();`,
           }}
