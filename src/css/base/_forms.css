@@ -4,7 +4,7 @@
 \*====================================*/
 
 select {
-  @apply font-sans text-sm text-grey-800 border border-grey-700;
+  @apply font-sans text-grey-800 border border-grey-700;
   padding: 0.2em 1.8em 0.2em 0.6em;
   max-width: 100%;
   margin: 0;
