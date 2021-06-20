@@ -26,6 +26,9 @@ const Badge = ({ text, displayIcon, tag }) => {
       case 'Tone of voice':
         badgeIcon = 'comment';
         break;
+      case 'Open source':
+        badgeIcon = 'openSource';
+        break;
       default:
         badgeIcon = '';
     }
@@ -43,12 +46,12 @@ const Badge = ({ text, displayIcon, tag }) => {
 Badge.propTypes = {
   text: PropTypes.string.isRequired,
   displayIcon: PropTypes.bool,
-  tag: PropTypes.string
+  tag: PropTypes.string,
 };
 
 Badge.defaultProps = {
   displayIcon: false,
-  tag: 'span'
+  tag: 'span',
 };
 
 export default Badge;

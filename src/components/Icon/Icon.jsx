@@ -8,6 +8,7 @@ import flask from '../../svg/flask-solid.svg';
 import universalAccess from '../../svg/universal-access-solid.svg';
 import sun from '../../svg/sun.svg';
 import moon from '../../svg/moon.svg';
+import openSource from '../../svg/open-source.svg';
 
 const Icon = ({ name, ...rest }) => {
   const icons = {
@@ -18,7 +19,8 @@ const Icon = ({ name, ...rest }) => {
     flask,
     universalAccess,
     sun,
-    moon
+    moon,
+    openSource,
   };
   const { viewBox = null, url = null } = icons[name];
 
