@@ -11,7 +11,7 @@ exports.createPages = ({ graphql, actions }) => {
   // createPage is a built in action,
   // available to all gatsby-node exports
   const { createPage, createRedirect } = actions;
-  return new Promise(async resolve => {
+  return new Promise(async (resolve) => {
     // we need the table name (e.g. "Sections")
     // as well as the unique path for each Page/Section.
     const result = await graphql(`
@@ -50,8 +50,8 @@ exports.createPages = ({ graphql, actions }) => {
           path: `${pathPrefix}${node.data.Slug}`,
           component: path.resolve(template),
           context: {
-            Slug: node.data.Slug
-          }
+            Slug: node.data.Slug,
+          },
         });
 
         // Create a redirect away from all the other names to the canonical
@@ -63,10 +63,10 @@ exports.createPages = ({ graphql, actions }) => {
         ) {
           const otherNames = node.data.Other_names.split(',');
 
-          otherNames.forEach(otherName => {
+          otherNames.forEach((otherName) => {
             const slugifiedOtherName = slugify(otherName.trim(), {
               replacement: '-',
-              lower: true
+              lower: true,
             });
 
             if (slugifiedOtherName.length > 0) {
@@ -78,7 +78,7 @@ exports.createPages = ({ graphql, actions }) => {
               createRedirect({
                 fromPath: `/${pathPrefix}${slugifiedOtherName}/`,
                 toPath: `/${pathPrefix}${node.data.Slug}/`,
-                isPermanent: false
+                isPermanent: false,
               });
             }
           });
