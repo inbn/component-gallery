@@ -32,8 +32,8 @@ const IndexPage = ({ data }) => (
           ({
             node: {
               data: { slug, name, description, otherNames, examplesCount },
-              id
-            }
+              id,
+            },
           }) => (
             <Component
               key={id}
@@ -61,9 +61,17 @@ const IndexPage = ({ data }) => (
         {data.recentDesignSystems.edges.map(
           ({
             node: {
-              data: { url, name, organisation, image, features, color },
-              id
-            }
+              data: {
+                url,
+                name,
+                organisation,
+                image,
+                features,
+                technologies,
+                color,
+              },
+              id,
+            },
           }) => {
             return (
               <DesignSystem
@@ -77,6 +85,16 @@ const IndexPage = ({ data }) => (
                     : null
                 }
                 features={features}
+                technologies={
+                  technologies &&
+                  technologies.reduce(
+                    (accumulator, currentValue) => [
+                      ...accumulator,
+                      currentValue.data.name,
+                    ],
+                    []
+                  )
+                }
                 color={color}
               />
             );
@@ -158,6 +176,11 @@ export const query = graphql`
               }
             }
             features: Features
+            technologies: Tech {
+              data {
+                name: Name
+              }
+            }
             color: Colour_hex
             Component_examples_count
           }
