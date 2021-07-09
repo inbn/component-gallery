@@ -9,9 +9,10 @@ const ComponentExample = ({
   designSystemName,
   designSystemOrganisation,
   features,
+  technologies,
   color,
   cardTag,
-  headingLevel
+  headingLevel,
 }) => {
   // The element type used for these elements are dynamic
   const CardTag = cardTag;
@@ -37,9 +38,21 @@ const ComponentExample = ({
               {designSystemOrganisation}
             </p>
           )}
+          {technologies && technologies.length > 0 && (
+            <ul className="mt-2 -mr-2 -ml-1 flex flex-wrap">
+              {technologies.map((technology) => (
+                <Badge
+                  key={technology}
+                  text={technology}
+                  tag="li"
+                  displayIcon
+                />
+              ))}
+            </ul>
+          )}
           {features && features.length > 0 && (
             <ul className="-mr-2 -mb-2 -ml-1 pb-1 flex flex-wrap">
-              {features.map(feature => (
+              {features.map((feature) => (
                 <Badge key={feature} text={feature} tag="li" displayIcon />
               ))}
             </ul>
@@ -56,9 +69,10 @@ ComponentExample.propTypes = {
   designSystemName: PropTypes.string,
   designSystemOrganisation: PropTypes.string,
   features: PropTypes.arrayOf(PropTypes.string),
+  technologies: PropTypes.arrayOf(PropTypes.string),
   color: PropTypes.string,
   cardTag: PropTypes.string,
-  headingLevel: PropTypes.string
+  headingLevel: PropTypes.string,
 };
 
 ComponentExample.defaultProps = {
@@ -67,9 +81,10 @@ ComponentExample.defaultProps = {
   designSystemName: '',
   designSystemOrganisation: '',
   features: [],
+  technologies: [],
   color: '#000',
   cardTag: 'li',
-  headingLevel: 'h3'
+  headingLevel: 'h3',
 };
 
 export default ComponentExample;

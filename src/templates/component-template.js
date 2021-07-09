@@ -31,7 +31,7 @@ const ComponentTemplate = ({ data }) => {
   // Use the first sorting option as the default
   const [sortOrder, setSortOrder] = useState(sortingOptions[0]);
   const [examples, setExamples] = useState(
-    sortItems([...data.airtable.data.Examples], sortingOptions[0])
+    sortItems([...data.component.data.Examples], sortingOptions[0])
   );
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const ComponentTemplate = ({ data }) => {
         title: 'Examples',
       },
       ...data.mdx.tableOfContents.items,
-      ...(data.airtable.data.relatedComponents !== null
+      ...(data.component.data.relatedComponents !== null
         ? [
             {
               url: '#related-components',
@@ -70,15 +70,15 @@ const ComponentTemplate = ({ data }) => {
       heroComponent={
         <Hero
           byline="Component"
-          title={data.airtable.data.Name}
+          title={data.component.data.Name}
           subtitle={
-            data.airtable.data.Other_names !== null
-              ? `Other names: ${data.airtable.data.Other_names}`
+            data.component.data.Other_names !== null
+              ? `Other names: ${data.component.data.Other_names}`
               : null
           }
           intro={
-            data.airtable.data.Description !== null
-              ? data.airtable.data.Description.childMarkdownRemark.html
+            data.component.data.Description !== null
+              ? data.component.data.Description.childMarkdownRemark.html
               : null
           }
         />
@@ -86,13 +86,13 @@ const ComponentTemplate = ({ data }) => {
     >
       <SEO
         title={
-          data.airtable.data.Emoji
-            ? `${data.airtable.data.Emoji} ${data.airtable.data.Name}`
-            : data.airtable.data.Name
+          data.component.data.Emoji
+            ? `${data.component.data.Emoji} ${data.component.data.Name}`
+            : data.component.data.Name
         }
         description={
-          data.airtable.data.Description !== null &&
-          data.airtable.data.Description.childMarkdownRemark.excerpt
+          data.component.data.Description !== null &&
+          data.component.data.Description.childMarkdownRemark.excerpt
         }
       />
       <div className="l-col-wrap">
@@ -101,7 +101,7 @@ const ComponentTemplate = ({ data }) => {
           <div className="l-col l-col--sidebar border-b border-l">
             <div className="font-sans py-2 px-6 border-b bg-white dark:bg-black text-black dark:text-white text-sm block">
               {/* Last updated date */}
-              <p className="">Updated {data.airtable.data.Date_updated}</p>
+              <p className="">Updated {data.component.data.Date_updated}</p>
               {/* Read time */}
               {readtime !== null && <p className="mt-0">{readtime}</p>}
             </div>
@@ -112,11 +112,11 @@ const ComponentTemplate = ({ data }) => {
         {/* Main content */}
         <div className="l-col l-col--main pt-4 border-l">
           {/* Examples */}
-          {data.airtable.data.Examples !== null && (
+          {data.component.data.Examples !== null && (
             <>
               <h2 id="examples" className="px-6">
-                {data.airtable.data.Examples_count} example
-                {data.airtable.data.Examples_count !== 1 && 's'}
+                {data.component.data.Examples_count} example
+                {data.component.data.Examples_count !== 1 && 's'}
               </h2>
               <div className="control-bar py-2 px-6 bg-grey-200 dark:bg-grey-800 mt-4 border-t">
                 <Select
@@ -138,6 +138,7 @@ const ComponentTemplate = ({ data }) => {
                     componentName={Name}
                     designSystemName={designSystem[0].data.Name}
                     designSystemOrganisation={designSystem[0].data.Organisation}
+                    technologies={designSystem[0].data.technologies}
                     features={designSystem[0].data.features}
                     color={designSystem[0].data.Colour_hex}
                   />
@@ -152,7 +153,7 @@ const ComponentTemplate = ({ data }) => {
             </div>
           )}
 
-          {data.airtable.data.relatedComponents !== null && (
+          {data.component.data.relatedComponents !== null && (
             <>
               <div
                 style={{ ...(data.mdx !== null ? { maxWidth: '76ch' } : {}) }}
@@ -164,7 +165,7 @@ const ComponentTemplate = ({ data }) => {
               </div>
               <div className="border-t">
                 <ul className="l-grid mt-0">
-                  {data.airtable.data.relatedComponents.map(
+                  {data.component.data.relatedComponents.map(
                     ({
                       data: {
                         slug,
@@ -202,7 +203,7 @@ export default ComponentTemplate;
 
 export const query = graphql`
   query GetPage($Slug: String!) {
-    airtable: airtable(
+    component: airtable(
       table: { eq: "Components" }
       data: { Slug: { eq: $Slug }, Publish: { eq: true } }
     ) {
@@ -245,6 +246,37 @@ export const query = graphql`
             slug: Slug
             otherNames: Other_names
             examplesCount: Examples_count
+          }
+          id
+        }
+      }
+    }
+    features: allAirtable(
+      filter: {
+        table: { eq: "Design system features" }
+        data: { Show_on_component: { eq: true } }
+      }
+      sort: { fields: [data___Name], order: ASC }
+    ) {
+      edges {
+        node {
+          data {
+            name: Name
+            count: Design_systems_count
+          }
+          id
+        }
+      }
+    }
+    technologies: allAirtable(
+      filter: { table: { eq: "Design system tech" } }
+      sort: { fields: [data___Name], order: ASC }
+    ) {
+      edges {
+        node {
+          data {
+            name: Name
+            count: Design_systems_count
           }
           id
         }
