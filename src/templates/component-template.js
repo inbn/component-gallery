@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
@@ -17,21 +17,29 @@ const sortingOptions = [
     optionLabel: 'Design system',
     path: 'data.designSystem[0].data.Name',
     comparison: 'text',
-    reverse: false
+    reverse: false,
   },
   {
     optionLabel: 'Component name',
     path: 'data.Name',
     comparison: 'text',
-    reverse: false
-  }
+    reverse: false,
+  },
 ];
 
 const ComponentTemplate = ({ data }) => {
   // Use the first sorting option as the default
+  const [sortOrder, setSortOrder] = useState(sortingOptions[0]);
   const [examples, setExamples] = useState(
     sortItems([...data.airtable.data.Examples], sortingOptions[0])
   );
+
+  useEffect(() => {
+    setExamples(
+      // .sort() mutates the array - use spread to create a new one
+      sortItems([...examples], sortOrder)
+    );
+  }, [sortOrder]);
 
   let tocItems = null;
   let readtime = null;
@@ -41,17 +49,17 @@ const ComponentTemplate = ({ data }) => {
     tocItems = [
       {
         url: '#examples',
-        title: 'Examples'
+        title: 'Examples',
       },
       ...data.mdx.tableOfContents.items,
       ...(data.airtable.data.relatedComponents !== null
         ? [
             {
               url: '#related-components',
-              title: 'Related components'
-            }
+              title: 'Related components',
+            },
           ]
-        : [])
+        : []),
     ];
 
     readtime = `${data.mdx.timeToRead} minute read`;
@@ -115,14 +123,8 @@ const ComponentTemplate = ({ data }) => {
                   id="sort-order"
                   label="Sort by"
                   defaultValue="0"
-                  onChange={event => {
-                    setExamples(
-                      // .sort() mutates the array - use spread to create a new one
-                      sortItems(
-                        [...examples],
-                        sortingOptions[event.target.value]
-                      )
-                    );
+                  onChange={(event) => {
+                    setSortOrder(sortingOptions[event.target.value]);
                   }}
                   options={sortingOptions}
                   useIndexAsValue
@@ -136,7 +138,7 @@ const ComponentTemplate = ({ data }) => {
                     componentName={Name}
                     designSystemName={designSystem[0].data.Name}
                     designSystemOrganisation={designSystem[0].data.Organisation}
-                    features={designSystem[0].data.Features}
+                    features={designSystem[0].data.features}
                     color={designSystem[0].data.Colour_hex}
                   />
                 ))}
@@ -169,9 +171,9 @@ const ComponentTemplate = ({ data }) => {
                         name,
                         description,
                         otherNames,
-                        examplesCount
+                        examplesCount,
                       },
-                      id
+                      id,
                     }) => (
                       <Component
                         key={id}
@@ -223,7 +225,8 @@ export const query = graphql`
                 Name
                 Organisation
                 Colour_hex
-                Features
+                features: Features_lookup
+                technologies: Tech_lookup
               }
             }
           }

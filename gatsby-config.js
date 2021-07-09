@@ -106,6 +106,11 @@ module.exports = {
             tableName: `Design system tech`,
             tableLinks: [`Design systems`],
           },
+          {
+            baseId: process.env.AIRTABLE_BASE_ID,
+            tableName: `Design system features`,
+            tableLinks: [`Design systems`],
+          },
         ],
       },
     },

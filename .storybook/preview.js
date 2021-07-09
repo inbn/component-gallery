@@ -14,9 +14,9 @@ export const globalTypes = {
       // Full list of icons in node_modules/@storybook/components/dist/icon/icons.js
       // icon: 'circlehollow',
       // array of plain string values or MenuItem shape (see below)
-      items: ['light', 'dark']
-    }
-  }
+      items: ['light', 'dark'],
+    },
+  },
 };
 
 const withThemeProvider = (Story, context) => {
@@ -34,7 +34,7 @@ export const decorators = [withThemeProvider];
 // Gatsby defines a global called ___loader to prevent its method calls from creating console errors you override it here
 global.___loader = {
   enqueue: () => {},
-  hovering: () => {}
+  hovering: () => {},
 };
 // Gatsby internal mocking to prevent unnecessary errors in storybook testing environment
 global.__PATH_PREFIX__ = '';
@@ -44,7 +44,7 @@ global.__PATH_PREFIX__ = '';
 global.__BASE_PATH__ = '';
 
 // This is to utilized to override the window.___navigate method Gatsby defines and uses to report what path a Link would be taking us to if it wasn't inside a storybook
-window.___navigate = pathname => {
+window.___navigate = (pathname) => {
   action('NavigateTo:')(pathname);
 };
 // configure(loadStories, module);
