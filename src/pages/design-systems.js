@@ -144,7 +144,6 @@ const DesignSystemsIndexPage = ({ data }) => {
       <div className="control-bar flex items-center border-b py-2 px-6 bg-grey-200 dark:bg-grey-800">
         {isLarge ? (
           <>
-            {/* <Filter label="Features" /> */}
             <Filter label="Technology">
               <Filters
                 options={allTechnologies}

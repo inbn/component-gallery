@@ -4,7 +4,6 @@ import Accordion from './Accordion';
 export default {
   title: 'Accordion',
   component: Accordion,
-  argTypes: { onChange: { action: 'clicked' } },
 };
 
 const Template = (args) => <Accordion {...args} />;
