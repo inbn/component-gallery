@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'beautiful-react-hooks';
 import { graphql } from 'gatsby';
 
+import Accordion from '../components/Accordion/Accordion';
 import CheckboxButton from '../components/CheckboxButton/CheckboxButton';
 import DesignSystem from '../components/DesignSystem/DesignSystem';
 import Filter from '../components/Filter/Filter';
@@ -58,8 +59,6 @@ const DesignSystemsIndexPage = ({ data }) => {
   const [sortOrder, setSortOrder] = useState(sortingOptions[0]);
   const [selectedTechnologies, setSelectedTechnologies] = useState([]);
   const [selectedFeatures, setSelectedFeatures] = useState([]);
-  const [filtersExpanded, setFiltersExpanded] = useState(false);
-  const accordionPanelRef = useRef();
   const isLarge = useMediaQuery('(min-width: 768px)');
 
   const handleTechnologySelect = (technology) => {
@@ -139,17 +138,6 @@ const DesignSystemsIndexPage = ({ data }) => {
     );
   }, [selectedFeatures, selectedTechnologies]);
 
-  useEffect(() => {
-    if (accordionPanelRef.current) {
-      const accordionPanelHeight = accordionPanelRef.current.scrollHeight;
-      if (filtersExpanded) {
-        accordionPanelRef.current.style.maxHeight = `${accordionPanelHeight}px`;
-      } else {
-        accordionPanelRef.current.style.maxHeight = 0;
-      }
-    }
-  }, [filtersExpanded]);
-
   return (
     <Layout heroComponent={<Hero title="Design systems" />} isArticle={false}>
       <SEO title="Design systems" />
@@ -183,59 +171,42 @@ const DesignSystemsIndexPage = ({ data }) => {
             />
           </>
         ) : (
-          <>
-            <div className="accordion">
-              <button
-                type="button"
-                className="flex font-sans py-1"
-                aria-expanded={filtersExpanded}
-                onClick={() => setFiltersExpanded(!filtersExpanded)}
-              >
-                <h2 className="font-sans text-base">Filter and Sort</h2>
-                <Icon
-                  name="chevronDown"
-                  className="w-4 h-4 ml-2 text-black dark:text-white"
+          <Accordion title="Filter and sort">
+            <div className="py-2 flex flex-col">
+              <h3 className="text-base font-bold py-2 text-grey-800 dark:text-grey-200">
+                Technology
+              </h3>
+              <div>
+                <Filters
+                  options={allTechnologies}
+                  selectedOptions={selectedTechnologies}
+                  onChange={handleTechnologySelect}
                 />
-              </button>
-              <div className="accordion__panel" ref={accordionPanelRef}>
-                <div className="py-2 flex flex-col">
-                  <h3 className="text-base font-bold py-2 text-grey-800 dark:text-grey-200">
-                    Technology
-                  </h3>
-                  <div>
-                    <Filters
-                      options={allTechnologies}
-                      selectedOptions={selectedTechnologies}
-                      onChange={handleTechnologySelect}
-                    />
-                  </div>
-
-                  <h3 className="text-base font-bold py-2 mt-3 text-grey-800 dark:text-grey-200">
-                    Features
-                  </h3>
-                  <div>
-                    <Filters
-                      options={allFeatures}
-                      selectedOptions={selectedFeatures}
-                      onChange={handleFeatureSelect}
-                    />
-                  </div>
-                  <div className="mt-3">
-                    <Select
-                      id="sort-order"
-                      label="Sort by"
-                      defaultValue="0"
-                      onChange={(event) => {
-                        setSortOrder(sortingOptions[event.target.value]);
-                      }}
-                      options={sortingOptions}
-                      useIndexAsValue
-                    />
-                  </div>
-                </div>
+              </div>
+              <h3 className="text-base font-bold py-2 mt-3 text-grey-800 dark:text-grey-200">
+                Features
+              </h3>
+              <div>
+                <Filters
+                  options={allFeatures}
+                  selectedOptions={selectedFeatures}
+                  onChange={handleFeatureSelect}
+                />
+              </div>
+              <div className="mt-3">
+                <Select
+                  id="sort-order"
+                  label="Sort by"
+                  defaultValue="0"
+                  onChange={(event) => {
+                    setSortOrder(sortingOptions[event.target.value]);
+                  }}
+                  options={sortingOptions}
+                  useIndexAsValue
+                />
               </div>
             </div>
-          </>
+          </Accordion>
         )}
       </div>
       {designSystems.length > 0 ? (
