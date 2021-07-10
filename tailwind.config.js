@@ -176,12 +176,10 @@ module.exports = {
       4: '4px',
       8: '8px',
     },
-    borderColor: (theme) => {
-      return {
-        DEFAULT: theme('colors.grey.700'),
-        ...theme('colors'),
-      };
-    },
+    borderColor: (theme) => ({
+      DEFAULT: theme('colors.grey.700'),
+      ...theme('colors'),
+    }),
     borderRadius: {
       none: '0',
       sm: '.125rem',
@@ -227,6 +225,7 @@ module.exports = {
     },
     minHeight: {
       0: '0',
+      12: '3rem',
       full: '100%',
       screen: '100vh',
     },

@@ -12,6 +12,7 @@ import Layout from '../components/Layout';
 import Select from '../components/Select/Select';
 import SEO from '../components/SEO';
 
+import useIsClient from '../hooks/use-is-client';
 import sortItems from '../utils/sortItems';
 
 const sortingOptions = [
@@ -65,6 +66,7 @@ const DesignSystemsIndexPage = ({ data }) => {
     'features',
     withDefault(ArrayParam, [])
   );
+  const { isClient, key } = useIsClient();
   const isLarge = useMediaQuery('(min-width: 768px)');
 
   const handleTechnologySelect = (technology) => {
@@ -147,72 +149,73 @@ const DesignSystemsIndexPage = ({ data }) => {
   return (
     <Layout heroComponent={<Hero title="Design systems" />} isArticle={false}>
       <SEO title="Design systems" />
-      <div className="control-bar flex items-center border-b py-2 px-6 bg-grey-200 dark:bg-grey-800">
-        {isLarge ? (
-          <>
-            <Filter label="Technology">
-              <Filters
-                options={allTechnologies}
-                selectedOptions={selectedTechnologies}
-                onChange={handleTechnologySelect}
-              />
-            </Filter>
-            <Filter label="Features">
-              <Filters
-                options={allFeatures}
-                selectedOptions={selectedFeatures}
-                onChange={handleFeatureSelect}
-              />
-            </Filter>
-            <Select
-              id="sort-order"
-              label="Sort by"
-              defaultValue="0"
-              onChange={(event) => {
-                setSortOrder(sortingOptions[event.target.value]);
-              }}
-              options={sortingOptions}
-              useIndexAsValue
-            />
-          </>
-        ) : (
-          <Accordion title="Filter and sort">
-            <div className="py-2 flex flex-col">
-              <h3 className="text-base font-bold py-2 text-grey-800 dark:text-grey-200">
-                Technology
-              </h3>
-              <div>
+      <div className="control-bar flex items-center border-b py-2 px-6 min-h-12 bg-grey-200 dark:bg-grey-800">
+        {isClient &&
+          (isLarge ? (
+            <>
+              <Filter label="Technology">
                 <Filters
                   options={allTechnologies}
                   selectedOptions={selectedTechnologies}
                   onChange={handleTechnologySelect}
                 />
-              </div>
-              <h3 className="text-base font-bold py-2 mt-3 text-grey-800 dark:text-grey-200">
-                Features
-              </h3>
-              <div>
+              </Filter>
+              <Filter label="Features">
                 <Filters
                   options={allFeatures}
                   selectedOptions={selectedFeatures}
                   onChange={handleFeatureSelect}
                 />
+              </Filter>
+              <Select
+                id="sort-order"
+                label="Sort by"
+                defaultValue="0"
+                onChange={(event) => {
+                  setSortOrder(sortingOptions[event.target.value]);
+                }}
+                options={sortingOptions}
+                useIndexAsValue
+              />
+            </>
+          ) : (
+            <Accordion title="Filter and sort">
+              <div className="py-2 flex flex-col">
+                <h3 className="text-base font-bold py-2 text-grey-800 dark:text-grey-200">
+                  Technology
+                </h3>
+                <div>
+                  <Filters
+                    options={allTechnologies}
+                    selectedOptions={selectedTechnologies}
+                    onChange={handleTechnologySelect}
+                  />
+                </div>
+                <h3 className="text-base font-bold py-2 mt-3 text-grey-800 dark:text-grey-200">
+                  Features
+                </h3>
+                <div>
+                  <Filters
+                    options={allFeatures}
+                    selectedOptions={selectedFeatures}
+                    onChange={handleFeatureSelect}
+                  />
+                </div>
+                <div className="mt-3">
+                  <Select
+                    id="sort-order"
+                    label="Sort by"
+                    defaultValue="0"
+                    onChange={(event) => {
+                      setSortOrder(sortingOptions[event.target.value]);
+                    }}
+                    options={sortingOptions}
+                    useIndexAsValue
+                  />
+                </div>
               </div>
-              <div className="mt-3">
-                <Select
-                  id="sort-order"
-                  label="Sort by"
-                  defaultValue="0"
-                  onChange={(event) => {
-                    setSortOrder(sortingOptions[event.target.value]);
-                  }}
-                  options={sortingOptions}
-                  useIndexAsValue
-                />
-              </div>
-            </div>
-          </Accordion>
-        )}
+            </Accordion>
+          ))}
       </div>
       {designSystems.length > 0 ? (
         <ul className="l-grid border-l mt-0">
