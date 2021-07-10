@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
 import { useMediaQuery } from 'beautiful-react-hooks';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { useQueryParam, ArrayParam, withDefault } from 'use-query-params';
 
 import Accordion from '../components/Accordion/Accordion';
 import CheckboxButton from '../components/CheckboxButton/CheckboxButton';
@@ -56,8 +57,14 @@ const ComponentTemplate = ({ data }) => {
     sortItems([...data.component.data.Examples], sortingOptions[0])
   );
   const [sortOrder, setSortOrder] = useState(sortingOptions[0]);
-  const [selectedTechnologies, setSelectedTechnologies] = useState([]);
-  const [selectedFeatures, setSelectedFeatures] = useState([]);
+  const [selectedTechnologies, setSelectedTechnologies] = useQueryParam(
+    'tech',
+    withDefault(ArrayParam, [])
+  );
+  const [selectedFeatures, setSelectedFeatures] = useQueryParam(
+    'features',
+    withDefault(ArrayParam, [])
+  );
   const isLarge = useMediaQuery(
     `(min-width: ${
       data.mdx !== null && data.mdx.tableOfContents.items.length > 0 !== null

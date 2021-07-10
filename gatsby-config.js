@@ -235,6 +235,7 @@ module.exports = {
         },
       },
     },
+    `gatsby-plugin-use-query-params`,
     `gatsby-plugin-force-trailing-slashes`,
     // This should always go last
     `gatsby-plugin-meta-redirect`,

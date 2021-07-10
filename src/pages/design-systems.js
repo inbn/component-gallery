@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'beautiful-react-hooks';
 import { graphql } from 'gatsby';
+import { useQueryParam, ArrayParam, withDefault } from 'use-query-params';
 
 import Accordion from '../components/Accordion/Accordion';
 import CheckboxButton from '../components/CheckboxButton/CheckboxButton';
@@ -56,8 +57,14 @@ const DesignSystemsIndexPage = ({ data }) => {
   const allFeatures = data.features.edges;
   const [designSystems, setDesignSystems] = useState(data.designSystems.edges);
   const [sortOrder, setSortOrder] = useState(sortingOptions[0]);
-  const [selectedTechnologies, setSelectedTechnologies] = useState([]);
-  const [selectedFeatures, setSelectedFeatures] = useState([]);
+  const [selectedTechnologies, setSelectedTechnologies] = useQueryParam(
+    'tech',
+    withDefault(ArrayParam, [])
+  );
+  const [selectedFeatures, setSelectedFeatures] = useQueryParam(
+    'features',
+    withDefault(ArrayParam, [])
+  );
   const isLarge = useMediaQuery('(min-width: 768px)');
 
   const handleTechnologySelect = (technology) => {

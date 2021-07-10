@@ -67,7 +67,7 @@ const Filter = ({ label, children }) => {
         type="button"
         ref={buttonRef}
         onClick={() => setIsOpen(!isOpen)}
-        aria-haspopup={true}
+        aria-haspopup
         aria-expanded={isOpen}
         className="border rounded-full px-2 mr-2 font-sans flex items-center relative font-bold md:text-sm"
       >
