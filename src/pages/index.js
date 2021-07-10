@@ -84,16 +84,7 @@ const IndexPage = ({ data }) => (
                   : null
               }
               features={features}
-              technologies={
-                technologies &&
-                technologies.reduce(
-                  (accumulator, currentValue) => [
-                    ...accumulator,
-                    currentValue.data.name,
-                  ],
-                  []
-                )
-              }
+              technologies={technologies}
               color={color}
             />
           )
@@ -173,12 +164,8 @@ export const query = graphql`
                 }
               }
             }
-            features: Features
-            technologies: Tech {
-              data {
-                name: Name
-              }
-            }
+            features: Features_lookup
+            technologies: Tech_lookup
             color: Colour_hex
             Component_examples_count
           }

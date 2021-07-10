@@ -289,9 +289,9 @@ const ComponentTemplate = ({ data }) => {
                 )}
               </div>
               <ul className="l-grid border-t mt-0">
-                {examples.map(({ data: { URL, Name, designSystem } }, i) => (
+                {examples.map(({ data: { URL, Name, designSystem } }) => (
                   <ComponentExample
-                    key={i}
+                    key={URL}
                     url={URL}
                     componentName={Name}
                     designSystemName={designSystem[0].data.Name}
