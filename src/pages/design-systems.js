@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'beautiful-react-hooks';
 import { graphql } from 'gatsby';
 
@@ -6,7 +6,6 @@ import Accordion from '../components/Accordion/Accordion';
 import CheckboxButton from '../components/CheckboxButton/CheckboxButton';
 import DesignSystem from '../components/DesignSystem/DesignSystem';
 import Filter from '../components/Filter/Filter';
-import Icon from '../components/Icon/Icon';
 import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 import Select from '../components/Select/Select';
@@ -89,7 +88,7 @@ const DesignSystemsIndexPage = ({ data }) => {
     );
   }, [sortOrder]);
 
-  // Use effect selectedTechnologies
+  // Use effect selectedTechnologies selectedFeatures
   useEffect(() => {
     let filteredDesignSystems = data.designSystems.edges;
 
@@ -227,26 +226,24 @@ const DesignSystemsIndexPage = ({ data }) => {
                 },
               },
               index
-            ) => {
-              return (
-                <DesignSystem
-                  key={id}
-                  name={name}
-                  url={url}
-                  organisation={organisation}
-                  image={
-                    image.localFiles && image.localFiles.length > 0
-                      ? image.localFiles[0]
-                      : null
-                  }
-                  imageLoading={index === 0 ? 'eager' : 'lazy'}
-                  imageFadeIn={index !== 0}
-                  features={features}
-                  technologies={technologies}
-                  color={color}
-                />
-              );
-            }
+            ) => (
+              <DesignSystem
+                key={id}
+                name={name}
+                url={url}
+                organisation={organisation}
+                image={
+                  image.localFiles && image.localFiles.length > 0
+                    ? image.localFiles[0]
+                    : null
+                }
+                imageLoading={index === 0 ? 'eager' : 'lazy'}
+                imageFadeIn={index !== 0}
+                features={features}
+                technologies={technologies}
+                color={color}
+              />
+            )
           )}
         </ul>
       ) : (

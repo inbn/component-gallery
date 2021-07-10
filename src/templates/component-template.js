@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
+import { useMediaQuery } from 'beautiful-react-hooks';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
+import Accordion from '../components/Accordion/Accordion';
+import CheckboxButton from '../components/CheckboxButton/CheckboxButton';
 import Component from '../components/Component/Component';
 import ComponentExample from '../components/ComponentExample/ComponentExample';
+import Filter from '../components/Filter/Filter';
 import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 import Select from '../components/Select/Select';
@@ -27,19 +31,118 @@ const sortingOptions = [
   },
 ];
 
+const Filters = ({ options, selectedOptions, onChange }) => (
+  <>
+    {options.map(({ node: { data: { name, count }, id } }) => (
+      <CheckboxButton
+        key={id}
+        name={name}
+        count={count}
+        label={name}
+        id={name}
+        value={name}
+        checked={selectedOptions.includes(name)}
+        onChange={(event) => onChange(event.target.value)}
+      />
+    ))}
+  </>
+);
+
 const ComponentTemplate = ({ data }) => {
+  const allTechnologies = data.technologies.edges;
+  const allFeatures = data.features.edges;
   // Use the first sorting option as the default
-  const [sortOrder, setSortOrder] = useState(sortingOptions[0]);
   const [examples, setExamples] = useState(
     sortItems([...data.component.data.Examples], sortingOptions[0])
   );
+  const [sortOrder, setSortOrder] = useState(sortingOptions[0]);
+  const [selectedTechnologies, setSelectedTechnologies] = useState([]);
+  const [selectedFeatures, setSelectedFeatures] = useState([]);
+  const isLarge = useMediaQuery(
+    `(min-width: ${
+      data.mdx !== null && data.mdx.tableOfContents.items.length > 0 !== null
+        ? '1024'
+        : '768'
+    }px)`
+  );
 
+  const handleTechnologySelect = (technology) => {
+    const isSelected = selectedTechnologies.includes(technology);
+    // If the option has already been selected, we remove it from the array.
+    // Otherwise, we add it.
+    const newSelection = isSelected
+      ? selectedTechnologies.filter((currentTech) => currentTech !== technology)
+      : [...selectedTechnologies, technology];
+    setSelectedTechnologies(newSelection);
+  };
+
+  const handleFeatureSelect = (feature) => {
+    const isSelected = selectedFeatures.includes(feature);
+    // If the option has already been selected, we remove it from the array.
+    // Otherwise, we add it.
+    const newSelection = isSelected
+      ? selectedFeatures.filter((currentFeature) => currentFeature !== feature)
+      : [...selectedFeatures, feature];
+    setSelectedFeatures(newSelection);
+  };
+
+  // Use effect sortOrder
   useEffect(() => {
     setExamples(
       // .sort() mutates the array - use spread to create a new one
       sortItems([...examples], sortOrder)
     );
   }, [sortOrder]);
+
+  // Use effect selectedTechnologies selectedFeatures
+  useEffect(() => {
+    let filteredComponentExamples = data.component.data.Examples;
+
+    if (selectedTechnologies.length > 0 || selectedFeatures.length > 0) {
+      // Loop through all design systems
+      filteredComponentExamples = data.component.data.Examples.reduce(
+        (accumulator, currentValue) => {
+          if (
+            currentValue.data.designSystem[0].data.technologies ||
+            currentValue.data.designSystem[0].data.features
+          ) {
+            const designSystemTechnologies =
+              currentValue.data.designSystem[0].data.technologies || [];
+            const designSystemFeatures =
+              currentValue.data.designSystem[0].data.features || [];
+
+            // Get an array of all technologies which match the current selection
+            const sharedTechnologies = designSystemTechnologies.filter(
+              (designSystemTech) =>
+                selectedTechnologies.includes(designSystemTech)
+            );
+
+            // Get an array of all features which match the current selection
+            const sharedFeatures = designSystemFeatures.filter(
+              (designSystemFeature) =>
+                selectedFeatures.includes(designSystemFeature)
+            );
+
+            // Only include in filteredComponentExamples if it matches all criteria
+            if (
+              sharedTechnologies.length === selectedTechnologies.length &&
+              sharedFeatures.length === selectedFeatures.length
+            ) {
+              return [...accumulator, currentValue];
+            }
+          }
+
+          return accumulator;
+        },
+        []
+      );
+    }
+
+    setExamples(
+      // .sort() mutates the array - use spread to create a new one
+      sortItems([...filteredComponentExamples], sortOrder)
+    );
+  }, [selectedFeatures, selectedTechnologies]);
 
   let tocItems = null;
   let readtime = null;
@@ -118,17 +221,72 @@ const ComponentTemplate = ({ data }) => {
                 {data.component.data.Examples_count} example
                 {data.component.data.Examples_count !== 1 && 's'}
               </h2>
-              <div className="control-bar py-2 px-6 bg-grey-200 dark:bg-grey-800 mt-4 border-t">
-                <Select
-                  id="sort-order"
-                  label="Sort by"
-                  defaultValue="0"
-                  onChange={(event) => {
-                    setSortOrder(sortingOptions[event.target.value]);
-                  }}
-                  options={sortingOptions}
-                  useIndexAsValue
-                />
+              <div className="control-bar flex items-center py-2 px-6 bg-grey-200 dark:bg-grey-800 mt-4 border-t">
+                {isLarge ? (
+                  <>
+                    <Filter label="Technology">
+                      <Filters
+                        options={allTechnologies}
+                        selectedOptions={selectedTechnologies}
+                        onChange={handleTechnologySelect}
+                      />
+                    </Filter>
+                    <Filter label="Features">
+                      <Filters
+                        options={allFeatures}
+                        selectedOptions={selectedFeatures}
+                        onChange={handleFeatureSelect}
+                      />
+                    </Filter>
+                    <Select
+                      id="sort-order"
+                      label="Sort by"
+                      defaultValue="0"
+                      onChange={(event) => {
+                        setSortOrder(sortingOptions[event.target.value]);
+                      }}
+                      options={sortingOptions}
+                      useIndexAsValue
+                    />
+                  </>
+                ) : (
+                  <Accordion title="Filter and sort">
+                    <div className="py-2 flex flex-col">
+                      <h3 className="text-base font-bold py-2 text-grey-800 dark:text-grey-200">
+                        Technology
+                      </h3>
+                      <div>
+                        <Filters
+                          options={allTechnologies}
+                          selectedOptions={selectedTechnologies}
+                          onChange={handleTechnologySelect}
+                        />
+                      </div>
+                      <h3 className="text-base font-bold py-2 mt-3 text-grey-800 dark:text-grey-200">
+                        Features
+                      </h3>
+                      <div>
+                        <Filters
+                          options={allFeatures}
+                          selectedOptions={selectedFeatures}
+                          onChange={handleFeatureSelect}
+                        />
+                      </div>
+                      <div className="mt-3">
+                        <Select
+                          id="sort-order"
+                          label="Sort by"
+                          defaultValue="0"
+                          onChange={(event) => {
+                            setSortOrder(sortingOptions[event.target.value]);
+                          }}
+                          options={sortingOptions}
+                          useIndexAsValue
+                        />
+                      </div>
+                    </div>
+                  </Accordion>
+                )}
               </div>
               <ul className="l-grid border-t mt-0">
                 {examples.map(({ data: { URL, Name, designSystem } }, i) => (

@@ -72,33 +72,31 @@ const IndexPage = ({ data }) => (
               },
               id,
             },
-          }) => {
-            return (
-              <DesignSystem
-                key={id}
-                name={name}
-                url={url}
-                organisation={organisation}
-                image={
-                  image.localFiles && image.localFiles.length > 0
-                    ? image.localFiles[0]
-                    : null
-                }
-                features={features}
-                technologies={
-                  technologies &&
-                  technologies.reduce(
-                    (accumulator, currentValue) => [
-                      ...accumulator,
-                      currentValue.data.name,
-                    ],
-                    []
-                  )
-                }
-                color={color}
-              />
-            );
-          }
+          }) => (
+            <DesignSystem
+              key={id}
+              name={name}
+              url={url}
+              organisation={organisation}
+              image={
+                image.localFiles && image.localFiles.length > 0
+                  ? image.localFiles[0]
+                  : null
+              }
+              features={features}
+              technologies={
+                technologies &&
+                technologies.reduce(
+                  (accumulator, currentValue) => [
+                    ...accumulator,
+                    currentValue.data.name,
+                  ],
+                  []
+                )
+              }
+              color={color}
+            />
+          )
         )}
       </ul>
     </div>

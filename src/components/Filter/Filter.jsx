@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import Icon from '../Icon/Icon';
 import useKey from '@rooks/use-key';
+
+import Icon from '../Icon/Icon';
 
 const Filter = ({ label, children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -63,6 +64,7 @@ const Filter = ({ label, children }) => {
   return (
     <div>
       <button
+        type="button"
         ref={buttonRef}
         onClick={() => setIsOpen(!isOpen)}
         aria-haspopup={true}
