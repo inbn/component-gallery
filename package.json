@@ -62,8 +62,9 @@
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
+    "serve-built-storybook": "npx http-server ./storybook-static",
     "postinstall": "cd ./node_modules/postcss-svg && touch .gitignore && npm install && npm publish --dry-run",
-    "loki:update": "npx loki update --reactUri file:./storybook-static --chromeFlags='--headless --no-sandbox'",
+    "loki:update": "npx loki update --chromeFlags='--headless --no-sandbox'",
     "lint": "eslint src/ gatsby-* --ext js,jsx",
     "preload-fonts": "gatsby-preload-fonts"
   },
