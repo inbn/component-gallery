@@ -31,7 +31,7 @@ module.exports = {
         extract: true,
         esModule: false,
         spriteFilename: 'icons.svg',
-        outputPath: '../public/',
+        outputPath: '../storybook-static/',
         publicPath: '/',
       },
     });
