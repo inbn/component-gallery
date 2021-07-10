@@ -83,7 +83,7 @@
     "@storybook/react": "^6.2.7",
     "autoprefixer": "^10.2.5",
     "babel-loader": "^8.2.2",
-    "eslint": "^7.22.0",
+    "eslint": "^7.30.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-import": "^2.22.1",
