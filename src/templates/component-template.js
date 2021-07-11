@@ -5,7 +5,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { useQueryParam, ArrayParam, withDefault } from 'use-query-params';
 
 import Accordion from '../components/Accordion/Accordion';
-import CheckboxButton from '../components/CheckboxButton/CheckboxButton';
+import CheckboxButtonGroup from '../components/CheckboxButton/CheckboxButtonGroup';
 import Component from '../components/Component/Component';
 import ComponentExample from '../components/ComponentExample/ComponentExample';
 import Filter from '../components/Filter/Filter';
@@ -32,23 +32,6 @@ const sortingOptions = [
     reverse: false,
   },
 ];
-
-const Filters = ({ options, selectedOptions, onChange }) => (
-  <>
-    {options.map(({ node: { data: { name, count }, id } }) => (
-      <CheckboxButton
-        key={id}
-        name={name}
-        count={count}
-        label={name}
-        id={name}
-        value={name}
-        checked={selectedOptions.includes(name)}
-        onChange={(event) => onChange(event.target.value)}
-      />
-    ))}
-  </>
-);
 
 const ComponentTemplate = ({ data }) => {
   const allTechnologies = data.technologies.edges;
@@ -235,14 +218,14 @@ const ComponentTemplate = ({ data }) => {
                   (isLarge ? (
                     <>
                       <Filter label="Technology">
-                        <Filters
+                        <CheckboxButtonGroup
                           options={allTechnologies}
                           selectedOptions={selectedTechnologies}
                           onChange={handleTechnologySelect}
                         />
                       </Filter>
                       <Filter label="Features">
-                        <Filters
+                        <CheckboxButtonGroup
                           options={allFeatures}
                           selectedOptions={selectedFeatures}
                           onChange={handleFeatureSelect}
@@ -266,7 +249,7 @@ const ComponentTemplate = ({ data }) => {
                           Technology
                         </h3>
                         <div>
-                          <Filters
+                          <CheckboxButtonGroup
                             options={allTechnologies}
                             selectedOptions={selectedTechnologies}
                             onChange={handleTechnologySelect}
@@ -276,7 +259,7 @@ const ComponentTemplate = ({ data }) => {
                           Features
                         </h3>
                         <div>
-                          <Filters
+                          <CheckboxButtonGroup
                             options={allFeatures}
                             selectedOptions={selectedFeatures}
                             onChange={handleFeatureSelect}

@@ -21,7 +21,7 @@ const Accordion = ({ title, children }) => {
     <div className="accordion">
       <button
         type="button"
-        className="flex font-sans py-1"
+        className="flex font-sans py-2"
         aria-expanded={isOpen}
         onClick={() => setIsOpen(!isOpen)}
       >

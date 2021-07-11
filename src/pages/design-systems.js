@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 import { useQueryParam, ArrayParam, withDefault } from 'use-query-params';
 
 import Accordion from '../components/Accordion/Accordion';
-import CheckboxButton from '../components/CheckboxButton/CheckboxButton';
+import CheckboxButtonGroup from '../components/CheckboxButton/CheckboxButtonGroup';
 import DesignSystem from '../components/DesignSystem/DesignSystem';
 import Filter from '../components/Filter/Filter';
 import Hero from '../components/Hero';
@@ -35,23 +35,6 @@ const sortingOptions = [
     reverse: true,
   },
 ];
-
-const Filters = ({ options, selectedOptions, onChange }) => (
-  <>
-    {options.map(({ node: { data: { name, count }, id } }) => (
-      <CheckboxButton
-        key={id}
-        name={name}
-        count={count}
-        label={name}
-        id={name}
-        value={name}
-        checked={selectedOptions.includes(name)}
-        onChange={(event) => onChange(event.target.value)}
-      />
-    ))}
-  </>
-);
 
 const DesignSystemsIndexPage = ({ data }) => {
   const allTechnologies = data.technologies.edges;
@@ -154,14 +137,14 @@ const DesignSystemsIndexPage = ({ data }) => {
           (isLarge ? (
             <>
               <Filter label="Technology">
-                <Filters
+                <CheckboxButtonGroup
                   options={allTechnologies}
                   selectedOptions={selectedTechnologies}
                   onChange={handleTechnologySelect}
                 />
               </Filter>
               <Filter label="Features">
-                <Filters
+                <CheckboxButtonGroup
                   options={allFeatures}
                   selectedOptions={selectedFeatures}
                   onChange={handleFeatureSelect}
@@ -185,7 +168,7 @@ const DesignSystemsIndexPage = ({ data }) => {
                   Technology
                 </h3>
                 <div>
-                  <Filters
+                  <CheckboxButtonGroup
                     options={allTechnologies}
                     selectedOptions={selectedTechnologies}
                     onChange={handleTechnologySelect}
@@ -195,7 +178,7 @@ const DesignSystemsIndexPage = ({ data }) => {
                   Features
                 </h3>
                 <div>
-                  <Filters
+                  <CheckboxButtonGroup
                     options={allFeatures}
                     selectedOptions={selectedFeatures}
                     onChange={handleFeatureSelect}
