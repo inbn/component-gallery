@@ -1,18 +1,25 @@
 import React from 'react';
+import slugify from 'slugify';
 
 import CheckboxButton from './CheckboxButton';
 
-const CheckboxButtonGroup = ({ options, selectedOptions, onChange }) => (
+const CheckboxButtonGroup = ({
+  name,
+  options,
+  selectedOptions,
+  onChange,
+  showCounts,
+}) => (
   <>
-    {options.map(({ node: { data: { name, count }, id } }) => (
+    {options.map(({ node: { data: { name: optionName, count }, id } }) => (
       <CheckboxButton
         key={id}
         name={name}
-        count={count}
-        label={name}
-        id={name}
-        value={name}
-        checked={selectedOptions.includes(name)}
+        count={showCounts ? count : null}
+        label={optionName}
+        id={slugify(`${name}_${optionName}`)}
+        value={optionName}
+        checked={selectedOptions.includes(optionName)}
         onChange={(event) => onChange(event.target.value)}
       />
     ))}

@@ -196,7 +196,7 @@ const ComponentTemplate = ({ data }) => {
           <div className="l-col l-col--sidebar border-b border-l">
             <div className="font-sans py-2 px-6 border-b bg-white dark:bg-black text-black dark:text-white text-sm block">
               {/* Last updated date */}
-              <p className="">Updated {data.component.data.Date_updated}</p>
+              <p>Updated {data.component.data.Date_updated}</p>
               {/* Read time */}
               {readtime !== null && <p className="mt-0">{readtime}</p>}
             </div>
@@ -219,16 +219,20 @@ const ComponentTemplate = ({ data }) => {
                     <>
                       <Filter label="Technology">
                         <CheckboxButtonGroup
+                          name="tech"
                           options={allTechnologies}
                           selectedOptions={selectedTechnologies}
                           onChange={handleTechnologySelect}
+                          showCounts={false}
                         />
                       </Filter>
                       <Filter label="Features">
                         <CheckboxButtonGroup
+                          name="features"
                           options={allFeatures}
                           selectedOptions={selectedFeatures}
                           onChange={handleFeatureSelect}
+                          showCounts={false}
                         />
                       </Filter>
                       <Select
@@ -250,9 +254,11 @@ const ComponentTemplate = ({ data }) => {
                         </h3>
                         <div>
                           <CheckboxButtonGroup
+                            name="tech"
                             options={allTechnologies}
                             selectedOptions={selectedTechnologies}
                             onChange={handleTechnologySelect}
+                            showCounts={false}
                           />
                         </div>
                         <h3 className="text-base font-bold py-2 mt-3 text-grey-800 dark:text-grey-200">
@@ -260,9 +266,11 @@ const ComponentTemplate = ({ data }) => {
                         </h3>
                         <div>
                           <CheckboxButtonGroup
+                            name="features"
                             options={allFeatures}
                             selectedOptions={selectedFeatures}
                             onChange={handleFeatureSelect}
+                            showCounts={false}
                           />
                         </div>
                         <div className="mt-3">

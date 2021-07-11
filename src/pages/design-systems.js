@@ -138,6 +138,7 @@ const DesignSystemsIndexPage = ({ data }) => {
             <>
               <Filter label="Technology">
                 <CheckboxButtonGroup
+                  name="tech"
                   options={allTechnologies}
                   selectedOptions={selectedTechnologies}
                   onChange={handleTechnologySelect}
@@ -145,6 +146,7 @@ const DesignSystemsIndexPage = ({ data }) => {
               </Filter>
               <Filter label="Features">
                 <CheckboxButtonGroup
+                  name="features"
                   options={allFeatures}
                   selectedOptions={selectedFeatures}
                   onChange={handleFeatureSelect}
@@ -169,6 +171,7 @@ const DesignSystemsIndexPage = ({ data }) => {
                 </h3>
                 <div>
                   <CheckboxButtonGroup
+                    name="tech"
                     options={allTechnologies}
                     selectedOptions={selectedTechnologies}
                     onChange={handleTechnologySelect}
@@ -179,6 +182,7 @@ const DesignSystemsIndexPage = ({ data }) => {
                 </h3>
                 <div>
                   <CheckboxButtonGroup
+                    name="features"
                     options={allFeatures}
                     selectedOptions={selectedFeatures}
                     onChange={handleFeatureSelect}
