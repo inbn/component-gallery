@@ -32,7 +32,7 @@ const ComponentsIndexPage = ({ data }) => {
   return (
     <Layout heroComponent={<Hero title="Components" />} isArticle={false}>
       <SEO title="Components" />
-      <div className="control-bar border-b py-2 px-6 min-h-12 bg-grey-200 dark:bg-grey-800">
+      <div className="control-bar flex md:justify-end border-b py-2 px-6 min-h-12 bg-grey-200 dark:bg-grey-800">
         {isClient && (
           <Select
             id="sort-order"

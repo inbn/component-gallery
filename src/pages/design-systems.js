@@ -72,6 +72,11 @@ const DesignSystemsIndexPage = ({ data }) => {
     setSelectedFeatures(newSelection);
   };
 
+  const handleClearFilters = () => {
+    setSelectedTechnologies([]);
+    setSelectedFeatures([]);
+  };
+
   // Use effect sortOrder
   useEffect(() => {
     setDesignSystems(
@@ -152,16 +157,28 @@ const DesignSystemsIndexPage = ({ data }) => {
                   onChange={handleFeatureSelect}
                 />
               </Filter>
-              <Select
-                id="sort-order"
-                label="Sort by"
-                defaultValue="0"
-                onChange={(event) => {
-                  setSortOrder(sortingOptions[event.target.value]);
-                }}
-                options={sortingOptions}
-                useIndexAsValue
-              />
+              {(selectedTechnologies.length > 0 ||
+                selectedFeatures.length > 0) && (
+                <button
+                  type="button"
+                  className="font-sans font-bold text-sm border border-black rounded-full px-2"
+                  onClick={handleClearFilters}
+                >
+                  Clear filters
+                </button>
+              )}
+              <div className="ml-auto">
+                <Select
+                  id="sort-order"
+                  label="Sort by"
+                  defaultValue="0"
+                  onChange={(event) => {
+                    setSortOrder(sortingOptions[event.target.value]);
+                  }}
+                  options={sortingOptions}
+                  useIndexAsValue
+                />
+              </div>
             </>
           ) : (
             <Accordion title="Filter and sort">

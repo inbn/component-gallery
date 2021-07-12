@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import slugify from 'slugify';
 
 import CheckboxButton from './CheckboxButton';
@@ -25,5 +26,18 @@ const CheckboxButtonGroup = ({
     ))}
   </>
 );
+
+CheckboxButtonGroup.propTypes = {
+  name: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(PropTypes.object).isRequired,
+  selectedOptions: PropTypes.arrayOf(PropTypes.string),
+  onChange: PropTypes.func.isRequired,
+  showCounts: PropTypes.bool,
+};
+
+CheckboxButtonGroup.defaultProps = {
+  selectedOptions: [],
+  showCounts: true,
+};
 
 export default CheckboxButtonGroup;

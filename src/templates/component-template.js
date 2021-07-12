@@ -78,6 +78,11 @@ const ComponentTemplate = ({ data }) => {
     setSelectedFeatures(newSelection);
   };
 
+  const handleClearFilters = () => {
+    setSelectedTechnologies([]);
+    setSelectedFeatures([]);
+  };
+
   // Use effect sortOrder
   useEffect(() => {
     setExamples(
@@ -235,16 +240,28 @@ const ComponentTemplate = ({ data }) => {
                           showCounts={false}
                         />
                       </Filter>
-                      <Select
-                        id="sort-order"
-                        label="Sort by"
-                        defaultValue="0"
-                        onChange={(event) => {
-                          setSortOrder(sortingOptions[event.target.value]);
-                        }}
-                        options={sortingOptions}
-                        useIndexAsValue
-                      />
+                      {(selectedTechnologies.length > 0 ||
+                        selectedFeatures.length > 0) && (
+                        <button
+                          type="button"
+                          className="font-sans font-bold text-sm border border-black rounded-full px-2"
+                          onClick={handleClearFilters}
+                        >
+                          Clear filters
+                        </button>
+                      )}
+                      <div className="ml-auto">
+                        <Select
+                          id="sort-order"
+                          label="Sort by"
+                          defaultValue="0"
+                          onChange={(event) => {
+                            setSortOrder(sortingOptions[event.target.value]);
+                          }}
+                          options={sortingOptions}
+                          useIndexAsValue
+                        />
+                      </div>
                     </>
                   ) : (
                     <Accordion title="Filter and sort">
@@ -289,20 +306,26 @@ const ComponentTemplate = ({ data }) => {
                     </Accordion>
                   ))}
               </div>
-              <ul className="l-grid border-t mt-0">
-                {examples.map(({ data: { URL, Name, designSystem } }) => (
-                  <ComponentExample
-                    key={URL}
-                    url={URL}
-                    componentName={Name}
-                    designSystemName={designSystem[0].data.Name}
-                    designSystemOrganisation={designSystem[0].data.Organisation}
-                    technologies={designSystem[0].data.technologies}
-                    features={designSystem[0].data.features}
-                    color={designSystem[0].data.Colour_hex}
-                  />
-                ))}
-              </ul>
+              {examples.length > 0 ? (
+                <ul className="l-grid border-t mt-0">
+                  {examples.map(({ data: { URL, Name, designSystem } }) => (
+                    <ComponentExample
+                      key={URL}
+                      url={URL}
+                      componentName={Name}
+                      designSystemName={designSystem[0].data.Name}
+                      designSystemOrganisation={
+                        designSystem[0].data.Organisation
+                      }
+                      technologies={designSystem[0].data.technologies}
+                      features={designSystem[0].data.features}
+                      color={designSystem[0].data.Colour_hex}
+                    />
+                  ))}
+                </ul>
+              ) : (
+                <div className="px-6 py-4 font-sans border-t">No results</div>
+              )}
             </>
           )}
 
