@@ -161,7 +161,7 @@ const DesignSystemsIndexPage = ({ data }) => {
                 selectedFeatures.length > 0) && (
                 <button
                   type="button"
-                  className="font-sans font-bold text-sm border border-black rounded-full px-2"
+                  className="font-sans font-bold text-sm border border-black dark:border-white rounded-full px-2"
                   onClick={handleClearFilters}
                 >
                   Clear filters

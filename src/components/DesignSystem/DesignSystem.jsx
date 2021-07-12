@@ -55,7 +55,7 @@ const DesignSystem = ({
           <div className="mt-auto">
             {technologies && technologies.length > 0 && (
               <div className="pt-6">
-                <p className="uppercase text-xs font-sans font-bold tracking-wide text-grey-700">
+                <p className="uppercase text-xs font-sans font-bold tracking-wide text-grey-700 dark:text-grey-300">
                   Tech
                 </p>
                 <ul className="mt-0 -mr-2 -ml-1 flex flex-wrap">
@@ -72,7 +72,7 @@ const DesignSystem = ({
             )}
             {features && features.length > 0 && (
               <div className="pt-6">
-                <p className="uppercase text-xs font-sans font-bold tracking-wide text-grey-700">
+                <p className="uppercase text-xs font-sans font-bold tracking-wide text-grey-700 dark:text-grey-300">
                   Features
                 </p>
                 <ul className="mt-0 -mr-2 -ml-1 flex flex-wrap">

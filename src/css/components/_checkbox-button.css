@@ -26,7 +26,7 @@
 }
 
 .checkbox-button__count {
-  @apply text-grey-600 ml-1;
+  @apply text-grey-600 dark:text-grey-300 ml-1;
 }
 
 .checkbox-button__input:focus + .checkbox-button__label {
@@ -35,4 +35,10 @@
 
 .checkbox-button__input:checked + .checkbox-button__label {
   @apply bg-grey-700 text-white;
+}
+
+.checkbox-button__input:checked
+  + .checkbox-button__label
+  .checkbox-button__count {
+  @apply text-grey-100;
 }
