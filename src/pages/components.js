@@ -7,6 +7,7 @@ import Layout from '../components/Layout';
 import Select from '../components/Select/Select';
 import SEO from '../components/SEO';
 
+import useIsClient from '../hooks/use-is-client';
 import sortItems from '../utils/sortItems';
 
 const sortingOptions = [
@@ -14,43 +15,47 @@ const sortingOptions = [
     optionLabel: 'Name',
     path: 'node.data.name',
     comparison: 'text',
-    reverse: false
+    reverse: false,
   },
   {
     optionLabel: 'Example count',
     path: 'node.data.examplesCount',
     comparison: 'number',
-    reverse: true
-  }
+    reverse: true,
+  },
 ];
 
 const ComponentsIndexPage = ({ data }) => {
   const [components, setComponents] = useState(data.allAirtable.edges);
+  const { isClient, key } = useIsClient();
+
   return (
     <Layout heroComponent={<Hero title="Components" />} isArticle={false}>
       <SEO title="Components" />
-      <div className="control-bar border-b py-2 px-6 bg-grey-200 dark:bg-grey-800">
-        <Select
-          id="sort-order"
-          label="Sort by"
-          defaultValue="0"
-          onChange={event => {
-            setComponents(
-              // .sort() mutates the array - use spread to create a new one
-              sortItems([...components], sortingOptions[event.target.value])
-            );
-          }}
-          options={sortingOptions}
-          useIndexAsValue
-        />
+      <div className="control-bar flex md:justify-end border-b py-2 px-6 min-h-12 bg-grey-200 dark:bg-grey-800">
+        {isClient && (
+          <Select
+            id="sort-order"
+            label="Sort by"
+            defaultValue="0"
+            onChange={(event) => {
+              setComponents(
+                // .sort() mutates the array - use spread to create a new one
+                sortItems([...components], sortingOptions[event.target.value])
+              );
+            }}
+            options={sortingOptions}
+            useIndexAsValue
+          />
+        )}
       </div>
       <ul className="l-grid border-l mt-0">
         {components.map(
           ({
             node: {
               data: { slug, name, description, otherNames, examplesCount },
-              id
-            }
+              id,
+            },
           }) => (
             <Component
               key={id}

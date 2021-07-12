@@ -12,9 +12,10 @@ const DesignSystem = ({
   imageFadeIn,
   imageLoading,
   features,
+  technologies,
   color,
   cardTag,
-  headingLevel
+  headingLevel,
 }) => {
   // The element type used for these elements are dynamic
   const CardTag = cardTag;
@@ -35,7 +36,7 @@ const DesignSystem = ({
           <Img
             fluid={{
               ...image.childImageSharp.fluid,
-              sizes: '(max-width: 544px) calc(100vw - 3rem), 492px'
+              sizes: '(max-width: 544px) calc(100vw - 3rem), 492px',
             }}
             backgroundColor={color}
             className="border"
@@ -49,12 +50,39 @@ const DesignSystem = ({
             {organisation}
           </p>
         )}
-        {features && features.length > 0 && (
-          <ul className="mt-auto -mr-2 -ml-1 pt-6 flex flex-wrap">
-            {features.map(feature => (
-              <Badge key={feature} text={feature} tag="li" displayIcon />
-            ))}
-          </ul>
+        {((features && features.length > 0) ||
+          (technologies && technologies.length)) && (
+          <div className="mt-auto">
+            {technologies && technologies.length > 0 && (
+              <div className="pt-6">
+                <p className="uppercase text-xs font-sans font-bold tracking-wide text-grey-700 dark:text-grey-300">
+                  Tech
+                </p>
+                <ul className="mt-0 -mr-2 -ml-1 flex flex-wrap">
+                  {technologies.map((technology) => (
+                    <Badge
+                      key={technology}
+                      text={technology}
+                      tag="li"
+                      displayIcon
+                    />
+                  ))}
+                </ul>
+              </div>
+            )}
+            {features && features.length > 0 && (
+              <div className="pt-6">
+                <p className="uppercase text-xs font-sans font-bold tracking-wide text-grey-700 dark:text-grey-300">
+                  Features
+                </p>
+                <ul className="mt-0 -mr-2 -ml-1 flex flex-wrap">
+                  {features.map((feature) => (
+                    <Badge key={feature} text={feature} tag="li" displayIcon />
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         )}
       </a>
     </CardTag>
@@ -69,9 +97,10 @@ DesignSystem.propTypes = {
   imageFadeIn: PropTypes.bool,
   imageLoading: PropTypes.string,
   features: PropTypes.arrayOf(PropTypes.string),
+  technologies: PropTypes.arrayOf(PropTypes.string),
   color: PropTypes.string,
   cardTag: PropTypes.string,
-  headingLevel: PropTypes.string
+  headingLevel: PropTypes.string,
 };
 
 DesignSystem.defaultProps = {
@@ -79,10 +108,11 @@ DesignSystem.defaultProps = {
   image: null,
   imageLoading: 'lazy',
   imageFadeIn: true,
-  features: null,
+  features: [],
+  technologies: [],
   color: '#fff',
   cardTag: 'li',
-  headingLevel: 'h2'
+  headingLevel: 'h2',
 };
 
 export default DesignSystem;

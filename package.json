@@ -9,6 +9,7 @@
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
     "@rooks/use-key": "^4.10.0",
+    "beautiful-react-hooks": "^0.35.0",
     "dotenv": "^8.2.0",
     "gatsby": "^3.1.2",
     "gatsby-image": "^3.1.0",
@@ -27,6 +28,7 @@
     "gatsby-plugin-sharp": "^3.1.2",
     "gatsby-plugin-sitemap": "^3.1.0",
     "gatsby-plugin-svg-sprite-loader": "^0.2.0",
+    "gatsby-plugin-use-query-params": "^1.0.1",
     "gatsby-remark-abbr": "^2.0.0",
     "gatsby-remark-autolink-headers": "^3.1.0",
     "gatsby-remark-images": "^4.1.1",
@@ -45,7 +47,8 @@
     "react-helmet": "^6.1.0",
     "sharp": "^0.27.2",
     "slugify": "^1.5.0",
-    "svg-sprite-loader": "^6.0.4"
+    "svg-sprite-loader": "^6.0.4",
+    "use-query-params": "^1.2.2"
   },
   "keywords": [
     "gatsby"
@@ -59,8 +62,9 @@
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
+    "serve-built-storybook": "npx http-server ./storybook-static",
     "postinstall": "cd ./node_modules/postcss-svg && touch .gitignore && npm install && npm publish --dry-run",
-    "loki:update": "npx loki update --reactUri file:./storybook-static --chromeFlags='--headless --no-sandbox'",
+    "loki:update": "npx http-server ./storybook-static -p 6006 & npx loki update --chromeFlags='--headless --no-sandbox'",
     "lint": "eslint src/ gatsby-* --ext js,jsx",
     "preload-fonts": "gatsby-preload-fonts"
   },
@@ -82,7 +86,7 @@
     "@storybook/react": "^6.2.7",
     "autoprefixer": "^10.2.5",
     "babel-loader": "^8.2.2",
-    "eslint": "^7.22.0",
+    "eslint": "^7.30.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-import": "^2.22.1",

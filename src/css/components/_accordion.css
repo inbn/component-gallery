@@ -1,0 +1,17 @@
+.accordion {
+}
+
+.accordion__panel {
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  max-height: 0;
+  transition: visibility 0.5s, opacity 0.5s ease, max-height 0.5s ease;
+}
+
+[aria-expanded='true'] + .accordion__panel {
+  overflow: initial;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.5s ease, max-height 0.5s ease;
+}

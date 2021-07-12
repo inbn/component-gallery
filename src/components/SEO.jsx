@@ -27,7 +27,7 @@ function SEO({ description, lang, meta, keywords, title, favicon }) {
     <Helmet
       htmlAttributes={{
         lang,
-        class: colorMode === 'dark' ? 'dark' : ''
+        class: colorMode === 'dark' ? 'dark' : '',
       }}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
@@ -35,50 +35,50 @@ function SEO({ description, lang, meta, keywords, title, favicon }) {
       meta={[
         {
           name: `description`,
-          content: metaDescription
+          content: metaDescription,
         },
         {
           property: `og:title`,
-          content: title
+          content: title,
         },
         {
           property: `og:description`,
-          content: metaDescription
+          content: metaDescription,
         },
         {
           property: `og:type`,
-          content: `website`
+          content: `website`,
         },
         {
           name: `og:image`,
-          content: `${site.siteMetadata.siteUrl}${twitterCardImage}`
+          content: `${site.siteMetadata.siteUrl}${twitterCardImage}`,
         },
         {
           name: `twitter:card`,
-          content: `summary_large_image`
+          content: `summary_large_image`,
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author
+          content: site.siteMetadata.author,
         },
         {
           name: `twitter:title`,
-          content: title
+          content: title,
         },
         {
           name: `twitter:description`,
-          content: metaDescription
+          content: metaDescription,
         },
         {
           name: `twitter:image`,
-          content: `${site.siteMetadata.siteUrl}${twitterCardImage}`
-        }
+          content: `${site.siteMetadata.siteUrl}${twitterCardImage}`,
+        },
       ]
         .concat(
           keywords.length > 0
             ? {
                 name: `keywords`,
-                content: keywords.join(`, `)
+                content: keywords.join(`, `),
               }
             : []
         )
@@ -93,7 +93,7 @@ SEO.propTypes = {
   meta: PropTypes.array,
   keywords: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,
-  favicon: PropTypes.string
+  favicon: PropTypes.string,
 };
 
 SEO.defaultProps = {
@@ -101,7 +101,7 @@ SEO.defaultProps = {
   lang: `en`,
   meta: [],
   keywords: [],
-  favicon: '/icons/icon-48x48.png'
+  favicon: '/icons/icon-48x48.png',
 };
 
 export default SEO;

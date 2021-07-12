@@ -8,11 +8,11 @@ const Select = ({
   onChange,
   defaultValue,
   options,
-  useIndexAsValue
+  useIndexAsValue,
 }) => (
   <label
     htmlFor={id}
-    className="mr-2 text-grey-800 dark:text-grey-200 text-sm font-sans font-bold"
+    className="text-grey-800 dark:text-grey-200 font-sans font-bold md:text-sm"
   >
     <span className="mr-2">{label}</span>
     <select name={name} id={id} defaultValue={defaultValue} onChange={onChange}>
@@ -32,7 +32,7 @@ Select.propTypes = {
   onChange: PropTypes.func,
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   options: PropTypes.arrayOf(PropTypes.object),
-  useIndexAsValue: PropTypes.bool
+  useIndexAsValue: PropTypes.bool,
 };
 
 Select.defaultProps = {
@@ -40,7 +40,7 @@ Select.defaultProps = {
   onChange: () => {},
   defaultValue: '',
   options: [],
-  useIndexAsValue: false
+  useIndexAsValue: false,
 };
 
 export default Select;

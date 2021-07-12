@@ -1,5 +1,5 @@
 require(`dotenv`).config({
-  path: `.env.${process.env.NODE_ENV}`
+  path: `.env.${process.env.NODE_ENV}`,
 });
 
 module.exports = {
@@ -11,17 +11,17 @@ module.exports = {
     menuLinks: [
       {
         name: 'Components',
-        link: '/components/'
+        link: '/components/',
       },
       {
         name: 'Design systems',
-        link: '/design-systems/'
+        link: '/design-systems/',
       },
       {
         name: 'About',
-        link: '/about/'
-      }
-    ]
+        link: '/about/',
+      },
+    ],
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -29,8 +29,8 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`
-      }
+        path: `${__dirname}/src/images`,
+      },
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
@@ -43,16 +43,16 @@ module.exports = {
         background_color: `#f8fafc`, // colors.grey.100
         theme_color: `#f8fafc`, // colors.grey.100
         display: `minimal-ui`,
-        icon: `src/images/favicon.png` // This path is relative to the root of the site.
-      }
+        icon: `src/images/favicon.png`, // This path is relative to the root of the site.
+      },
     },
     // Catch local links (e.g. in markdown) and turn them into gatsby <Link>s
     'gatsby-plugin-catch-links',
     {
       resolve: 'gatsby-transformer-remark',
       options: {
-        plugins: ['gatsby-remark-abbr']
-      }
+        plugins: ['gatsby-remark-abbr'],
+      },
     },
     // Load all data related to taxonomies, categories etc from the airtable
     // base, apiKey and baseId are loaded from the env
@@ -66,43 +66,53 @@ module.exports = {
             tableName: `Components`,
             tableView: `Name A-Z`,
             mapping: {
-              Description: `text/markdown`
+              Description: `text/markdown`,
             },
             tableLinks: [
               `Commonly contains`,
               `Categories`,
               `HTML element`,
               `Examples`,
-              `Related_components`
-            ]
+              `Related_components`,
+            ],
           },
           {
             baseId: process.env.AIRTABLE_BASE_ID,
             tableName: `Component categories`,
-            tableLinks: [`Components`]
+            tableLinks: [`Components`],
           },
           {
             baseId: process.env.AIRTABLE_BASE_ID,
             tableName: `HTML elements`,
-            tableLinks: [`Components`]
+            tableLinks: [`Components`],
           },
           {
             baseId: process.env.AIRTABLE_BASE_ID,
             tableName: `Design systems`,
             tableView: `Published only`,
-            tableLinks: [`Component examples`],
+            tableLinks: [`Component examples`, `Tech`],
             mapping: {
-              Image: `fileNode`
-            }
+              Image: `fileNode`,
+            },
           },
           {
             baseId: process.env.AIRTABLE_BASE_ID,
             tableName: `Component examples`,
             tableView: `Published only`,
-            tableLinks: [`Design system`, `Type of component`]
-          }
-        ]
-      }
+            tableLinks: [`Design system`, `Type of component`],
+          },
+          {
+            baseId: process.env.AIRTABLE_BASE_ID,
+            tableName: `Design system tech`,
+            tableLinks: [`Design systems`],
+          },
+          {
+            baseId: process.env.AIRTABLE_BASE_ID,
+            tableName: `Design system features`,
+            tableLinks: [`Design systems`],
+          },
+        ],
+      },
     },
     // We'll load any long-form content from markdown files in addition to
     // the content loaded from airtable
@@ -110,8 +120,8 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/content`,
-        name: 'content'
-      }
+        name: 'content',
+      },
     },
     {
       resolve: `gatsby-plugin-mdx`,
@@ -126,8 +136,8 @@ module.exports = {
               maxWidth: 820,
               linkImagesToOriginal: false,
               quality: 80,
-              showCaptions: true
-            }
+              showCaptions: true,
+            },
           },
           `gatsby-remark-autolink-headers`,
           {
@@ -163,25 +173,25 @@ module.exports = {
               showLineNumbers: false,
               // If setting this to true, the parser won't handle and highlight inline
               // code used in markdown i.e. single backtick code like `this`.
-              noInlineHighlight: true
-            }
-          }
-        ]
-      }
+              noInlineHighlight: true,
+            },
+          },
+        ],
+      },
     },
     `gatsby-plugin-postcss`,
     {
       resolve: 'gatsby-plugin-purgecss',
       options: {
         tailwind: true,
-        purgeOnly: ['src/css/style.css']
-      }
+        purgeOnly: ['src/css/style.css'],
+      },
     },
     {
       resolve: `gatsby-plugin-plausible`,
       options: {
-        domain: `component.gallery`
-      }
+        domain: `component.gallery`,
+      },
     },
     {
       resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
@@ -191,22 +201,22 @@ module.exports = {
         fields: [`name`, `otherNames`, `description`, `url`, `table`],
         resolvers: {
           Airtable: {
-            name: node => node.data.Name,
-            otherNames: node => node.data.Other_names,
-            description: node => node.data.Description,
-            url: node =>
+            name: (node) => node.data.Name,
+            otherNames: (node) => node.data.Other_names,
+            description: (node) => node.data.Description,
+            url: (node) =>
               node.table === 'Components'
                 ? `/components/${node.data.Slug}/`
                 : node.data.URL,
-            table: node => node.table
-          }
+            table: (node) => node.table,
+          },
         },
         // A function for filtering nodes. () => true by default
-        filter: node =>
+        filter: (node) =>
           ['Components', 'Design systems'].includes(node.table) &&
           node.data.Publish === true,
-        filename: 'search_index.json'
-      }
+        filename: 'search_index.json',
+      },
     },
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-preload-fonts`,
@@ -221,12 +231,13 @@ module.exports = {
         esModule: false,
         pluginOptions: {
           /* SVG sprite loader plugin options */
-          plainSprite: true
-        }
-      }
+          plainSprite: true,
+        },
+      },
     },
+    `gatsby-plugin-use-query-params`,
     `gatsby-plugin-force-trailing-slashes`,
     // This should always go last
-    `gatsby-plugin-meta-redirect`
-  ]
+    `gatsby-plugin-meta-redirect`,
+  ],
 };

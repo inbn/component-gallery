@@ -1,9 +1,9 @@
 import React from 'react';
 
 const TableOfContentsItem = ({ item }) => {
-  const nestedItems = (item.items || []).map(nestedItem => {
-    return <TableOfContentsItem item={nestedItem} key={nestedItem.title} />;
-  });
+  const nestedItems = (item.items || []).map((nestedItem) => (
+    <TableOfContentsItem item={nestedItem} key={nestedItem.title} />
+  ));
 
   return (
     <li key={item.title}>
@@ -19,7 +19,7 @@ const TableOfContents = ({ items }) => (
       Table of contents
     </h2>
     <ul className="table-of-contents">
-      {items.map(item => (
+      {items.map((item) => (
         <TableOfContentsItem item={item} key={item.title} />
       ))}
     </ul>

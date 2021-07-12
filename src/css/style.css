@@ -55,9 +55,11 @@
   */
 @import 'components/_svg-icon';
 
+@import 'components/_accordion';
 @import 'components/_body-text';
 @import 'components/_call-to-action';
 @import 'components/_card';
+@import 'components/_checkbox-button';
 @import 'components/_footer';
 @import 'components/_header-logo';
 @import 'components/_site-search';

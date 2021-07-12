@@ -32,8 +32,8 @@ const IndexPage = ({ data }) => (
           ({
             node: {
               data: { slug, name, description, otherNames, examplesCount },
-              id
-            }
+              id,
+            },
           }) => (
             <Component
               key={id}
@@ -61,26 +61,33 @@ const IndexPage = ({ data }) => (
         {data.recentDesignSystems.edges.map(
           ({
             node: {
-              data: { url, name, organisation, image, features, color },
-              id
-            }
-          }) => {
-            return (
-              <DesignSystem
-                key={id}
-                name={name}
-                url={url}
-                organisation={organisation}
-                image={
-                  image.localFiles && image.localFiles.length > 0
-                    ? image.localFiles[0]
-                    : null
-                }
-                features={features}
-                color={color}
-              />
-            );
-          }
+              data: {
+                url,
+                name,
+                organisation,
+                image,
+                features,
+                technologies,
+                color,
+              },
+              id,
+            },
+          }) => (
+            <DesignSystem
+              key={id}
+              name={name}
+              url={url}
+              organisation={organisation}
+              image={
+                image.localFiles && image.localFiles.length > 0
+                  ? image.localFiles[0]
+                  : null
+              }
+              features={features}
+              technologies={technologies}
+              color={color}
+            />
+          )
         )}
       </ul>
     </div>
@@ -157,7 +164,8 @@ export const query = graphql`
                 }
               }
             }
-            features: Features
+            features: Features_lookup
+            technologies: Tech_lookup
             color: Colour_hex
             Component_examples_count
           }
