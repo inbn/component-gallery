@@ -4,8 +4,9 @@
 \*====================================*/
 
 .header-logo {
-  @apply table text-3xl text-black dark:text-grey-100 dark:hover:text-grey-100 font-sans lowercase leading-none py-1 px-2 mr-10 sm:mr-0 border-2 border-transparent dark:hover:border-white dark:hover:bg-black;
+  @apply table text-black dark:text-grey-100 dark:hover:text-grey-100 font-sans lowercase leading-none py-1 px-2 mr-10 sm:mr-0 border-2 border-transparent dark:hover:border-white dark:hover:bg-black;
 
+  font-size: clamp(theme('fontSize.xl'), 6vw, theme('fontSize.3xl'));
   letter-spacing: -0.02em;
   font-style: italic;
   transition: background-color 200ms, border-color 200ms, box-shadow 200ms,

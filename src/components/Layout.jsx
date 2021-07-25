@@ -43,12 +43,12 @@ const Layout = ({ children, heroComponent, isHomepage, isArticle }) => {
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
   isHomepage: PropTypes.bool,
-  isArticle: PropTypes.bool
+  isArticle: PropTypes.bool,
 };
 
 Layout.defaultProps = {
   isHomepage: false,
-  isArticle: true
+  isArticle: true,
 };
 
 export default Layout;
