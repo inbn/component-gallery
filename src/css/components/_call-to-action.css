@@ -43,3 +43,16 @@
     animation-play-state: running;
   }
 }
+
+.call-to-action--small {
+  @apply text-sm px-0 pt-2;
+
+  &::after {
+    display: none;
+  }
+
+  &:hover::after,
+  &:focus::after {
+    display: block;
+  }
+}

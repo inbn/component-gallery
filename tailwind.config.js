@@ -357,7 +357,7 @@ module.exports = {
     listStyleType: ['responsive'],
     margin: ['responsive'],
     maxHeight: [],
-    maxWidth: [],
+    maxWidth: ['responsive'],
     minHeight: [],
     minWidth: [],
     objectFit: [],

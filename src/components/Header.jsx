@@ -25,11 +25,14 @@ const Header = ({ menuLinks, isHomepage }) => {
         )}
       </div>
 
-      <nav className="sm:pr-2">
-        <ul className="flex flex-wrap -mx-2 sm:-mx-4">
-          {menuLinks.map(link => (
-            <li key={link.name} className="mx-2 sm:mx-4 my-2">
-              <Link to={link.link} className="call-to-action whitespace-nowrap">
+      <nav className="sm:pr-2 sm:pl-2 w-full md:w-auto">
+        <ul className="flex flex-wrap justify-between sm:justify-start sm:-mx-4">
+          {menuLinks.map((link) => (
+            <li key={link.name} className="mx-1 sm:mx-4">
+              <Link
+                to={link.link}
+                className="call-to-action call-to-action--small font-sans text-sm md:text-base italic whitespace-nowrap"
+              >
                 {link.name}
               </Link>
             </li>
@@ -43,13 +46,18 @@ const Header = ({ menuLinks, isHomepage }) => {
 };
 
 Header.propTypes = {
-  menuLinks: PropTypes.array,
-  isHomepage: PropTypes.bool
+  menuLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      link: PropTypes.string,
+    })
+  ),
+  isHomepage: PropTypes.bool,
 };
 
 Header.defaultProps = {
   menuLinks: [],
-  isHomepage: false
+  isHomepage: false,
 };
 
 export default Header;

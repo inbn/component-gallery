@@ -54,7 +54,7 @@
 }
 
 .card__list::before {
-  @apply inline-block uppercase text-xs font-sans font-bold tracking-wide ml-1 mr-2 text-grey-700 dark:text-grey-300;
+  @apply inline-block uppercase text-sm sm:text-xs font-sans font-bold tracking-wide ml-1 mr-2 text-grey-700 dark:text-grey-300;
   content: attr(aria-label);
   padding: 0.125em 0;
 }

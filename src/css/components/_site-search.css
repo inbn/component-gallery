@@ -4,18 +4,18 @@
 \*====================================*/
 
 .site-search-container {
-  @apply w-full max-w-sm my-2;
+  @apply w-full sm:max-w-sm my-2;
   min-height: 2rem;
 }
 
 .site-search {
-  @apply w-full max-w-sm bg-white;
+  @apply w-full sm:max-w-sm bg-white dark:bg-black;
   position: relative;
 }
 
 .site-search__input {
   --background-size: 0.8rem;
-  @apply font-sans text-sm md:text-base p-2 pl-10 leading-none w-full rounded-none border-grey-800 bg-grey-200 dark:bg-grey-800;
+  @apply font-sans text-sm md:text-base p-2 pl-10 leading-none w-full rounded-full border-grey-800 bg-grey-200 dark:bg-grey-800;
   /* Use postcss-svg to inline SVG into CSS */
   background-image: url('magnifying-glass');
   background-repeat: no-repeat;
@@ -38,7 +38,14 @@
 }
 
 .site-search__results-list {
-  @apply mt-0 border z-20 bg-transparent md:bg-white md:dark:bg-grey-800 md:shadow-block;
+  @apply mt-2 border rounded-xl z-20 bg-transparent md:bg-white md:dark:bg-grey-800 md:shadow-block;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    height: 0.5rem;
+  }
 }
 
 .site-search__result {
