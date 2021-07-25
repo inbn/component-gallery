@@ -30,16 +30,21 @@ const ComponentExample = ({
           {componentName}
         </p>
         <div className="mt-auto pt-6">
-          <HeadingTag className="h5 mt-0 pb-1 font-bold">
-            {designSystemName}
-          </HeadingTag>
-          {designSystemOrganisation && (
-            <p className="italic leading-tight mt-0 pb-2 text-grey-700 dark:text-grey-500">
-              {designSystemOrganisation}
-            </p>
-          )}
+          <div className="pb-2">
+            <HeadingTag className="h5 mt-0 font-bold">
+              {designSystemName}
+            </HeadingTag>
+            {designSystemOrganisation && (
+              <p className="italic leading-tight mt-1 text-grey-700 dark:text-grey-500">
+                {designSystemOrganisation}
+              </p>
+            )}
+          </div>
           {technologies && technologies.length > 0 && (
-            <ul className="mt-2 -mr-2 -ml-1 flex flex-wrap">
+            <ul
+              className="card__list mt-2 -mr-2 -ml-1 flex flex-wrap"
+              aria-label="Tech"
+            >
               {technologies.map((technology) => (
                 <Badge
                   key={technology}
@@ -51,7 +56,10 @@ const ComponentExample = ({
             </ul>
           )}
           {features && features.length > 0 && (
-            <ul className="-mr-2 -mb-2 -ml-1 pb-1 flex flex-wrap">
+            <ul
+              className="card__list mt-1 -mr-2 -mb-2 -ml-1 pb-1 flex flex-wrap"
+              aria-label="Features"
+            >
               {features.map((feature) => (
                 <Badge key={feature} text={feature} tag="li" displayIcon />
               ))}

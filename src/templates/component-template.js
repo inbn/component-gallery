@@ -217,6 +217,12 @@ const ComponentTemplate = ({ data }) => {
               <h2 id="examples" className="px-6">
                 {data.component.data.Examples_count} example
                 {data.component.data.Examples_count !== 1 && 's'}
+                {(selectedTechnologies.length > 0 ||
+                  selectedFeatures.length > 0) && (
+                  <span className="text-grey-700">
+                    &nbsp;({examples.length} shown)
+                  </span>
+                )}
               </h2>
               <div className="control-bar flex items-center py-2 px-6 min-h-12 bg-grey-200 dark:bg-grey-800 mt-4 border-t">
                 {isClient &&

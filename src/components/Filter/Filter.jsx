@@ -8,7 +8,6 @@ const Filter = ({ label, children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(undefined);
   const buttonRef = useRef(undefined);
-  const modalRef = useRef(undefined);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -16,38 +15,24 @@ const Filter = ({ label, children }) => {
         dropdownRef.current && dropdownRef.current.contains(event.target);
       const isButtonClick =
         buttonRef.current && buttonRef.current.contains(event.target);
-      const isModalClick =
-        modalRef.current && modalRef.current.contains(event.target);
 
-      if (isDropdownClick || isButtonClick || isModalClick) {
-        /* If the ref is not defined or the user clicked on the menu, we don’t do anything. */
+      if (isDropdownClick || isButtonClick) {
+        // If the ref is not defined or the user clicked on the menu, we don’t do anything.
         return;
       }
 
-      /* Otherwise we close the menu. */ setIsOpen(false);
+      // Otherwise we close the menu.
+      setIsOpen(false);
     };
 
-    document.addEventListener(
-      'mousedown',
-      handleClickOutside
-    ); /* handle desktops */
-    document.addEventListener(
-      'touchstart',
-      handleClickOutside
-    ); /* handle touch devices */
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
 
-    /* Event cleanup */
     return () => {
-      document.removeEventListener(
-        'mousedown',
-        handleClickOutside
-      ); /* handle desktops */
-      document.removeEventListener(
-        'touchstart',
-        handleClickOutside
-      ); /* handle touch devices */
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
     };
-  }, [dropdownRef, buttonRef, modalRef]);
+  }, [dropdownRef, buttonRef]);
 
   const keyPressed = (event) => {
     switch (event.code) {
