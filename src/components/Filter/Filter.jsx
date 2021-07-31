@@ -60,6 +60,7 @@ const Filter = ({ label, children }) => {
         <Icon
           name="chevronDown"
           className="w-4 h-4 ml-2 text-black dark:text-white"
+          aria-hidden="true"
         />
       </button>
       {isOpen && (
