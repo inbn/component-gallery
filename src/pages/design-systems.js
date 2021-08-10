@@ -252,7 +252,6 @@ const DesignSystemsIndexPage = ({ data }) => {
                     : null
                 }
                 imageLoading={index === 0 ? 'eager' : 'lazy'}
-                imageFadeIn={index !== 0}
                 features={features}
                 technologies={technologies}
                 color={color}
@@ -286,13 +285,12 @@ export const query = graphql`
             image: Image {
               localFiles {
                 childImageSharp {
-                  fluid(
-                    maxWidth: 492
-                    maxHeight: 369
-                    srcSetBreakpoints: [360, 500, 720, 1000]
-                  ) {
-                    ...GatsbyImageSharpFluid_noBase64
-                  }
+                  gatsbyImageData(
+                    width: 492
+                    height: 369
+                    breakpoints: [360, 500, 720, 1000]
+                    placeholder: NONE
+                  )
                 }
               }
             }

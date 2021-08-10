@@ -1,5 +1,5 @@
 import React from 'react';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import PropTypes from 'prop-types';
 
 import Badge from '../Badge/Badge';
@@ -9,7 +9,6 @@ const DesignSystem = ({
   name,
   organisation,
   image,
-  imageFadeIn,
   imageLoading,
   features,
   technologies,
@@ -33,15 +32,12 @@ const DesignSystem = ({
         className="card__inner p-6 h-full flex flex-col"
       >
         {image && (
-          <Img
-            fluid={{
-              ...image.childImageSharp.fluid,
-              sizes: '(max-width: 544px) calc(100vw - 3rem), 492px',
-            }}
+          <GatsbyImage
+            image={image.childImageSharp?.gatsbyImageData}
             backgroundColor={color}
             className="border"
             loading={imageLoading}
-            fadeIn={imageFadeIn}
+            alt=""
           />
         )}
         <HeadingTag className="h3 mt-0 pt-6 pb-1 font-bold">{name}</HeadingTag>
@@ -94,7 +90,6 @@ DesignSystem.propTypes = {
   name: PropTypes.string.isRequired,
   organisation: PropTypes.string,
   image: PropTypes.object,
-  imageFadeIn: PropTypes.bool,
   imageLoading: PropTypes.string,
   features: PropTypes.arrayOf(PropTypes.string),
   technologies: PropTypes.arrayOf(PropTypes.string),
@@ -107,7 +102,6 @@ DesignSystem.defaultProps = {
   organisation: '',
   image: null,
   imageLoading: 'lazy',
-  imageFadeIn: true,
   features: [],
   technologies: [],
   color: '#fff',
