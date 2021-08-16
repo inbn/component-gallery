@@ -5,10 +5,11 @@ import { Grid } from '../../../.storybook/decorators';
 export default {
   title: 'DesignSystem',
   component: Component,
-  decorators: [Grid]
+  decorators: [Grid],
 };
 
-const Template = args => <Component {...args} />;
+// eslint-disable-next-line react/jsx-props-no-spreading
+const Template = (args) => <Component {...args} />;
 
 export const Default = Template.bind({});
 
@@ -21,17 +22,27 @@ Default.args = {
   organisation: 'Example Organisation',
   image: {
     childImageSharp: {
-      fluid: {
-        base64:
-          'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAQAAAAe/WZNAAAAEElEQVR42mP8/58BDBgxGABi7gX+XyMkHgAAAABJRU5ErkJggg==',
-        aspectRatio: 1.3333333333333333,
-        src: 'https://fakeimg.pl/608x456/',
-        srcSet:
-          'https://fakeimg.pl/152x114/ 152w,\nhttps://fakeimg.pl/304x228/ 304w,\nhttps://fakeimg.pl/608x456/ 608w,\nhttps://fakeimg.pl/912x684/ 912w,\nhttps://fakeimg.pl/1200x900/ 1200w',
-        sizes: '(max-width: 608px) 100vw, 608px',
-        tracedSVG:
-          "data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='608'%20height='456'%3e%3crect%20width='100%25'%20height='100%25'%20fill='white'/%3e%3c/svg%3e"
-      }
-    }
-  }
+      gatsbyImageData: {
+        layout: 'constrained',
+        images: {
+          fallback: {
+            src: 'https://fakeimg.pl/608x456/',
+            srcSet:
+              'https://fakeimg.pl/608x456/ 360w,\nhttps://fakeimg.pl/608x456/ 492w,\nhttps://fakeimg.pl/608x456/ 500w,\nhttps://fakeimg.pl/608x456/ 720w,\nhttps://fakeimg.pl/608x456/ 1000w',
+            sizes: '(min-width: 492px) 492px, 100vw',
+          },
+          sources: [
+            {
+              srcSet:
+                'https://fakeimg.pl/608x456/ 360w,\nhttps://fakeimg.pl/608x456/ 492w,\nhttps://fakeimg.pl/608x456/ 500w,\nhttps://fakeimg.pl/608x456/ 720w,\nhttps://fakeimg.pl/608x456/ 1000w',
+              type: 'image/webp',
+              sizes: '(min-width: 492px) 492px, 100vw',
+            },
+          ],
+        },
+        width: 492,
+        height: 369,
+      },
+    },
+  },
 };
