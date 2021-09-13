@@ -14,7 +14,7 @@
     "gatsby": "^3.1.2",
     "gatsby-plugin-catch-links": "^3.1.0",
     "gatsby-plugin-force-trailing-slashes": "^1.0.5",
-    "gatsby-plugin-image": "^1.11.0",
+    "gatsby-plugin-image": "^1.13.0",
     "gatsby-plugin-manifest": "^3.1.0",
     "gatsby-plugin-mdx": "^2.1.0",
     "gatsby-plugin-meta-redirect": "^1.1.1",
