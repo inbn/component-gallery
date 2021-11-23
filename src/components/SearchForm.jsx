@@ -5,7 +5,7 @@ import { Index } from 'elasticlunr';
 import useKey from '@rooks/use-key';
 
 const SearchForm = ({ idPrefix }) => {
-  const node = useRef();
+  const searchFormRef = useRef();
   const selectedItemRef = useRef();
   const [open, setOpen] = useState(false);
   const [searchIndex, setSearchIndex] = useState(null);
@@ -21,9 +21,9 @@ const SearchForm = ({ idPrefix }) => {
     }
   `);
 
-  const handleClickOutside = e => {
+  const handleClickOutside = (e) => {
     // Inside click
-    if (node.current.contains(e.target)) {
+    if (searchFormRef.current.contains(e.target)) {
       setOpen(true);
       return;
     }
@@ -47,7 +47,7 @@ const SearchForm = ({ idPrefix }) => {
     if (selectedItemRef.current) {
       selectedItemRef.current.scrollIntoView({
         block: 'nearest',
-        inline: 'nearest'
+        inline: 'nearest',
       });
     }
   }, [selectedItemIndex]);
@@ -69,7 +69,7 @@ const SearchForm = ({ idPrefix }) => {
     if (!searchQuery) setResults([]);
   }, [data.siteSearchIndex.index, searchIndex, searchQuery]);
 
-  const keyPressed = event => {
+  const keyPressed = (event) => {
     if (event.target.id !== `${idPrefix}__search-input`) {
       return;
     }
@@ -81,7 +81,7 @@ const SearchForm = ({ idPrefix }) => {
     switch (event.code) {
       case 'ArrowUp':
         event.preventDefault();
-        setSelectedItemIndex(prevSelectedItemIndex =>
+        setSelectedItemIndex((prevSelectedItemIndex) =>
           prevSelectedItemIndex > -1
             ? prevSelectedItemIndex - 1
             : results.length - 1
@@ -90,7 +90,7 @@ const SearchForm = ({ idPrefix }) => {
 
       case 'ArrowDown':
         event.preventDefault();
-        setSelectedItemIndex(prevSelectedItemIndex =>
+        setSelectedItemIndex((prevSelectedItemIndex) =>
           prevSelectedItemIndex < results.length - 1
             ? prevSelectedItemIndex + 1
             : 0
@@ -128,7 +128,7 @@ const SearchForm = ({ idPrefix }) => {
   useKey(['ArrowUp', 'ArrowDown', 'Enter', 'Escape', 'Tab'], keyPressed);
 
   return (
-    <div ref={node} className="site-search">
+    <div ref={searchFormRef} className="site-search">
       {!!results.length && searchQuery && (
         <p
           className="search-results-count sr-only"
@@ -157,9 +157,9 @@ const SearchForm = ({ idPrefix }) => {
           aria-autocomplete="list"
           aria-controls={`${idPrefix}__search-results-listbox`}
           aria-activedescendant={
-            open && !!results.length ? `result-item-${selectedItemIndex}` : ''
+            open && !!results.length ? `${idPrefix}__result-item-${selectedItemIndex}` : ''
           }
-          onChange={e => setSearchQuery(e.target.value)}
+          onChange={(e) => setSearchQuery(e.target.value)}
           value={searchQuery}
         />
       </div>
@@ -206,11 +206,11 @@ const SearchForm = ({ idPrefix }) => {
 };
 
 SearchForm.propTypes = {
-  idPrefix: PropTypes.string
+  idPrefix: PropTypes.string,
 };
 
 SearchForm.defaultProps = {
-  idPrefix: ``
+  idPrefix: ``,
 };
 
 export default SearchForm;
