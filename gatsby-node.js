@@ -69,6 +69,9 @@ exports.createPages = ({ graphql, actions }) => {
               lower: true,
             });
 
+            // Ideally we'd also check whether there is an existing page at that
+            // URL, but Netlify seems to only trigger redirects on 404s so we
+            // can get away without it
             if (slugifiedOtherName.length > 0) {
               /* eslint-disable */
               console.log(
