@@ -38,7 +38,7 @@ const Form = () => {
       data-netlify="true"
       onSubmit={formik.handleSubmit}
     >
-      {/* <input type="hidden" name="Contact form" /> */}
+      <input type="hidden" name="form-name" value="Contact form" />
       <InputText
         name="name"
         id="name"
