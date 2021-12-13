@@ -11,6 +11,7 @@
     "@rooks/use-key": "^4.10.0",
     "beautiful-react-hooks": "^0.35.0",
     "dotenv": "^8.2.0",
+    "formik": "^2.2.9",
     "gatsby": "^3.1.2",
     "gatsby-plugin-catch-links": "^3.1.0",
     "gatsby-plugin-force-trailing-slashes": "^1.0.5",
@@ -102,7 +103,7 @@
     "postcss-preset-env": "^6.7.0",
     "postcss-svg": "https://github.com/inbn/postcss-svg/tarball/master",
     "postinstall": "^0.7.0",
-    "prettier": "^2.2.1",
+    "prettier": "^2.5.1",
     "tailwindcss": "^2.0.4"
   },
   "browserslist": [

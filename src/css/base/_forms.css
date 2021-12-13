@@ -32,3 +32,20 @@ select:focus {
 select option {
   font-weight: normal;
 }
+
+label {
+  @apply font-sans text-grey-800;
+
+  display: block;
+  margin-bottom: 0.25em;
+}
+
+[type='text'] {
+  @apply font-sans text-grey-800 border border-grey-700;
+
+  padding: 0.2em 1.8em 0.2em 0.6em;
+  max-width: 100%;
+  margin: 0;
+  appearance: none;
+  background-color: #fff;
+}
