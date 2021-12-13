@@ -11,11 +11,23 @@ const Form = () => {
   const formik = useFormik({
     initialValues: {
       name: '',
+      designSystemName: '',
       designSystemUrl: '',
     },
-    onSubmit: (values) => {
-      // alert(JSON.stringify(values, null, 2));
-      encode(values);
+    onSubmit: (values, actions) => {
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode({ 'form-name': 'contact-form', ...values }),
+      })
+        .then(() => {
+          alert('Success');
+          actions.resetForm();
+        })
+        .catch(() => {
+          alert('Error');
+        })
+        .finally(() => actions.setSubmitting(false));
     },
   });
 
@@ -26,13 +38,21 @@ const Form = () => {
       data-netlify="true"
       onSubmit={formik.handleSubmit}
     >
-      <input type="hidden" name="Contact form" />
+      {/* <input type="hidden" name="Contact form" /> */}
       <InputText
         name="name"
         id="name"
         label="Your name"
         onChange={formik.handleChange}
         value={formik.values.name}
+      />
+
+      <InputText
+        name="designSystemName"
+        id="designSystemName"
+        label="Design system name"
+        onChange={formik.handleChange}
+        value={formik.values.designSystemName}
       />
 
       <InputText
