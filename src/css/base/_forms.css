@@ -5,7 +5,7 @@
 
 select {
   @apply font-sans text-grey-800 border border-grey-700 rounded-full;
-  padding: 0.2em 1.8em 0.2em 0.6em;
+  padding: 0.5em 1.8em 0.5em 0.6em;
   max-width: 100%;
   margin: 0;
   appearance: none;
@@ -34,18 +34,40 @@ select option {
 }
 
 label {
-  @apply font-sans text-grey-800;
+  @apply font-sans text-grey-800 dark:text-grey-200 leading-none;
 
   display: block;
-  margin-bottom: 0.25em;
+
+  & + [type='text'] {
+     margin-top: 0.5em;
+  }
 }
 
 [type='text'] {
-  @apply font-sans text-grey-800 border border-grey-700;
+  @apply font-sans text-grey-800 dark:text-grey-200 border border-grey-700 dark:border-grey-300 bg-white dark:bg-grey-800;
 
+  border: 2px solid theme('colors.black');
   padding: 0.2em 1.8em 0.2em 0.6em;
   max-width: 100%;
   margin: 0;
   appearance: none;
   background-color: #fff;
+  box-shadow: inset 4px 4px 0 theme('colors.grey.500');
+}
+
+button:not([class]) {
+  @apply bg-green-500 dark:bg-orange-500 text-black dark:text-white font-sans italic px-3 py-1 border-2 border-black dark:border-grey-200 focus:outline-none self-start;
+  position: relative;
+  /* prettier-ignore */
+  box-shadow: 4px 4px theme('colors.grey.800')bf;
+
+  &:focus {
+    outline: 3px solid theme('colors.indigo.600');
+  }
+
+  &:active {
+    top: 2px;
+    left: 2px;
+    box-shadow: 2px 2px theme('colors.grey.800')bf;
+  }
 }

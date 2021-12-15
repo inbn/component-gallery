@@ -20,6 +20,11 @@ const Footer = () => (
     </svg>
     <ul className="footer__content footer__content--right flex">
       <li className="mr-4">
+        <Link to="/contribute/" className="link">
+          Contribute
+        </Link>
+      </li>
+      <li className="mr-4">
         <Link to="/colophon/" className="link">
           Colophon
         </Link>

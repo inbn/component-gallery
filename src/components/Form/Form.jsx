@@ -37,8 +37,8 @@ const Form = () => {
       method="POST"
       data-netlify="true"
       onSubmit={formik.handleSubmit}
+      className="l-stack sm:border-2 my-6 sm:px-4 sm:py-6"
     >
-      <input type="hidden" name="form-name" value="Contact form" />
       <InputText
         name="name"
         id="name"
@@ -64,6 +64,8 @@ const Form = () => {
       />
 
       <button type="submit">Submit</button>
+
+      <input type="hidden" name="form-name" value="Contact form" />
     </form>
   );
 };
