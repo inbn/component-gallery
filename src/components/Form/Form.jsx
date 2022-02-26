@@ -2,6 +2,8 @@ import React from 'react';
 import { useFormik } from 'formik';
 import InputText from '../InputText/InputText';
 
+// Convert a JavaScript object to a string of key=value pairs, separated by
+// ampersands
 const encode = (data) =>
   Object.keys(data)
     .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
@@ -15,7 +17,7 @@ const Form = () => {
       designSystemUrl: '',
     },
     onSubmit: (values, actions) => {
-      fetch('/', {
+      fetch('/contribute/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: encode({ 'form-name': 'contact-form', ...values }),
