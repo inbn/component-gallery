@@ -20,7 +20,7 @@ const Form = () => {
       fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encode({ 'form-name': 'contact-form', ...values }),
+        body: encode({ 'form-name': 'Contact form', ...values }),
       })
         .then(() => {
           alert('Success');
