@@ -2,12 +2,20 @@ import React from 'react';
 import { useFormik } from 'formik';
 import InputText from '../InputText/InputText';
 
+import * as Yup from 'yup';
+
 // Convert a JavaScript object to a string of key=value pairs, separated by
 // ampersands
 const encode = (data) =>
   Object.keys(data)
     .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
     .join('&');
+
+const ContactFormSchema = Yup.object().shape({
+  name: Yup.string().required('The name field is required'),
+  designSystemName: Yup.string(),
+  designSystemUrl: Yup.string().url('Please add a complete URL'),
+});
 
 const Form = () => {
   const formik = useFormik({
@@ -31,6 +39,7 @@ const Form = () => {
         })
         .finally(() => actions.setSubmitting(false));
     },
+    validationSchema: ContactFormSchema,
   });
 
   return (
@@ -49,6 +58,8 @@ const Form = () => {
         label="Your name"
         onChange={formik.handleChange}
         value={formik.values.name}
+        touched={formik.touched.name}
+        errors={formik.errors.name}
       />
 
       <InputText
@@ -57,6 +68,8 @@ const Form = () => {
         label="Design system name"
         onChange={formik.handleChange}
         value={formik.values.designSystemName}
+        touched={formik.touched.designSystemName}
+        errors={formik.errors.designSystemName}
       />
 
       <InputText
@@ -65,6 +78,8 @@ const Form = () => {
         label="Link to design system"
         onChange={formik.handleChange}
         value={formik.values.designSystemUrl}
+        touched={formik.touched.designSystemUrl}
+        errors={formik.errors.designSystemUrl}
       />
 
       <button type="submit">Submit</button>

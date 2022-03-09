@@ -10,6 +10,7 @@
     "@mdx-js/react": "^1.6.22",
     "@rooks/use-key": "^4.10.0",
     "beautiful-react-hooks": "^0.35.0",
+    "classnames": "^2.3.1",
     "dotenv": "^8.2.0",
     "formik": "^2.2.9",
     "gatsby": "^3.1.2",
@@ -49,7 +50,8 @@
     "sharp": "^0.27.2",
     "slugify": "^1.5.0",
     "svg-sprite-loader": "^6.0.4",
-    "use-query-params": "^1.2.2"
+    "use-query-params": "^1.2.2",
+    "yup": "^0.32.11"
   },
   "keywords": [
     "gatsby"

@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import Icon from '../Icon/Icon';
 
 const InputText = ({
   errors,
@@ -12,14 +14,23 @@ const InputText = ({
   touched,
   value,
 }) => (
-  <div className={`field-group${errors && touched ? ' error' : ''}`}>
+  <div className={classNames('field-group', { error: !!errors && !!touched })}>
     <label htmlFor={id}>{label}</label>
     {hintText && (
       <p className="hint-text" id={`${id}-hint`}>
         {hintText}
       </p>
     )}
-    {errors && touched && <div className="validation-error">{errors}</div>}
+    {errors && touched && (
+      <div className="font-sans text-red-600">
+        <Icon
+          name="exclamationTriangle"
+          className="inline w-3 h-3 align-baseline"
+          aria-hidden="true"
+        />{' '}
+        {errors}
+      </div>
+    )}
     <input
       name={name}
       id={id}
@@ -27,7 +38,7 @@ const InputText = ({
       value={value}
       onChange={onChange}
       onBlur={handleBlur}
-      className={errors && touched ? 'error' : ''}
+      className={!!errors && !!touched && 'error'}
       aria-describedby={hintText && `${id}-hint`}
     />
   </div>
