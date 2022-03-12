@@ -38,7 +38,8 @@ label {
 
   display: block;
 
-  & + [type='text'] {
+  & + [type='text'],
+  & + textarea {
      margin-top: 0.5em;
   }
 }
@@ -53,6 +54,21 @@ label {
   appearance: none;
   background-color: #fff;
   box-shadow: inset 4px 4px 0 theme('colors.grey.500');
+  width: 100%;
+}
+
+textarea {
+  @apply font-sans text-grey-800 dark:text-grey-200 border border-grey-700 dark:border-grey-300 bg-white dark:bg-grey-800;
+
+  border: 2px solid theme('colors.black');
+  padding: 0.2em 1.8em 0.2em 0.6em;
+  max-width: 100%;
+  margin: 0;
+  appearance: none;
+  background-color: #fff;
+  box-shadow: inset 4px 4px 0 theme('colors.grey.500');
+  width: 100%;
+  resize: vertical;
 }
 
 button:not([class]) {
@@ -60,6 +76,15 @@ button:not([class]) {
   position: relative;
   /* prettier-ignore */
   box-shadow: 4px 4px theme('colors.grey.800')bf;
+  top: 0;
+  left: 0;
+  transition: box-shadow 0.12s ease-in-out, top 0.12s ease-in-out, left 0.12s ease-in-out;
+
+  &:hover {
+    top: 2px;
+    left: 2px;
+    box-shadow: 2px 2px theme('colors.grey.800')bf;
+  }
 
   &:focus {
     outline: 3px solid theme('colors.indigo.600');

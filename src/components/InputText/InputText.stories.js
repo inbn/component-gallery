@@ -5,8 +5,8 @@ export default {
   title: 'InputText',
   component: InputText,
   argTypes: {
-    handleBlur: { action: 'clicked' },
-    handleChange: { action: 'clicked' },
+    onBlur: { action: 'clicked' },
+    onChange: { action: 'clicked' },
   },
 };
 

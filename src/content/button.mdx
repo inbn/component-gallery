@@ -15,7 +15,7 @@ It's important to make a distinction here: when people talk about buttons on the
 
 In most cases, it’s preferable to use a `<button>` instead of the corresponding `<input>`: With a `<button>` the label text goes between opening and closing tags, allowing you to include other HTML elements inside the label; with `<input>` you’re restricted to using the `value` attribute which only has support for text strings.
 
-If you're interested in the third category, you’re probably either looking for the page on [links](/components/link); or you’re using the wrong element for your buttons (and you should read on to learn why).
+If you're interested in the third category, you’re probably either looking for the page on [links](/components/link) or you’re using the wrong element for your buttons (and you should read on to learn why).
 
 ## Markup
 
@@ -42,7 +42,7 @@ As you can probably see, there’s not much markup required here at all, so it�
 By default, this link does nothing but append a '#' to the current URL. If you attach a JavaScript event listener to the element, you can prevent the default behaviour and trigger an action (this example uses jQuery):
 
 ```javascript
-$('a').click(function(e) {
+$('a').click(function (e) {
   e.preventDefault();
   /* your_code_here; */
   return false;

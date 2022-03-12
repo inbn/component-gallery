@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Icon from '../Icon/Icon';
 
-const InputText = ({
+const Textarea = ({
   errors,
   onBlur,
   onChange,
@@ -11,7 +11,7 @@ const InputText = ({
   id,
   label,
   name,
-  placeholder,
+  rows,
   touched,
   value,
 }) => (
@@ -32,21 +32,20 @@ const InputText = ({
         {errors}
       </div>
     )}
-    <input
+    <textarea
       name={name}
       id={id}
-      type="text"
+      rows={rows}
       value={value}
-      placeholder={placeholder}
       onChange={onChange}
       onBlur={onBlur}
-      className={!!errors && !!touched && 'error'}
+      className={errors && touched ? 'error' : ''}
       aria-describedby={hintText && `${id}-hint`}
     />
   </div>
 );
 
-InputText.propTypes = {
+Textarea.propTypes = {
   errors: PropTypes.string,
   onBlur: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -56,14 +55,14 @@ InputText.propTypes = {
   name: PropTypes.string.isRequired,
   touched: PropTypes.bool,
   value: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
+  rows: PropTypes.number,
 };
 
-InputText.defaultProps = {
+Textarea.defaultProps = {
   errors: null,
   hintText: null,
   touched: false,
-  placeholder: null,
+  rows: 5,
 };
 
-export default InputText;
+export default Textarea;
