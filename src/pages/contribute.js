@@ -15,6 +15,7 @@ const ContributePage = ({ data }) => (
       <div className="l-col l-col--main pt-4 px-6">
         <div className="body-text mb-4">
           {data.mdx !== null && <MDXRenderer>{data.mdx.body}</MDXRenderer>}
+          <h2>Contact form</h2>
           <Form />
         </div>
       </div>
