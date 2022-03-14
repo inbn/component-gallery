@@ -51,7 +51,7 @@ const IndexPage = ({ data }) => (
       </ul>
     </div>
     <div className="text-right px-6 py-4 border-l">
-      <ReadMoreLink to="/components" text="View all components" />
+      <ReadMoreLink to="/components">View all components</ReadMoreLink>
     </div>
     <div className="flex flex-col sm:flex-row-reverse sm:border-t">
       <h2 className="px-6 py-4 sm:pt-6 text-base uppercase tracking-widest sm:dir-sideways-tb sm:leading-none">
@@ -92,7 +92,7 @@ const IndexPage = ({ data }) => (
       </ul>
     </div>
     <div className="text-right px-6 py-4 border-l">
-      <ReadMoreLink to="/design-systems" text="View all Design Systems" />
+      <ReadMoreLink to="/design-systems">View all Design Systems</ReadMoreLink>
     </div>
   </Layout>
 );

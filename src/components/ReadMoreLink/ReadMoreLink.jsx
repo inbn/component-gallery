@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
+import classNames from 'classnames';
 
-const ReadMoreLink = ({ to, text }) => (
-  <Link to={to} className="call-to-action">
-    {text}{' '}
+const ReadMoreLink = ({ children, to, className }) => (
+  <Link
+    to={to}
+    className={classNames('call-to-action', !!className && className)}
+  >
+    {children}{' '}
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 162.348 162.348"
@@ -21,7 +25,12 @@ const ReadMoreLink = ({ to, text }) => (
 
 ReadMoreLink.propTypes = {
   to: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+};
+
+ReadMoreLink.defaultProps = {
+  className: null,
 };
 
 export default ReadMoreLink;

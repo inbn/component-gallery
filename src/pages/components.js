@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 import Component from '../components/Component/Component';
 import Hero from '../components/Hero';
 import Layout from '../components/Layout';
+import ReadMoreLink from '../components/ReadMoreLink/ReadMoreLink';
 import Select from '../components/Select/Select';
 import SEO from '../components/SEO';
 
@@ -69,6 +70,14 @@ const ComponentsIndexPage = ({ data }) => {
             />
           )
         )}
+        <li className="card">
+          <div className="card__inner p-6 h-full flex flex-col">
+            <h2>Is there a component missing?</h2>
+            <ReadMoreLink to="/contribute" className="mt-auto ml-auto">
+              Let me know
+            </ReadMoreLink>
+          </div>
+        </li>
       </ul>
     </Layout>
   );
