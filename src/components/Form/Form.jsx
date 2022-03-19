@@ -13,6 +13,7 @@ const encode = (data) =>
 
 const ContactFormSchema = Yup.object().shape({
   name: Yup.string().required('The name field is required'),
+  twitter: Yup.string(),
   designSystemName: Yup.string(),
   designSystemUrl: Yup.string().url('Please add a complete URL'),
   message: Yup.string().required('The message field is required'),
@@ -20,12 +21,12 @@ const ContactFormSchema = Yup.object().shape({
 
 const Form = () => {
   const errorsListEl = useRef();
-  const [showErrorsList, setShowErrorsList] = useState(false);
   const [errorsList, setErrorsList] = useState({});
 
   const formik = useFormik({
     initialValues: {
       name: '',
+      twitter: '',
       designSystemName: '',
       designSystemUrl: '',
       message: '',
@@ -59,11 +60,9 @@ const Form = () => {
     setErrorsList(formik.errors);
 
     if (Object.entries(formik.errors).length) {
-      setShowErrorsList(true);
       errorsListEl.current.removeAttribute('hidden');
       errorsListEl.current.focus();
     } else {
-      setShowErrorsList(false);
       errorsListEl.current.setAttribute('hidden', true);
     }
   }, [formik.isSubmitting]);
@@ -111,6 +110,16 @@ const Form = () => {
           value={formik.values.name}
           touched={formik.touched.name}
           errors={formik.errors.name}
+        />
+
+        <InputText
+          name="twitter"
+          id="twitter"
+          label="Your twitter handle"
+          onChange={formik.handleChange}
+          value={formik.values.twitter}
+          touched={formik.touched.twitter}
+          errors={formik.errors.twitter}
         />
 
         <InputText
