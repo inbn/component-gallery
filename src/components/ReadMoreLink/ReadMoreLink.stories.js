@@ -3,14 +3,14 @@ import Component from './ReadMoreLink';
 
 export default {
   title: 'ReadMoreLink',
-  component: Component
+  component: Component,
 };
 
-const Template = args => <Component {...args} />;
+const Template = (args) => <Component {...args} />;
 
 export const Default = Template.bind({});
 
 Default.args = {
   to: 'https://example.com',
-  text: 'Read more'
+  children: 'Read more',
 };
