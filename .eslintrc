@@ -16,6 +16,14 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn"
   },
+  "overrides": [
+    {
+      "files": ["**/*.stories.js"],
+      "rules": {
+        "react/jsx-props-no-spreading": 0
+      }
+    }
+  ],
   "globals": {
     "window": true,
     "document": true,
@@ -29,7 +37,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module",
     "ecmaFeatures": {
-        "jsx": true
+      "jsx": true
     }
   }
 }

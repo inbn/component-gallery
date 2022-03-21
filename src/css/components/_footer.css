@@ -13,7 +13,7 @@
 .footer__icon {
   @apply hidden;
 
-  @media (min-width: 420px) {
+  @media (min-width: 510px) {
     @apply block;
   }
 }
@@ -22,7 +22,7 @@
   @apply mt-4;
 }
 
-@media (min-width: 360px) {
+@media (min-width: 510px) {
   .footer {
     @apply flex;
   }

@@ -28,6 +28,7 @@
 
 @import 'layout/_l-col';
 @import 'layout/_l-grid';
+@import 'layout/_l-stack';
 
 /**
   * This injects any component classes registered by plugins.

@@ -22,7 +22,7 @@
 }
 
 .checkbox-button__label {
-  @apply px-2 border rounded-full font-sans text-sm flex;
+  @apply px-2 py-1 border rounded-full font-sans text-sm flex;
 }
 
 .checkbox-button__count {

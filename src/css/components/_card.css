@@ -14,7 +14,7 @@
   /* content-visibility: auto; */
   /* contain-intrinsic-size: 20rem; */
 
-  &:hover .card__inner {
+  &:hover a.card__inner {
     background-color: var(--hover-background-color);
     border-color: theme('colors.black');
     transform: translate(-4px, -4px);
