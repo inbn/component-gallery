@@ -100,7 +100,7 @@
     "gatsby-plugin-preload-fonts": "^2.1.0",
     "html-webpack-plugin": "^5.3.1",
     "loki": "^0.20.3",
-    "postcss": "^8.2.8",
+    "postcss": "^8.2.13",
     "postcss-import": "^14.0.0",
     "postcss-preset-env": "^6.7.0",
     "postcss-svg": "https://github.com/inbn/postcss-svg/tarball/master",
