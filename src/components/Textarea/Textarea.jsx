@@ -5,7 +5,6 @@ import Icon from '../Icon/Icon';
 
 const Textarea = ({
   errors,
-  onBlur,
   onChange,
   hintText,
   id,
@@ -14,9 +13,17 @@ const Textarea = ({
   rows,
   touched,
   value,
+  required,
 }) => (
   <div className={classNames('field-group', { error: !!errors && !!touched })}>
-    <label htmlFor={id}>{label}</label>
+    <label htmlFor={id}>
+      {label}
+      {!!required && (
+        <span className="font-bold">
+          *<span className="sr-only">(required)</span>
+        </span>
+      )}
+    </label>
     {hintText && (
       <p className="hint-text" id={`${id}-hint`}>
         {hintText}
@@ -38,7 +45,6 @@ const Textarea = ({
       rows={rows}
       value={value}
       onChange={onChange}
-      onBlur={onBlur}
       className={errors && touched ? 'error' : ''}
       aria-describedby={hintText && `${id}-hint`}
     />
@@ -47,7 +53,6 @@ const Textarea = ({
 
 Textarea.propTypes = {
   errors: PropTypes.string,
-  onBlur: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   hintText: PropTypes.string,
   id: PropTypes.string.isRequired,
@@ -56,6 +61,7 @@ Textarea.propTypes = {
   touched: PropTypes.bool,
   value: PropTypes.string.isRequired,
   rows: PropTypes.number,
+  required: PropTypes.bool,
 };
 
 Textarea.defaultProps = {
@@ -63,6 +69,7 @@ Textarea.defaultProps = {
   hintText: null,
   touched: false,
   rows: 5,
+  required: false,
 };
 
 export default Textarea;

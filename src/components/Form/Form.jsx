@@ -21,6 +21,7 @@ const ContactFormSchema = Yup.object().shape({
 
 const Form = () => {
   const errorsListEl = useRef();
+  const successMessageEl = useRef();
   const [errorsList, setErrorsList] = useState({});
 
   const formik = useFormik({
@@ -38,7 +39,8 @@ const Form = () => {
         body: encode({ 'form-name': 'Contact form', ...values }),
       })
         .then(() => {
-          alert('Success');
+          successMessageEl.current.removeAttribute('hidden');
+          successMessageEl.current.focus();
           actions.resetForm();
         })
         .catch(() => {
@@ -53,6 +55,7 @@ const Form = () => {
   useEffect(() => {
     // Only run after submitting is finished
     if (formik.isSubmitting) {
+      successMessageEl.current.setAttribute('hidden', true);
       return;
     }
 
@@ -60,6 +63,7 @@ const Form = () => {
     setErrorsList(formik.errors);
 
     if (Object.entries(formik.errors).length) {
+      successMessageEl.current.setAttribute('hidden', true);
       errorsListEl.current.removeAttribute('hidden');
       errorsListEl.current.focus();
     } else {
@@ -74,6 +78,14 @@ const Form = () => {
       data-netlify="true"
       onSubmit={formik.handleSubmit}
     >
+      <div
+        tabIndex="-1"
+        ref={successMessageEl}
+        className="sm:border-2 my-6 sm:px-4 sm:py-4 sm:shadow-block mb-4"
+        hidden
+      >
+        <h3 className="h4">Thanks for your message!</h3>
+      </div>
       <div
         tabIndex="-1"
         ref={errorsListEl}
@@ -102,6 +114,7 @@ const Form = () => {
       <input type="hidden" name="form-name" value="Contact form" />
 
       <div className="sm:border-2 my-6 sm:px-4 sm:py-6 sm:shadow-block l-stack">
+        <p>Fields marked with an asterisk (*) are required</p>
         <InputText
           name="name"
           id="name"
@@ -110,6 +123,7 @@ const Form = () => {
           value={formik.values.name}
           touched={formik.touched.name}
           errors={formik.errors.name}
+          required
         />
 
         <InputText
@@ -151,6 +165,7 @@ const Form = () => {
           value={formik.values.message}
           touched={formik.touched.message}
           errors={formik.errors.message}
+          required
         />
 
         <button type="submit">Submit</button>

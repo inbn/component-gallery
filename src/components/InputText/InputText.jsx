@@ -5,7 +5,6 @@ import Icon from '../Icon/Icon';
 
 const InputText = ({
   errors,
-  onBlur,
   onChange,
   hintText,
   id,
@@ -14,9 +13,17 @@ const InputText = ({
   placeholder,
   touched,
   value,
+  required,
 }) => (
   <div className={classNames('field-group', { error: !!errors && !!touched })}>
-    <label htmlFor={id}>{label}</label>
+    <label htmlFor={id}>
+      {label}
+      {!!required && (
+        <span className="font-bold">
+          *<span className="sr-only">(required)</span>
+        </span>
+      )}
+    </label>
     {hintText && (
       <p className="hint-text" id={`${id}-hint`}>
         {hintText}
@@ -39,7 +46,6 @@ const InputText = ({
       value={value}
       placeholder={placeholder}
       onChange={onChange}
-      onBlur={onBlur}
       className={!!errors && !!touched && 'error'}
       aria-describedby={hintText && `${id}-hint`}
     />
@@ -48,7 +54,6 @@ const InputText = ({
 
 InputText.propTypes = {
   errors: PropTypes.string,
-  onBlur: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   hintText: PropTypes.string,
   id: PropTypes.string.isRequired,
@@ -57,6 +62,7 @@ InputText.propTypes = {
   touched: PropTypes.bool,
   value: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
+  required: PropTypes.bool,
 };
 
 InputText.defaultProps = {
@@ -64,6 +70,7 @@ InputText.defaultProps = {
   hintText: null,
   touched: false,
   placeholder: null,
+  required: false,
 };
 
 export default InputText;
