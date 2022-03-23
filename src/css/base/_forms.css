@@ -5,7 +5,7 @@
 
 select {
   @apply font-sans text-grey-800 border border-grey-700 rounded-full;
-  padding: 0.5em 1.8em 0.5em 0.6em;
+  padding: 0.5em 2em 0.5em 0.5em;
   max-width: 100%;
   margin: 0;
   appearance: none;
@@ -40,7 +40,7 @@ label {
 
   & + [type='text'],
   & + textarea {
-     margin-top: 0.5em;
+    margin-top: 0.5em;
   }
 }
 
@@ -48,7 +48,7 @@ label {
   @apply font-sans text-grey-800 dark:text-grey-200 border border-grey-700 dark:border-grey-300 bg-white dark:bg-grey-800;
 
   border: 2px solid theme('colors.black');
-  padding: 0.2em 1.8em 0.2em 0.6em;
+  padding: 0.25em 2em 0.25em 0.75em;
   max-width: 100%;
   margin: 0;
   appearance: none;
@@ -61,7 +61,7 @@ textarea {
   @apply font-sans text-grey-800 dark:text-grey-200 border border-grey-700 dark:border-grey-300 bg-white dark:bg-grey-800;
 
   border: 2px solid theme('colors.black');
-  padding: 0.2em 1.8em 0.2em 0.6em;
+  padding: 0.25em 2em 0.25em 0.75em;
   max-width: 100%;
   margin: 0;
   appearance: none;
@@ -78,12 +78,13 @@ button:not([class]) {
   box-shadow: 4px 4px theme('colors.grey.800')bf;
   top: 0;
   left: 0;
-  transition: box-shadow 0.12s ease-in-out, top 0.12s ease-in-out, left 0.12s ease-in-out;
+  transition: box-shadow 0.12s ease-in-out, top 0.12s ease-in-out,
+    left 0.12s ease-in-out;
 
   &:hover {
     top: 2px;
     left: 2px;
-    box-shadow: 2px 2px theme('colors.grey.800')bf;
+    box-shadow: 2px 2px theme('colors.grey.800') bf;
   }
 
   &:focus {
@@ -93,6 +94,6 @@ button:not([class]) {
   &:active {
     top: 2px;
     left: 2px;
-    box-shadow: 2px 2px theme('colors.grey.800')bf;
+    box-shadow: 2px 2px theme('colors.grey.800') bf;
   }
 }
