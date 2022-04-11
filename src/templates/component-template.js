@@ -361,6 +361,7 @@ const ComponentTemplate = ({ data }) => {
                         description,
                         otherNames,
                         examplesCount,
+                        image,
                       },
                       id,
                     }) => (
@@ -374,6 +375,11 @@ const ComponentTemplate = ({ data }) => {
                         }
                         otherNames={otherNames}
                         examplesCount={examplesCount}
+                        imageURL={
+                          image?.localFiles &&
+                          image.localFiles.length > 0 &&
+                          image.localFiles[0].publicURL
+                        }
                       />
                     )
                   )}
@@ -436,6 +442,11 @@ export const query = graphql`
             examplesCount: Examples_count
           }
           id
+        }
+        image: Image {
+          localFiles {
+            publicURL
+          }
         }
       }
     }

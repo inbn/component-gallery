@@ -54,7 +54,14 @@ const ComponentsIndexPage = ({ data }) => {
         {components.map(
           ({
             node: {
-              data: { slug, name, description, otherNames, examplesCount },
+              data: {
+                slug,
+                name,
+                description,
+                otherNames,
+                examplesCount,
+                image,
+              },
               id,
             },
           }) => (
@@ -67,6 +74,11 @@ const ComponentsIndexPage = ({ data }) => {
               }
               otherNames={otherNames}
               examplesCount={examplesCount}
+              imageURL={
+                image?.localFiles &&
+                image.localFiles.length > 0 &&
+                image.localFiles[0].publicURL
+              }
             />
           )
         )}
@@ -105,6 +117,11 @@ export const query = graphql`
             slug: Slug
             otherNames: Other_names
             examplesCount: Examples_count
+            image: Image {
+              localFiles {
+                publicURL
+              }
+            }
           }
           id
         }

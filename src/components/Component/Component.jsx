@@ -9,7 +9,8 @@ const Component = ({
   description,
   examplesCount,
   cardTag,
-  headingLevel
+  headingLevel,
+  imageURL,
 }) => {
   // The element type used for these elements are dynamic
   const CardTag = cardTag;
@@ -21,6 +22,15 @@ const Component = ({
         to={`/components/${slug}/`}
         className="card__inner h-full block w-full p-6"
       >
+        {!!imageURL && (
+          <img
+            src={imageURL}
+            alt="Logo"
+            className="border mb-4"
+            width={512}
+            height={384}
+          />
+        )}
         <div className="flex justify-between items-center">
           <HeadingTag className="h3">{name}</HeadingTag>
           <p className="font-sans text-grey-700 dark:text-grey-500 mt-0 ml-2">
@@ -38,7 +48,7 @@ const Component = ({
         {!!description && (
           <div
             dangerouslySetInnerHTML={{
-              __html: description
+              __html: description,
             }}
             className="body-text leading-tight font-small mt-4"
           />
@@ -55,7 +65,8 @@ Component.propTypes = {
   description: PropTypes.string,
   examplesCount: PropTypes.number,
   cardTag: PropTypes.string,
-  headingLevel: PropTypes.string
+  headingLevel: PropTypes.string,
+  imageURL: PropTypes.string,
 };
 
 Component.defaultProps = {
@@ -63,7 +74,8 @@ Component.defaultProps = {
   description: '',
   examplesCount: 0,
   cardTag: 'li',
-  headingLevel: 'h2'
+  headingLevel: 'h2',
+  imageURL: null,
 };
 
 export default Component;
