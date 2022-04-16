@@ -9,7 +9,7 @@ import CheckboxButtonGroup from '../components/CheckboxButton/CheckboxButtonGrou
 import Component from '../components/Component/Component';
 import ComponentExample from '../components/ComponentExample/ComponentExample';
 import Filter from '../components/Filter/Filter';
-import Hero from '../components/Hero';
+import Hero from '../components/Hero/Hero';
 import Layout from '../components/Layout';
 import Select from '../components/Select/Select';
 import SEO from '../components/SEO';
@@ -165,6 +165,11 @@ const ComponentTemplate = ({ data }) => {
     readtime = `${data.mdx.timeToRead} minute read`;
   }
 
+  const imageURL =
+    data.component?.data?.image?.localFiles &&
+    data.component.data.image.localFiles.length > 0 &&
+    data.component.data.image.localFiles[0].publicURL;
+
   return (
     <Layout
       heroComponent={
@@ -180,6 +185,17 @@ const ComponentTemplate = ({ data }) => {
             data.component.data.Description !== null
               ? data.component.data.Description.childMarkdownRemark.html
               : null
+          }
+          image={
+            !!imageURL && (
+              <img
+                src={imageURL}
+                alt="Logo"
+                className="bg-white border-2 border-black dark:border-white shadow-block lg:max-w-xs"
+                width={512}
+                height={384}
+              />
+            )
           }
         />
       }
@@ -440,6 +456,14 @@ export const query = graphql`
             slug: Slug
             otherNames: Other_names
             examplesCount: Examples_count
+            image: Image {
+              localFiles {
+                publicURL
+              }
+            }
+          }
+          id
+        }
           }
           id
         }

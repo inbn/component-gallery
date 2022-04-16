@@ -7,7 +7,7 @@ import Accordion from '../components/Accordion/Accordion';
 import CheckboxButtonGroup from '../components/CheckboxButton/CheckboxButtonGroup';
 import DesignSystem from '../components/DesignSystem/DesignSystem';
 import Filter from '../components/Filter/Filter';
-import Hero from '../components/Hero';
+import Hero from '../components/Hero/Hero';
 import Layout from '../components/Layout';
 import ReadMoreLink from '../components/ReadMoreLink/ReadMoreLink';
 import Select from '../components/Select/Select';
