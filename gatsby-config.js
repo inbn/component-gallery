@@ -68,6 +68,7 @@ module.exports = {
             tableView: `Name A-Z`,
             mapping: {
               Description: `text/markdown`,
+              Image: `fileNode`,
             },
             tableLinks: [
               `Commonly contains`,
@@ -75,6 +76,7 @@ module.exports = {
               `HTML element`,
               `Examples`,
               `Related_components`,
+              `Resources`,
             ],
           },
           {
@@ -111,6 +113,11 @@ module.exports = {
             baseId: process.env.AIRTABLE_BASE_ID,
             tableName: `Design system features`,
             tableLinks: [`Design systems`],
+          },
+          {
+            baseId: process.env.AIRTABLE_BASE_ID,
+            tableName: `Resources`,
+            tableLinks: [`Related components`],
           },
         ],
       },

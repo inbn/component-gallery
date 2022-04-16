@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'gatsby';
 import { graphql } from 'gatsby';
 import { useMediaQuery } from 'beautiful-react-hooks';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
@@ -9,7 +10,7 @@ import CheckboxButtonGroup from '../components/CheckboxButton/CheckboxButtonGrou
 import Component from '../components/Component/Component';
 import ComponentExample from '../components/ComponentExample/ComponentExample';
 import Filter from '../components/Filter/Filter';
-import Hero from '../components/Hero';
+import Hero from '../components/Hero/Hero';
 import Layout from '../components/Layout';
 import Select from '../components/Select/Select';
 import SEO from '../components/SEO';
@@ -160,10 +161,23 @@ const ComponentTemplate = ({ data }) => {
             },
           ]
         : []),
+      ...(data.component.data.resources !== null
+        ? [
+            {
+              url: '#resources',
+              title: 'Resources',
+            },
+          ]
+        : []),
     ];
 
     readtime = `${data.mdx.timeToRead} minute read`;
   }
+
+  const imageURL =
+    data.component?.data?.image?.localFiles &&
+    data.component.data.image.localFiles.length > 0 &&
+    data.component.data.image.localFiles[0].publicURL;
 
   return (
     <Layout
@@ -180,6 +194,17 @@ const ComponentTemplate = ({ data }) => {
             data.component.data.Description !== null
               ? data.component.data.Description.childMarkdownRemark.html
               : null
+          }
+          image={
+            !!imageURL && (
+              <img
+                src={imageURL}
+                alt=""
+                className="bg-white border-2 border-black dark:border-white shadow-block lg:max-w-xs"
+                width={512}
+                height={384}
+              />
+            )
           }
         />
       }
@@ -361,6 +386,7 @@ const ComponentTemplate = ({ data }) => {
                         description,
                         otherNames,
                         examplesCount,
+                        image,
                       },
                       id,
                     }) => (
@@ -374,7 +400,52 @@ const ComponentTemplate = ({ data }) => {
                         }
                         otherNames={otherNames}
                         examplesCount={examplesCount}
+                        imageURL={
+                          image?.localFiles &&
+                          image.localFiles.length > 0 &&
+                          image.localFiles[0].publicURL
+                        }
                       />
+                    )
+                  )}
+                </ul>
+              </div>
+            </>
+          )}
+          {data.component.data.resources !== null && (
+            <>
+              <div
+                style={{ ...(data.mdx !== null ? { maxWidth: '76ch' } : {}) }}
+                className="mx-auto px-6 py-4"
+              >
+                <h2 id="resources" className="mt-0">
+                  Resources
+                </h2>
+              </div>
+              <div className="border-t">
+                <ul className="l-grid mt-0">
+                  {data.component.data.resources.map(
+                    ({ data: { name, author, website, url }, id }) => (
+                      <li className="card" key={id}>
+                        <Link
+                          to={url}
+                          className="card__inner h-full block w-full p-6"
+                        >
+                          <div className="flex justify-between items-center">
+                            <h2 className="h3">{name}</h2>
+                          </div>
+                          {!!author && (
+                            <p className="italic leading-tight mt-4 text-grey-700 dark:text-grey-500">
+                              {author}
+                            </p>
+                          )}
+                          {!!website && (
+                            <div className="body-text leading-tight font-small mt-4">
+                              {website}
+                            </div>
+                          )}
+                        </Link>
+                      </li>
                     )
                   )}
                 </ul>
@@ -434,8 +505,27 @@ export const query = graphql`
             slug: Slug
             otherNames: Other_names
             examplesCount: Examples_count
+            image: Image {
+              localFiles {
+                publicURL
+              }
+            }
           }
           id
+        }
+        resources: Resources {
+          data {
+            name: Name
+            author: Author
+            website: Website
+            url: URL
+          }
+          id
+        }
+        image: Image {
+          localFiles {
+            publicURL
+          }
         }
       }
     }
