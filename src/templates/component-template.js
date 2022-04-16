@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'gatsby';
 import { graphql } from 'gatsby';
 import { useMediaQuery } from 'beautiful-react-hooks';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
@@ -157,6 +158,14 @@ const ComponentTemplate = ({ data }) => {
             {
               url: '#related-components',
               title: 'Related components',
+            },
+          ]
+        : []),
+      ...(data.component.data.resources !== null
+        ? [
+            {
+              url: '#resources',
+              title: 'Resources',
             },
           ]
         : []),
@@ -403,6 +412,46 @@ const ComponentTemplate = ({ data }) => {
               </div>
             </>
           )}
+          {data.component.data.resources !== null && (
+            <>
+              <div
+                style={{ ...(data.mdx !== null ? { maxWidth: '76ch' } : {}) }}
+                className="mx-auto px-6 py-4"
+              >
+                <h2 id="resources" className="mt-0">
+                  Resources
+                </h2>
+              </div>
+              <div className="border-t">
+                <ul className="l-grid mt-0">
+                  {data.component.data.resources.map(
+                    ({ data: { name, author, website, url }, id }) => (
+                      <li className="card" key={id}>
+                        <Link
+                          to={url}
+                          className="card__inner h-full block w-full p-6"
+                        >
+                          <div className="flex justify-between items-center">
+                            <h2 className="h3">{name}</h2>
+                          </div>
+                          {!!author && (
+                            <p className="italic leading-tight mt-4 text-grey-700 dark:text-grey-500">
+                              {author}
+                            </p>
+                          )}
+                          {!!website && (
+                            <div className="body-text leading-tight font-small mt-4">
+                              {website}
+                            </div>
+                          )}
+                        </Link>
+                      </li>
+                    )
+                  )}
+                </ul>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </Layout>
@@ -464,6 +513,12 @@ export const query = graphql`
           }
           id
         }
+        resources: Resources {
+          data {
+            name: Name
+            author: Author
+            website: Website
+            url: URL
           }
           id
         }
