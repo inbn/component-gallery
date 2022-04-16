@@ -199,7 +199,7 @@ const ComponentTemplate = ({ data }) => {
             !!imageURL && (
               <img
                 src={imageURL}
-                alt="Logo"
+                alt=""
                 className="bg-white border-2 border-black dark:border-white shadow-block lg:max-w-xs"
                 width={512}
                 height={384}

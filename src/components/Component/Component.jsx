@@ -25,7 +25,7 @@ const Component = ({
         {!!imageURL && (
           <img
             src={imageURL}
-            alt="Logo"
+            alt=""
             className="border mb-4"
             width={512}
             height={384}

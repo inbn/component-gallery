@@ -2,7 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Hero = ({ byline, title, subtitle, intro, image }) => (
-  <div className="my-8 lg:my-12 px-6 flex flex-col lg:flex-row lg:justify-between gap-8 max-w-5xl mx-auto">
+  <div
+    className={`my-8 lg:my-12 px-6 flex flex-col lg:flex-row lg:justify-between gap-8 max-w-5xl ${
+      image ? 'mx-auto' : ''
+    }`}
+  >
     <div>
       {byline !== '' && (
         <p className="font-sans mb-4 uppercase bg-white dark:bg-black text-black dark:text-grey-100 font-bold text-xs inline-block px-2 py-1 border-2 border-black dark:border-white shadow-block">

@@ -19,7 +19,7 @@ Default.args = {
   image: (
     <img
       src="https://images.placeholders.dev/?width=512&height=384&text=Placeholder&bgColor=%23f7f6f6&textColor=%236d6e71"
-      alt="Logo"
+      alt=""
       className="bg-white border-2 border-black dark:border-white shadow-block lg:max-w-xs"
       width={512}
       height={384}
