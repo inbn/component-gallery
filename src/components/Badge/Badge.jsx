@@ -12,6 +12,7 @@ const Badge = ({ text, displayIcon, tag }) => {
         badgeIcon = 'universalAccess';
         break;
       case 'Accessibility issues':
+      case 'Unmaintained':
         badgeIcon = 'exclamationTriangle';
         break;
       case 'Usage guidelines':
