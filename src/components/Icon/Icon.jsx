@@ -5,6 +5,7 @@ import clipboardList from '../../svg/clipboard-list-solid.svg';
 import code from '../../svg/code-solid.svg';
 import comment from '../../svg/comment-solid.svg';
 import exclamationTriangle from '../../svg/exclamation-triangle-solid.svg';
+import figma from '../../svg/figma.svg';
 import flask from '../../svg/flask-solid.svg';
 import moon from '../../svg/moon.svg';
 import openSource from '../../svg/open-source.svg';
@@ -18,6 +19,7 @@ const Icon = ({ name, ...rest }) => {
     code,
     comment,
     exclamationTriangle,
+    figma,
     flask,
     moon,
     openSource,

@@ -3,6 +3,7 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import PropTypes from 'prop-types';
 
 import Badge from '../Badge/Badge';
+import Icon from '../Icon/Icon';
 
 const DesignSystem = ({
   url,
@@ -15,6 +16,7 @@ const DesignSystem = ({
   color,
   cardTag,
   headingLevel,
+  links,
 }) => {
   // The element type used for these elements are dynamic
   const CardTag = cardTag;
@@ -45,6 +47,22 @@ const DesignSystem = ({
           <p className="italic leading-tight mt-0 pb-2 text-grey-700 dark:text-grey-500">
             {organisation}
           </p>
+        )}
+        {links && links.length > 0 && (
+          <ul class="flex gap-2">
+            {links.map((link) => (
+              <a
+                href={link.url}
+                class="block border border-black rounded-full p-2"
+              >
+                <Icon
+                  name={link.platform}
+                  className="w-5 h-5"
+                  aria-hidden="true"
+                />
+              </a>
+            ))}
+          </ul>
         )}
         {((features && features.length > 0) ||
           (technologies && technologies.length)) && (
@@ -96,6 +114,10 @@ DesignSystem.propTypes = {
   color: PropTypes.string,
   cardTag: PropTypes.string,
   headingLevel: PropTypes.string,
+  links: PropTypes.arrayOf({
+    platform: PropTypes.string,
+    url: PropTypes.string,
+  }),
 };
 
 DesignSystem.defaultProps = {
@@ -107,6 +129,7 @@ DesignSystem.defaultProps = {
   color: '#fff',
   cardTag: 'li',
   headingLevel: 'h2',
+  links: [],
 };
 
 export default DesignSystem;
