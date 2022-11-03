@@ -8,7 +8,7 @@
   list-style-type: none;
 
   @screen md {
-    @apply text-sm;
+    font-size: theme('fontSize.sm');
   }
 }
 
