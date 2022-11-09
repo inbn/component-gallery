@@ -42,19 +42,22 @@ const DesignSystem = ({
             alt=""
           />
         )}
-        <HeadingTag className="h3 mt-0 pt-6 pb-1 font-bold">{name}</HeadingTag>
+        <HeadingTag className="h3 mt-0 pt-4 pb-1 font-bold">{name}</HeadingTag>
         {organisation && (
-          <p className="italic leading-tight mt-0 pb-2 text-grey-700 dark:text-grey-500">
+          <p className="italic leading-tight mt-0 pb-1 text-grey-700 dark:text-grey-500">
             {organisation}
           </p>
         )}
         {links && links.length > 0 && (
-          <ul class="flex gap-2">
+          <ul class="flex gap-2 mt-2">
             {links.map((link) => (
               <a
                 href={link.url}
                 class="block border border-black rounded-full p-2"
               >
+                <span className="sr-only">
+                  {name} on {link.platform}
+                </span>
                 <Icon
                   name={link.platform}
                   className="w-5 h-5"

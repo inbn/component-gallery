@@ -268,6 +268,22 @@ const DesignSystemsIndexPage = ({ data }) => {
                         },
                       ]
                     : []),
+                  ...(githubUrl
+                    ? [
+                        {
+                          url: githubUrl,
+                          platform: 'github',
+                        },
+                      ]
+                    : []),
+                  ...(storybookUrl
+                    ? [
+                        {
+                          url: storybookUrl,
+                          platform: 'storybook',
+                        },
+                      ]
+                    : []),
                 ]}
               />
             )
@@ -319,7 +335,7 @@ export const query = graphql`
             features: Features_lookup
             figmaUrl: Figma_URL
             storybookUrl: Storybook_URL
-            githubURL: GitHub_URL
+            githubUrl: GitHub_URL
             technologies: Tech_lookup
             color: Colour_hex
             Component_examples_count
