@@ -37,7 +37,7 @@
     "gatsby-remark-prismjs": "^4.1.0",
     "gatsby-source-airtable": "^2.1.1",
     "gatsby-source-filesystem": "^3.1.0",
-    "gatsby-transformer-remark": "^3.1.0",
+    "gatsby-transformer-remark": "^5.25.1",
     "gatsby-transformer-sharp": "^3.1.0",
     "lodash.get": "^4.4.2",
     "preact": "^10.5.13",
