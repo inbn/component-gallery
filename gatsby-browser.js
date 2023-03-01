@@ -15,12 +15,12 @@ import { GatsbyAdapter } from './src/utils/adaptor';
 
 require('./src/css/prism-theme.css');
 
-export const wrapPageElement = ({ element }) => (
+export const wrapPageElement = ({ element, props }) => (
   <QueryParamProvider
     adapter={GatsbyAdapter}
     options={{ enableBatching: true }}
   >
-    {element}
+    <App {...props}>{element}</App>
   </QueryParamProvider>
 );
 

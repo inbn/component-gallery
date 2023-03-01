@@ -28,7 +28,7 @@ export const ThemeProvider = ({ children }) => {
 
     return {
       colorMode,
-      setColorMode
+      setColorMode,
     };
   }, [colorMode, rawSetColorMode]);
 

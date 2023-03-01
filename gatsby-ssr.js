@@ -54,11 +54,11 @@ export const onRenderBody = ({ setPreBodyComponents }) => {
   setPreBodyComponents(<ThemeHydrationScriptTag />);
 };
 
-export const wrapPageElement = ({ element }) => (
+export const wrapPageElement = ({ element, props }) => (
   <QueryParamProvider
     adapter={GatsbyAdapter}
     options={{ enableBatching: true }}
   >
-    {element}
+    <App {...props}>{element}</App>
   </QueryParamProvider>
 );
