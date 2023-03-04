@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import classNames from 'classnames';
 import { useMediaQuery } from 'beautiful-react-hooks';
 import { graphql } from 'gatsby';
 import { useQueryParam, ArrayParam, withDefault } from 'use-query-params';
@@ -8,6 +9,7 @@ import CheckboxButtonGroup from '../components/CheckboxButton/CheckboxButtonGrou
 import DesignSystem from '../components/DesignSystem/DesignSystem';
 import Filter from '../components/Filter/Filter';
 import Hero from '../components/Hero/Hero';
+import Icon from '../components/Icon/Icon';
 import Layout from '../components/Layout';
 import ReadMoreLink from '../components/ReadMoreLink/ReadMoreLink';
 import Select from '../components/Select/Select';
@@ -40,6 +42,7 @@ const sortingOptions = [
 const DesignSystemsIndexPage = ({ data }) => {
   const allTechnologies = data.technologies.edges;
   const allFeatures = data.features.edges;
+  const allPlatforms = ['GitHub', 'Storybook', 'Figma'];
   const [designSystems, setDesignSystems] = useState(data.designSystems.edges);
   const [sortOrder, setSortOrder] = useState(sortingOptions[0]);
   const [selectedTechnologies, setSelectedTechnologies] = useQueryParam(
@@ -48,6 +51,10 @@ const DesignSystemsIndexPage = ({ data }) => {
   );
   const [selectedFeatures, setSelectedFeatures] = useQueryParam(
     'features',
+    withDefault(ArrayParam, [])
+  );
+  const [selectedPlatforms, setSelectedPlatforms] = useQueryParam(
+    'platforms',
     withDefault(ArrayParam, [])
   );
   const { isClient, key } = useIsClient();
@@ -73,9 +80,22 @@ const DesignSystemsIndexPage = ({ data }) => {
     setSelectedFeatures(newSelection);
   };
 
+  const handlePlatformSelect = (platform) => {
+    const isSelected = selectedPlatforms.includes(platform);
+    // If the option has already been selected, we remove it from the array.
+    // Otherwise, we add it.
+    const newSelection = isSelected
+      ? selectedPlatforms.filter(
+          (currentPlatform) => currentPlatform !== platform
+        )
+      : [...selectedPlatforms, platform];
+    setSelectedPlatforms(newSelection);
+  };
+
   const handleClearFilters = () => {
     setSelectedTechnologies([]);
     setSelectedFeatures([]);
+    setSelectedPlatforms([]);
   };
 
   // Use effect sortOrder
@@ -90,17 +110,32 @@ const DesignSystemsIndexPage = ({ data }) => {
   useEffect(() => {
     let filteredDesignSystems = data.designSystems.edges;
 
-    if (selectedTechnologies.length > 0 || selectedFeatures.length > 0) {
+    if (
+      selectedTechnologies.length > 0 ||
+      selectedFeatures.length > 0 ||
+      selectedPlatforms.length > 0
+    ) {
       // Loop through all design systems
       filteredDesignSystems = data.designSystems.edges.reduce(
-        (accumulator, currentValue) => {
+        (accumulator, currentDesignSystem) => {
           if (
-            currentValue.node.data.technologies ||
-            currentValue.node.data.features
+            currentDesignSystem.node.data.technologies ||
+            currentDesignSystem.node.data.features ||
+            currentDesignSystem.node.data.figmaUrl ||
+            currentDesignSystem.node.data.storybookUrl ||
+            currentDesignSystem.node.data.githubUrl
           ) {
             const designSystemTechnologies =
-              currentValue.node.data.technologies || [];
-            const designSystemFeatures = currentValue.node.data.features || [];
+              currentDesignSystem.node.data.technologies || [];
+            const designSystemFeatures =
+              currentDesignSystem.node.data.features || [];
+            const designSystemPlatforms = [
+              ...(currentDesignSystem.node.data.figmaUrl ? ['Figma'] : []),
+              ...(currentDesignSystem.node.data.storybookUrl
+                ? ['Storybook']
+                : []),
+              ...(currentDesignSystem.node.data.githubUrl ? ['GitHub'] : []),
+            ];
 
             // Get an array of all technologies which match the current selection
             const sharedTechnologies = designSystemTechnologies.filter(
@@ -114,12 +149,18 @@ const DesignSystemsIndexPage = ({ data }) => {
                 selectedFeatures.includes(designSystemFeature)
             );
 
+            const sharedPlatforms = designSystemPlatforms.filter(
+              (designSystemPlatform) =>
+                selectedPlatforms.includes(designSystemPlatform)
+            );
+
             // Only include in filteredDesignSystems if it matches all criteria
             if (
               sharedTechnologies.length === selectedTechnologies.length &&
-              sharedFeatures.length === selectedFeatures.length
+              sharedFeatures.length === selectedFeatures.length &&
+              sharedPlatforms.length === selectedPlatforms.length
             ) {
-              return [...accumulator, currentValue];
+              return [...accumulator, currentDesignSystem];
             }
           }
 
@@ -133,15 +174,44 @@ const DesignSystemsIndexPage = ({ data }) => {
       // .sort() mutates the array - use spread to create a new one
       sortItems([...filteredDesignSystems], sortOrder)
     );
-  }, [selectedFeatures, selectedTechnologies]);
+  }, [selectedFeatures, selectedTechnologies, selectedPlatforms]);
 
   return (
     <Layout heroComponent={<Hero title="Design systems" />} isArticle={false}>
       <SEO title="Design systems" />
-      <div className="control-bar flex items-center border-b py-2 px-6 min-h-12 bg-grey-200 dark:bg-grey-800">
+      <div className="control-bar flex items-center gap-3 border-b py-2 px-6 min-h-12 bg-grey-200 dark:bg-grey-800">
         {isClient &&
           (isLarge ? (
             <>
+              <p className="text-grey-800 dark:text-grey-200 font-sans font-bold md:text-sm">
+                Filter
+              </p>
+              <div>
+                <ul className="flex gap-2 mt-0 self-start">
+                  {allPlatforms.map((platform) => (
+                    <button
+                      type="button"
+                      key={platform}
+                      className={classNames({
+                        'block border text-black dark:text-white rounded-full p-2 z-10 bg-transparent hover:bg-grey-400 dark:hover:bg-grey-700 transition-colors duration-200': true,
+                        'bg-grey-700 text-white':
+                          selectedPlatforms.includes(platform),
+                      })}
+                      onClick={() => handlePlatformSelect(platform)}
+                      aria-pressed={
+                        selectedPlatforms.includes(platform) ? 'true' : 'false'
+                      }
+                    >
+                      <span className="sr-only">{platform}</span>
+                      <Icon
+                        name={platform.toLowerCase()}
+                        className="w-5 h-5"
+                        aria-hidden="true"
+                      />
+                    </button>
+                  ))}
+                </ul>
+              </div>
               <Filter label="Technology">
                 <CheckboxButtonGroup
                   name="tech"
@@ -158,8 +228,10 @@ const DesignSystemsIndexPage = ({ data }) => {
                   onChange={handleFeatureSelect}
                 />
               </Filter>
+
               {(selectedTechnologies.length > 0 ||
-                selectedFeatures.length > 0) && (
+                selectedFeatures.length > 0 ||
+                selectedPlatforms.length > 0) && (
                 <button
                   type="button"
                   className="font-sans font-bold text-sm border border-black dark:border-white rounded-full px-2"

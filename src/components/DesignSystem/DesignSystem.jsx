@@ -63,7 +63,7 @@ const DesignSystem = ({
                   href={link.url}
                   target="blank"
                   rel="noopener noreferrer"
-                  className="block border border-black dark:border-grey-300 text-black dark:text-white rounded-full p-2 z-10 bg-transparent hover:bg-grey-400 dark:hover:bg-grey-700 transition-colors duration-200"
+                  className="block border dark:border-grey-300 text-black dark:text-white rounded-full p-2 z-10 bg-transparent hover:bg-grey-400 dark:hover:bg-grey-700 transition-colors duration-200"
                 >
                   <span className="sr-only">
                     {name} on {link.platform}
