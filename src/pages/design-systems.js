@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import classNames from 'classnames';
 import { useMediaQuery } from 'beautiful-react-hooks';
 import { graphql } from 'gatsby';
 import { useQueryParam, ArrayParam, withDefault } from 'use-query-params';
@@ -9,7 +8,6 @@ import CheckboxButtonGroup from '../components/CheckboxButton/CheckboxButtonGrou
 import DesignSystem from '../components/DesignSystem/DesignSystem';
 import Filter from '../components/Filter/Filter';
 import Hero from '../components/Hero/Hero';
-import Icon from '../components/Icon/Icon';
 import Layout from '../components/Layout';
 import PlatformFilter from '../components/PlatformFilter/PlatformFilter';
 import ReadMoreLink from '../components/ReadMoreLink/ReadMoreLink';
@@ -59,7 +57,7 @@ const DesignSystemsIndexPage = ({ data }) => {
     withDefault(ArrayParam, [])
   );
   const { isClient, key } = useIsClient();
-  const isLarge = useMediaQuery('(min-width: 768px)');
+  const isLarge = useMediaQuery('(min-width: 800px)');
 
   const handleTechnologySelect = (technology) => {
     const isSelected = selectedTechnologies.includes(technology);
@@ -240,6 +238,16 @@ const DesignSystemsIndexPage = ({ data }) => {
           ) : (
             <Accordion title="Filter and sort">
               <div className="py-2 flex flex-col">
+                <h3 className="text-base font-bold py-2 text-grey-800 dark:text-grey-200">
+                  Platform links
+                </h3>
+                <PlatformFilter
+                  allPlatforms={allPlatforms}
+                  selectedPlatforms={selectedPlatforms}
+                  onClick={(event) =>
+                    handlePlatformSelect(event.currentTarget.value)
+                  }
+                />
                 <h3 className="text-base font-bold py-2 text-grey-800 dark:text-grey-200">
                   Technology
                 </h3>
