@@ -11,6 +11,7 @@ import Filter from '../components/Filter/Filter';
 import Hero from '../components/Hero/Hero';
 import Icon from '../components/Icon/Icon';
 import Layout from '../components/Layout';
+import PlatformFilter from '../components/PlatformFilter/PlatformFilter';
 import ReadMoreLink from '../components/ReadMoreLink/ReadMoreLink';
 import Select from '../components/Select/Select';
 import SEO from '../components/SEO';
@@ -187,30 +188,13 @@ const DesignSystemsIndexPage = ({ data }) => {
                 Filter
               </p>
               <div>
-                <ul className="flex gap-2 mt-0 self-start">
-                  {allPlatforms.map((platform) => (
-                    <button
-                      type="button"
-                      key={platform}
-                      className={classNames({
-                        'block border text-black dark:text-white rounded-full p-2 z-10 bg-transparent hover:bg-grey-400 dark:hover:bg-grey-700 transition-colors duration-200': true,
-                        'bg-grey-700 text-white':
-                          selectedPlatforms.includes(platform),
-                      })}
-                      onClick={() => handlePlatformSelect(platform)}
-                      aria-pressed={
-                        selectedPlatforms.includes(platform) ? 'true' : 'false'
-                      }
-                    >
-                      <span className="sr-only">{platform}</span>
-                      <Icon
-                        name={platform.toLowerCase()}
-                        className="w-5 h-5"
-                        aria-hidden="true"
-                      />
-                    </button>
-                  ))}
-                </ul>
+                <PlatformFilter
+                  allPlatforms={allPlatforms}
+                  selectedPlatforms={selectedPlatforms}
+                  onClick={(event) =>
+                    handlePlatformSelect(event.currentTarget.value)
+                  }
+                />
               </div>
               <Filter label="Technology">
                 <CheckboxButtonGroup
