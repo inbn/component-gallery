@@ -6,10 +6,13 @@
 
 import React from 'react';
 import Terser from 'terser';
+import { QueryParamProvider } from 'use-query-params';
 
 import { COLOR_MODE_KEY, INITIAL_COLOR_MODE_CSS_PROP } from './src/constants';
 
 import App from './src/components/App';
+
+import { GatsbyAdapter } from './src/utils/adaptor';
 
 function setColorsByTheme() {
   const colorModeKey = '🔑';
@@ -39,7 +42,7 @@ const ThemeHydrationScriptTag = () => {
     .replace('🔑', COLOR_MODE_KEY)
     .replace('⚡️', INITIAL_COLOR_MODE_CSS_PROP);
 
-  let calledFunction = `(${boundFn})()`;
+  const calledFunction = `(${boundFn})()`;
 
   // calledFunction = Terser.minify(calledFunction).code;
 
@@ -51,6 +54,11 @@ export const onRenderBody = ({ setPreBodyComponents }) => {
   setPreBodyComponents(<ThemeHydrationScriptTag />);
 };
 
-export const wrapPageElement = ({ element }) => {
-  return <App>{element}</App>;
-};
+export const wrapPageElement = ({ element, props }) => (
+  <QueryParamProvider
+    adapter={GatsbyAdapter}
+    options={{ enableBatching: true }}
+  >
+    <App {...props}>{element}</App>
+  </QueryParamProvider>
+);

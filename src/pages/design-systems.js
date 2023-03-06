@@ -9,6 +9,7 @@ import DesignSystem from '../components/DesignSystem/DesignSystem';
 import Filter from '../components/Filter/Filter';
 import Hero from '../components/Hero/Hero';
 import Layout from '../components/Layout';
+import PlatformFilter from '../components/PlatformFilter/PlatformFilter';
 import ReadMoreLink from '../components/ReadMoreLink/ReadMoreLink';
 import Select from '../components/Select/Select';
 import SEO from '../components/SEO';
@@ -40,6 +41,7 @@ const sortingOptions = [
 const DesignSystemsIndexPage = ({ data }) => {
   const allTechnologies = data.technologies.edges;
   const allFeatures = data.features.edges;
+  const allPlatforms = ['GitHub', 'Storybook', 'Figma'];
   const [designSystems, setDesignSystems] = useState(data.designSystems.edges);
   const [sortOrder, setSortOrder] = useState(sortingOptions[0]);
   const [selectedTechnologies, setSelectedTechnologies] = useQueryParam(
@@ -50,8 +52,12 @@ const DesignSystemsIndexPage = ({ data }) => {
     'features',
     withDefault(ArrayParam, [])
   );
+  const [selectedPlatforms, setSelectedPlatforms] = useQueryParam(
+    'platforms',
+    withDefault(ArrayParam, [])
+  );
   const { isClient, key } = useIsClient();
-  const isLarge = useMediaQuery('(min-width: 768px)');
+  const isLarge = useMediaQuery('(min-width: 800px)');
 
   const handleTechnologySelect = (technology) => {
     const isSelected = selectedTechnologies.includes(technology);
@@ -73,9 +79,22 @@ const DesignSystemsIndexPage = ({ data }) => {
     setSelectedFeatures(newSelection);
   };
 
+  const handlePlatformSelect = (platform) => {
+    const isSelected = selectedPlatforms.includes(platform);
+    // If the option has already been selected, we remove it from the array.
+    // Otherwise, we add it.
+    const newSelection = isSelected
+      ? selectedPlatforms.filter(
+          (currentPlatform) => currentPlatform !== platform
+        )
+      : [...selectedPlatforms, platform];
+    setSelectedPlatforms(newSelection);
+  };
+
   const handleClearFilters = () => {
     setSelectedTechnologies([]);
     setSelectedFeatures([]);
+    setSelectedPlatforms([]);
   };
 
   // Use effect sortOrder
@@ -90,17 +109,32 @@ const DesignSystemsIndexPage = ({ data }) => {
   useEffect(() => {
     let filteredDesignSystems = data.designSystems.edges;
 
-    if (selectedTechnologies.length > 0 || selectedFeatures.length > 0) {
+    if (
+      selectedTechnologies.length > 0 ||
+      selectedFeatures.length > 0 ||
+      selectedPlatforms.length > 0
+    ) {
       // Loop through all design systems
       filteredDesignSystems = data.designSystems.edges.reduce(
-        (accumulator, currentValue) => {
+        (accumulator, currentDesignSystem) => {
           if (
-            currentValue.node.data.technologies ||
-            currentValue.node.data.features
+            currentDesignSystem.node.data.technologies ||
+            currentDesignSystem.node.data.features ||
+            currentDesignSystem.node.data.figmaUrl ||
+            currentDesignSystem.node.data.storybookUrl ||
+            currentDesignSystem.node.data.githubUrl
           ) {
             const designSystemTechnologies =
-              currentValue.node.data.technologies || [];
-            const designSystemFeatures = currentValue.node.data.features || [];
+              currentDesignSystem.node.data.technologies || [];
+            const designSystemFeatures =
+              currentDesignSystem.node.data.features || [];
+            const designSystemPlatforms = [
+              ...(currentDesignSystem.node.data.figmaUrl ? ['Figma'] : []),
+              ...(currentDesignSystem.node.data.storybookUrl
+                ? ['Storybook']
+                : []),
+              ...(currentDesignSystem.node.data.githubUrl ? ['GitHub'] : []),
+            ];
 
             // Get an array of all technologies which match the current selection
             const sharedTechnologies = designSystemTechnologies.filter(
@@ -114,12 +148,18 @@ const DesignSystemsIndexPage = ({ data }) => {
                 selectedFeatures.includes(designSystemFeature)
             );
 
+            const sharedPlatforms = designSystemPlatforms.filter(
+              (designSystemPlatform) =>
+                selectedPlatforms.includes(designSystemPlatform)
+            );
+
             // Only include in filteredDesignSystems if it matches all criteria
             if (
               sharedTechnologies.length === selectedTechnologies.length &&
-              sharedFeatures.length === selectedFeatures.length
+              sharedFeatures.length === selectedFeatures.length &&
+              sharedPlatforms.length === selectedPlatforms.length
             ) {
-              return [...accumulator, currentValue];
+              return [...accumulator, currentDesignSystem];
             }
           }
 
@@ -133,15 +173,27 @@ const DesignSystemsIndexPage = ({ data }) => {
       // .sort() mutates the array - use spread to create a new one
       sortItems([...filteredDesignSystems], sortOrder)
     );
-  }, [selectedFeatures, selectedTechnologies]);
+  }, [selectedFeatures, selectedTechnologies, selectedPlatforms]);
 
   return (
     <Layout heroComponent={<Hero title="Design systems" />} isArticle={false}>
       <SEO title="Design systems" />
-      <div className="control-bar flex items-center border-b py-2 px-6 min-h-12 bg-grey-200 dark:bg-grey-800">
+      <div className="control-bar flex items-center gap-3 border-b py-2 px-6 min-h-12 bg-grey-200 dark:bg-grey-800">
         {isClient &&
           (isLarge ? (
             <>
+              <p className="text-grey-800 dark:text-grey-200 font-sans font-bold md:text-sm">
+                Filter
+              </p>
+              <div>
+                <PlatformFilter
+                  allPlatforms={allPlatforms}
+                  selectedPlatforms={selectedPlatforms}
+                  onClick={(event) =>
+                    handlePlatformSelect(event.currentTarget.value)
+                  }
+                />
+              </div>
               <Filter label="Technology">
                 <CheckboxButtonGroup
                   name="tech"
@@ -158,8 +210,10 @@ const DesignSystemsIndexPage = ({ data }) => {
                   onChange={handleFeatureSelect}
                 />
               </Filter>
+
               {(selectedTechnologies.length > 0 ||
-                selectedFeatures.length > 0) && (
+                selectedFeatures.length > 0 ||
+                selectedPlatforms.length > 0) && (
                 <button
                   type="button"
                   className="font-sans font-bold text-sm border border-black dark:border-white rounded-full px-2"
@@ -184,6 +238,16 @@ const DesignSystemsIndexPage = ({ data }) => {
           ) : (
             <Accordion title="Filter and sort">
               <div className="py-2 flex flex-col">
+                <h3 className="text-base font-bold py-2 text-grey-800 dark:text-grey-200">
+                  Platform links
+                </h3>
+                <PlatformFilter
+                  allPlatforms={allPlatforms}
+                  selectedPlatforms={selectedPlatforms}
+                  onClick={(event) =>
+                    handlePlatformSelect(event.currentTarget.value)
+                  }
+                />
                 <h3 className="text-base font-bold py-2 text-grey-800 dark:text-grey-200">
                   Technology
                 </h3>
@@ -236,6 +300,9 @@ const DesignSystemsIndexPage = ({ data }) => {
                     features,
                     technologies,
                     color,
+                    githubUrl,
+                    storybookUrl,
+                    figmaUrl,
                   },
                   id,
                 },
@@ -256,6 +323,32 @@ const DesignSystemsIndexPage = ({ data }) => {
                 features={features}
                 technologies={technologies}
                 color={color}
+                links={[
+                  ...(figmaUrl
+                    ? [
+                        {
+                          url: figmaUrl,
+                          platform: 'figma',
+                        },
+                      ]
+                    : []),
+                  ...(githubUrl
+                    ? [
+                        {
+                          url: githubUrl,
+                          platform: 'github',
+                        },
+                      ]
+                    : []),
+                  ...(storybookUrl
+                    ? [
+                        {
+                          url: storybookUrl,
+                          platform: 'storybook',
+                        },
+                      ]
+                    : []),
+                ]}
               />
             )
           )}
@@ -304,6 +397,9 @@ export const query = graphql`
               }
             }
             features: Features_lookup
+            figmaUrl: Figma_URL
+            storybookUrl: Storybook_URL
+            githubUrl: GitHub_URL
             technologies: Tech_lookup
             color: Colour_hex
             Component_examples_count

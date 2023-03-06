@@ -229,10 +229,9 @@ module.exports = {
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-preload-fonts`,
     `gatsby-plugin-netlify`,
-    `gatsby-plugin-netlify-cache`,
     `gatsby-plugin-preact`,
     {
-      resolve: `gatsby-plugin-svg-sprite-loader`,
+      resolve: `gatsby-plugin-svg-sprites`,
       options: {
         /* SVG sprite loader options */
         extract: true,

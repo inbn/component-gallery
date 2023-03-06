@@ -3,6 +3,7 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import PropTypes from 'prop-types';
 
 import Badge from '../Badge/Badge';
+import Icon from '../Icon/Icon';
 
 const DesignSystem = ({
   url,
@@ -15,6 +16,7 @@ const DesignSystem = ({
   color,
   cardTag,
   headingLevel,
+  links,
 }) => {
   // The element type used for these elements are dynamic
   const CardTag = cardTag;
@@ -25,12 +27,7 @@ const DesignSystem = ({
       className="card card--design-system"
       style={{ '--shadow-color': color }}
     >
-      <a
-        href={url}
-        target="blank"
-        rel="noopener noreferrer"
-        className="card__inner p-6 h-full flex flex-col"
-      >
+      <div className="card__inner p-6 h-full flex flex-col">
         {image && (
           <GatsbyImage
             image={image.childImageSharp?.gatsbyImageData}
@@ -40,12 +37,47 @@ const DesignSystem = ({
             alt=""
           />
         )}
-        <HeadingTag className="h3 mt-0 pt-6 pb-1 font-bold">{name}</HeadingTag>
-        {organisation && (
-          <p className="italic leading-tight mt-0 pb-2 text-grey-700 dark:text-grey-500">
-            {organisation}
-          </p>
-        )}
+        <div className="flex gap-2 justify-between pt-4">
+          <div>
+            <HeadingTag className="h3 mt-0 pb-1 font-bold">
+              <a
+                href={url}
+                target="blank"
+                rel="noopener noreferrer"
+                className="card__title-link"
+              >
+                {name}
+              </a>
+            </HeadingTag>
+            {organisation && (
+              <p className="italic leading-tight mt-0 pb-1 text-grey-700 dark:text-grey-500">
+                {organisation}
+              </p>
+            )}
+          </div>
+          {links && links.length > 0 && (
+            <ul className="flex gap-2 mt-0 self-start">
+              {links.map((link) => (
+                <a
+                  key={link.url}
+                  href={link.url}
+                  target="blank"
+                  rel="noopener noreferrer"
+                  className="block border dark:border-grey-300 text-black dark:text-white rounded-full p-2 z-10 bg-transparent hover:bg-grey-400 dark:hover:bg-grey-700 transition-colors duration-200"
+                >
+                  <span className="sr-only">
+                    {name} on {link.platform}
+                  </span>
+                  <Icon
+                    name={link.platform}
+                    className="w-5 h-5"
+                    aria-hidden="true"
+                  />
+                </a>
+              ))}
+            </ul>
+          )}
+        </div>
         {((features && features.length > 0) ||
           (technologies && technologies.length)) && (
           <div className="mt-auto">
@@ -80,7 +112,7 @@ const DesignSystem = ({
             )}
           </div>
         )}
-      </a>
+      </div>
     </CardTag>
   );
 };
@@ -96,6 +128,12 @@ DesignSystem.propTypes = {
   color: PropTypes.string,
   cardTag: PropTypes.string,
   headingLevel: PropTypes.string,
+  links: PropTypes.arrayOf(
+    PropTypes.shape({
+      platform: PropTypes.string,
+      url: PropTypes.string,
+    })
+  ),
 };
 
 DesignSystem.defaultProps = {
@@ -107,6 +145,7 @@ DesignSystem.defaultProps = {
   color: '#fff',
   cardTag: 'li',
   headingLevel: 'h2',
+  links: [],
 };
 
 export default DesignSystem;

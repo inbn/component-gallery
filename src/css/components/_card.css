@@ -14,7 +14,7 @@
   /* content-visibility: auto; */
   /* contain-intrinsic-size: 20rem; */
 
-  &:hover a.card__inner {
+  &:hover .card__inner {
     background-color: var(--hover-background-color);
     border-color: theme('colors.black');
     transform: translate(-4px, -4px);
@@ -57,4 +57,13 @@
   @apply inline-block uppercase text-sm sm:text-xs font-sans font-bold tracking-wide ml-1 mr-2 text-grey-700 dark:text-grey-300;
   content: attr(aria-label);
   padding: 0.125em 0;
+}
+
+.card__title-link::after {
+  position: absolute;
+  content: '';
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }

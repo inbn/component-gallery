@@ -19,6 +19,7 @@ Default.args = {
   url: 'https://example.com',
   color: '#000',
   features: ['Feature 1', 'Feature 2'],
+  technologies: ['Tech 1', 'Tech 2'],
   organisation: 'Example Organisation',
   image: {
     childImageSharp: {
@@ -45,4 +46,10 @@ Default.args = {
       },
     },
   },
+  links: [
+    {
+      platform: 'figma',
+      url: 'https://www.figma.com/@atlassian',
+    },
+  ],
 };

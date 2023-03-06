@@ -14,7 +14,7 @@
   @apply hidden;
 
   @media (min-width: 510px) {
-    @apply block;
+    display: block;
   }
 }
 

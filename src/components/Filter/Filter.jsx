@@ -54,7 +54,7 @@ const Filter = ({ label, children }) => {
         onClick={() => setIsOpen(!isOpen)}
         aria-haspopup
         aria-expanded={isOpen}
-        className="border rounded-full px-2 mr-2 font-sans flex items-center relative font-bold md:text-sm"
+        className="border rounded-full px-2 font-sans flex items-center relative font-bold md:text-sm"
       >
         {label}
         <Icon

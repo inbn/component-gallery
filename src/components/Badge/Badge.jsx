@@ -2,7 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../Icon/Icon';
 
-const Badge = ({ text, displayIcon, tag }) => {
+const BadgeContent = ({ badgeIcon, text }) => (
+  <>
+    {badgeIcon && (
+      <Icon name={badgeIcon} className="badge__icon" aria-hidden="true" />
+    )}
+    {text}
+  </>
+);
+
+const Badge = ({ text, displayIcon, tag, linkUrl }) => {
   const Tag = tag;
   let badgeIcon;
 
@@ -34,12 +43,16 @@ const Badge = ({ text, displayIcon, tag }) => {
         badgeIcon = '';
     }
   }
+
   return (
     <Tag className="badge">
-      {badgeIcon && (
-        <Icon name={badgeIcon} className="badge__icon" aria-hidden="true" />
+      {linkUrl ? (
+        <a href={linkUrl}>
+          <BadgeContent text={text} badgeIcon={badgeIcon} />
+        </a>
+      ) : (
+        <BadgeContent text={text} badgeIcon={badgeIcon} />
       )}
-      {text}
     </Tag>
   );
 };
@@ -48,6 +61,7 @@ Badge.propTypes = {
   text: PropTypes.string.isRequired,
   displayIcon: PropTypes.bool,
   tag: PropTypes.string,
+  linkUrl: PropTypes.string,
 };
 
 Badge.defaultProps = {

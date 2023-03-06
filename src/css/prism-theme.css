@@ -147,3 +147,5 @@ code[class*='language-'] {
   content: 'css';
   @apply bg-gold-500;
 }
+
+@tailwind utilities;
