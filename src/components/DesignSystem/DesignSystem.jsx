@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import PropTypes from 'prop-types';
 
@@ -22,10 +22,24 @@ const DesignSystem = ({
   const CardTag = cardTag;
   const HeadingTag = headingLevel;
 
+  const linkRef = useRef();
+  const onCardClick = () => {
+    const noTextSelected = !window.getSelection().toString();
+
+    if (noTextSelected && linkRef.current) {
+      linkRef.current.click();
+    }
+  };
+
+  const onPlatformLinkClick = (event) => {
+    event.stopPropagation();
+  };
+
   return (
     <CardTag
-      className="card card--design-system"
+      className="card card--design-system card--link"
       style={{ '--shadow-color': color }}
+      onClick={onCardClick}
     >
       <div className="card__inner p-6 h-full flex flex-col">
         {image && (
@@ -42,9 +56,10 @@ const DesignSystem = ({
             <HeadingTag className="h3 mt-0 pb-1 font-bold">
               <a
                 href={url}
-                target="blank"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="card__title-link"
+                className="block"
+                ref={linkRef}
               >
                 {name}
               </a>
@@ -61,9 +76,10 @@ const DesignSystem = ({
                 <a
                   key={link.url}
                   href={link.url}
-                  target="blank"
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="block border dark:border-grey-300 text-black dark:text-white rounded-full p-2 z-10 bg-transparent hover:bg-grey-400 dark:hover:bg-grey-700 transition-colors duration-200"
+                  className="block border dark:border-grey-300 text-black dark:text-white rounded-full p-2 z-20 bg-transparent hover:bg-grey-400 dark:hover:bg-grey-700 transition-colors duration-200"
+                  onClick={onPlatformLinkClick}
                 >
                   <span className="sr-only">
                     {name} on {link.platform}

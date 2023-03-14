@@ -21,6 +21,10 @@
   }
 }
 
+.card--link {
+  cursor: pointer;
+}
+
 .dark .card {
   --shadow-color: theme('colors.white');
   --background-color: theme('colors.black');
@@ -59,11 +63,3 @@
   padding: 0.125em 0;
 }
 
-.card__title-link::after {
-  position: absolute;
-  content: '';
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
