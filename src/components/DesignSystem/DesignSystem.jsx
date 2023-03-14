@@ -37,7 +37,7 @@ const DesignSystem = ({
 
   return (
     <CardTag
-      className="card card--design-system"
+      className="card card--design-system card--link"
       style={{ '--shadow-color': color }}
       onClick={onCardClick}
     >
@@ -58,7 +58,7 @@ const DesignSystem = ({
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="card__title-link"
+                className="block"
                 ref={linkRef}
               >
                 {name}
