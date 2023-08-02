@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'gatsby';
-import { graphql } from 'gatsby';
+import { Link, graphql } from 'gatsby';
 import { useMediaQuery } from 'beautiful-react-hooks';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { useQueryParam, ArrayParam, withDefault } from 'use-query-params';
@@ -249,7 +248,7 @@ const ComponentTemplate = ({ data }) => {
                   </span>
                 )}
               </h2>
-              <div className="control-bar flex items-center py-2 px-6 min-h-12 bg-grey-200 dark:bg-grey-800 mt-4 border-t">
+              <div className="control-bar flex gap-3 items-center py-2 px-6 min-h-12 bg-grey-200 dark:bg-grey-800 mt-4 border-t">
                 {isClient &&
                   (isLarge ? (
                     <>
