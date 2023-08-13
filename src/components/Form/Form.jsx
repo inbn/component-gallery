@@ -129,7 +129,7 @@ const Form = () => {
         <InputText
           name="twitter"
           id="twitter"
-          label="Your twitter handle"
+          label="Your twitter handle or website (if you want me to credit you in the changelog)"
           onChange={formik.handleChange}
           value={formik.values.twitter}
           touched={formik.touched.twitter}

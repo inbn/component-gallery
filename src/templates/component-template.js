@@ -426,8 +426,8 @@ const ComponentTemplate = ({ data }) => {
                   {data.component.data.resources.map(
                     ({ data: { name, author, website, url }, id }) => (
                       <li className="card" key={id}>
-                        <Link
-                          to={url}
+                        <a
+                          href={url}
                           className="card__inner h-full block w-full p-6"
                         >
                           <div className="flex justify-between items-center">
@@ -443,7 +443,7 @@ const ComponentTemplate = ({ data }) => {
                               {website}
                             </div>
                           )}
-                        </Link>
+                        </a>
                       </li>
                     )
                   )}

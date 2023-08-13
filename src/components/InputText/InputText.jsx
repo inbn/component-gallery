@@ -16,7 +16,7 @@ const InputText = ({
   required,
 }) => (
   <div className={classNames('field-group', { error: !!errors && !!touched })}>
-    <label htmlFor={id}>
+    <label htmlFor={id} className="leading-tight">
       {label}
       {!!required && (
         <span className="font-bold">
