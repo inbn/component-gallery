@@ -5,6 +5,7 @@
 
 select {
   @apply font-sans text-grey-800 border border-grey-700 rounded-full;
+
   padding: 0.5em 2em 0.5em 0.5em;
   max-width: 100%;
   margin: 0;

@@ -47,7 +47,7 @@
 body {
   @apply dark:bg-grey-900 dark:text-grey-400;
 
-  /* color is an 8 charcter hex (rrggbbaa) with the last 2 digits representing
+  /* color is an 8 character hex (rrggbbaa) with the last 2 digits representing
   an alpha value between 0 and 100% — see https://codepen.io/chriscoyier/pen/XjbzAW */
   /* prettier-ignore */
   --shadow-block-shadow-color: theme('colors.grey.800')bf;

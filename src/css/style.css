@@ -23,7 +23,6 @@
 @import 'base/_code';
 @import 'base/_headings';
 @import 'base/_links';
-@import 'base/_lists';
 @import 'base/_vertical-rhythm';
 
 @import 'layout/_l-col';
@@ -96,5 +95,4 @@
 
 @import 'utilities/_bg-squiggle';
 @import 'utilities/_shadow-block';
-@import 'utilities/_sr-only';
 @import 'utilities/_text-direction';

@@ -25,9 +25,3 @@
     font-weight: normal;
   }
 }
-
-/* @screen md {
-  .table-of-contents {
-    @apply text-sm;
-  }
-} */
