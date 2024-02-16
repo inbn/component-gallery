@@ -81,11 +81,20 @@ const DesignSystem = ({
                   className="block border dark:border-grey-300 text-black dark:text-white rounded-full p-2 z-20 bg-transparent hover:bg-grey-400 dark:hover:bg-grey-700 transition-colors duration-200"
                   onClick={onPlatformLinkClick}
                 >
+                  {/* TODO handle other code hosting services better but for now
+                  Pajamas is literally the only Design System that uses GitLab */}
                   <span className="sr-only">
-                    {name} on {link.platform}
+                    {name} on{' '}
+                    {link.platform === 'github' && name === 'Pajamas'
+                      ? 'GitLab'
+                      : link.platform}
                   </span>
                   <Icon
-                    name={link.platform}
+                    name={
+                      link.platform === 'github' && name === 'Pajamas'
+                        ? 'gitlab'
+                        : link.platform
+                    }
                     className="w-5 h-5"
                     aria-hidden="true"
                   />

@@ -8,6 +8,7 @@ import exclamationTriangle from '../../svg/exclamation-triangle-solid.svg';
 import figma from '../../svg/figma.svg';
 import flask from '../../svg/flask-solid.svg';
 import github from '../../svg/github.svg';
+import gitlab from '../../svg/gitlab.svg';
 import moon from '../../svg/moon.svg';
 import openSource from '../../svg/open-source.svg';
 import storybook from '../../svg/storybook.svg';
@@ -24,6 +25,7 @@ const Icon = ({ name, ...rest }) => {
     figma,
     flask,
     github,
+    gitlab,
     moon,
     openSource,
     storybook,
