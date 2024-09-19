@@ -1,0 +1,9 @@
+/*====================================*\
+  UTILITIES
+  _fonts.css
+\*====================================*/
+
+/* Reduce CLS by matching fallback font letter-spacing to DM Sans’ wider characters */
+html:not([data-fonts-loaded*='DMSans-Regular']) .font-sans {
+  letter-spacing: 0.035em;
+}
