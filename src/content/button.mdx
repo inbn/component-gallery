@@ -29,7 +29,7 @@ The most important thing to note is the `type` attribute; this can be one of the
 
 - `submit`: The button submits the form data to the server.
 - `reset`: The button resets all the controls to their initial values.
-- `button`: The button has no default behaviour and does nothing when pressed; needs a JavaScript event listener attached to it to do anything.
+- `button`: The button has no default behaviour and does nothing when pressed; it needs a JavaScript event listener attached to it to do anything.
 
 Buttons of type `submit` and `reset` will do nothing if not placed within a form. If there is no type attribute specified, or the type is invalid, the button is treated as if it had `type="submit"`.
 
@@ -58,11 +58,11 @@ A far worse thing to do would be to use a non-focusable element such as a `<span
 <div class="button">I'm a button, click me</div>
 <span class="button">I'm a button, click me</span>
 
-<!-- A button with no href is not focusable -->
+<!-- A link with no href is not focusable -->
 <a class="button">I'm a button, click me</a>
 ```
 
-> It’s worth noting that although it is possible to make these non-focusable elements accessible, this is only possible by fully replicating the functionality of the native `<button>` element. This involves using attributes such as `tabindex="0"` (to make the element focusable); ARIA to communicate semantics to assistive technology; and JavaScript event listeners to add keyboard, touch and mouse interactivity. This is a lot of extra work considering the native button element gives you all this behaviour for free.
+> Although it is possible to make these non-focusable elements accessible, this is only possible by fully replicating the functionality of the native `<button>` element. This involves using attributes such as `tabindex="0"` (to make the element focusable); ARIA to communicate semantics to assistive technology; and JavaScript event listeners to add keyboard, touch and mouse interactivity. This is a lot of extra work considering the native button element gives you all this behaviour for free.
 
 In Summary:
 
@@ -75,12 +75,12 @@ In Summary:
 As well as using the correct element, it's important to make your buttons look and behave like the correct element. As already mentioned, users have certain expectations around how to interact with an element based on its appearance (known as [affordances](https://www.interaction-design.org/literature/topics/affordances)). Here are some techniques you can use to make buttons more obvious to users:[^4]
 
 - Dynamically size the button to fit the text in it
-- Keep the text centre-aligned on a single line
-- Ensure the button has distinct styles for disabled, hover, focused, active/pressed and default states.
+- Keep the text centre-aligned and on a single line
+- Ensure the button has distinct styles for disabled, hover, focused, active/pressed, and default states.
 - Unless it appears inside a [button group](/components/button-group) with other options, use whitespace around the button to distance it from other content.
 - Make the button big enough so users of touch devices can comfortably use it (a minimum of 10mm in both dimensions)
 
-If it fits within the design of your website, you could also try:
+If it fits within the design of your website, you could also try the following:
 
 - Give your buttons rounded corners
 - Use subtle box-shadows to raise the button above the rest of the page
