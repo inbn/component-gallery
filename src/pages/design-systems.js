@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'beautiful-react-hooks';
 import { graphql } from 'gatsby';
 import { useQueryParam, ArrayParam, withDefault } from 'use-query-params';
+import isEqual from 'lodash.isequal';
 
 import Accordion from '../components/Accordion/Accordion';
 import CheckboxButtonGroup from '../components/CheckboxButton/CheckboxButtonGroup';
@@ -56,6 +57,10 @@ const DesignSystemsIndexPage = ({ data }) => {
     'platforms',
     withDefault(ArrayParam, [])
   );
+  const [prevSortOrder, setPrevSortOrder] = useState(sortingOptions[0]);
+  const [prevSelectedTechnologies, setPrevSelectedTechnologies] = useState([]);
+  const [prevSelectedFeatures, setPrevSelectedFeatures] = useState([]);
+  const [prevSelectedPlatforms, setPrevSelectedPlatforms] = useState([]);
   const { isClient, key } = useIsClient();
   const isLarge = useMediaQuery('(min-width: 800px)');
 
@@ -97,16 +102,22 @@ const DesignSystemsIndexPage = ({ data }) => {
     setSelectedPlatforms([]);
   };
 
-  // Use effect sortOrder
+  // Use effect sortOrder, selectedTechnologies, selectedFeatures, selectedPlatforms
   useEffect(() => {
-    setDesignSystems(
-      // .sort() mutates the array - use spread to create a new one
-      sortItems([...designSystems], sortOrder)
-    );
-  }, [sortOrder]);
+    if (
+      prevSortOrder === sortOrder &&
+      isEqual(prevSelectedTechnologies, selectedTechnologies) &&
+      isEqual(prevSelectedFeatures, selectedFeatures) &&
+      isEqual(prevSelectedPlatforms, selectedPlatforms)
+    ) {
+      return;
+    }
 
-  // Use effect selectedTechnologies selectedFeatures
-  useEffect(() => {
+    setPrevSortOrder(sortOrder);
+    setPrevSelectedTechnologies(selectedTechnologies);
+    setPrevSelectedFeatures(selectedFeatures);
+    setPrevSelectedPlatforms(selectedPlatforms);
+
     let filteredDesignSystems = data.designSystems.edges;
 
     if (
@@ -173,7 +184,17 @@ const DesignSystemsIndexPage = ({ data }) => {
       // .sort() mutates the array - use spread to create a new one
       sortItems([...filteredDesignSystems], sortOrder)
     );
-  }, [selectedFeatures, selectedTechnologies, selectedPlatforms]);
+  }, [
+    data.designSystems.edges,
+    prevSelectedFeatures,
+    prevSelectedPlatforms,
+    prevSelectedTechnologies,
+    prevSortOrder,
+    selectedFeatures,
+    selectedPlatforms,
+    selectedTechnologies,
+    sortOrder,
+  ]);
 
   return (
     <Layout heroComponent={<Hero title="Design systems" />} isArticle={false}>

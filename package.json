@@ -41,6 +41,7 @@
     "gatsby-transformer-remark": "^3.1.0",
     "gatsby-transformer-sharp": "^3.1.0",
     "lodash.get": "^4.4.2",
+    "lodash.isequal": "^4.5.0",
     "preact": "^10.5.13",
     "preact-render-to-string": "^5.1.19",
     "prismjs": "^1.23.0",
