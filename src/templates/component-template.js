@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 import { useMediaQuery } from 'beautiful-react-hooks';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { useQueryParam, ArrayParam, withDefault } from 'use-query-params';
+import isEqual from 'lodash.isequal';
 
 import Accordion from '../components/Accordion/Accordion';
 import CheckboxButtonGroup from '../components/CheckboxButton/CheckboxButtonGroup';
@@ -49,6 +50,9 @@ const ComponentTemplate = ({ data }) => {
     'features',
     withDefault(ArrayParam, [])
   );
+  const [prevSortOrder, setPrevSortOrder] = useState([]);
+  const [prevSelectedTechnologies, setPrevSelectedTechnologies] = useState([]);
+  const [prevSelectedFeatures, setPrevSelectedFeatures] = useState([]);
   const isLarge = useMediaQuery(
     `(min-width: ${
       data.mdx !== null && data.mdx.tableOfContents.items.length > 0 !== null
@@ -83,16 +87,20 @@ const ComponentTemplate = ({ data }) => {
     setSelectedFeatures([]);
   };
 
-  // Use effect sortOrder
+  // Use effect sortOrder, selectedTechnologies, selectedFeatures
   useEffect(() => {
-    setExamples(
-      // .sort() mutates the array - use spread to create a new one
-      sortItems([...examples], sortOrder)
-    );
-  }, [sortOrder]);
+    if (
+      prevSortOrder === sortOrder &&
+      isEqual(prevSelectedTechnologies, selectedTechnologies) &&
+      isEqual(prevSelectedFeatures, selectedFeatures)
+    ) {
+      return;
+    }
 
-  // Use effect selectedTechnologies selectedFeatures
-  useEffect(() => {
+    setPrevSortOrder(sortOrder);
+    setPrevSelectedTechnologies(selectedTechnologies);
+    setPrevSelectedFeatures(selectedFeatures);
+
     let filteredComponentExamples = data.component.data.Examples;
 
     if (selectedTechnologies.length > 0 || selectedFeatures.length > 0) {
@@ -139,7 +147,15 @@ const ComponentTemplate = ({ data }) => {
       // .sort() mutates the array - use spread to create a new one
       sortItems([...filteredComponentExamples], sortOrder)
     );
-  }, [selectedFeatures, selectedTechnologies]);
+  }, [
+    data.component.data.Examples,
+    prevSortOrder,
+    prevSelectedFeatures,
+    prevSelectedTechnologies,
+    sortOrder,
+    selectedFeatures,
+    selectedTechnologies,
+  ]);
 
   let tocItems = null;
   let readtime = null;
