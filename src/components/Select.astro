@@ -1,0 +1,52 @@
+---
+const { label, id } = Astro.props;
+---
+
+<label
+  for={id}
+  class="flex flex-col lg:flex-row gap-px p-2 pt-0 lg:pt-2 sm:gap-2 lg:gap-4 lg:items-center"
+>
+  <span
+    class="text-sm variable-font-wdth-90 leading-5 tracking-wide p-2 flex items-center w-full lg:w-auto"
+  >
+    {label}
+  </span>
+  <select
+    id={id}
+    class="h-full bg-background-primary text-sm variable-font-wdth-90"
+  >
+    <slot />
+  </select>
+</label>
+<style>
+  select {
+    @apply leading-5 py-2 pl-2 pr-6 rounded-md;
+
+    --bg-color: transparent;
+
+    letter-spacing: 0.01em;
+    font-weight: 550;
+    transition:
+      box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    -webkit-appearance: none; /* For Safari */
+    -moz-appearance: none; /* For Firefox */
+    appearance: none; /* For other browsers */
+    background: var(--bg-color)
+      url('data:image/svg+xml;utf8,<svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polyline points="1,3 5,7 9,3" fill="none" stroke="%234a4846" stroke-width="1.6" /></svg>')
+      no-repeat right 0.5rem center;
+
+    background-size: 10px 10px;
+  }
+
+  :root[class~="dark"] select {
+    background: var(--bg-color)
+      url('data:image/svg+xml;utf8,<svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polyline points="1,3 5,7 9,3" fill="none" stroke="%23ccc9c5" stroke-width="1.6" /></svg>')
+      no-repeat right 0.5rem center;
+  }
+
+  select:hover,
+  select:focus {
+    --bg-color: var(--color-bg-secondary);
+  }
+</style>

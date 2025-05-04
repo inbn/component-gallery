@@ -1,0 +1,415 @@
+---
+import { Icon } from "astro-icon/components";
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Card from "../components/Card.astro";
+import Button from "../components/Button.astro";
+import EmptyState from "../components/EmptyState.astro";
+import FilterDropdown from "../components/FilterDropdown.astro";
+import FilterCheckbox from "../components/FilterCheckbox.astro";
+import Select from "../components/Select.astro";
+import Hero from "../components/Hero.astro";
+
+import { getCollection } from "astro:content";
+
+const designSystems = await getCollection("designSystems", ({ data }) => {
+  return data["Publish"] === true;
+}).then((items) =>
+  items.sort(
+    (a, b) =>
+      new Date(b.data["Last reviewed"]) - new Date(a.data["Last reviewed"]),
+  ),
+);
+
+// Get all unique techs and features with their number of occurrences
+const techs = designSystems
+  .map((ds) => ds.data["Tech lookup"])
+  .flat()
+  .filter(Boolean)
+  .reduce((acc, tech) => {
+    acc[tech] = (acc[tech] || 0) + 1;
+    return acc;
+  }, {});
+
+const features = designSystems
+  .map((ds) => ds.data["Features lookup"])
+  .flat()
+  .filter(Boolean)
+  .reduce((acc, feature) => {
+    acc[feature] = (acc[feature] || 0) + 1;
+    return acc;
+  }, {});
+
+// Get platforms with their number of occurrences
+const platforms = designSystems.reduce((acc, ds) => {
+  if (ds.data["Figma URL"]) {
+    acc["Figma"] = (acc["Figma"] || 0) + 1;
+  }
+  if (ds.data["GitHub URL"]) {
+    acc["GitHub"] = (acc["GitHub"] || 0) + 1;
+  }
+  if (ds.data["Storybook URL"]) {
+    acc["Storybook"] = (acc["Storybook"] || 0) + 1;
+  }
+
+  return acc;
+}, {});
+---
+
+<BaseLayout title="Design Systems">
+  <Hero>
+    <span>Design&nbsp;systems, Component&nbsp;libraries, UI&nbsp;toolkits…</span
+    >
+    <Fragment slot="controls">
+      <div class="flex lg:justify-between bg-background-primary">
+        <!-- Filters -->
+        <div
+          class="flex flex-wrap flex-col w-1/2 lg:w-auto sm:flex-row sm:items-center pb-2 sm:pb-0 relative"
+        >
+          <p
+            class="text-sm variable-font-wdth-90 leading-5 tracking-wide pl-4 p-2 w-full lg:w-auto"
+          >
+            Filter:
+          </p>
+          <FilterDropdown heading="Platform" id="platform-filter">
+            {
+              Object.entries(platforms)
+                .sort(([, a], [, b]) => b - a) // Sort by occurrences in descending order
+                .map(([platform, count]) => (
+                  <FilterCheckbox filterType="platforms" filterValue={platform}>
+                    <span>
+                      {platform}{" "}
+                      <span class="text-text-secondary">({count})</span>
+                    </span>
+                  </FilterCheckbox>
+                ))
+            }
+          </FilterDropdown>
+          <FilterDropdown heading="Tech" id="tech-filter">
+            {
+              Object.entries(techs)
+                .sort(([, a], [, b]) => b - a) // Sort by occurrences in descending order
+                .map(([tech, count]) => (
+                  <FilterCheckbox filterType="tech" filterValue={tech}>
+                    <span>
+                      {tech} <span class="text-text-secondary">({count})</span>
+                    </span>
+                  </FilterCheckbox>
+                ))
+            }
+          </FilterDropdown>
+          <FilterDropdown heading="Features" id="features-filter">
+            {
+              Object.entries(features)
+                .sort(([, a], [, b]) => b - a) // Sort by occurrences in descending order
+                .map(([feature, count]) => (
+                  <FilterCheckbox filterType="features" filterValue={feature}>
+                    <span>
+                      {feature}{" "}
+                      <span class="text-text-secondary">({count})</span>
+                    </span>
+                  </FilterCheckbox>
+                ))
+            }
+          </FilterDropdown>
+          <Button
+            id="clear-filters"
+            class="absolute top-1 right-2 lg:ml-4 lg:static"
+            hidden>Clear filters</Button
+          >
+        </div>
+        <!-- Sort -->
+        <div class="w-1/2 lg:w-auto lg:flex lg:justify-end">
+          <Select label="Sort by:" id="sort-select">
+            <option value="date">Date</option>
+            <option value="name">Name</option>
+            <option value="component-count">Component count</option>
+          </Select>
+        </div>
+      </div>
+    </Fragment>
+  </Hero>
+  <ul
+    role="list"
+    class="col-span-12 grid grid-cols-subgrid gap-y-px border-fade-l"
+    id="design-systems"
+  >
+    {
+      designSystems.map((designSystem, index) => (
+        <Card
+          href={designSystem.data["URL"]}
+          title={designSystem.data["Name"]}
+          image={designSystem.data["Image"][0]}
+          tech={designSystem.data["Tech lookup"]}
+          features={designSystem.data["Features lookup"]}
+          lazyLoadImage={index > 3}
+          data-name={designSystem.data["Name"]}
+          data-tech={
+            !!designSystem.data["Tech lookup"]?.length &&
+            designSystem.data["Tech lookup"].join(",")
+          }
+          data-features={
+            !!designSystem.data["Features lookup"]?.length &&
+            designSystem.data["Features lookup"].join(",")
+          }
+          data-platforms={[
+            designSystem.data["Figma URL"] && "Figma",
+            designSystem.data["GitHub URL"] && "GitHub",
+            designSystem.data["Storybook URL"] && "Storybook",
+          ]
+            .filter(Boolean)
+            .join(",")}
+          data-component-count={designSystem.data["Component examples count"]}
+          data-date={designSystem.data["Last reviewed"]}
+        >
+          <Fragment slot="header">
+            <div class="flex shrink-0 gap-2 relative top-0.5">
+              {!!designSystem.data["Figma URL"] && (
+                <a
+                  href={designSystem.data["Figma URL"]}
+                  class="transition-colors hover:text-text-highlight "
+                >
+                  <span class="sr-only">
+                    {designSystem.data["Name"]} on Figma
+                  </span>
+                  <Icon name="figma" class="w-[0.9em] h-[0.9em]" />
+                </a>
+              )}
+              {!!designSystem.data["GitHub URL"] && (
+                <a
+                  href={designSystem.data["GitHub URL"]}
+                  class="transition-colors hover:text-text-highlight "
+                >
+                  <span class="sr-only">
+                    {designSystem.data["Name"]} on{" "}
+                    {designSystem.data["Organisation"] === "GitLab"
+                      ? "GitLab"
+                      : "GitHub"}
+                  </span>
+                  <Icon
+                    name={
+                      designSystem.data["Organisation"] === "GitLab"
+                        ? "gitlab"
+                        : "github"
+                    }
+                    class="w-[0.9em] h-[0.9em]"
+                  />
+                </a>
+              )}
+              {!!designSystem.data["Storybook URL"] && (
+                <a
+                  href={designSystem.data["Storybook URL"]}
+                  class="transition-colors hover:text-text-highlight "
+                >
+                  <span class="sr-only">
+                    {designSystem.data["Name"]} on Storybook
+                  </span>
+                  <Icon name="storybook" class="w-[0.9em] h-[0.9em]" />
+                </a>
+              )}
+            </div>
+          </Fragment>
+          <p class="variable-font-wdth-90 text-sm">
+            {designSystem.data["Organisation"]}
+          </p>
+        </Card>
+      ))
+    }
+  </ul>
+  <EmptyState class="hidden">
+    No design systems found matching your chosen filters.
+  </EmptyState>
+  <script>
+    import { transitionDOMUpdate } from "../utils/viewTransitions";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const checkboxes = document.querySelectorAll(".filter-checkbox input");
+      const designSystemsList = document.getElementById("design-systems");
+      const designSystemsItems =
+        designSystemsList.querySelectorAll(":scope > li");
+      const sortSelect = document.getElementById("sort-select");
+      const clearFiltersButton = document.getElementById("clear-filters");
+      const emptyState = document.querySelector(".empty-state");
+
+      const updateQueryString = (filters, sort) => {
+        const url = new URL(window.location);
+        url.searchParams.delete("tech");
+        url.searchParams.delete("features");
+        url.searchParams.delete("platforms");
+        url.searchParams.delete("sort");
+
+        filters.tech.forEach((filter) =>
+          url.searchParams.append("tech", filter),
+        );
+        filters.features.forEach((filter) =>
+          url.searchParams.append("features", filter),
+        );
+        filters.platforms.forEach((filter) =>
+          url.searchParams.append("platforms", filter),
+        );
+        if (sort) {
+          url.searchParams.set("sort", sort);
+        }
+
+        window.history.replaceState({}, "", url);
+      };
+
+      const applyFilters = (filters) => {
+        let count = 0;
+        designSystemsItems.forEach((item) => {
+          const itemTechs = item.getAttribute("data-tech").split(",");
+          const itemFeatures = item.getAttribute("data-features").split(",");
+          const itemPlatforms = item.getAttribute("data-platforms").split(",");
+
+          const matchesTech = filters.tech.every((filter) =>
+            itemTechs.includes(filter),
+          );
+          const matchesFeatures = filters.features.every((filter) =>
+            itemFeatures.includes(filter),
+          );
+          const matchesPlatforms = filters.platforms.every((filter) =>
+            itemPlatforms.includes(filter),
+          );
+
+          if (matchesTech && matchesFeatures && matchesPlatforms) {
+            item.style.display = "flex";
+            count++;
+          } else {
+            item.style.display = "none";
+          }
+        });
+
+        if (
+          filters.tech.length === 0 &&
+          filters.features.length === 0 &&
+          filters.platforms.length === 0
+        ) {
+          clearFiltersButton?.setAttribute("hidden", "");
+        } else {
+          clearFiltersButton?.removeAttribute("hidden");
+        }
+
+        if (count === 0) {
+          designSystemsList?.classList.add("hidden");
+          emptyState?.classList.remove("hidden");
+        } else {
+          designSystemsList?.classList.remove("hidden");
+          emptyState?.classList.add("hidden");
+        }
+      };
+
+      const applySorting = (sort: string) => {
+        const itemsArray = Array.from(designSystemsItems);
+        itemsArray.sort((a, b) => {
+          if (sort === "name") {
+            return a
+              .getAttribute("data-name")
+              .localeCompare(b.getAttribute("data-name"));
+          } else if (sort === "component-count") {
+            return (
+              b.getAttribute("data-component-count") -
+              a.getAttribute("data-component-count")
+            );
+          } else {
+            return (
+              new Date(b.getAttribute("data-date")) -
+              new Date(a.getAttribute("data-date"))
+            );
+          }
+        });
+        itemsArray.forEach((item) => designSystemsList.appendChild(item));
+      };
+
+      const loadFiltersFromQueryString = () => {
+        const url = new URL(window.location);
+        const filters = {
+          tech: url.searchParams.getAll("tech"),
+          features: url.searchParams.getAll("features"),
+          platforms: url.searchParams.getAll("platforms"),
+        };
+        const sort = url.searchParams.get("sort") || "date";
+
+        checkboxes.forEach((cb) => {
+          const filterType = cb.getAttribute("data-filter-type");
+          const filterValue = cb.getAttribute("data-filter-value");
+          cb.checked = filters[filterType].includes(filterValue);
+        });
+
+        sortSelect.value = sort;
+
+        return { filters, sort };
+      };
+
+      checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change", () => {
+          const activeFilters = {
+            tech: [],
+            features: [],
+            platforms: [],
+          };
+
+          checkboxes.forEach((cb) => {
+            if (cb.checked) {
+              const filterType = cb.getAttribute("data-filter-type");
+              const filterValue = cb.getAttribute("data-filter-value");
+              activeFilters[filterType].push(filterValue);
+            }
+          });
+
+          const sort = sortSelect.value;
+          updateQueryString(activeFilters, sort);
+          transitionDOMUpdate(() => {
+            applyFilters(activeFilters);
+            applySorting(sort);
+          });
+        });
+      });
+
+      sortSelect.addEventListener("change", () => {
+        const activeFilters = {
+          tech: [],
+          features: [],
+          platforms: [],
+        };
+
+        checkboxes.forEach((cb) => {
+          if (cb.checked) {
+            const filterType = cb.getAttribute("data-filter-type");
+            const filterValue = cb.getAttribute("data-filter-value");
+            activeFilters[filterType].push(filterValue);
+          }
+        });
+
+        const sort = sortSelect.value;
+        updateQueryString(activeFilters, sort);
+        transitionDOMUpdate(() => {
+          applySorting(sort);
+        });
+      });
+
+      clearFiltersButton.addEventListener("click", () => {
+        checkboxes.forEach((cb) => (cb.checked = false));
+        // sortSelect.value = "date";
+
+        const activeFilters = {
+          tech: [],
+          features: [],
+          platforms: [],
+        };
+        // const sort = "date";
+
+        updateQueryString(activeFilters, sort);
+        transitionDOMUpdate(() => {
+          applyFilters(activeFilters);
+        });
+        // applySorting(sort);
+      });
+
+      const { filters, sort } = loadFiltersFromQueryString();
+      transitionDOMUpdate(() => {
+        applyFilters(filters);
+        applySorting(sort);
+      });
+    });
+  </script>
+</BaseLayout>

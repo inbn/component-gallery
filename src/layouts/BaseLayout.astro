@@ -1,0 +1,128 @@
+---
+// Astro will bundle and optimize this CSS for you automatically
+// This also works for preprocessor files like .scss, .styl, etc.
+import "../styles/styles.css";
+
+import { SEO } from "astro-seo";
+
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  shareImage?: string;
+  isHome?: boolean;
+}
+
+const { title, description, shareImage } = Astro.props;
+const isProduction = import.meta.env.PROD;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="expect" href="#site-header" blocking="render" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Components" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link
+      rel="preload"
+      href="/fonts/InstrumentSerif-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/InstrumentSerif-Italic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/InstrumentSans-VariableFont_wdth,wght.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <slot name="page-meta">
+      <SEO
+        title={title
+          ? `${title} | The Component Gallery`
+          : "The Component Gallery"}
+        description={description ? description : "An up-to-date repository of interface components based on examples from the world of design systems, designed to be a reference for anyone building user interfaces."}
+        openGraph={{
+          basic: {
+            title: title,
+            type: description ? description : "",
+            image: shareImage ? shareImage : "/open-graph/default.png",
+          },
+        }}
+      />
+    </slot>
+    <script is:inline>
+      // Set theme
+      const theme = (() => {
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme") ?? "light";
+        }
+        return "system";
+      })();
+
+      if (theme === "light") {
+        document.documentElement.classList.remove("dark");
+        document.documentElement.classList.add("light");
+      } else if (theme === "dark") {
+        document.documentElement.classList.add("dark");
+        document.documentElement.classList.remove("light");
+      }
+
+      window.localStorage.setItem("theme", theme);
+
+      // Set modifier key for search
+      const modifierKey =
+        typeof navigator !== "undefined" &&
+        /Mac|iPod|iPhone|iPad/.test(navigator.platform)
+          ? "command"
+          : "control";
+
+      document.documentElement.dataset.modifierKey = modifierKey;
+    </script>
+    {
+      isProduction && (
+        <script
+          defer
+          data-domain="component.gallery"
+          src="https://plausible.io/js/script.js"
+        />
+      )
+    }
+  </head>
+  <body id="body">
+    <div class="bg-background-primary relative z-10 shadow-border">
+      <div class="flex justify-center">
+        <div
+          class="flex-grow mx-6 md:mx-12 lg:mx-18 max-w-screen-2xl grid grid-cols-12 gap-px px-[1px] py-0 bg-border-primary"
+        >
+          <Header />
+          <main
+            class="col-span-full grid grid-cols-subgrid gap-y-px border-fade-l border-fade-r bg-background-primary"
+          >
+            <slot />
+          </main>
+        </div>
+      </div>
+    </div>
+    <Footer />
+  </body>
+</html>

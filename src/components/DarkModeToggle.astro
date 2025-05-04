@@ -1,0 +1,263 @@
+<button
+  id="theme-toggle"
+  aria-haspopup="true"
+  aria-expanded="false"
+  aria-label="Set colour theme"
+  class="bg-transparent hover:bg-background-secondary duration-200 rounded-lg p-2 aria-expanded:bg-background-secondary"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.5"
+    class="size-6"
+  >
+    <path
+      class="moon"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
+    ></path>
+    <path
+      class="sun"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+    ></path>
+  </svg>
+</button>
+<div
+  id="theme-menu"
+  role="menu"
+  aria-labelledby="theme-toggle"
+  class="z-20 hidden"
+>
+  <button
+    type="button"
+    role="menuitemradio"
+    class="relative flex gap-3 px-4 py-2 w-full text-left variable-font-wdth-90 font-[550]"
+    data-theme="system"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      fill="none"
+      stroke="currentColor"
+      class="size-6"
+      ><path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.5"
+        d="M15.75 23.25h-7.5l.75-4.5h6l.75 4.5ZM6 23.25h12M.75 14.75h22.5"
+      ></path><path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.5"
+        d="M3.75.75h16.5s3 0 3 3v12s0 3-3 3H3.75s-3 0-3-3v-12s0-3 3-3Z"
+      ></path><path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.5"
+        d="M8.13 10a5.74 5.74 0 0 0 7.74 0M9 4.75v1.5M15 4.75v1.5"></path></svg
+    >
+    System</button
+  >
+  <button
+    type="button"
+    role="menuitemradio"
+    class="relative flex gap-3 px-4 py-2 w-full text-left variable-font-wdth-90 font-[550]"
+    data-theme="light"
+    ><svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      class="size-6"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path
+        d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+      ></path>
+    </svg>Light</button
+  >
+  <button
+    type="button"
+    role="menuitemradio"
+    class="relative flex gap-3 px-4 py-2 w-full text-left variable-font-wdth-90 font-[550]"
+    data-theme="dark"
+    ><svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      class="size-6"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path
+        d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
+      ></path>
+    </svg>Dark</button
+  >
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const themeToggle = document.getElementById("theme-toggle");
+    const themeMenu = document.getElementById("theme-menu");
+    const menuItems = themeMenu?.querySelectorAll(
+      "[role='menuitemradio']",
+    ) as NodeListOf<HTMLButtonElement>;
+    let currentIndex = -1;
+    const initialTheme = localStorage.getItem("theme") || "system";
+    const initiallyCheckedItem = document.querySelector(
+      `[data-theme="${initialTheme}"]`,
+    ) as HTMLButtonElement;
+    initiallyCheckedItem?.setAttribute("aria-checked", "true");
+
+    const setCheckedItem = (index: number) => {
+      menuItems.forEach((item, i) => {
+        item.setAttribute("aria-checked", i === index ? "true" : "false");
+      });
+    };
+
+    const handleToggleClick = () => {
+      const isExpanded = themeToggle?.getAttribute("aria-expanded") === "true";
+      themeToggle?.setAttribute("aria-expanded", isExpanded ? "false" : "true");
+      themeMenu?.classList.toggle("hidden", isExpanded);
+      if (!isExpanded) {
+        currentIndex = 0;
+        menuItems[0]?.focus();
+        document.addEventListener("click", handleClickOutside);
+      } else {
+        document.removeEventListener("click", handleClickOutside);
+      }
+    };
+
+    const handleMenuKeyDown = (event: KeyboardEvent) => {
+      switch (event.key) {
+        case "ArrowDown":
+          event.preventDefault();
+          currentIndex = (currentIndex + 1) % menuItems.length;
+          menuItems[currentIndex]?.focus();
+          break;
+
+        case "ArrowUp":
+          event.preventDefault();
+          currentIndex =
+            (currentIndex - 1 + menuItems.length) % menuItems.length;
+          menuItems[currentIndex]?.focus();
+          break;
+
+        case "Enter":
+        case " ":
+          event.preventDefault();
+          menuItems[currentIndex]?.click();
+          break;
+
+        case "Escape":
+          themeToggle?.setAttribute("aria-expanded", "false");
+          themeMenu?.classList.add("hidden");
+          themeToggle?.focus();
+          document.removeEventListener("click", handleClickOutside);
+          break;
+
+        default:
+          break;
+      }
+    };
+
+    const handleMenuItemClick = (event: MouseEvent) => {
+      const clickedItem = event.currentTarget as HTMLButtonElement;
+      const clickedIndex = Array.from(menuItems).indexOf(clickedItem);
+      if (clickedIndex === -1) return;
+
+      setCheckedItem(clickedIndex);
+      const theme = clickedItem.getAttribute("data-theme") as string;
+      const element = document.documentElement;
+      element.classList.remove("light", "dark");
+      if (theme === "system") {
+        localStorage.removeItem("theme");
+      } else {
+        element.classList.add(theme);
+        localStorage.setItem("theme", theme);
+      }
+      themeToggle?.setAttribute("aria-expanded", "false");
+      themeMenu?.classList.add("hidden");
+      themeToggle?.focus();
+      document.removeEventListener("click", handleClickOutside);
+    };
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        !themeMenu?.contains(event.target as Node) &&
+        !themeToggle?.contains(event.target as Node)
+      ) {
+        themeToggle?.setAttribute("aria-expanded", "false");
+        themeMenu?.classList.add("hidden");
+        document.removeEventListener("click", handleClickOutside);
+      }
+    };
+
+    themeToggle?.addEventListener("click", handleToggleClick);
+    themeMenu?.addEventListener("keydown", handleMenuKeyDown);
+    menuItems.forEach((item) =>
+      item.addEventListener("click", handleMenuItemClick),
+    );
+  });
+</script>
+<style>
+  .sun {
+    stroke: currentColor;
+  }
+  .moon {
+    stroke: transparent;
+  }
+
+  :global(.dark) .sun {
+    stroke: transparent;
+  }
+  :global(.dark) .moon {
+    stroke: currentColor;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not(.light):not(.dark) .sun {
+      stroke: transparent;
+    }
+    :root:not(.light):not(.dark) .moon {
+      stroke: currentColor;
+    }
+  }
+
+  #theme-menu {
+    position: absolute;
+    right: -1px;
+    top: 100%;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border-primary);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  #theme-menu button:hover,
+  #theme-menu button:focus-visible {
+    background: var(--color-bg-secondary);
+  }
+
+  #theme-menu button[aria-checked="true"]::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: #d95151;
+    border-radius: 50%;
+  }
+</style>

@@ -1,0 +1,117 @@
+---
+const { data } = Astro.props;
+
+function processData(data: Record<string, number>) {
+  const labels: string[] = [];
+  const values: number[] = [];
+  let otherCount = 0;
+
+  for (const [key, value] of Object.entries(data)) {
+    if (value === 1) {
+      otherCount += 1;
+    } else {
+      labels.push(key.charAt(0).toUpperCase() + key.slice(1)); // Capitalize first character
+      values.push(value);
+    }
+  }
+
+  if (otherCount > 0) {
+    labels.push("Other");
+    values.push(otherCount);
+  }
+
+  return { labels, values };
+}
+
+const chartData = processData(data);
+---
+
+<canvas
+  id="pie-chart"
+  style="width: 100%; height: 100%;"
+  data-chart={JSON.stringify(chartData)}></canvas>
+
+<script>
+  import { Chart, PieController, ArcElement, Tooltip, Legend } from "chart.js";
+
+  // Function to get the value of a CSS variable
+  function getCSSCustomPropertyValue(name: string) {
+    return getComputedStyle(document.documentElement)
+      .getPropertyValue(name)
+      .trim();
+  }
+
+  // Register required Chart.js components
+  Chart.register(PieController, ArcElement, Tooltip, Legend);
+
+  // Get the chart element and parse the data from the data-chart attribute
+  const chartElement = document.getElementById("pie-chart");
+  const chartData = JSON.parse(chartElement.dataset.chart);
+
+  // Create the chart instance
+  const chart = new Chart(chartElement, {
+    type: "pie",
+    data: {
+      labels: chartData.labels,
+      datasets: [
+        {
+          data: chartData.values,
+          backgroundColor: [
+            "#d95151",
+            "#d99551",
+            "#d9d951",
+            "#95d951",
+            "#51d951",
+            "#51d995",
+            "#51d9d9",
+            "#5195d9",
+            "#5151d9",
+            "#9551d9",
+            "#d951d9",
+            "#d95195",
+          ],
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: "right",
+          labels: {
+            color: getCSSCustomPropertyValue("--color-text-primary"),
+            font: {
+              family: "JetBrains Mono, monospace",
+              size: 14,
+            },
+          },
+        },
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              const label = context.label || "";
+              const value = context.raw || 0;
+              return `${label}: ${value}`;
+            },
+          },
+        },
+      },
+    },
+  });
+
+  // Set up a MutationObserver to listen for changes to the <html> element's class attribute
+  const observer = new MutationObserver(() => {
+    // Update the legend text color dynamically
+    chart.options.plugins.legend.labels.color = getCSSCustomPropertyValue(
+      "--color-text-primary",
+    );
+    chart.update();
+  });
+
+  // Observe the <html> element for class attribute changes
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+</script>

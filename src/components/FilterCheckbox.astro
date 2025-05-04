@@ -1,0 +1,55 @@
+---
+const { filterType, filterValue } = Astro.props;
+---
+
+<label
+  class="filter-checkbox flex items-center gap-2 text-sm variable-font-wdth-90 w-max relative"
+>
+  <input
+    type="checkbox"
+    data-filter-type={filterType}
+    data-filter-value={filterValue}
+    class="custom-checkbox"
+  />
+  <slot />
+</label>
+<style>
+  .custom-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid theme("colors.border-highlight");
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .custom-checkbox::before {
+    content: "";
+    display: block;
+    width: 18px;
+    height: 18px;
+    background-color: theme("colors.background-highlight");
+    mask: url('data:image/svg+xml;utf8,<svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polyline points="2,8 6,12 14,4" fill="none" stroke="white" stroke-width="1.6" /></svg>')
+      no-repeat center / contain;
+    -webkit-mask: url('data:image/svg+xml;utf8,<svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polyline points="2,8 6,12 14,4" fill="none" stroke="white" stroke-width="2" /></svg>')
+      no-repeat center / contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    /* TODO does this fix the rounded checkboxes in iOS? */
+    border-radius: 0;
+  }
+
+  .custom-checkbox:checked {
+    background-color: theme("colors.border-highlight");
+  }
+
+  .custom-checkbox:checked::before {
+    opacity: 1;
+  }
+</style>

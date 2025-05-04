@@ -1,0 +1,108 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import Button from "../components/Button.astro";
+import Hero from "../components/Hero.astro";
+---
+
+<BaseLayout title="Contribute">
+  <Hero>
+    <span>Contribute</span>
+  </Hero>
+
+  <div class="col-span-full grid grid-cols-subgrid">
+    <div
+      class="col-span-12 md:col-span-3 row-span-full bg-background-primary shadow-border"
+    >
+    </div>
+    <div
+      class="col-span-full md:col-span-9 bg-background-primary text-base variable-font-wdth-90 z-10 shadow-border"
+    >
+      <div
+        class="body-text body-text--constrain-width p-4 text-base variable-font-wdth-90"
+      >
+        <p>
+          If you’ve discovered a great design system that you’d like to see
+          featured or if you think a component is missing, please fill in the
+          form below.
+        </p>
+        <p>
+          I welcome GitHub issues and PRs — <a
+            href="https://github.com/inbn/component-gallery"
+            >the repo for this project</a
+          > is public.
+        </p>
+        <form
+          id="contribute-form"
+          name="Contact form"
+          method="post"
+          data-netlify="true"
+        >
+          <p>Fields marked with an asterisk (*) are required.</p>
+          <label for="name"
+            >Your name <span class="text-red" title="required">*</span></label
+          >
+          <input type="text" id="name" name="name" required />
+
+          <label for="designSystemName">Design system name</label>
+          <input type="text" id="designSystemName" name="designSystemName" />
+
+          <label for="designSystemUrl">Link to design system</label>
+          <input
+            type="url"
+            id="designSystemUrl"
+            name="designSystemUrl"
+            placeholder="https://example.com"
+          />
+
+          <label for="message"
+            >Your message <span class="text-red" title="required">*</span
+            ></label
+          >
+          <textarea id="message" name="message" required></textarea>
+
+          <Button type="submit">Submit</Button>
+        </form>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+<style>
+  label {
+    @apply leading-none;
+
+    display: block;
+
+    & + [type="text"],
+    & + [type="url"],
+    & + textarea {
+      margin-top: 0.5em;
+    }
+  }
+
+  [type="text"],
+  [type="url"] {
+    @apply border border-border-highlight bg-background-highlight;
+
+    padding: 0.25em 2em 0.25em 0.75em;
+    max-width: 100%;
+    margin: 0;
+    appearance: none;
+    width: 100%;
+  }
+
+  textarea {
+    @apply border border-border-highlight bg-background-highlight;
+
+    padding: 0.25em 2em 0.25em 0.75em;
+    max-width: 100%;
+    margin: 0;
+    appearance: none;
+    width: 100%;
+    resize: vertical;
+  }
+
+  button:not([class]) {
+    @apply self-start;
+  }
+</style>

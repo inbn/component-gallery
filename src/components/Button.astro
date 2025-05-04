@@ -1,0 +1,60 @@
+---
+const { type = "button", ...rest } = Astro.props;
+---
+
+<button type={type} {...rest}>
+  <slot />
+</button>
+<style>
+  button {
+    @apply text-sm text-grey-7 leading-6;
+
+    appearance: none;
+    background-color: #fafbfc;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    box-shadow:
+      rgba(27, 31, 35, 0.04) 0 1px 0,
+      rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    font-weight: 550;
+    font-variation-settings: "wdth" 90;
+    list-style: none;
+    padding-inline: 8px;
+    transition:
+      color 0.2s cubic-bezier(0.3, 0, 0.5, 1),
+      background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+    word-wrap: break-word;
+  }
+
+  button:hover {
+    background-color: #f3f4f6;
+    text-decoration: none;
+    transition-duration: 0.1s;
+  }
+
+  button:disabled {
+    background-color: #fafbfc;
+    border-color: rgba(27, 31, 35, 0.15);
+    color: #959da5;
+    cursor: default;
+  }
+
+  button:active {
+    background-color: #edeff2;
+    box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+    transition: none 0s;
+  }
+
+  button:before {
+    display: none;
+  }
+
+  button:-webkit-details-marker {
+    display: none;
+  }
+</style>
