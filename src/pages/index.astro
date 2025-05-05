@@ -1,0 +1,190 @@
+---
+import { parseMarkdown } from "../utils/markdown";
+
+import { Icon } from "astro-icon/components";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Card from "../components/Card.astro";
+import CTA from "../components/CTA.astro";
+import Hero from "../components/Hero.astro";
+
+import { fetchSvgMarkupForComponents } from "../utils/fetchSvgMarkup";
+
+import { getCollection } from "astro:content";
+
+const components = await getCollection("components");
+
+let recentComponents = await getCollection("components", ({ data }) => {
+  return data["Date updated"] && data["Publish"] === true;
+}).then((items) =>
+  items
+    .sort(
+      (a, b) =>
+        new Date(b.data["Date updated"]) - new Date(a.data["Date updated"]),
+    )
+    .slice(0, 8),
+);
+
+const recentComponentsWithSvgMarkup =
+  await fetchSvgMarkupForComponents(recentComponents);
+
+const designSystems = await getCollection("designSystems", ({ data }) => {
+  return data["Publish"] === true;
+}).then((items) =>
+  items.sort(
+    (a, b) =>
+      new Date(b.data["Last reviewed"]) - new Date(a.data["Last reviewed"]),
+  ),
+);
+
+const recentDesignSystems = designSystems.slice(0, 8);
+
+const componentExamplesCount = await getCollection("componentExamples").then(
+  (items) => items.length,
+);
+
+const formattedComponentExamplesCount = new Intl.NumberFormat().format(
+  componentExamplesCount,
+);
+---
+
+<BaseLayout title="">
+  <Hero isHomepage>
+    <span
+      >{components.length}&nbsp;components,<br />
+      {designSystems.length}&nbsp;design&nbsp;systems,<br />
+      {formattedComponentExamplesCount}&nbsp;examples.</span
+    >
+    <Fragment slot="controls">
+      <div class="p-[var(--grid-display-size)] pt-0 bg-background-primary">
+        <p
+          class="sm:max-w-[calc(var(--grid-display-size)*18)] text-lg lg:text-xl text-pretty variable-font-wdth-90 text-center mx-auto"
+        >
+          <em>The Component Gallery</em> is an up-to-date repository of
+          interface components based on examples from the world of <a
+            href="/design-systems"
+            class="underline decoration-[0.07em] underline-offset-[0.15em] decoration-inherit"
+            >design systems</a
+          >, designed to be a reference for anyone building user interfaces.
+        </p>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <div
+    class="col-span-full flex flex-wrap justify-between bg-background-primary border-fade-l border-fade-r p-4 shadow-border"
+  >
+    <h2 class="text-lg tracking-wide uppercase variable-font-wdth-83">
+      Components
+    </h2>
+    <CTA href="/components">View all</CTA>
+  </div>
+
+  <ul
+    role="list"
+    class="col-span-full grid grid-cols-subgrid gap-y-px border-fade-l border-fade-r"
+  >
+    {
+      recentComponentsWithSvgMarkup.map((component, index) => (
+        <Card
+          href={`/components/${component.data["Slug"]}`}
+          title={component.data["Name"]}
+          image={component.data["Image"][0]}
+          svgMarkup={component.data["svgMarkup"]}
+        >
+          {!!component.data["Other names"] && (
+            <p class="variable-font-wdth-90 text-sm mb-3 italic">
+              {component.data["Other names"]}
+            </p>
+          )}
+          <div
+            class="body-text body-text--tight variable-font-wdth-90 text-sm"
+            set:html={parseMarkdown(component.data["Description"])}
+          />
+        </Card>
+      ))
+    }
+  </ul>
+  <div
+    class="col-span-full flex flex-wrap justify-between bg-background-primary border-fade-l border-fade-r p-4 shadow-border"
+  >
+    <h2 class="text-lg tracking-wide uppercase variable-font-wdth-83">
+      Design systems
+    </h2>
+    <CTA href="/design-systems">View all</CTA>
+  </div>
+  <ul
+    role="list"
+    class="col-span-full grid grid-cols-subgrid gap-y-px border-fade-l border-fade-r"
+  >
+    {
+      recentDesignSystems.map((designSystem) => (
+        <Card
+          href={designSystem.data["URL"]}
+          title={designSystem.data["Name"]}
+          image={designSystem.data["Image"][0]}
+          tech={designSystem.data["Tech lookup"]}
+          features={designSystem.data["Features lookup"]}
+          data-name={designSystem.data["Name"]}
+          data-tech={
+            !!designSystem.data["Tech lookup"]?.length &&
+            designSystem.data["Tech lookup"].join(",")
+          }
+          data-features={
+            !!designSystem.data["Features lookup"]?.length &&
+            designSystem.data["Features lookup"].join(",")
+          }
+          data-platforms={[
+            designSystem.data["GitHub URL"] && "GitHub",
+            designSystem.data["Storybook URL"] && "Storybook",
+            designSystem.data["Figma URL"] && "Figma",
+          ]
+            .filter(Boolean)
+            .join(",")}
+          data-component-count={designSystem.data["Component examples count"]}
+          data-date={designSystem.data["Last reviewed"]}
+        >
+          <Fragment slot="header">
+            <div class="flex shrink-0 gap-2 relative top-0.5">
+              {!!designSystem.data["GitHub URL"] && (
+                <a
+                  href={designSystem.data["GitHub URL"]}
+                  class="transition-colors hover:text-text-highlight "
+                >
+                  <span class="sr-only">
+                    {designSystem.data["Name"]} on GitHub
+                  </span>
+                  <Icon name="github" class="w-[0.9em] h-[0.9em]" />
+                </a>
+              )}
+              {!!designSystem.data["Storybook URL"] && (
+                <a
+                  href={designSystem.data["Storybook URL"]}
+                  class="transition-colors hover:text-text-highlight "
+                >
+                  <span class="sr-only">
+                    {designSystem.data["Name"]} on Storybook
+                  </span>
+                  <Icon name="storybook" class="w-[0.9em] h-[0.9em]" />
+                </a>
+              )}
+              {!!designSystem.data["Figma URL"] && (
+                <a
+                  href={designSystem.data["Figma URL"]}
+                  class="transition-colors hover:text-text-highlight "
+                >
+                  <span class="sr-only">
+                    {designSystem.data["Name"]} on Figma
+                  </span>
+                  <Icon name="figma" class="w-[0.9em] h-[0.9em]" />
+                </a>
+              )}
+            </div>
+          </Fragment>
+          <p class="variable-font-wdth-90 text-sm">
+            {designSystem.data["Organisation"]}
+          </p>
+        </Card>
+      ))
+    }
+  </ul>
+</BaseLayout>

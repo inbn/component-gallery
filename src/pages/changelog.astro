@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import TOC from "../components/TOC.astro";
+
+import { getEntry } from "astro:content";
+
+const changelogPage = await getEntry("miscContent", "changelog");
+
+const content = changelogPage ?? {
+  render: async () => ({ Content: "", headings: [] }),
+};
+const { Content: MainContent, headings } = await content.render();
+const level2Headings = headings.filter((heading) => heading.depth === 2);
+---
+
+<BaseLayout title="Changelog">
+  <Hero>
+    <span>Changelog</span>
+  </Hero>
+
+  <div class="col-span-full grid grid-cols-subgrid">
+    <!-- Table of contents -->
+    <div
+      class="col-span-12 md:col-span-3 row-span-full bg-background-primary shadow-border"
+    >
+      <TOC headings={level2Headings} selector="h2[id]" />
+    </div>
+    {
+      !!MainContent && (
+        <div class="col-span-full md:col-span-9 bg-background-primary text-base variable-font-wdth-90 z-10 shadow-border">
+          <div class="body-text body-text--constrain-width p-4 text-base variable-font-wdth-90">
+            <MainContent />
+          </div>
+        </div>
+      )
+    }
+  </div>
+</BaseLayout>

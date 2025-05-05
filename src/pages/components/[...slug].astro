@@ -1,0 +1,641 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import {
+  fetchSvgMarkupForComponent,
+  fetchSvgMarkupForComponents,
+} from "../../utils/fetchSvgMarkup";
+import { parseMarkdown } from "../../utils/markdown";
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Button from "../../components/Button.astro";
+import Card from "../../components/Card.astro";
+import EmptyState from "../../components/EmptyState.astro";
+import FilterCheckbox from "../../components/FilterCheckbox.astro";
+import FilterDropdown from "../../components/FilterDropdown.astro";
+import Select from "../../components/Select.astro";
+import TOC from "../../components/TOC.astro";
+import PieChart from "../../components/PieChart.astro";
+
+// 1. Generate a new path for every collection entry
+export async function getStaticPaths() {
+  // Get all published components
+  const components = await getCollection("components", ({ data }) => {
+    return data["Publish"] === true;
+  });
+
+  return components.map((entry) => ({
+    params: { slug: entry.data["Slug"] },
+    props: { entry },
+  }));
+}
+// 2. For your template, you can get the entry directly from the prop
+const { entry } = Astro.props;
+
+const componentExampleIds = entry.data["Examples"];
+const relatedComponentIds = entry.data["Related components"];
+const resourceIds = entry.data["Resources"];
+const image = entry?.data?.Image?.[0] ?? null;
+
+const entryWithSVGMarkup = await fetchSvgMarkupForComponent(entry);
+const svgMarkup = entryWithSVGMarkup.data.svgMarkup;
+
+const componentExamples = await getCollection(
+  "componentExamples",
+  ({ id, data }) => {
+    return componentExampleIds?.includes(id) && data["Published"] == 1;
+  },
+);
+
+// Get all unique techs and features with their occurrences
+const techs = componentExamples
+  .map((ce) => ce.data["Tech lookup"])
+  .flat()
+  .filter(Boolean)
+  .reduce((acc, tech) => {
+    acc[tech] = (acc[tech] || 0) + 1;
+    return acc;
+  }, {});
+const features = componentExamples
+  .map((ce) => ce.data["Features lookup"])
+  .flat()
+  .filter(Boolean)
+  .reduce((acc, feature) => {
+    acc[feature] = (acc[feature] || 0) + 1;
+    return acc;
+  }, {});
+
+// TODO could use getEntry here but typescript needs a way of knowing it
+// exists first
+// Get markdown content
+const componentContentCollection = await getCollection(
+  "componentContent",
+  ({ id }) => {
+    return id === `${entry.data["Slug"]}.md`;
+  },
+);
+
+const content = componentContentCollection[0] ?? {
+  render: async () => ({ Content: "", headings: [] }),
+};
+let { Content: MainContent, headings } = await content.render();
+
+const relatedComponents = await getCollection("components", ({ id }) => {
+  return relatedComponentIds?.includes(id);
+});
+
+const relatedComponentsWithSvgMarkup =
+  await fetchSvgMarkupForComponents(relatedComponents);
+
+const resources = await getCollection("resources", ({ id }) => {
+  return resourceIds?.includes(id);
+});
+
+const designSystems = await getCollection("designSystems", ({ data }) => {
+  return data["Publish"] === true;
+});
+
+// Calculate the frequency of each unique name on the server (case-insensitive and camelCase-aware)
+let nameFrequency = componentExamples.reduce((acc, example) => {
+  let name = example.data["Name"]
+    .replace(/([a-z])([A-Z])/g, "$1 $2") // Insert space between camelCase words
+    .toLowerCase(); // Normalize to lowercase
+  acc[name] = (acc[name] || 0) + 1;
+  return acc;
+}, {});
+
+// Sort the names by frequency in descending order
+nameFrequency = Object.fromEntries(
+  Object.entries(nameFrequency).sort(([, a], [, b]) => b - a),
+);
+
+// Pass the data to the client-side
+const statisticsData = nameFrequency;
+
+// Build TOC
+if (componentExamples.length) {
+  headings = [
+    {
+      depth: 2,
+      slug: "examples",
+      text: "Examples",
+    },
+    ...headings,
+  ];
+}
+
+if (relatedComponentsWithSvgMarkup.length) {
+  headings = [
+    ...headings,
+    {
+      depth: 2,
+      slug: "related-components",
+      text: "Related components",
+    },
+  ];
+}
+
+if (resources.length) {
+  headings = [
+    ...headings,
+    {
+      depth: 2,
+      slug: "resources",
+      text: "Resources",
+    },
+  ];
+}
+
+if (statisticsData) {
+  headings = [
+    ...headings,
+    {
+      depth: 2,
+      slug: "name-distribution",
+      text: "Name distribution",
+    },
+  ];
+}
+---
+
+<BaseLayout
+  title={`${entry.data["Emoji"]} ${entry.data["Name"]}`}
+  description={entry.data["Description"]}
+  shareImage=`/open-graph/${entry.data["Slug"]}.png`
+>
+  <div
+    class="col-span-12 md:col-span-6 lg:col-span-8 p-[var(--grid-display-size)] flex flex-col bg-background-primary shadow-border"
+    data-pagefind-body
+  >
+    <div
+      class="flex flex-col lg:flex-row-reverse justify-between gap-4 sm:gap-6 items-start"
+    >
+      <span
+        class="inline-block px-1.5 py-1 text-sm variable-font-wdth-90 leading-none border border-dotted rounded"
+        >Component</span
+      >
+      <h1
+        class="text-[calc(var(--grid-display-size)*3)] leading-[calc(var(--grid-display-size)*3)] relative z-10 variable-font-wdth-90 font-serif"
+      >
+        {entry.data["Name"]}
+      </h1>
+    </div>
+
+    {
+      entry.data["Other names"] && (
+        <p class="mt-8 text-lg variable-font-wdth-90">
+          Also known as:{" "}
+          <span data-other-names>{entry.data["Other names"]}</span>
+        </p>
+      )
+    }
+    <div
+      class="body-text body-text--tight mt-8 text-lg variable-font-wdth-90"
+      set:html={parseMarkdown(entry.data["Description"])}
+    />
+  </div>
+
+  <div
+    class="col-span-12 md:col-span-6 lg:col-span-4 bg-white flex justify-center items-center"
+  >
+    {
+      svgMarkup ? (
+        <div
+          class="mx-auto aspect-[4/3] w-full h-full object-contain [&>*]:w-full [&>*]:h-full"
+          set:html={svgMarkup}
+        />
+      ) : image ? (
+        <Image
+          src={image.url}
+          width={512}
+          height={384}
+          class="mx-auto aspect-[4/3] w-full h-full object-contain"
+          alt=""
+        />
+      ) : null
+    }
+  </div>
+
+  <div
+    class="col-span-full grid grid-cols-subgrid gap-y-px border-fade-l border-fade-r"
+  >
+    <!-- Left col: Table of contents -->
+    <div
+      class="col-span-full md:col-span-3 row-span-full bg-background-primary shadow-border"
+    >
+      <TOC headings={headings} />
+    </div>
+    <!-- Right col: Everything else -->
+    <div class="col-span-full md:col-span-9 grid grid-cols-subgrid gap-y-px">
+      <div
+        class="col-span-full md:col-span-9 bg-background-primary border-fade-l border-fade-r md:before:hidden shadow-border"
+      >
+        <!-- Examples heading -->
+        <h2
+          id="examples"
+          class="text-lg tracking-wide uppercase variable-font-wdth-83 p-4 pb-2"
+          aria-live="polite"
+        >
+          {componentExamples.length} Examples<span
+            id="component-examples-count"
+            hidden
+          >
+            ({componentExamples.length} shown)</span
+          >
+        </h2>
+        <!-- Examples filter and sort -->
+        <div class="flex lg:justify-between">
+          <!-- Filters -->
+          <div
+            class="flex flex-wrap flex-col sm:flex-row w-1/2 lg:w-auto sm:items-center pb-2 sm:pb-0 relative"
+          >
+            <p
+              class="text-sm variable-font-wdth-90 leading-5 tracking-wide pl-4 p-2 w-full lg:w-auto"
+            >
+              Filter:
+            </p>
+            <FilterDropdown heading="Tech" id="tech-filter">
+              {
+                Object.entries(techs)
+                  .sort(([, a], [, b]) => b - a) // Sort by occurrences in descending order
+                  .map(([tech, count]) => (
+                    <FilterCheckbox filterType="tech" filterValue={tech}>
+                      <span>
+                        {tech}{" "}
+                        <span class="text-text-secondary">({count})</span>
+                      </span>
+                    </FilterCheckbox>
+                  ))
+              }
+            </FilterDropdown>
+            <FilterDropdown heading="Features" id="features-filter">
+              {
+                Object.entries(features)
+                  .sort(([, a], [, b]) => b - a) // Sort by occurrences in descending order
+                  .map(([feature, count]) => (
+                    <FilterCheckbox filterType="features" filterValue={feature}>
+                      <span>
+                        {feature}{" "}
+                        <span class="text-text-secondary">({count})</span>
+                      </span>
+                    </FilterCheckbox>
+                  ))
+              }
+            </FilterDropdown>
+            <Button
+              id="clear-filters"
+              class="absolute top-1 right-2 lg:ml-4 lg:static"
+              hidden>Clear filters</Button
+            >
+          </div>
+          <!-- Sort -->
+          <div class="lg:flex lg:justify-end w-1/2 lg:w-auto">
+            <Select label="Sort by:" id="sort-select">
+              <option value="design-system-name">Design system</option>
+              <option value="component-name">Component name</option>
+            </Select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Examples list -->
+      <ul
+        id="component-examples-list"
+        class="col-span-full md:col-span-9 grid grid-cols-subgrid gap-px border-fade-l md:before:hidden"
+      >
+        {
+          componentExamples.map((componentExample) => {
+            const designSystem = designSystems.find(
+              (ds) => ds.id === componentExample.data["Design system"][0],
+            );
+
+            if (!designSystem) {
+              return null;
+            }
+
+            return (
+              <Card
+                href={componentExample.data["URL"]}
+                title={componentExample.data["Name"]}
+                image={
+                  componentExample.data["Image"]?.length
+                    ? componentExample.data["Image"][0]
+                    : null
+                }
+                tech={componentExample.data["Tech lookup"]}
+                features={componentExample.data["Features lookup"]}
+                data-component-name={componentExample.data["Name"]}
+                data-design-system-name={designSystem?.data["Name"]}
+                data-tech={
+                  !!componentExample.data["Tech lookup"]?.length &&
+                  componentExample.data["Tech lookup"].toString()
+                }
+                data-features={
+                  !!componentExample.data["Features lookup"]?.length &&
+                  componentExample.data["Features lookup"].toString()
+                }
+                imageClasses="p-4"
+                gridClasses="col-span-full sm:col-span-6 md:col-span-3"
+                inferImageSize={true}
+              >
+                {designSystem && (
+                  <p class="variable-font-wdth-90 text-sm">
+                    {designSystem.data["Name"]}
+                  </p>
+                )}
+              </Card>
+            );
+          })
+        }
+      </ul>
+      <EmptyState class="hidden">
+        No examples found matching your chosen filters.
+      </EmptyState>
+      {
+        componentContentCollection.length > 0 && (
+          <div
+            class="col-span-full bg-background-primary shadow-border"
+            data-pagefind-body
+          >
+            <div class="body-text body-text--constrain-width p-4 text-base variable-font-wdth-90">
+              <MainContent />
+            </div>
+          </div>
+        )
+      }
+
+      {
+        relatedComponentsWithSvgMarkup.length > 0 && (
+          <>
+            <h2
+              id="related-components"
+              class="col-span-full text-lg tracking-wide uppercase variable-font-wdth-83 p-4 bg-background-primary shadow-border"
+            >
+              Related components
+            </h2>
+            <ul
+              role="list"
+              class="col-span-full md:col-span-9 grid grid-cols-subgrid gap-px border-fade-l md:before:hidden"
+              data-pagefind-body
+            >
+              {relatedComponentsWithSvgMarkup.map((component) => (
+                <Card
+                  href={`/components/${component.data["Slug"]}`}
+                  title={component.data["Name"]}
+                  image={component.data["Image"][0]}
+                  svgMarkup={component.data["svgMarkup"]}
+                  gridClasses="col-span-full sm:col-span-6 md:col-span-3"
+                >
+                  {!!component.data["Other names"] && (
+                    <p class="variable-font-wdth-90 text-sm mb-3 italic">
+                      {component.data["Other names"]}
+                    </p>
+                  )}
+                  <div
+                    class="body-text body-text--tight variable-font-wdth-90"
+                    set:html={parseMarkdown(component.data["Description"])}
+                  />
+                </Card>
+              ))}
+            </ul>
+          </>
+        )
+      }
+      {
+        resources.length > 0 && (
+          <>
+            <h2
+              id="resources"
+              class="col-span-full text-lg tracking-wide uppercase variable-font-wdth-83 p-4 bg-background-primary border-fade-l border-fade-r md:before:hidden shadow-border"
+            >
+              Resources
+            </h2>
+            <ul
+              role="list"
+              class="col-span-full md:col-span-9 grid grid-cols-subgrid gap-px border-fade-l border-fade-r md:before:hidden"
+              data-pagefind-body
+            >
+              {resources.map((resource) => (
+                <Card
+                  href={resource.data["URL"]}
+                  title={resource.data["Name"]}
+                  image={
+                    resource.data["Image"]?.length
+                      ? resource.data["Image"][0]
+                      : null
+                  }
+                  gridClasses="col-span-full sm:col-span-6 md:col-span-3"
+                >
+                  {!!resource.data["Author"] && (
+                    <p class="variable-font-wdth-90 text-sm">
+                      By {resource.data["Author"]}
+                    </p>
+                  )}
+                  {!!resource.data["Website"] && (
+                    <p class="variable-font-wdth-90 text-sm">
+                      {resource.data["Website"]}
+                    </p>
+                  )}
+                </Card>
+              ))}
+            </ul>
+          </>
+        )
+      }
+      <div class="col-span-full bg-background-primary shadow-border">
+        <h2
+          id="name-distribution"
+          class="text-lg tracking-wide uppercase variable-font-wdth-83 p-4 pb-2"
+        >
+          Name distribution
+        </h2>
+        <div class="p-4 pb-8 w-full h-72 lg:h-96 relative">
+          <PieChart data={statisticsData} />
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    import { transitionDOMUpdate } from "../../utils/viewTransitions";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const checkboxes = document.querySelectorAll(
+        ".filter-checkbox input",
+      ) as NodeListOf<HTMLInputElement>;
+      const componentExamplesCount = document.getElementById(
+        "component-examples-count",
+      );
+      const componentExamplesList = document.getElementById(
+        "component-examples-list",
+      );
+      const componentExamplesItems = componentExamplesList?.querySelectorAll(
+        ":scope > li",
+      ) as NodeListOf<HTMLLIElement>;
+      const sortSelect = document.getElementById("sort-select");
+      const clearFiltersButton = document.getElementById("clear-filters");
+      const emptyState = document.querySelector(".empty-state");
+
+      const updateQueryString = (filters, sort) => {
+        const url = new URL(window.location);
+        url.searchParams.delete("tech");
+        url.searchParams.delete("features");
+        url.searchParams.delete("sort");
+
+        filters.tech.forEach((filter) =>
+          url.searchParams.append("tech", filter),
+        );
+        filters.features.forEach((filter) =>
+          url.searchParams.append("features", filter),
+        );
+        if (sort) {
+          url.searchParams.set("sort", sort);
+        }
+
+        window.history.replaceState({}, "", url);
+      };
+
+      const applyFilters = (filters) => {
+        let count = 0;
+        componentExamplesItems?.forEach((item) => {
+          const itemTechs = item?.getAttribute("data-tech")?.split(",");
+          const itemFeatures = item?.getAttribute("data-features")?.split(",");
+
+          const matchesTech = filters.tech.every((filter) =>
+            itemTechs?.includes(filter),
+          );
+          const matchesFeatures = filters.features.every((filter) =>
+            itemFeatures.includes(filter),
+          );
+
+          if (matchesTech && matchesFeatures) {
+            item.style.display = "flex";
+            count++;
+          } else {
+            item.style.display = "none";
+          }
+        });
+
+        if (filters.tech.length === 0 && filters.features.length === 0) {
+          clearFiltersButton?.setAttribute("hidden", "");
+          componentExamplesCount?.setAttribute("hidden", "");
+        } else {
+          clearFiltersButton?.removeAttribute("hidden");
+          componentExamplesCount?.removeAttribute("hidden");
+          componentExamplesCount.textContent = ` (${count} shown)`;
+        }
+        if (count === 0) {
+          componentExamplesList?.classList.add("hidden");
+          emptyState?.classList.remove("hidden");
+        } else {
+          componentExamplesList?.classList.remove("hidden");
+          emptyState?.classList.add("hidden");
+        }
+      };
+
+      const applySorting = (sort: string) => {
+        const itemsArray = Array.from(componentExamplesItems);
+        itemsArray.sort((a, b) => {
+          if (sort === "component-name") {
+            return a
+              .getAttribute("data-component-name")
+              .localeCompare(b.getAttribute("data-component-name"));
+          }
+          if (sort === "design-system-name") {
+            return a
+              .getAttribute("data-design-system-name")
+              .localeCompare(b.getAttribute("data-design-system-name"));
+          }
+        });
+        itemsArray.forEach((item) => componentExamplesList.appendChild(item));
+      };
+
+      const loadFiltersFromQueryString = () => {
+        const url = new URL(window.location);
+        const filters = {
+          tech: url.searchParams.getAll("tech"),
+          features: url.searchParams.getAll("features"),
+        };
+        const sort = url.searchParams.get("sort") || "design-system-name";
+
+        checkboxes.forEach((cb) => {
+          const filterType = cb.getAttribute("data-filter-type");
+          const filterValue = cb.getAttribute("data-filter-value");
+          cb.checked = filters[filterType].includes(filterValue);
+        });
+
+        sortSelect.value = sort;
+
+        return { filters, sort };
+      };
+
+      checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change", () => {
+          const activeFilters = {
+            tech: [],
+            features: [],
+          };
+
+          checkboxes.forEach((cb) => {
+            if (cb.checked) {
+              const filterType = cb.getAttribute("data-filter-type");
+              const filterValue = cb.getAttribute("data-filter-value");
+              activeFilters[filterType].push(filterValue);
+            }
+          });
+
+          const sort = sortSelect.value;
+          updateQueryString(activeFilters, sort);
+          transitionDOMUpdate(() => {
+            applyFilters(activeFilters);
+            applySorting(sort);
+          });
+        });
+      });
+
+      sortSelect?.addEventListener("change", () => {
+        const activeFilters = {
+          tech: [],
+          features: [],
+        };
+
+        checkboxes.forEach((cb) => {
+          if (cb.checked) {
+            const filterType = cb.getAttribute("data-filter-type");
+            const filterValue = cb.getAttribute("data-filter-value");
+            activeFilters[filterType].push(filterValue);
+          }
+        });
+
+        const sort = sortSelect.value;
+        updateQueryString(activeFilters, sort);
+        transitionDOMUpdate(() => {
+          applySorting(sort);
+        });
+      });
+
+      clearFiltersButton.addEventListener("click", () => {
+        checkboxes.forEach((cb) => (cb.checked = false));
+        // sortSelect.value = "date";
+
+        const activeFilters = {
+          tech: [],
+          features: [],
+        };
+        // const sort = "date";
+
+        updateQueryString(activeFilters, sort);
+        transitionDOMUpdate(() => {
+          applyFilters(activeFilters);
+        });
+        // applySorting(sort);
+        componentExamplesCount?.setAttribute("hidden", "");
+      });
+
+      const { filters, sort } = loadFiltersFromQueryString();
+      transitionDOMUpdate(() => {
+        applyFilters(filters);
+        applySorting(sort);
+      });
+    });
+  </script>
+</BaseLayout>

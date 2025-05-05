@@ -1,0 +1,130 @@
+---
+import { parseMarkdown } from "../utils/markdown";
+import { fetchSvgMarkupForComponents } from "../utils/fetchSvgMarkup";
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import Badge from "../components/Badge.astro";
+import Card from "../components/Card.astro";
+import Select from "../components/Select.astro";
+
+import { getCollection } from "astro:content";
+
+const components = await getCollection("components", ({ data }) => {
+  return data["Publish"] === true;
+}).then((items) =>
+  items.sort((a, b) => a.data.Name.localeCompare(b.data.Name)),
+);
+
+const componentsWithSvgMarkup = await fetchSvgMarkupForComponents(components);
+const parsedComponents = await Promise.all(
+  componentsWithSvgMarkup.map(async (component) => ({
+    ...component,
+    data: {
+      ...component.data,
+      Description: await parseMarkdown(component.data["Description"]),
+    },
+  })),
+);
+---
+
+<BaseLayout title="Components">
+  <Hero>
+    <span>Components</span>
+    <Fragment slot="controls">
+      <div class="flex lg:justify-end bg-background-primary">
+        <Select label="Sort by:" id="sort-select">
+          <option value="name">Name</option>
+          <option value="example-count">Example count</option>
+        </Select>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <ul
+    id="components"
+    role="list"
+    class="col-span-full grid grid-cols-subgrid gap-y-px border-fade-l border-fade-r"
+  >
+    {
+      parsedComponents.map((component, index) => (
+        <Card
+          href={`/components/${component.data["Slug"]}`}
+          title={component.data["Name"]}
+          image={component.data["Image"][0]}
+          svgMarkup={component.data["svgMarkup"]}
+          headingBadge={component.data["Examples count"]}
+          data-name={component.data["Name"]}
+          data-example-count={component.data["Examples count"]}
+          lazyLoadImage={index > 3}
+        >
+          <Fragment slot="header">
+            <Badge text={component.data["Examples count"]} />
+          </Fragment>
+          {!!component.data["Other names"] && (
+            <p class="variable-font-wdth-90 text-sm mb-3 italic">
+              {component.data["Other names"]}
+            </p>
+          )}
+          <div
+            class="body-text body-text--tight variable-font-wdth-90 text-sm"
+            set:html={component.data["Description"]}
+          />
+        </Card>
+      ))
+    }
+  </ul>
+  <script>
+    import { transitionDOMUpdate } from "../utils/viewTransitions";
+    document.addEventListener("DOMContentLoaded", () => {
+      const sortSelect = document.getElementById("sort-select");
+      const componentsList = document.getElementById("components");
+
+      if (!sortSelect || !componentsList) {
+        return;
+      }
+
+      const componentsItems = componentsList.querySelectorAll(":scope > li");
+
+      const applySorting = (sort: string) => {
+        const itemsArray = Array.from(componentsItems);
+        itemsArray.sort((a, b) => {
+          if (sort === "name") {
+            return a
+              .getAttribute("data-name")
+              .localeCompare(b.getAttribute("data-name"));
+          }
+
+          if (sort === "example-count") {
+            return (
+              b.getAttribute("data-example-count") -
+              a.getAttribute("data-example-count")
+            );
+          }
+        });
+        itemsArray.forEach((item) => componentsList.appendChild(item));
+      };
+
+      const loadFiltersFromQueryString = () => {
+        const url = new URL(window.location);
+        const sort = url.searchParams.get("sort") || "name";
+
+        sortSelect.value = sort;
+
+        return { sort };
+      };
+
+      sortSelect.addEventListener("change", () => {
+        const sort = sortSelect.value;
+        transitionDOMUpdate(() => {
+          applySorting(sort);
+        });
+      });
+
+      const { sort } = loadFiltersFromQueryString();
+      transitionDOMUpdate(() => {
+        applySorting(sort);
+      });
+    });
+  </script>
+</BaseLayout>

@@ -1,0 +1,8 @@
+{
+  "site": "dist",
+  "outputDirectory": "dist",
+  "assetsDirectory": "public",
+  "bundleDirectory": "pagefind",
+  "buildScript": "build",
+  "developStrategy": "lazy"
+}

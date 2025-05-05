@@ -1,0 +1,75 @@
+---
+import DarkModeToggle from "./DarkModeToggle.astro";
+import Search from "./Search/Search.jsx";
+
+const { url } = Astro.request;
+const currentPath = new URL(url).pathname.split("/")[1];
+const HomeLinkWrapper = currentPath === "" ? "h1" : "div";
+---
+
+<header
+  id="site-header"
+  class="col-span-12 flex flex-wrap md:grid grid-cols-subgrid gap-y-px md:gap-px"
+>
+  <!-- Home link -->
+  <HomeLinkWrapper
+    class="flex-grow col-span-8 md:col-span-12 xl:col-span-4 p-4 pr-0 sm:pr-4 flex items-end bg-background-primary"
+  >
+    <a href="/" class="font-serif text-2xl leading-none" data-astro-prefetch
+      >The Component Gallery</a
+    >
+  </HomeLinkWrapper>
+  <!-- Search -->
+  <div
+    class="col-span-4 md:col-span-6 xl:col-span-4 p-2 xl:pt-6 flex justify-between items-end gap-1 bg-background-primary border-fade-l border-fade-r xl:before:hidden xl:after:hidden"
+  >
+    <div>
+      <Search client:load />
+    </div>
+    <DarkModeToggle />
+  </div>
+  <!-- Navigation -->
+  <nav
+    class="flex-grow col-span-12 md:col-span-6 xl:col-span-4 p-4 xl:pt-6 flex md:items-end md:justify-end bg-background-primary border-fade-l border-fade-r xl:before:hidden xl:after:hidden"
+  >
+    <ul class="w-full flex justify-between text-base leading-6">
+      <li>
+        <a
+          href="/components"
+          class={`uppercase tracking-wide variable-font-wdth-83 ${currentPath === "components" ? "here" : ""}`}
+          data-astro-prefetch>Components</a
+        >
+      </li>
+      <li>
+        <a
+          href="/design-systems"
+          class={`uppercase tracking-wide variable-font-wdth-83 ${currentPath === "design-systems" ? "here" : ""}`}
+          data-astro-prefetch>Design systems</a
+        >
+      </li>
+      <li>
+        <a
+          href="/about"
+          class={`uppercase tracking-wide variable-font-wdth-83 ${currentPath === "about" ? "here" : ""}`}
+          data-astro-prefetch>About</a
+        >
+      </li>
+    </ul>
+  </nav>
+</header>
+<style>
+  .here {
+    position: relative;
+  }
+  .here::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: #d95151;
+    border-radius: 50%;
+  }
+</style>

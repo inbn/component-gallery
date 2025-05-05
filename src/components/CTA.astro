@@ -1,0 +1,25 @@
+---
+const { href, ...rest } = Astro.props;
+---
+
+<a
+  href={href}
+  class="bg-background-highlight border border-border-highlight text-text-highlight hover:bg-background-highlight-invert hover:text-text-highlight-invert pl-2.5 pr-1 rounded-lg text-base variable-font-wdth-90 flex items-center gap-1 transition-colors"
+  {...rest}
+>
+  <slot />
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    class="w-[1em] h-[1em]"
+  >
+    <path
+      d="M5 12h14M12 5l7 7-7 7"
+      stroke="currentColor"
+      stroke-width="1.6"
+      stroke-linecap="round"
+      stroke-linejoin="round"></path>
+  </svg>
+</a>

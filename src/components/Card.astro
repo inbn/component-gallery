@@ -1,0 +1,216 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  title: string;
+  href: string;
+  image?: {
+    width?: number;
+    height?: number;
+    url: string;
+  };
+  headingBadge?: number;
+  tech?: string[];
+  features?: string[];
+  imageClasses?: string;
+  gridClasses?: string;
+  lazyLoadImage?: boolean;
+  svgMarkup?: string | null;
+  [key: string]: any; // Allow extra attributes
+}
+
+const {
+  href,
+  title,
+  image,
+  headingBadge,
+  tech,
+  features,
+  imageClasses,
+  gridClasses = "col-span-full sm:col-span-6 lg:col-span-4 xl:col-span-3",
+  lazyLoadImage = true,
+  inferImageSize = false,
+  svgMarkup,
+  ...rest
+} = Astro.props as Props;
+
+let imageType = "placeholder";
+
+if (svgMarkup) {
+  imageType = "svg";
+} else if (image) {
+  imageType = "astroImage";
+}
+---
+
+<li
+  class={`link-card bg-background-primary flex flex-col p-4 rounded-none hover:rounded-xl transition-all duration-200 ${gridClasses}`}
+  data-card
+  {...rest}
+>
+  {
+    imageType === "svg" && (
+      <div
+        class="[&>*]:border [&>*]:border-border-primary [&>*]:w-full [&>*]:h-auto"
+        set:html={svgMarkup}
+      />
+    )
+  }
+  {
+    imageType === "astroImage" && (
+      <div class="relative border border-border-primary bg-white aspect-4/3">
+        <Image
+          src={image.url}
+          alt=""
+          class={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-full max-h-full object-contain ${imageClasses}`}
+          loading={lazyLoadImage ? "lazy" : "eager"}
+          quality="high"
+          {...(inferImageSize
+            ? { inferSize: true }
+            : {
+                width: image.width || 512,
+                height: image.height || 384,
+              })}
+        />
+      </div>
+    )
+  }
+  {
+    imageType === "placeholder" && (
+      <svg
+        width="512"
+        height="384"
+        viewBox="0 0 512 384"
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-full h-auto aspect-4/3"
+      >
+        <rect
+          x="1"
+          y="1"
+          width="510"
+          height="382"
+          fill="none"
+          stroke="#B8B8B8"
+          stroke-width="1"
+          vector-effect="non-scaling-stroke"
+        />
+        <line
+          x1="1"
+          y1="1"
+          x2="511"
+          y2="383"
+          stroke="#B8B8B8"
+          stroke-width="1"
+          vector-effect="non-scaling-stroke"
+        />
+        <line
+          x1="511"
+          y1="1"
+          x2="1"
+          y2="383"
+          stroke="#B8B8B8"
+          stroke-width="1"
+          vector-effect="non-scaling-stroke"
+        />
+      </svg>
+    )
+  }
+
+  <div class="flex items-baseline justify-between gap-2 mt-3 mb-1 text-2xl">
+    <h2 class="font-serif"><a href={href}>{title}</a></h2>
+    <slot name="header" />
+  </div>
+
+  <slot />
+  {
+    !!tech?.length && !!features?.length && (
+      <div class="mt-auto">
+        {!!tech?.length && (
+          <>
+            <h3 class="mb-1 text-xs uppercase variable-font-wdth-90 tracking-wider mt-2 font-medium">
+              Tech
+            </h3>
+            <ul class="-mr-2 -ml-1 flex flex-wrap gap-1">
+              {tech.map((t) => (
+                <li class="inline-block px-1.5 py-1 text-sm variable-font-wdth-90 leading-none border border-dotted rounded">
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+        {!!features?.length && (
+          <>
+            <h3 class="mb-1 text-xs uppercase variable-font-wdth-90 tracking-wider mt-2 font-medium">
+              Features
+            </h3>
+            <ul class="-mr-2 -ml-1 flex flex-wrap gap-1">
+              {features.map((f) => (
+                <li class="inline-block px-1.5 py-1 text-sm variable-font-wdth-90 leading-none border border-dotted rounded">
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+      </div>
+    )
+  }
+</li>
+<style>
+  .link-card {
+    cursor: pointer;
+    transition:
+      background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      border-radius 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 0 0 0 1px theme("colors.border-primary");
+  }
+
+  .link-card:hover {
+    @apply bg-background-highlight;
+
+    box-shadow: 0 0 0 1px theme("colors.border-highlight");
+    transform: translate(4px, -4px);
+    z-index: 1;
+  }
+</style>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    let cardsArray = Array.prototype.slice.call(
+      document.querySelectorAll("[data-card]"),
+    );
+
+    if (cardsArray.length > 0) {
+      // Loop through cards adding a click event and identifying the main link
+      cardsArray.forEach(function (card, index) {
+        let mainLink = card.querySelector(":is(h1, h2, h3, h4, h5, h6) a");
+        let clickableElems = Array.prototype.slice.call(
+          card.querySelectorAll("a"),
+        );
+
+        // Allow other links/buttons in the card to still be "clickable"
+        if (clickableElems) {
+          clickableElems.forEach(function (elem) {
+            return elem.addEventListener("click", function (event) {
+              return event.stopPropagation();
+            });
+          });
+        }
+
+        card.addEventListener("click", function (ev) {
+          if (ev.redispatched || ev.target === mainLink) {
+            return;
+          }
+          let noTextSelected = !window.getSelection().toString();
+          if (noTextSelected) {
+            const ev2 = new MouseEvent("click", ev);
+            ev2.redispatched = true;
+            mainLink.dispatchEvent(ev2);
+          }
+        });
+      });
+    }
+  });
+</script>

@@ -1,0 +1,198 @@
+---
+import CardIllustration from "../images/card-3d.svg";
+import TooltipIllustration from "../images/tooltip-3d.svg";
+import AvatarIllustration from "../images/avatar-3d.svg";
+import ToggleIllustration from "../images/toggle-3d.svg";
+
+const { isHomepage } = Astro.props;
+---
+
+<div class="col-span-full border-fade-l border-fade-r shadow-border">
+  <div
+    class="p-[var(--grid-display-size)] py-[calc(var(--grid-display-size)*1.5)] min-h-[calc(var(--grid-display-size)*12)] flex flex-row justify-center items-center squared-bg fade-bg"
+  >
+    <h1
+      class="text-[calc(var(--grid-display-size)*3)] leading-[calc(var(--grid-display-size)*3)] relative z-10 variable-font-wdth-90 font-serif text-center"
+    >
+      <slot />
+    </h1>
+    {
+      !!isHomepage && (
+        <>
+          <CardIllustration class="illustration absolute h-[calc(var(--grid-display-size)*8)] w-auto top-[calc(var(--grid-display-size)*4.5)] right-[calc(var(--grid-display-size)*3)] hidden lg:block" />
+          <TooltipIllustration class="illustration absolute h-[calc(var(--grid-display-size)*4)] w-auto top-[var(--grid-display-size)] right-[var(--grid-display-size)] hidden lg:block" />
+          <AvatarIllustration class="illustration absolute h-[calc(var(--grid-display-size)*4)] w-auto top-[calc(var(--grid-display-size)*3)] left-[calc(var(--grid-display-size)*2)] hidden lg:block" />
+          <ToggleIllustration class="illustration absolute h-[calc(var(--grid-display-size)*4)] w-auto top-[calc(var(--grid-display-size)*8)] left-[calc(var(--grid-display-size)*4)] hidden lg:block" />
+        </>
+      )
+    }
+  </div>
+  <slot name="controls" />
+</div>
+
+<style>
+  .illustration {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1.6s
+      linear(
+        0,
+        0.0024,
+        0.0145,
+        0.0355,
+        0.0644,
+        0.1,
+        0.142,
+        0.189,
+        0.241,
+        0.296,
+        0.354,
+        0.414,
+        0.474,
+        0.535,
+        0.596,
+        0.656,
+        0.715,
+        0.772,
+        0.826,
+        0.878,
+        0.927,
+        0.973,
+        1.02,
+        1.05,
+        1.09,
+        1.12,
+        1.15,
+        1.17,
+        1.19,
+        1.21,
+        1.22,
+        1.23,
+        1.24,
+        1.24,
+        1.25,
+        1.24,
+        1.24,
+        1.23,
+        1.23,
+        1.22,
+        1.21,
+        1.19,
+        1.18,
+        1.17,
+        1.15,
+        1.14,
+        1.12,
+        1.11,
+        1.09,
+        1.08,
+        1.07,
+        1.05,
+        1.04,
+        1.03,
+        1.01,
+        1,
+        0.993,
+        0.984,
+        0.976,
+        0.968,
+        0.962,
+        0.956,
+        0.951,
+        0.947,
+        0.944,
+        0.942,
+        0.941,
+        0.94,
+        0.94,
+        0.94,
+        0.941,
+        0.943,
+        0.945,
+        0.947,
+        0.95,
+        0.953,
+        0.956,
+        0.96,
+        0.963,
+        0.967,
+        0.971,
+        0.974,
+        0.978,
+        0.981,
+        0.985,
+        0.988,
+        0.991,
+        0.995,
+        0.997,
+        1,
+        1,
+        1,
+        1.01,
+        1.01,
+        1.01,
+        1.01,
+        1.01,
+        1.01,
+        1.01,
+        1.01,
+        1.01,
+        1.01,
+        1.01,
+        1.01,
+        1.01,
+        1.01,
+        1.01,
+        1.01,
+        1.01,
+        1.01,
+        1.01,
+        1.01,
+        1.01,
+        1.01,
+        1.01,
+        1.01,
+        1.01,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      )
+      forwards;
+  }
+
+  .illustration:nth-of-type(1) {
+    animation-delay: 0.8s;
+  }
+  .illustration:nth-of-type(2) {
+    animation-delay: 1.6s;
+  }
+  .illustration:nth-of-type(3) {
+    animation-delay: 2.4s;
+  }
+  .illustration:nth-of-type(4) {
+    animation-delay: 3.2s;
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .illustration {
+      animation: none;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

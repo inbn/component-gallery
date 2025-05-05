@@ -1,0 +1,403 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Instrument Serif";
+    src: url("/fonts/InstrumentSerif-Regular.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Instrument Serif";
+    src: url("/fonts/InstrumentSerif-Italic.woff2") format("woff2");
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Instrument Sans";
+    src: url("/fonts/InstrumentSans-VariableFont_wdth,wght.woff2")
+      format("woff2");
+    font-weight: 400 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "JetBrains Mono";
+    src: url("/fonts/JetBrainsMono-VariableFont_wght.woff2") format("woff2");
+    font-weight: 100 800;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Adjusted Georgia Fallback";
+    src: local(Georgia);
+    size-adjust: 75%;
+    ascent-override: normal;
+    descent-override: normal;
+    line-gap-override: 60%;
+  }
+
+  :root {
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-primary);
+    scroll-behavior: smooth;
+    /* -webkit-font-smoothing: antialiased; */
+
+    --grid-display-size: calc((100vw - 3rem - 1px) / 24);
+
+    --fade-size: 24px;
+
+    --color-bg-primary: theme("colors.pampas");
+    --color-bg-highlight: theme("colors.white");
+    --color-bg-secondary: theme("colors.grey.1");
+    --color-bg-highlight-invert: theme("colors.grey.10");
+    --color-text-primary: theme("colors.grey.8");
+    --color-text-secondary: theme("colors.grey.6");
+    --color-text-highlight: theme("colors.grey.10");
+    --color-text-highlight-invert: theme("colors.grey.0");
+    --color-border-primary: theme("colors.grey.2");
+    --color-border-highlight: theme("colors.grey.10");
+
+    --color-gradient-highlight-1: theme("colors.grey.5");
+    --color-gradient-highlight-2: theme("colors.grey.9");
+    --color-gradient-background: theme("colors.grey.[0.5]");
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not(.light):not(.dark) {
+      --color-bg-primary: theme("colors.grey.9");
+      --color-bg-highlight: theme("colors.grey.10");
+      --color-bg-secondary: theme("colors.grey.8");
+      --color-bg-highlight-invert: theme("colors.white");
+      --color-text-primary: theme("colors.grey.2");
+      --color-text-highlight: theme("colors.grey.1");
+      --color-text-highlight-invert: theme("colors.grey.10");
+      --color-text-secondary: theme("colors.grey.4");
+      --color-border-primary: theme("colors.grey.5");
+      --color-border-highlight: theme("colors.grey.0");
+
+      --color-gradient-highlight-1: theme("colors.grey.4");
+      --color-gradient-highlight-2: theme("colors.grey.2");
+      --color-gradient-background: theme("colors.grey[9.5]");
+    }
+  }
+
+  :root[class~="dark"] {
+    --color-bg-primary: theme("colors.grey.9");
+    --color-bg-highlight: theme("colors.grey.10");
+    --color-bg-secondary: theme("colors.grey.8");
+    --color-bg-highlight-invert: theme("colors.white");
+    --color-text-primary: theme("colors.grey.2");
+    --color-text-highlight: theme("colors.grey.1");
+    --color-text-highlight-invert: theme("colors.grey.10");
+    --color-text-secondary: theme("colors.grey.4");
+    --color-border-primary: theme("colors.grey.5");
+    --color-border-highlight: theme("colors.grey.0");
+
+    --color-gradient-highlight-1: theme("colors.grey.4");
+    --color-gradient-highlight-2: theme("colors.grey.2");
+    --color-gradient-background: theme("colors.grey[9.5]");
+  }
+
+  @screen md {
+    :root {
+      --fade-size: 48px;
+      --grid-display-size: calc((100vw - 6rem - 1px) / 24);
+    }
+  }
+
+  @screen lg {
+    :root {
+      --fade-size: 72px;
+      --grid-display-size: calc((100vw - 9rem - 1px) / 36);
+    }
+  }
+
+  @media (min-width: 1680px) {
+    :root {
+      --grid-display-size: calc(1534px / 36);
+    }
+  }
+
+  @view-transition {
+    navigation: auto;
+  }
+
+  /* Override cursor: pointer on buttons */
+  button:hover {
+    cursor: auto;
+  }
+
+  kbd {
+    @apply text-xs leading-[0.875rem] border text-text-secondary border-border-primary bg-background-primary rounded-sm flex justify-center;
+
+    box-shadow: 0 1px 0 0 var(--color-border-primary);
+  }
+}
+
+@layer components {
+  .body-text * + * {
+    margin-top: var(--space, 1.5rem);
+  }
+
+  .body-text--tight {
+    --space: 0.25rem;
+  }
+
+  @screen lg {
+    .body-text--constrain-width > :not(.astro-code) {
+      /* 7 / 9 columns taking into account 1rem padding */
+      max-width: calc(77.77778% - 0.777778 * 1rem);
+    }
+  }
+
+  @screen xl {
+    /* 6 / 9 columns taking into account 1px padding */
+    .body-text--constrain-width > :not(.astro-code) {
+      max-width: calc(66.66667% - 0.6666667 * 1rem);
+    }
+  }
+
+  .body-text a {
+    @apply underline underline-offset-2 decoration-grey-7;
+
+    text-decoration-thickness: 0.07em;
+  }
+
+  .body-text h2 {
+    @apply text-lg tracking-wide uppercase variable-font-wdth-83 scroll-mt-4;
+  }
+
+  .body-text h3 {
+    @apply text-lg font-serif text-text-secondary scroll-mt-4;
+  }
+
+  .body-text h4 {
+    @apply text-base font-sans font-medium scroll-mt-4;
+  }
+
+  .body-text figure {
+    --space: 0.5rem;
+  }
+
+  .body-text figcaption {
+    @apply text-sm text-text-secondary;
+  }
+
+  .body-text ul {
+    --space: 0.75rem;
+
+    list-style-type: disc;
+    padding-left: theme("padding.6");
+  }
+
+  .body-text ol {
+    --space: 0.75rem;
+
+    list-style-type: decimal;
+    padding-left: theme("padding.6");
+  }
+
+  .body-text strong {
+    font-weight: 590;
+    letter-spacing: 0.01em;
+  }
+
+  .body-text code {
+    @apply font-mono;
+
+    font-size: 0.92em;
+    font-weight: 300;
+    font-variant-ligatures: none;
+  }
+
+  .body-text kbd {
+    display: inline;
+    font-size: 0.92em;
+    font-weight: 300;
+    padding: 0.1em 0.4em;
+  }
+}
+
+/* Note: due to issues with astro + tailwind these might not work when using @apply */
+@layer utilities {
+  .variable-font-wdth-83 {
+    font-variation-settings: "wdth" 83;
+  }
+
+  .variable-font-wdth-90 {
+    font-variation-settings: "wdth" 90;
+  }
+
+  [class*="border-fade"] {
+    position: relative;
+  }
+
+  .border-fade-l::before {
+    content: "";
+
+    position: absolute;
+    top: -1px;
+    right: 100%;
+    display: block;
+    width: var(--fade-size);
+    height: calc(100% + 2px);
+    border-image: linear-gradient(
+        to left,
+        theme("colors.border-primary") 30%,
+        rgba(0, 0, 0, 0) 100%
+      )
+      1 100%;
+    border-image-slice: 1;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    pointer-events: none;
+  }
+
+  .border-fade-r::after {
+    content: "";
+
+    position: absolute;
+    top: -1px;
+    left: 100%;
+    display: block;
+    width: var(--fade-size);
+    height: calc(100% + 2px);
+    border-image: linear-gradient(
+        to right,
+        theme("colors.border-primary") 30%,
+        rgba(0, 0, 0, 0) 100%
+      )
+      1 100%;
+    border-image-slice: 1;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    pointer-events: none;
+  }
+
+  .border-fade-t::before {
+    content: "";
+
+    position: absolute;
+    bottom: 100%;
+    left: -1px;
+    display: block;
+    width: calc(100% + 2px);
+    height: var(--fade-size);
+    border-image: linear-gradient(
+        to top,
+        theme("colors.border-primary") 30%,
+        rgba(0, 0, 0, 0) 100%
+      )
+      1 100%;
+    border-image-slice: 1;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    pointer-events: none;
+  }
+
+  .border-fade-b::after {
+    content: "";
+
+    position: absolute;
+    top: 100%;
+    left: -1px;
+    display: block;
+    width: calc(100% + 2px);
+    height: var(--fade-size);
+    border-image: linear-gradient(
+        to bottom,
+        theme("colors.border-primary") 30%,
+        rgba(0, 0, 0, 0) 100%
+      )
+      1 100%;
+    border-image-slice: 1;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    pointer-events: none;
+  }
+
+  /* .border-fade-header::before {
+    content: "";
+
+    position: absolute;
+    top: 100%;
+    left: -1px;
+    display: block;
+    width: calc(100% + 2px);
+    height: var(--fade-size);
+    border-image: linear-gradient(
+        to top,
+        theme("colors.border-primary") 30%,
+        rgba(0, 0, 0, 0) 100%
+      )
+      1 100%;
+    border-image-slice: 1;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    pointer-events: none;
+  } */
+
+  .squared-bg {
+    background-color: var(--color-bg-primary);
+    background-image: linear-gradient(
+        to bottom,
+        var(--color-bg-primary) 0,
+        rgba(255, 255, 255, 0) calc(var(--grid-display-size) * 3),
+        rgba(255, 255, 255, 0) calc(100% - var(--grid-display-size)),
+        var(--color-bg-primary) 100%
+      ),
+      linear-gradient(
+        to right,
+        var(--color-bg-primary) 0,
+        rgba(255, 255, 255, 0) calc(var(--grid-display-size) * 2),
+        rgba(255, 255, 255, 0) calc(100% - var(--grid-display-size)),
+        var(--color-bg-primary) 100%
+      ),
+      linear-gradient(105deg, var(--color-bg-primary), rgba(255, 255, 255, 0)),
+      linear-gradient(var(--color-border-primary) 1px, transparent 1px),
+      linear-gradient(
+        to right,
+        var(--color-border-primary) 1px,
+        var(--color-bg-primary) 1px
+      );
+
+    background-size:
+      100% 100%,
+      100% 100%,
+      100% 100%,
+      var(--grid-display-size) var(--grid-display-size),
+      var(--grid-display-size) var(--grid-display-size);
+    background-position: top left;
+  }
+}
+
+.astro-code {
+  padding: 1rem;
+  margin-inline: -1rem;
+}
+
+:root[class~="dark"] .astro-code,
+:root[class~="dark"] .astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  /* Optional, if you also want font styles */
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+/* Switch font to avoid back arrow being rendered as emoji */
+.data-footnote-backref {
+  @apply font-mono w-[1lh] inline-flex items-center justify-center mt-0 bg-transparent hover:bg-background-secondary duration-200 rounded;
+
+  text-decoration: none !important ;
+}

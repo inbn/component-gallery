@@ -1,0 +1,94 @@
+---
+title: 'About'
+path: 'about'
+date: '2019-03-25'
+---
+
+import Badge from '../../components/Badge.astro';
+
+**_The Component Gallery_ is a collection of interface components from real-world design systems**. I created it to help with some of the problems that I experience every day as a front-end developer:
+
+1. Some interface problems have **already been solved**: there’s no need to reinvent the wheel every time you start a new project when the hard work has already been done by someone else.
+2. **Naming things is hard**: If you don’t know what to call a thing, looking at what other people are calling similar things is a great place to start.
+
+> **Caveat:** Don’t assume that an opinion or technique is correct, just because it’s popular. Be wary of [information cascades](https://en.wikipedia.org/wiki/Information_cascade) and, if you can, always base your decisions on research. _Definitely_ don’t just copy what everyone else is doing.[^1] There’s lots of research out there already — look for design systems that give reasons for decisions based on real research.
+
+## Inspiration
+
+The original idea for this site came from <em>[A Pattern Language](https://www.patternlanguage.com/bookstore/bookshelf.html#0)</em>[^2], a 1977 book focused on architecture, building and planning, which describes over 250 ‘patterns’: _forms_ which fit specific _contexts_, or to put it another way, solutions to design problems. Examples include: ‘Beer hall’, ‘Positive outdoor space’ and ‘Light on two sides of every room’.
+
+Whereas the book focuses on the physical world, my original aim with this site is was focus on those patterns that appear on the web; these often borrow the word ‘pattern’ (see [Patterns on the GOV.UK design system](https://design-system.service.gov.uk/patterns/)), but are more commonly called **components**, hence ‘the component gallery’ — unlike a component _library_, most of these components aren’t ready to use off-the-shelf, but they’ll hopefully inspire you to design your own solution to the problem you’re working to solve.
+
+## Questions and Answers
+
+### Can you add _xyz design system/component_ to the website?
+
+If you maintain a design system or component library you’d like to see featured, or have discovered one that you think would be right for inclusion on the site, please get in touch. The best way to do so is through the contact form on the [Contribute page](/contribute).
+
+### What is a component?
+
+A component is a single, reusable chunk of a user interface.
+
+### Why components?
+
+> “Components is a damn fine way to build a website”
+>
+> – <cite>Chris Coyier</cite>
+
+Designing interfaces around components, specifically components from a design system, has a number of benefits:
+
+1. **Consistency**: Using a design system can help maintain a consistent "look and feel" across multiple interfaces.
+2. **Reusability**: Instead of building something from scratch, reusing something that's already been tried, tested, and proven to work can speed up development.
+3. **A common language**: Design systems can help all teams involved in a project communicate effectively, using a shared set of names for components that everyone understands.
+
+### Can a component contain other components?
+
+Yes, a component can contain other components, in fact this nesting of components to build interfaces is fundamental to methodologies such as [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/).
+
+### Are Web Components components?
+
+[Web Components](https://www.webcomponents.org/introduction) are a collection of browser features and JavaScript APIs that allow developers to define custom elements by extending native HTML elements. Web Components aren't just another framework, they're a standardised way to build components that work across browsers and devices, without the need to load a large JavaScript library.
+
+### What about React/Vue/Angular/Svelte components?
+
+Yup.
+
+### What’s the difference between a Design System and a Component Library?
+
+A successful design system is way more than a website showing a few components, even if components often play an important part. A good design system is a constantly evolving set of shared practices, covering a wide range of topics including: colour palettes, typography, processes, accessibility, tooling and 'tone of voice'. Design systems also require a human element: without people using and contributing to the system, it will fail. The components themselves should be supported by guidance on how, when, and when not to use a component.
+
+### Are components just for websites?
+
+Absolutely not: component-based User-Interface design was around long before websites existed; the examples on this website have collected from the web because it's the easiest place to find public design systems. There also exist design systems designed primarily for mobile or desktop applications, although by utilising frameworks such as [React Native](https://facebook.github.io/react-native/) and [Electron](https://electronjs.org/), components can be cross-platform with the same components used on a website, a mobile app or a desktop app.
+
+### How do I go about making a design system?
+
+There are lots of great resources to help you get started; here are just a few:
+
+#### Websites
+
+- [styleguides.ui](http://styleguides.io/) is a collection of website style guide articles, books, podcasts, talks, tools, and examples
+- [Awesome Design Systems](https://github.com/alexpate/awesome-design-systems) is a list of design systems with a guide to their features
+- [Design Systems Repo](https://designsystemsrepo.com/) is a collection of design systems and design system resources
+
+#### Books
+
+- [Design Systems](https://www.smashingmagazine.com/design-systems-book/) by Alla Kholmatova
+- [Atomic Design](http://atomicdesign.bradfrost.com/table-of-contents/) by Brad Frost <Badge text="Free" />
+- [Inclusive Components](http://book.inclusive-components.design/) by Heydon Pickering
+- [Programming Design Systems](https://programmingdesignsystems.com/) by Rune Madsen <Badge text="Free" />
+- [Building Design Systems](https://www.apress.com/gb/book/9781484245132) by Sarrah Vesselov and Taurie Davis
+
+#### Podcasts
+
+- [Style Guide podcast](http://styleguides.io/podcast/), hosted by Anna Debenham and Brad Frost
+- [The Design Systems Podcast](https://www.designsystemspodcast.com/), hosted by Chris Strahl
+
+_to be continued…_
+
+## Get in touch
+
+If you notice any mistakes or have suggestions for improvements, please visit the [Contribute page](/contribute).
+
+[^1]: [I don’t care what Airbnb is doing. (And neither should you.) — Stephen Hay](https://noti.st/stephenhay/nLABeP/i-don-t-care-what-airbnb-is-doing-and-neither-should-you)
+[^2]: Christopher Alexander, Sara Ishikawa, Murray Silverstein with Ingrid King, Shlomo Angel and Max Jacobsen 1977, Oxford University Press

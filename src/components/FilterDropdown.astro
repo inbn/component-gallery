@@ -1,0 +1,164 @@
+---
+const { heading, id = "filter-dropdown" } = Astro.props;
+---
+
+<div id={id} class="filter-dropdown">
+  <button
+    aria-expanded="false"
+    aria-controls={`${id}-content`}
+    class="variable-font-wdth-90"
+  >
+    <svg
+      width="10"
+      height="10"
+      viewBox="0 0 10 10"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <polyline
+        points="3,1 7,5 3,9"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"></polyline>
+    </svg>
+    {heading}
+  </button>
+  <div id={`${id}-content`} class="content" role="region" inert>
+    <slot />
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const filterDropdowns = document.querySelectorAll(".filter-dropdown");
+
+    filterDropdowns.forEach((filterDropdown) => {
+      const button = filterDropdown.querySelector("button");
+
+      button?.addEventListener("click", () => {
+        const isExpanded = button.getAttribute("aria-expanded") === "true";
+        button.setAttribute("aria-expanded", isExpanded ? "false" : "true");
+        const content = button.nextElementSibling;
+        if (isExpanded) {
+          content?.setAttribute("inert", "");
+        } else {
+          content?.removeAttribute("inert");
+        }
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      document
+        .querySelectorAll(".filter-dropdown")
+        .forEach((filterDropdown) => {
+          const button = filterDropdown.querySelector("button");
+          const content = filterDropdown.querySelector(".content");
+          const isExpanded = button?.getAttribute("aria-expanded") === "true";
+
+          if (isExpanded && !filterDropdown.contains(event.target)) {
+            button.setAttribute("aria-expanded", "false");
+            content?.setAttribute("inert", "");
+          }
+        });
+    });
+  });
+</script>
+<style>
+  .filter-dropdown {
+    @apply px-2 sm:p-2;
+
+    --fade-in-duration: 0.01s;
+    --fade-out-duration: 0.01s;
+
+    display: block;
+    width: 100%;
+
+    @screen sm {
+      --fade-in-duration: 0.1s;
+      --fade-out-duration: 0.2s;
+
+      width: auto;
+      position: relative;
+    }
+  }
+
+  .filter-dropdown:has(input[type="checkbox"]:checked) button::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: #d95151;
+    border-radius: 50%;
+  }
+
+  .filter-dropdown button {
+    @apply text-sm rounded-md leading-5;
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    letter-spacing: 0.01em;
+    background: none;
+    font-weight: 550;
+    padding: 0.5rem 1rem 0.5rem 0.5rem;
+    transition: background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+
+    @screen sm {
+      width: auto;
+    }
+  }
+
+  .filter-dropdown button svg {
+    margin-right: 8px;
+    transition: transform 0.2s ease;
+  }
+
+  .filter-dropdown button[aria-expanded="true"] svg {
+    transform: rotate(90deg);
+  }
+
+  .filter-dropdown button:hover,
+  .filter-dropdown button[aria-expanded="true"] {
+    @apply bg-background-secondary;
+  }
+
+  .filter-dropdown .content {
+    @apply sm:bg-background-primary;
+
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    padding: 0.75rem;
+    z-index: 2;
+    transition:
+      opacity var(--fade-out-duration) ease-out,
+      visibility var(--fade-out-duration) ease-out;
+
+    width: 100%;
+    transition-behavior: allow-discrete;
+
+    @screen sm {
+      display: block;
+      position: absolute;
+      left: 0;
+      top: calc(100% + 1px);
+      width: fit-content;
+      box-shadow: 0 0 0 1px theme("colors.border-primary");
+    }
+  }
+
+  .filter-dropdown button[aria-expanded="true"] + .content {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    transition:
+      opacity var(--fade-in-duration) ease-out,
+      visibility var(--fade-in-duration) ease-out;
+    transition-behavior: allow-discrete;
+  }
+</style>

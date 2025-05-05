@@ -1,0 +1,34 @@
+---
+// github.com/rezahedi/rezahedi.dev/blob/main/src/components/TOCHeading.astro
+const { heading } = Astro.props;
+---
+
+<li>
+  <a href={"#" + heading.slug} class="table">
+    {heading.text}
+  </a>
+  {
+    heading.subheadings?.length > 0 && (
+      <ul class="pl-4">
+        {heading.subheadings.map((subheading: any) => (
+          <Astro.self heading={subheading} />
+        ))}
+      </ul>
+    )
+  }
+</li>
+<style>
+  .active,
+  li:has(a.active) > a {
+    font-weight: 600;
+    transition: font-weight 0.2s ease-in-out;
+  }
+
+  li + li {
+    margin-top: 0.5rem;
+  }
+
+  ul > li {
+    margin-top: 0.5rem;
+  }
+</style>

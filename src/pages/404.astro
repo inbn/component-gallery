@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import Hero from "../components/Hero.astro";
+---
+
+<BaseLayout title="404: Not Found">
+  <Hero>
+    <span>404: Page not found</span>
+  </Hero>
+
+  <div class="col-span-full grid grid-cols-subgrid">
+    <div
+      class="col-span-12 md:col-span-3 row-span-full bg-background-primary shadow-border"
+    >
+    </div>
+    <div
+      class="col-span-full md:col-span-9 bg-background-primary text-base variable-font-wdth-90 z-10 shadow-border"
+    >
+      <div
+        class="body-text body-text--constrain-width p-4 text-base variable-font-wdth-90"
+      >
+        <p>You’ve hit a route that doesn’t exist.</p>
+        <p>
+          You can use the main navigation links above, visit the <a href="/"
+            >homepage</a
+          >, or try using the search form at the top of this page.
+        </p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
