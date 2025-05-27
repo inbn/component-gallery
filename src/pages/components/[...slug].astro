@@ -17,6 +17,8 @@ import Select from "../../components/Select.astro";
 import TOC from "../../components/TOC.astro";
 import PieChart from "../../components/PieChart.astro";
 
+import CopyMicroIcon from "../../icons/copy--micro.svg";
+
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
   // Get all published components
@@ -44,7 +46,7 @@ const componentExamples = await getCollection(
   "componentExamples",
   ({ id, data }) => {
     return componentExampleIds?.includes(id) && data["Published"] == 1;
-  },
+  }
 );
 
 // Get all unique techs and features with their occurrences
@@ -72,7 +74,7 @@ const componentContentCollection = await getCollection(
   "componentContent",
   ({ id }) => {
     return id === `${entry.data["Slug"]}.md`;
-  },
+  }
 );
 
 const content = componentContentCollection[0] ?? {
@@ -106,7 +108,7 @@ let nameFrequency = componentExamples.reduce((acc, example) => {
 
 // Sort the names by frequency in descending order
 nameFrequency = Object.fromEntries(
-  Object.entries(nameFrequency).sort(([, a], [, b]) => b - a),
+  Object.entries(nameFrequency).sort(([, a], [, b]) => b - a)
 );
 
 // Pass the data to the client-side
@@ -294,6 +296,13 @@ if (statisticsData) {
               <option value="design-system-name">Design system</option>
               <option value="component-name">Component name</option>
             </Select>
+            <Button
+              id="copy-urls"
+              class="flex gap-1 items-center relative -top-1 left-2 sm:absolute sm:top-4 sm:right-4 sm:left-auto"
+            >
+              <CopyMicroIcon class="w-4 h-4" />
+              Copy URLs
+            </Button>
           </div>
         </div>
       </div>
@@ -306,7 +315,7 @@ if (statisticsData) {
         {
           componentExamples.map((componentExample) => {
             const designSystem = designSystems.find(
-              (ds) => ds.id === componentExample.data["Design system"][0],
+              (ds) => ds.id === componentExample.data["Design system"][0]
             );
 
             if (!designSystem) {
@@ -325,6 +334,7 @@ if (statisticsData) {
                 tech={componentExample.data["Tech lookup"]}
                 features={componentExample.data["Features lookup"]}
                 data-component-name={componentExample.data["Name"]}
+                data-component-url={componentExample.data["URL"]}
                 data-design-system-name={designSystem?.data["Name"]}
                 data-tech={
                   !!componentExample.data["Tech lookup"]?.length &&
@@ -460,20 +470,21 @@ if (statisticsData) {
 
     document.addEventListener("DOMContentLoaded", () => {
       const checkboxes = document.querySelectorAll(
-        ".filter-checkbox input",
+        ".filter-checkbox input"
       ) as NodeListOf<HTMLInputElement>;
       const componentExamplesCount = document.getElementById(
-        "component-examples-count",
+        "component-examples-count"
       );
       const componentExamplesList = document.getElementById(
-        "component-examples-list",
+        "component-examples-list"
       );
       const componentExamplesItems = componentExamplesList?.querySelectorAll(
-        ":scope > li",
+        ":scope > li"
       ) as NodeListOf<HTMLLIElement>;
       const sortSelect = document.getElementById("sort-select");
       const clearFiltersButton = document.getElementById("clear-filters");
       const emptyState = document.querySelector(".empty-state");
+      const copyUrlsButton = document.getElementById("copy-urls");
 
       const updateQueryString = (filters, sort) => {
         const url = new URL(window.location);
@@ -482,10 +493,10 @@ if (statisticsData) {
         url.searchParams.delete("sort");
 
         filters.tech.forEach((filter) =>
-          url.searchParams.append("tech", filter),
+          url.searchParams.append("tech", filter)
         );
         filters.features.forEach((filter) =>
-          url.searchParams.append("features", filter),
+          url.searchParams.append("features", filter)
         );
         if (sort) {
           url.searchParams.set("sort", sort);
@@ -501,10 +512,10 @@ if (statisticsData) {
           const itemFeatures = item?.getAttribute("data-features")?.split(",");
 
           const matchesTech = filters.tech.every((filter) =>
-            itemTechs?.includes(filter),
+            itemTechs?.includes(filter)
           );
           const matchesFeatures = filters.features.every((filter) =>
-            itemFeatures.includes(filter),
+            itemFeatures.includes(filter)
           );
 
           if (matchesTech && matchesFeatures) {
@@ -635,6 +646,26 @@ if (statisticsData) {
       transitionDOMUpdate(() => {
         applyFilters(filters);
         applySorting(sort);
+      });
+
+      copyUrlsButton?.addEventListener("click", () => {
+        const componentElements = document.querySelectorAll(
+          "li[data-component-url]:not([style*='display: none;'])"
+        );
+        const urls = Array.from(componentElements)
+          .map((el) => el.getAttribute("data-component-url"))
+          .join("\n");
+
+        if (urls) {
+          navigator.clipboard
+            .writeText(urls)
+            .then(() =>
+              alert(`${componentElements.length} URLs copied to clipboard`)
+            )
+            .catch((err) => console.error("Failed to copy URLs:", err));
+        } else {
+          alert("No component URLs found to copy.");
+        }
       });
     });
   </script>

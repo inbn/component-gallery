@@ -7,11 +7,9 @@ const { type = "button", ...rest } = Astro.props;
 </button>
 <style>
   button {
-    @apply text-sm text-grey-7 leading-6;
+    @apply text-sm bg-grey-0 hover:bg-grey-0.5 text-grey-7 hover:text-grey-8 leading-6 border border-grey-9.5 border-opacity-20;
 
     appearance: none;
-    background-color: #fafbfc;
-    border: 1px solid rgba(27, 31, 35, 0.15);
     border-radius: 6px;
     box-shadow:
       rgba(27, 31, 35, 0.04) 0 1px 0,
@@ -32,9 +30,12 @@ const { type = "button", ...rest } = Astro.props;
   }
 
   button:hover {
-    background-color: #f3f4f6;
     text-decoration: none;
     transition-duration: 0.1s;
+  }
+
+  :global(.dark) button {
+    @apply bg-grey-9 hover:bg-grey-8 text-grey-2 hover:text-grey-1 border-grey-3;
   }
 
   button:disabled {
@@ -45,9 +46,14 @@ const { type = "button", ...rest } = Astro.props;
   }
 
   button:active {
-    background-color: #edeff2;
+    @apply bg-grey-0.5 text-grey-8;
+
     box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
     transition: none 0s;
+  }
+
+  :global(.dark) button:active {
+    @apply bg-grey-10 text-grey-1;
   }
 
   button:before {
