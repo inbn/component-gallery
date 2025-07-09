@@ -44,7 +44,10 @@ if (svgMarkup) {
 ---
 
 <li
-  class={`link-card bg-background-primary flex flex-col p-4 rounded-none hover:rounded-xl transition-all duration-200 ${gridClasses}`}
+  class:list={[
+    "link-card bg-background-primary flex flex-col p-4 rounded-none hover:rounded-xl transition-all duration-200",
+    gridClasses,
+  ]}
   data-card
   {...rest}
 >
@@ -62,7 +65,10 @@ if (svgMarkup) {
         <Image
           src={image.url}
           alt=""
-          class={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-full max-h-full object-contain ${imageClasses}`}
+          class:list={[
+            "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-full max-h-full object-contain",
+            imageClasses,
+          ]}
           loading={lazyLoadImage ? "lazy" : "eager"}
           quality="high"
           {...(inferImageSize
@@ -179,7 +185,7 @@ if (svgMarkup) {
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     let cardsArray = Array.prototype.slice.call(
-      document.querySelectorAll("[data-card]"),
+      document.querySelectorAll("[data-card]")
     );
 
     if (cardsArray.length > 0) {
@@ -187,7 +193,7 @@ if (svgMarkup) {
       cardsArray.forEach(function (card, index) {
         let mainLink = card.querySelector(":is(h1, h2, h3, h4, h5, h6) a");
         let clickableElems = Array.prototype.slice.call(
-          card.querySelectorAll("a"),
+          card.querySelectorAll("a")
         );
 
         // Allow other links/buttons in the card to still be "clickable"

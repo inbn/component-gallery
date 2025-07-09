@@ -36,21 +36,30 @@ const HomeLinkWrapper = currentPath === "" ? "h1" : "div";
       <li>
         <a
           href="/components"
-          class={`uppercase tracking-wide variable-font-wdth-83 ${currentPath === "components" ? "here" : ""}`}
+          class:list={[
+            "uppercase tracking-wide variable-font-wdth-83",
+            currentPath === "components" ? "here" : null,
+          ]}
           data-astro-prefetch>Components</a
         >
       </li>
       <li>
         <a
           href="/design-systems"
-          class={`uppercase tracking-wide variable-font-wdth-83 ${currentPath === "design-systems" ? "here" : ""}`}
+          class:list={[
+            "uppercase tracking-wide variable-font-wdth-83",
+            currentPath === "design-systems" ? "here" : null,
+          ]}
           data-astro-prefetch>Design systems</a
         >
       </li>
       <li>
         <a
           href="/about"
-          class={`uppercase tracking-wide variable-font-wdth-83 ${currentPath === "about" ? "here" : ""}`}
+          class:list={[
+            "uppercase tracking-wide variable-font-wdth-83",
+            currentPath === "about" ? "here" : null,
+          ]}
           data-astro-prefetch>About</a
         >
       </li>
