@@ -173,10 +173,14 @@
   }
 
   .body-text h2 {
+    --space: 3.5rem;
+
     @apply text-lg tracking-wide uppercase variable-font-wdth-83 scroll-mt-4;
   }
 
   .body-text h3 {
+    --space: 2.5rem;
+
     @apply text-lg font-serif text-text-secondary scroll-mt-4;
   }
 
@@ -193,17 +197,17 @@
   }
 
   .body-text ul {
-    --space: 0.75rem;
-
     list-style-type: disc;
     padding-left: theme("padding.6");
   }
 
   .body-text ol {
-    --space: 0.75rem;
-
     list-style-type: decimal;
     padding-left: theme("padding.6");
+  }
+
+  .body-text li {
+    --space: 0.75rem;
   }
 
   .body-text strong {
@@ -348,7 +352,8 @@
 
   .squared-bg {
     background-color: var(--color-bg-primary);
-    background-image: linear-gradient(
+    background-image:
+      linear-gradient(
         to bottom,
         var(--color-bg-primary) 0,
         rgba(255, 255, 255, 0) calc(var(--grid-display-size) * 3),
@@ -399,5 +404,5 @@
 .data-footnote-backref {
   @apply font-mono w-[1lh] inline-flex items-center justify-center mt-0 bg-transparent hover:bg-background-secondary duration-200 rounded;
 
-  text-decoration: none !important ;
+  text-decoration: none !important;
 }
