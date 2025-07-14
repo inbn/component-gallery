@@ -29,6 +29,15 @@
   }
 
   @font-face {
+    font-family: "Instrument Sans";
+    src: url("/fonts/InstrumentSans-Italic-VariableFont_wdth,wght.woff2")
+      format("woff2");
+    font-weight: 400 700;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
     font-family: "JetBrains Mono";
     src: url("/fonts/JetBrainsMono-VariableFont_wght.woff2") format("woff2");
     font-weight: 100 800;
@@ -182,6 +191,10 @@
     --space: 2.5rem;
 
     @apply text-lg font-serif text-text-secondary scroll-mt-4;
+  }
+
+  .body-text h2 + h3 {
+    --space: 1.25rem;
   }
 
   .body-text h4 {

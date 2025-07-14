@@ -21,7 +21,7 @@ The HTML `q` element is designed to be used for inline quotations, but it's not 
 <blockquote cite="https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-q-element">
   <p>
     The use of <code>q</code> elements to mark up quotations is entirely
-    optional; using explicit quotation punctuation without <code>q</code>{' '}
+    optional; using explicit quotation punctuation without <code>q</code>
     elements is just as correct.
   </p>
 </blockquote>
@@ -107,7 +107,7 @@ The CSS `quotes` property gives us fine control over the style of our quotation 
 ```css
 blockquote p {
   /* Use curly quotes, not straight quotes */
-  quotes: '“' '”' '‘' '’';
+  quotes: "“" "”" "‘" "’";
 }
 
 blockquote p::before {
@@ -159,5 +159,7 @@ Unfortunately, this technique is, at the time of writing, only supported in Safa
 - Use the correct type of quote for the job: not every external quotation needs to go in a block quote; consider putting shorter quotes inline.
 
 [^1]: [The `aside` element, HTML5: Edition for Web Authors](https://www.w3.org/TR/2011/WD-html5-author-20110809/the-aside-element.html)
+
 [^2]: [Straight and curly quotes, Butterick’s Practical Typography](https://practicaltypography.com/straight-and-curly-quotes.html)
+
 [^3]: Technique from p.106, _Web Typography_ By Richard Rutter
