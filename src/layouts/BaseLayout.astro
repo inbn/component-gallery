@@ -57,7 +57,9 @@ const isProduction = import.meta.env.PROD;
         title={title
           ? `${title} | The Component Gallery`
           : "The Component Gallery"}
-        description={description ? description : "An up-to-date repository of interface components based on examples from the world of design systems, designed to be a reference for anyone building user interfaces."}
+        description={description
+          ? description
+          : "An up-to-date repository of interface components based on examples from the world of design systems, designed to be a reference for anyone building user interfaces."}
         openGraph={{
           basic: {
             title: title,
@@ -103,7 +105,7 @@ const isProduction = import.meta.env.PROD;
         <script
           defer
           data-domain="component.gallery"
-          src="https://plausible.io/js/script.js"
+          src="https://plausible.io/js/script.outbound-links.js"
         />
       )
     }
