@@ -17,8 +17,8 @@ const designSystems = await getCollection("designSystems", ({ data }) => {
 }).then((items) =>
   items.sort(
     (a, b) =>
-      new Date(b.data["Last reviewed"]) - new Date(a.data["Last reviewed"]),
-  ),
+      new Date(b.data["Last reviewed"]) - new Date(a.data["Last reviewed"])
+  )
 );
 
 // Get all unique techs and features with their number of occurrences
@@ -167,18 +167,21 @@ const platforms = designSystems.reduce((acc, ds) => {
               {!!designSystem.data["Figma URL"] && (
                 <a
                   href={designSystem.data["Figma URL"]}
-                  class="transition-colors hover:text-text-highlight "
+                  class="transition-colors hover:text-text-highlight group"
                 >
                   <span class="sr-only">
                     {designSystem.data["Name"]} on Figma
                   </span>
-                  <Icon name="figma" class="w-[0.9em] h-[0.9em]" />
+                  <Icon
+                    name="figma"
+                    class="w-[0.9em] h-[0.9em] transition-transform duration-200 group-hover:scale-110"
+                  />
                 </a>
               )}
               {!!designSystem.data["GitHub URL"] && (
                 <a
                   href={designSystem.data["GitHub URL"]}
-                  class="transition-colors hover:text-text-highlight "
+                  class="transition-colors hover:text-text-highlight group"
                 >
                   <span class="sr-only">
                     {designSystem.data["Name"]} on{" "}
@@ -192,19 +195,22 @@ const platforms = designSystems.reduce((acc, ds) => {
                         ? "gitlab"
                         : "github"
                     }
-                    class="w-[0.9em] h-[0.9em]"
+                    class="w-[0.9em] h-[0.9em] transition-transform duration-200 group-hover:scale-110"
                   />
                 </a>
               )}
               {!!designSystem.data["Storybook URL"] && (
                 <a
                   href={designSystem.data["Storybook URL"]}
-                  class="transition-colors hover:text-text-highlight "
+                  class="transition-colors hover:text-text-highlight group"
                 >
                   <span class="sr-only">
                     {designSystem.data["Name"]} on Storybook
                   </span>
-                  <Icon name="storybook" class="w-[0.9em] h-[0.9em]" />
+                  <Icon
+                    name="storybook"
+                    class="w-[0.9em] h-[0.9em] transition-transform duration-200 group-hover:scale-110"
+                  />
                 </a>
               )}
             </div>
@@ -239,13 +245,13 @@ const platforms = designSystems.reduce((acc, ds) => {
         url.searchParams.delete("sort");
 
         filters.tech.forEach((filter) =>
-          url.searchParams.append("tech", filter),
+          url.searchParams.append("tech", filter)
         );
         filters.features.forEach((filter) =>
-          url.searchParams.append("features", filter),
+          url.searchParams.append("features", filter)
         );
         filters.platforms.forEach((filter) =>
-          url.searchParams.append("platforms", filter),
+          url.searchParams.append("platforms", filter)
         );
         if (sort) {
           url.searchParams.set("sort", sort);
@@ -262,13 +268,13 @@ const platforms = designSystems.reduce((acc, ds) => {
           const itemPlatforms = item.getAttribute("data-platforms").split(",");
 
           const matchesTech = filters.tech.every((filter) =>
-            itemTechs.includes(filter),
+            itemTechs.includes(filter)
           );
           const matchesFeatures = filters.features.every((filter) =>
-            itemFeatures.includes(filter),
+            itemFeatures.includes(filter)
           );
           const matchesPlatforms = filters.platforms.every((filter) =>
-            itemPlatforms.includes(filter),
+            itemPlatforms.includes(filter)
           );
 
           if (matchesTech && matchesFeatures && matchesPlatforms) {

@@ -19,9 +19,9 @@ let recentComponents = await getCollection("components", ({ data }) => {
   items
     .sort(
       (a, b) =>
-        new Date(b.data["Date updated"]) - new Date(a.data["Date updated"]),
+        new Date(b.data["Date updated"]) - new Date(a.data["Date updated"])
     )
-    .slice(0, 8),
+    .slice(0, 8)
 );
 
 const recentComponentsWithSvgMarkup =
@@ -32,18 +32,18 @@ const designSystems = await getCollection("designSystems", ({ data }) => {
 }).then((items) =>
   items.sort(
     (a, b) =>
-      new Date(b.data["Last reviewed"]) - new Date(a.data["Last reviewed"]),
-  ),
+      new Date(b.data["Last reviewed"]) - new Date(a.data["Last reviewed"])
+  )
 );
 
 const recentDesignSystems = designSystems.slice(0, 8);
 
 const componentExamplesCount = await getCollection("componentExamples").then(
-  (items) => items.length,
+  (items) => items.length
 );
 
 const formattedComponentExamplesCount = new Intl.NumberFormat().format(
-  componentExamplesCount,
+  componentExamplesCount
 );
 ---
 
@@ -148,34 +148,43 @@ const formattedComponentExamplesCount = new Intl.NumberFormat().format(
               {!!designSystem.data["GitHub URL"] && (
                 <a
                   href={designSystem.data["GitHub URL"]}
-                  class="transition-colors hover:text-text-highlight "
+                  class="transition-colors hover:text-text-highlight group"
                 >
                   <span class="sr-only">
                     {designSystem.data["Name"]} on GitHub
                   </span>
-                  <Icon name="github" class="w-[0.9em] h-[0.9em]" />
+                  <Icon
+                    name="github"
+                    class="w-[0.9em] h-[0.9em] transition-transform duration-200 group-hover:scale-110"
+                  />
                 </a>
               )}
               {!!designSystem.data["Storybook URL"] && (
                 <a
                   href={designSystem.data["Storybook URL"]}
-                  class="transition-colors hover:text-text-highlight "
+                  class="transition-colors hover:text-text-highlight group"
                 >
                   <span class="sr-only">
                     {designSystem.data["Name"]} on Storybook
                   </span>
-                  <Icon name="storybook" class="w-[0.9em] h-[0.9em]" />
+                  <Icon
+                    name="storybook"
+                    class="w-[0.9em] h-[0.9em] transition-transform duration-200 group-hover:scale-110"
+                  />
                 </a>
               )}
               {!!designSystem.data["Figma URL"] && (
                 <a
                   href={designSystem.data["Figma URL"]}
-                  class="transition-colors hover:text-text-highlight "
+                  class="transition-colors hover:text-text-highlight group"
                 >
                   <span class="sr-only">
                     {designSystem.data["Name"]} on Figma
                   </span>
-                  <Icon name="figma" class="w-[0.9em] h-[0.9em]" />
+                  <Icon
+                    name="figma"
+                    class="w-[0.9em] h-[0.9em] transition-transform duration-200 group-hover:scale-110"
+                  />
                 </a>
               )}
             </div>
