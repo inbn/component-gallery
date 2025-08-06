@@ -46,10 +46,9 @@ if (svgMarkup) {
 
 <li
   class:list={[
-    "link-card bg-background-primary flex flex-col p-4 rounded-none hover:rounded-xl transition-all duration-200",
+    "link-card bg-background-primary flex flex-col p-4 rounded-none hover:rounded-xl transition-all duration-200 relative",
     gridClasses,
   ]}
-  data-card
   {...rest}
 >
   {
@@ -85,7 +84,9 @@ if (svgMarkup) {
   {imageType === "placeholder" && <PlaceholderImage />}
 
   <div class="flex items-baseline justify-between gap-2 mt-3 mb-1 text-2xl">
-    <h2 class="font-serif"><a href={href}>{title}</a></h2>
+    <h2 class="font-serif">
+      <a href={href} class="primary-link">{title}</a>
+    </h2>
     <slot name="header" />
   </div>
 
@@ -143,42 +144,10 @@ if (svgMarkup) {
     transform: translate(4px, -4px);
     z-index: 1;
   }
+
+  .primary-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
 </style>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    let cardsArray = Array.prototype.slice.call(
-      document.querySelectorAll("[data-card]")
-    );
-
-    if (cardsArray.length > 0) {
-      // Loop through cards adding a click event and identifying the main link
-      cardsArray.forEach(function (card, index) {
-        let mainLink = card.querySelector(":is(h1, h2, h3, h4, h5, h6) a");
-        let clickableElems = Array.prototype.slice.call(
-          card.querySelectorAll("a")
-        );
-
-        // Allow other links/buttons in the card to still be "clickable"
-        if (clickableElems) {
-          clickableElems.forEach(function (elem) {
-            return elem.addEventListener("click", function (event) {
-              return event.stopPropagation();
-            });
-          });
-        }
-
-        card.addEventListener("click", function (ev) {
-          if (ev.redispatched || ev.target === mainLink) {
-            return;
-          }
-          let noTextSelected = !window.getSelection().toString();
-          if (noTextSelected) {
-            const ev2 = new MouseEvent("click", ev);
-            ev2.redispatched = true;
-            mainLink.dispatchEvent(ev2);
-          }
-        });
-      });
-    }
-  });
-</script>
