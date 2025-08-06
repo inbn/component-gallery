@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import PlaceholderImage from "./PlaceholderImage.astro";
 
 interface Props {
   title: string;
@@ -81,46 +82,7 @@ if (svgMarkup) {
       </div>
     )
   }
-  {
-    imageType === "placeholder" && (
-      <svg
-        width="512"
-        height="384"
-        viewBox="0 0 512 384"
-        xmlns="http://www.w3.org/2000/svg"
-        class="w-full h-auto aspect-4/3"
-      >
-        <rect
-          x="1"
-          y="1"
-          width="510"
-          height="382"
-          fill="none"
-          stroke="#B8B8B8"
-          stroke-width="1"
-          vector-effect="non-scaling-stroke"
-        />
-        <line
-          x1="1"
-          y1="1"
-          x2="511"
-          y2="383"
-          stroke="#B8B8B8"
-          stroke-width="1"
-          vector-effect="non-scaling-stroke"
-        />
-        <line
-          x1="511"
-          y1="1"
-          x2="1"
-          y2="383"
-          stroke="#B8B8B8"
-          stroke-width="1"
-          vector-effect="non-scaling-stroke"
-        />
-      </svg>
-    )
-  }
+  {imageType === "placeholder" && <PlaceholderImage />}
 
   <div class="flex items-baseline justify-between gap-2 mt-3 mb-1 text-2xl">
     <h2 class="font-serif"><a href={href}>{title}</a></h2>
