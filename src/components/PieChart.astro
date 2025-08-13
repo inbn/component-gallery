@@ -45,73 +45,110 @@ const chartData = processData(data);
   Chart.register(PieController, ArcElement, Tooltip, Legend);
 
   // Get the chart element and parse the data from the data-chart attribute
-  const chartElement = document.getElementById("pie-chart");
+  const chartElement = document.getElementById(
+    "pie-chart"
+  ) as HTMLCanvasElement;
   const chartData = JSON.parse(chartElement.dataset.chart);
 
-  // Create the chart instance
-  const chart = new Chart(chartElement, {
-    type: "pie",
-    data: {
-      labels: chartData.labels,
-      datasets: [
-        {
-          data: chartData.values,
-          backgroundColor: [
-            "#d95151",
-            "#d99551",
-            "#d9d951",
-            "#95d951",
-            "#51d951",
-            "#51d995",
-            "#51d9d9",
-            "#5195d9",
-            "#5151d9",
-            "#9551d9",
-            "#d951d9",
-            "#d95195",
-          ],
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          position: "right",
-          labels: {
-            color: getCSSCustomPropertyValue("--color-text-primary"),
-            font: {
-              family: "JetBrains Mono, monospace",
-              size: 14,
+  // Function to load images and create patterns
+  async function createPatterns() {
+    const ctx = chartElement.getContext("2d");
+
+    // Disable image smoothing to maintain pixelated appearance
+    ctx.imageSmoothingEnabled = false;
+
+    const patterns = [];
+    const numSectors = chartData.labels.length;
+
+    // Calculate which pattern indices to use with maximum spacing
+    const patternIndices = [];
+    if (numSectors === 1) {
+      patternIndices.push(1);
+    } else {
+      for (let i = 0; i < numSectors; i++) {
+        const index = Math.round((i * 13) / (numSectors - 1)) + 1; // Spread across 1-14
+        patternIndices.push(index);
+      }
+    }
+
+    // Load only the patterns we need
+    for (const index of patternIndices) {
+      const img = new Image();
+      img.src = `/images/pattern_${index}.png`;
+
+      await new Promise((resolve) => {
+        img.onload = () => {
+          const pattern = ctx.createPattern(img, "repeat");
+          patterns.push(pattern);
+          resolve(pattern);
+        };
+      });
+    }
+
+    return patterns;
+  }
+
+  // Create the chart after patterns are loaded
+  createPatterns().then((patterns) => {
+    const chart = new Chart(chartElement, {
+      type: "pie",
+      data: {
+        labels: chartData.labels,
+        datasets: [
+          {
+            data: chartData.values,
+            backgroundColor: patterns, // Use all loaded patterns
+            borderColor: "#ccc9c5",
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: "right",
+            labels: {
+              color: getCSSCustomPropertyValue("--color-text-primary"),
+              font: {
+                family: "JetBrains Mono, monospace",
+                size: 14,
+              },
             },
           },
-        },
-        tooltip: {
-          callbacks: {
-            label: function (context) {
-              const label = context.label || "";
-              const value = context.raw || 0;
-              return `${label}: ${value}`;
+          tooltip: {
+            titleFont: {
+              family: "JetBrains Mono, monospace",
+            },
+            bodyFont: {
+              family: "JetBrains Mono, monospace",
+            },
+            callbacks: {
+              label: function (context) {
+                const label = context.label || "";
+                const value = context.raw || 0;
+                return `${label}: ${value}`;
+              },
             },
           },
         },
       },
-    },
-  });
+    });
 
-  // Set up a MutationObserver to listen for changes to the <html> element's class attribute
-  const observer = new MutationObserver(() => {
-    // Update the legend text color dynamically
-    chart.options.plugins.legend.labels.color = getCSSCustomPropertyValue(
-      "--color-text-primary",
-    );
-    chart.update();
-  });
+    // Set up a MutationObserver to listen for changes to the <html> element's class attribute
+    const observer = new MutationObserver(() => {
+      // Update the legend text color dynamically
+      chart.options.plugins.legend.labels.color = getCSSCustomPropertyValue(
+        "--color-text-primary"
+      );
+      chart.update();
+    });
 
-  // Observe the <html> element for class attribute changes
-  observer.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ["class"],
+    // Observe the <html> element for class attribute changes
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
   });
 </script>
