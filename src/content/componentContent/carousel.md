@@ -32,7 +32,7 @@ There are also some carousels in which the slides transition automatically witho
 
 Carousels are inherently harder to make accessible than a simpler component, which is why most carousel implementations you’ll find aren't fully accessible. Even a carousel library which advertises accessibility can be used to build inaccessible carousels.
 
-If you’re comfortable with the challenges involved, here are some of the techniques you should think about (without going into too many specifics of implementation):
+Without going into too much detail, here are a few of the features and techniques you can use to make your carousels more accessible:
 
 ### On-screen controls
 
@@ -41,7 +41,7 @@ Always provide on-screen controls for changing carousel slides. You can’t assu
 ![An example of a carousel from the Grommet. A landscape scene is overlaid with barely visible arrow controls on the left and right sides.](./images/grommet-carousel.png)
 Figure: The controls on this carousel example from the Grommet component library are barely visible over the image.
 
-As with all web content, [ensure controls meet colour contrast requirements](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html). Pay special attention to when controls appear on top of images: test with a variety of different images to ensure active and focus states have sufficient contrast.
+As with all web content, [ensure controls meet colour contrast requirements](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html). Pay special attention when controls can appear on top of images: test with a variety of different images to ensure inactive, active, and focused states always have sufficient contrast.
 
 You should also ensure that [touch targets are large enough](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum) – at least 24px in diameter. Progress dots often fail this criterion.
 
@@ -98,7 +98,7 @@ Unfortunately, the decision whether to use a carousel is often out of the hands 
 
 ### Discoverability
 
-Putting content in a carousel is a surefire way of ensuring a large percentage of users will miss it. Never use carousels for essential information. There’s a place for exploratory interfaces, without an end goal, but these are a rare exception.
+Putting content in a carousel is a surefire way of ensuring a large percentage of users will miss it. Therefore, never use carousels for essential information. There’s a place for exploratory interfaces but these are a rare exception.
 
 ### Gestures
 
@@ -128,7 +128,7 @@ If you’re trying to save space by using a carousel, perhaps you should conside
 1. There’s a native HTML element, `details` which allows you to build them in an accessible way with minimal CSS and zero JavaScript.
 2. The heading (or `summary` if you’re using a `details` element) lets you provide users with a summary of the content of each expandable section so they can make an informed choice about whether to expand it.
 
-Lastly, why use a carousel when you can just show less stuff? If it’s important that a certain slide appears first, why not _only_ show that slide, and spend the time you would have spent building a carousel on something more important?
+Lastly, why use a carousel when you can just show less stuff? If it’s important that a certain slide appears first, why not _only_ show that slide and spend the time you would have spent building a carousel on building a simpler and more accessible component?
 
 [^1]: …which is not to say that horizontal scrolling is without its problems, see [Horizontal Scrolling Containers Are Not a Content Strategy](https://adrianroselli.com/2025/08/horizontal-scrolling-containers-are-not-a-content-strategy.html) by Adrian Roselli
 
