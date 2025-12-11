@@ -11,7 +11,9 @@ import { fetchSvgMarkupForComponents } from "../utils/fetchSvgMarkup";
 
 import { getCollection } from "astro:content";
 
-const components = await getCollection("components");
+const components = await getCollection("components", ({ data }) => {
+  return data["Publish"] === true;
+});
 
 let recentComponents = await getCollection("components", ({ data }) => {
   return data["Date updated"] && data["Publish"] === true;
