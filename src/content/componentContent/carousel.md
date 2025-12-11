@@ -69,8 +69,13 @@ Until then, you’ll have to rely on JavaScript for the bulk of Carousel functio
 
 ### CSS Scroll Snap
 
-![CSS Scroll Snap](./images/scroll-snap.webp)
-Figure: CSS Scroll Snap gives scrolling an elastic ‘snap’
+<figure>
+  <video muted playsinline controls class="max-w-full h-auto">
+    <source src="/videos/scroll-snap.webm" type="video/webm" />
+    <source src="/videos/scroll-snap.mp4" type="video/mp4" />
+  </video>
+  <figcaption>CSS Scroll Snap gives scrolling an elastic ‘snap’</figcaption>
+</figure>
 
 With the use of [CSS Scroll Snap](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_scroll_snap) properties, you can restrict the possible scroll positions that a scroll container’s viewport may end at after a scrolling operation has completed. e.g. to centre an element in the viewport or align it to the left hand side.
 
@@ -120,8 +125,13 @@ Figure: In its default configuration, the [Gallery component from Flowbite](http
 
 As an enhancement to a simple thumbnail grid, you can add functionality to expand each image on click. This lets users make an informed choice about what they want to see instead of having to scroll through every slide or waiting for the content they’re interested in to appear. For users who want a more exploratory experience, you can provide next and previous controls once in the expanded view.
 
-![An image shows a magnifying glass on hover and expands to take up the whole screen when clicked. Clicking again shrinks the image back to its original size.](./images/medium-expand-image.webp)
-Figure: Although they’re guilty of a multitude of sins, medium.com occasionally makes a good UX decision. Enabling users to expand images on click is one of their better ones.
+<figure>
+  <video muted playsinline controls class="max-w-full h-auto">
+    <source src="/videos/medium-expand-image.webm" type="video/webm" />
+    <source src="/videos/medium-expand-image.mp4" type="video/mp4" />
+  </video>
+  <figcaption>Although they’re guilty of a multitude of sins, medium.com occasionally makes a good UX decision. Enabling users to expand images on click is one of their better ones.</figcaption>
+</figure>
 
 If you’re trying to save space by using a carousel, perhaps you should consider an [Accordion](/components/accordion). These accomplish the same goal of saving space, while also having a couple of big advantages over carousels:
 
