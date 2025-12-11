@@ -21,9 +21,14 @@ import CopyMicroIcon from "../../icons/copy--micro.svg";
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
-  // Get all published components
+  // Get components based on environment - all locally, only published on Netlify
   const components = await getCollection("components", ({ data }) => {
-    return data["Publish"] === true;
+    // On Netlify, only return published components
+    if (process.env.NETLIFY) {
+      return data["Publish"] === true;
+    }
+    // Locally, return all components
+    return true;
   });
 
   return components.map((entry) => ({

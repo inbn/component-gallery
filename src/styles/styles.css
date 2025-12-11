@@ -72,6 +72,7 @@
     --color-text-secondary: theme("colors.grey.6");
     --color-text-highlight: theme("colors.grey.10");
     --color-text-highlight-invert: theme("colors.grey.0");
+    --color-text-decoration: theme("colors.grey.7");
     --color-border-primary: theme("colors.grey.2");
     --color-border-highlight: theme("colors.grey.10");
 
@@ -90,6 +91,7 @@
       --color-text-highlight: theme("colors.grey.1");
       --color-text-highlight-invert: theme("colors.grey.10");
       --color-text-secondary: theme("colors.grey.4");
+      --color-text-decoration: theme("colors.grey.3");
       --color-border-primary: theme("colors.grey.5");
       --color-border-highlight: theme("colors.grey.0");
 
@@ -108,6 +110,7 @@
     --color-text-highlight: theme("colors.grey.1");
     --color-text-highlight-invert: theme("colors.grey.10");
     --color-text-secondary: theme("colors.grey.4");
+    --color-text-decoration: theme("colors.grey.5");
     --color-border-primary: theme("colors.grey.5");
     --color-border-highlight: theme("colors.grey.0");
 
@@ -176,7 +179,7 @@
   }
 
   .body-text a {
-    @apply underline underline-offset-2 decoration-grey-7;
+    @apply underline underline-offset-2 decoration-text-decoration;
 
     text-decoration-thickness: 0.07em;
   }
@@ -201,11 +204,8 @@
     @apply text-base font-sans font-medium scroll-mt-4;
   }
 
-  .body-text figure {
-    --space: 0.5rem;
-  }
-
   .body-text figcaption {
+    --space: 0.5rem;
     @apply text-sm text-text-secondary;
   }
 
@@ -241,6 +241,14 @@
     font-size: 0.92em;
     font-weight: 300;
     padding: 0.1em 0.4em;
+  }
+
+  .body-text [data-footnote-ref] {
+    @apply px-1 no-underline bg-transparent hover:bg-background-secondary duration-200 rounded;
+  }
+
+  .footnotes {
+    @apply text-sm text-text-secondary border-t border-border-primary block mb-4;
   }
 }
 
