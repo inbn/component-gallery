@@ -92,7 +92,7 @@ if (svgMarkup) {
 
   <slot />
   {
-    !!tech?.length && !!features?.length && (
+    (!!tech?.length || !!features?.length) && (
       <div class="mt-auto">
         {!!tech?.length && (
           <>
