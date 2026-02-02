@@ -46,7 +46,7 @@ const chartData = processData(data);
 
   // Get the chart element and parse the data from the data-chart attribute
   const chartElement = document.getElementById(
-    "pie-chart"
+    "pie-chart",
   ) as HTMLCanvasElement;
   const chartData = JSON.parse(chartElement.dataset.chart);
 
@@ -88,6 +88,11 @@ const chartData = processData(data);
     return patterns;
   }
 
+  // Function to determine legend position based on container width
+  function getLegendPosition(containerWidth: number) {
+    return containerWidth < 640 ? "bottom" : "right";
+  }
+
   // Create the chart after patterns are loaded
   createPatterns().then((patterns) => {
     const chart = new Chart(chartElement, {
@@ -108,7 +113,7 @@ const chartData = processData(data);
         maintainAspectRatio: false,
         plugins: {
           legend: {
-            position: "right",
+            position: getLegendPosition(chartElement.parentElement.offsetWidth),
             labels: {
               color: getCSSCustomPropertyValue("--color-text-primary"),
               font: {
@@ -140,7 +145,7 @@ const chartData = processData(data);
     const observer = new MutationObserver(() => {
       // Update the legend text color dynamically
       chart.options.plugins.legend.labels.color = getCSSCustomPropertyValue(
-        "--color-text-primary"
+        "--color-text-primary",
       );
       chart.update();
     });
@@ -150,5 +155,18 @@ const chartData = processData(data);
       attributes: true,
       attributeFilter: ["class"],
     });
+
+    // Use ResizeObserver to watch the container's width changes
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const containerWidth = entry.contentRect.width;
+        chart.options.plugins.legend.position =
+          getLegendPosition(containerWidth);
+        chart.update();
+      }
+    });
+
+    // Observe the parent element for size changes
+    resizeObserver.observe(chartElement.parentElement);
   });
 </script>
