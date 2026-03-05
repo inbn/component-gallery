@@ -17,6 +17,7 @@ interface Props {
 
 const { title, description, shareImage } = Astro.props;
 const isProduction = import.meta.env.PROD;
+const siteUrl = Astro.site ?? new URL("https://component.gallery");
 ---
 
 <!doctype html>
@@ -63,8 +64,11 @@ const isProduction = import.meta.env.PROD;
         openGraph={{
           basic: {
             title: title,
-            type: description ? description : "",
-            image: shareImage ? shareImage : "/open-graph/default.png",
+            type: "website",
+            image: shareImage
+              ? new URL(shareImage, siteUrl).toString()
+              : new URL("/open-graph/default.png", siteUrl).toString(),
+            url: new URL(Astro.url.pathname, siteUrl).toString(),
           },
         }}
       />
