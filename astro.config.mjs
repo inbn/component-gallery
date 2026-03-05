@@ -27,6 +27,9 @@ export default defineConfig({
   },
   prefetch: true,
   vite: {
+    ssr: {
+      external: ["canvaskit-wasm"],
+    },
     plugins: [
       pagefind({
         site: "dist",
