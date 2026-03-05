@@ -61,6 +61,7 @@ const siteUrl = Astro.site ?? new URL("https://component.gallery");
         description={description
           ? description
           : "An up-to-date repository of interface components based on examples from the world of design systems, designed to be a reference for anyone building user interfaces."}
+        canonical={new URL(Astro.url.pathname, siteUrl).toString()}
         openGraph={{
           basic: {
             title: title,
