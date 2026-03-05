@@ -10,11 +10,7 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.NETLIFY
-    ? process.env.CONTEXT === "production"
-      ? process.env.URL
-      : process.env.DEPLOY_PRIME_URL
-    : undefined,
+  site: process.env.CF_PAGES ? process.env.CF_PAGES_URL : undefined,
   contentLayer: true,
   image: {
     domains: ["v5.airtableusercontent.com"],
