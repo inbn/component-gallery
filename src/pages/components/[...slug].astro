@@ -21,10 +21,10 @@ import CopyMicroIcon from "../../icons/copy--micro.svg";
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
-  // Get components based on environment - all locally, only published on Netlify
+  // Get components based on environment - all locally, only published on Cloudflare Pages
   const components = await getCollection("components", ({ data }) => {
-    // On Netlify, only return published components
-    if (process.env.NETLIFY) {
+    // On Cloudflare Pages, only return published components
+    if (process.env.CF_PAGES) {
       return data["Publish"] === true;
     }
     // Locally, return all components
