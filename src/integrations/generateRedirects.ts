@@ -58,6 +58,18 @@ export default function generateRedirects(): AstroIntegration {
                 .replace(/\s+/g, "-");
               const redirectDestination = `/components/${slug}`;
 
+              const conflictingPage = path.join(
+                componentsDir,
+                slugifiedOtherName,
+                "index.html",
+              );
+              if (fs.existsSync(conflictingPage)) {
+                console.log(
+                  `Skipping redirect: ${slugifiedOtherName} already exists as a real component page`,
+                );
+                return;
+              }
+
               if (redirects[slugifiedOtherName]) {
                 console.log(
                   `Duplicate redirect found: ${slugifiedOtherName} already redirects to ${redirects[slugifiedOtherName]}, skipping redirect to ${redirectDestination}`,
