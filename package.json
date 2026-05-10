@@ -24,7 +24,7 @@
     "astro-og-canvas": "^0.5.6",
     "astro-seo": "^0.8.4",
     "chart.js": "^4.4.8",
-    "preact": "^10.25.4",
+    "preact": "^10.28.2",
     "rehype-stringify": "^10.0.1",
     "remark": "^15.0.1",
     "remark-captions": "^2.2.4",
