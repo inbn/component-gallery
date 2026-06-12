@@ -161,7 +161,6 @@ const Search = () => {
         class="search-dialog"
         onClose={handleClose}
         onClick={(e) => {
-          console.log(e.target);
           // Close dialog when clicking outside of it
           if (dialogRef.current && e.target === dialogRef.current) {
             dialogRef.current.close();
