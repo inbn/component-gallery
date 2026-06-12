@@ -1,4 +1,1 @@
-User-agent: *
-Allow: /
-
 Sitemap: https://component.gallery/sitemap-index.xml
