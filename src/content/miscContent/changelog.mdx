@@ -17,6 +17,10 @@ import Badge from '../../components/Badge.astro';
 
 - Move `@astrojs/check` and `typescript` from dependencies to devDependencies
 
+### Fixed
+
+- Detect Cloudflare Workers Builds (`WORKERS_CI`) as well as Cloudflare Pages (`CF_PAGES`) when setting the site URL and filtering out unpublished components. Fixes the sitemap not being generated on deploy and unpublished draft component pages being built in prod.
+
 ### Removed
 
 - Remove unused `patch-package` dependency

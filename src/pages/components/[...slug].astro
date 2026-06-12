@@ -6,6 +6,7 @@ import {
   fetchSvgMarkupForComponents,
 } from "../../utils/fetchSvgMarkup";
 import { parseMarkdown } from "../../utils/markdown";
+import { isCloudflareBuild } from "../../utils/buildEnv";
 
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Button from "../../components/Button.astro";
@@ -21,10 +22,10 @@ import CopyMicroIcon from "../../icons/copy--micro.svg";
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
-  // Get components based on environment - all locally, only published on Cloudflare Pages
+  // Get components based on environment - all locally, only published on Cloudflare
   const components = await getCollection("components", ({ data }) => {
-    // On Cloudflare Pages, only return published components
-    if (process.env.CF_PAGES) {
+    // On Cloudflare (Pages or Workers Builds), only return published components
+    if (isCloudflareBuild) {
       return data["Publish"] === true;
     }
     // Locally, return all components

@@ -5,16 +5,19 @@ import remarkCaptions from "remark-captions";
 import tailwind from "@astrojs/tailwind";
 import { pagefind } from "vite-plugin-pagefind";
 import generateRedirects from "./src/integrations/generateRedirects";
+import { isCloudflareBuild, branch } from "./src/utils/buildEnv";
 import sitemap from "@astrojs/sitemap";
 
 import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.CF_PAGES
-    ? process.env.CF_PAGES_BRANCH === "main"
+  site: isCloudflareBuild
+    ? branch === "main"
       ? "https://component.gallery"
-      : process.env.CF_PAGES_URL
+      : // Pages previews expose their URL; Workers Builds has no equivalent,
+        // so preview builds fall back to the production URL
+        (process.env.CF_PAGES_URL ?? "https://component.gallery")
     : undefined,
   contentLayer: true,
   image: {
