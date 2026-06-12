@@ -5,6 +5,7 @@ import remarkCaptions from "remark-captions";
 import tailwind from "@astrojs/tailwind";
 import { pagefind } from "vite-plugin-pagefind";
 import generateRedirects from "./src/integrations/generateRedirects";
+import sitemap from "@astrojs/sitemap";
 
 import icon from "astro-icon";
 
@@ -19,7 +20,21 @@ export default defineConfig({
   image: {
     domains: ["v5.airtableusercontent.com"],
   },
-  integrations: [tailwind(), mdx(), preact(), icon(), generateRedirects()],
+  integrations: [
+    tailwind(),
+    mdx(),
+    preact(),
+    icon(),
+    generateRedirects(),
+    sitemap({
+      filter: (page) =>
+        !page.includes("/open-graph/") &&
+        !page.endsWith("/404/") &&
+        // Design system detail pages are noindex redirect stubs (built for
+        // Pagefind only), so they don't belong in the sitemap
+        !/\/design-systems\/.+/.test(page),
+    }),
+  ],
   markdown: {
     shikiConfig: {
       themes: {
